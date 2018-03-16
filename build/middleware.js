@@ -72,9 +72,8 @@ module.exports = __webpack_require__(1);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, exports) {
 
-"use strict";
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -92,35 +91,38 @@ var GutenbergMiddleWare = function () {
 		_classCallCheck(this, GutenbergMiddleWare);
 
 		this.blockConfigs = {};
+		this.components = {};
+		this.config = {};
+
+		this.setBlockComponents = this.setBlockComponents.bind(this);
 	}
 
 	_createClass(GutenbergMiddleWare, [{
-		key: 'getControls',
-		value: function getControls(props) {
-			var controls = [];
+		key: 'setBlockComponents',
+		value: function setBlockComponents(props) {
+			var _this = this;
+
 			var changedAttributes = {};
 
 			_.each(this.blockConfigs.attributes, function (attribute, key) {
-				if (attribute.field) {
-					if ('text' === attribute.field.type) {
-						controls.push(wp.element.createElement(RichText, {
-							onChange: function onChange(newContent) {
-								changedAttributes[key] = newContent;
-								props.setAttributes(changedAttributes);
-							},
-							value: props.attributes[key],
-							placeholder: attribute.field.placeholder
-						}));
-					}
+				if (attribute.field && 'text' === attribute.field.type) {
+					_this.components[key] = wp.element.createElement(RichText, {
+						onChange: function onChange(newContent) {
+							changedAttributes[key] = newContent;
+							props.setAttributes(changedAttributes);
+						},
+						value: props.attributes[key],
+						placeholder: attribute.field.placeholder
+					});
 				}
 			});
-
-			return controls;
 		}
 	}, {
 		key: 'registerBlockType',
 		value: function registerBlockType(namespace, config) {
-			var _this = this;
+			var _this2 = this;
+
+			this.config = config;
 
 			this.blockConfigs = _.extend({
 				title: '',
@@ -133,22 +135,38 @@ var GutenbergMiddleWare = function () {
 
 				attributes: {}
 
-			}, config);
+			}, this.config);
 
 			this.blockConfigs.edit = function (props) {
-				return wp.element.createElement(
-					'div',
-					null,
-					_.has(config, 'edit') && config.edit(props),
-					_this.getControls(props)
-				);
+				_this2.setBlockComponents(props);
+				return _this2.config.edit ? _this2.config.edit(props, _this2) : _this2.edit(props);
 			};
 
 			this.blockConfigs.save = function (props) {
-				return _.has(_.has(config, 'save')) ? config.save(props) : null;
+				return _this2.config.save ? _this2.config.save(props, _this2) : _this2.save(props);
 			};
 
 			_registerBlockType(namespace, this.blockConfigs);
+
+			return this;
+		}
+	}, {
+		key: 'edit',
+		value: function edit(props) {
+			var _this3 = this;
+
+			return wp.element.createElement(
+				'div',
+				null,
+				Object.keys(this.components).map(function (key) {
+					return _this3.components[key];
+				})
+			);
+		}
+	}, {
+		key: 'save',
+		value: function save(props) {
+			return null;
 		}
 	}]);
 
