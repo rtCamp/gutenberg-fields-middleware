@@ -17,17 +17,21 @@ class GutenbergMiddleWare {
 		const changedAttributes = {};
 
 		_.each( this.blockConfigs.attributes, ( attribute, key ) => {
-			if ( attribute.field && 'text' === attribute.field.type ) {
-				this.components[ key ] = (
-					<RichText
-						onChange={ ( newContent ) => {
-							changedAttributes[ key ] = newContent;
-							props.setAttributes( changedAttributes );
-						} }
-						value={ props.attributes[ key ] }
-						placeholder={ attribute.field.placeholder }
-					/>
-				);
+			if ( attribute.field ) {
+				switch ( attribute.field.type ) {
+					case 'text':
+						this.components[ key ] = (
+							<RichText
+								onChange={ ( newContent ) => {
+									changedAttributes[ key ] = newContent;
+									props.setAttributes( changedAttributes );
+								} }
+								value={ props.attributes[ key ] }
+								placeholder={ attribute.field.placeholder }
+							/>
+						);
+						break;
+				}
 			}
 		} );
 	}
