@@ -1,0 +1,24 @@
+{
+	"name": "rt-gutenberg-blocks",
+	"title": "Rt Gutenberg Blocks",
+	"version": "1.0.0",
+	"main": "js/block.js",
+	"devDependencies": {
+		"babel-core": "^6.26.0",
+		"babel-loader": "^7.1.2",
+		"babel-plugin-transform-object-rest-spread": "6.26.0",
+		"babel-plugin-transform-react-jsx": "^6.24.1",
+		"babel-preset-env": "^1.6.0",
+		"classnames": "2.2.5",
+		"cross-env": "^3.2.4",
+		"css-loader": "^0.28.9",
+		"extract-text-webpack-plugin": "^3.0.2",
+		"glob": "^7.1.2",
+		"style-loader": "^0.20.1",
+		"webpack": "^3.10.0"
+	},
+	"scripts": {
+		"build": "cross-env BABEL_ENV=default NODE_ENV=production webpack",
+		"dev": "cross-env BABEL_ENV=default webpack --watch"
+	}
+}
