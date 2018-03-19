@@ -1,10 +1,10 @@
 /**
- * Gutenberg Middleware.
+ * Gutenberg Fields Middleware.
  */
 
 const { registerBlockType, RichText } = wp.blocks;
 
-class GutenbergMiddleWare {
+class GutenbergFieldsMiddleWare {
 	constructor() {
 		this.blockConfigs = {};
 		this.components = {};
@@ -81,4 +81,4 @@ class GutenbergMiddleWare {
 	}
 }
 
-window.gutenbergMiddleWare = new GutenbergMiddleWare();
+window.gutenbergFieldsMiddleWare = new gutenbergFieldsMiddleWare();

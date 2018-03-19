@@ -79,16 +79,16 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * Gutenberg Middleware.
+ * Gutenberg Fields Middleware.
  */
 
 var _wp$blocks = wp.blocks,
     _registerBlockType = _wp$blocks.registerBlockType,
     RichText = _wp$blocks.RichText;
 
-var GutenbergMiddleWare = function () {
-	function GutenbergMiddleWare() {
-		_classCallCheck(this, GutenbergMiddleWare);
+var GutenbergFieldsMiddleWare = function () {
+	function GutenbergFieldsMiddleWare() {
+		_classCallCheck(this, GutenbergFieldsMiddleWare);
 
 		this.blockConfigs = {};
 		this.components = {};
@@ -97,7 +97,7 @@ var GutenbergMiddleWare = function () {
 		this.setBlockComponents = this.setBlockComponents.bind(this);
 	}
 
-	_createClass(GutenbergMiddleWare, [{
+	_createClass(GutenbergFieldsMiddleWare, [{
 		key: 'setBlockComponents',
 		value: function setBlockComponents(props) {
 			var _this = this;
@@ -105,15 +105,19 @@ var GutenbergMiddleWare = function () {
 			var changedAttributes = {};
 
 			_.each(this.blockConfigs.attributes, function (attribute, key) {
-				if (attribute.field && 'text' === attribute.field.type) {
-					_this.components[key] = wp.element.createElement(RichText, {
-						onChange: function onChange(newContent) {
-							changedAttributes[key] = newContent;
-							props.setAttributes(changedAttributes);
-						},
-						value: props.attributes[key],
-						placeholder: attribute.field.placeholder
-					});
+				if (attribute.field) {
+					switch (attribute.field.type) {
+						case 'text':
+							_this.components[key] = wp.element.createElement(RichText, {
+								onChange: function onChange(newContent) {
+									changedAttributes[key] = newContent;
+									props.setAttributes(changedAttributes);
+								},
+								value: props.attributes[key],
+								placeholder: attribute.field.placeholder
+							});
+							break;
+					}
 				}
 			});
 		}
@@ -170,10 +174,10 @@ var GutenbergMiddleWare = function () {
 		}
 	}]);
 
-	return GutenbergMiddleWare;
+	return GutenbergFieldsMiddleWare;
 }();
 
-window.gutenbergMiddleWare = new GutenbergMiddleWare();
+window.gutenbergFieldsMiddleWare = new gutenbergFieldsMiddleWare();
 
 /***/ })
 /******/ ]);
