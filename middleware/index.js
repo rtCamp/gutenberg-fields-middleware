@@ -81,4 +81,4 @@ class GutenbergFieldsMiddleWare {
 	}
 }
 
-window.gutenbergFieldsMiddleWare = new gutenbergFieldsMiddleWare();
+window.gutenbergFieldsMiddleWare = new GutenbergFieldsMiddleWare();

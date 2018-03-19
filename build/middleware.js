@@ -177,7 +177,7 @@ var GutenbergFieldsMiddleWare = function () {
 	return GutenbergFieldsMiddleWare;
 }();
 
-window.gutenbergFieldsMiddleWare = new gutenbergFieldsMiddleWare();
+window.gutenbergFieldsMiddleWare = new GutenbergFieldsMiddleWare();
 
 /***/ })
 /******/ ]);
