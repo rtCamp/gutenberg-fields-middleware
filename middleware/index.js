@@ -7,7 +7,7 @@ const { registerBlockType, RichText } = wp.blocks;
 class GutenbergFieldsMiddleWare {
 	constructor() {
 		this.blockConfigs = {};
-		this.components = {};
+		this.fields = {};
 		this.config = {};
 
 		this.setBlockComponents = this.setBlockComponents.bind( this );
@@ -20,7 +20,7 @@ class GutenbergFieldsMiddleWare {
 			if ( attribute.field ) {
 				switch ( attribute.field.type ) {
 					case 'text':
-						this.components[ key ] = (
+						this.fields[ key ] = (
 							<RichText
 								onChange={ ( newContent ) => {
 									changedAttributes[ key ] = newContent;
@@ -69,8 +69,8 @@ class GutenbergFieldsMiddleWare {
 	edit( props ) {
 		return (
 			<div>
-				{ Object.keys( this.components ).map( ( key ) => {
-					return this.components[ key ];
+				{ Object.keys( this.fields ).map( ( key ) => {
+					return this.fields[ key ];
 				} ) }
 			</div>
 		);

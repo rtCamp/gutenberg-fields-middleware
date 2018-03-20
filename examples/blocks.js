@@ -32,14 +32,14 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 
 	/**
 	 * This is optional, can define edit method if you want to to structure your block components differently.
-	 * Make use of all middleware components as middleware.components.attributeKey and structure it however you want.
+	 * Make use of all middleware components as middleware.fields.attributeKey and structure it however you want.
 	 *
 	 * @param {object} props Same properties we get in default edit method.
 	 * @param {object} middleware GutenbergMiddleWare instance.
 	 * @return {*}
 	 */
 	edit( props, middleware ) {
-		return [ middleware.components.url, middleware.components.copyright ];
+		return [ middleware.fields.url, middleware.fields.copyright ];
 	},
 
 	/**

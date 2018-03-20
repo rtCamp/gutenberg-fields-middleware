@@ -13,7 +13,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'namespace/block-name', {
 } );
 ``` 
 
-define your fields inside `attributes: { field }` and then use ( Optionally ) those fields inside `edit` method as `middleware.components.attributeKey`
+define your fields inside `attributes: { field }` and then use ( Optionally ) those fields inside `edit` method as `middleware.fields.attributeKey`
 
 ## Example Usage
 
@@ -44,7 +44,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 
 	// Optional.
 	edit( props, middleware ) {
-		return [ middleware.components.url, middleware.components.copyright ];
+		return [ middleware.fields.url, middleware.fields.copyright ];
 	},
 
 	// Optional.

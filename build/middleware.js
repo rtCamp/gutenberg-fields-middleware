@@ -91,7 +91,7 @@ var GutenbergFieldsMiddleWare = function () {
 		_classCallCheck(this, GutenbergFieldsMiddleWare);
 
 		this.blockConfigs = {};
-		this.components = {};
+		this.fields = {};
 		this.config = {};
 
 		this.setBlockComponents = this.setBlockComponents.bind(this);
@@ -108,7 +108,7 @@ var GutenbergFieldsMiddleWare = function () {
 				if (attribute.field) {
 					switch (attribute.field.type) {
 						case 'text':
-							_this.components[key] = wp.element.createElement(RichText, {
+							_this.fields[key] = wp.element.createElement(RichText, {
 								onChange: function onChange(newContent) {
 									changedAttributes[key] = newContent;
 									props.setAttributes(changedAttributes);
@@ -162,8 +162,8 @@ var GutenbergFieldsMiddleWare = function () {
 			return wp.element.createElement(
 				'div',
 				null,
-				Object.keys(this.components).map(function (key) {
-					return _this3.components[key];
+				Object.keys(this.fields).map(function (key) {
+					return _this3.fields[key];
 				})
 			);
 		}
