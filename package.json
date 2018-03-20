@@ -1,8 +1,8 @@
 {
-	"name": "rt-gutenberg-blocks",
-	"title": "Rt Gutenberg Blocks",
-	"version": "1.0.0",
-	"main": "js/block.js",
+	"name": "gutenberg-fields-middleware",
+	"title": "Gutenberg Fields Middleware",
+	"version": "0.1.0",
+	"main": "middleware/index.js",
 	"devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",

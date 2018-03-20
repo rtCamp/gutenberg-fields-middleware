@@ -3,13 +3,13 @@
 /**
  * Enqueue Example Block scripts.
  */
-function gutenberg_middleware_examples_enqueue_scripts() {
+function gutenberg_fields_middleware_examples_enqueue_scripts() {
 	wp_enqueue_script(
 		'gutenberg-middleware-examples',
 		plugins_url( 'blocks.js', __FILE__ ),
-		array( 'gutenberg-middleware' ),
-		filemtime( GUTENBERG_MIDDLEWARE_PLUGIN_DIR. '/examples/blocks.js' )
+		array( 'gutenberg-fields-middleware' ),
+		filemtime( GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR. '/examples/blocks.js' )
 	);
 }
 
-add_action( 'enqueue_block_editor_assets', 'gutenberg_middleware_examples_enqueue_scripts' );
+add_action( 'enqueue_block_editor_assets', 'gutenberg_fields_middleware_examples_enqueue_scripts' );
