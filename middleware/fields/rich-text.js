@@ -2,7 +2,7 @@
  * Text field.
  */
 
-const { RichText } = wp.blocks;
+const { RichText, PlainText } = wp.blocks;
 
 const richText = ( props, attribute, attributeKey ) => {
 	const defaultAttributes = {
@@ -20,8 +20,17 @@ const richText = ( props, attribute, attributeKey ) => {
 
 	delete fieldAttributes.type;
 
+	if ( fieldAttributes.richText ) {
+		delete fieldAttributes.richText;
+		return (
+			<RichText
+				{ ...fieldAttributes }
+			/>
+		);
+	}
+
 	return (
-		<RichText
+		<PlainText
 			{ ...fieldAttributes }
 		/>
 	);

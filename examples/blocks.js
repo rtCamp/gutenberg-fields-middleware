@@ -20,7 +20,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 				type: 'url',
 			},
 		},
-		linkText: {
+		text: {
 			type: 'string',
 			field: {
 				type: 'text',
@@ -66,7 +66,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 	edit( props, middleware ) {
 		return [
 			middleware.fields.url,
-			middleware.fields.linkText,
+			middleware.fields.text,
 			middleware.fields.image,
 			middleware.fields.option,
 		];
@@ -88,7 +88,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 			image,
 			el( 'a', {
 				href: attributes.url,
-			}, attributes.linkText ),
+			}, attributes.text ),
 		] );
 	},
 

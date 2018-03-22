@@ -202,7 +202,9 @@ window.gutenbergFieldsMiddleWare = new GutenbergFieldsMiddleWare();
  * Text field.
  */
 
-var RichText = wp.blocks.RichText;
+var _wp$blocks = wp.blocks,
+    RichText = _wp$blocks.RichText,
+    PlainText = _wp$blocks.PlainText;
 
 
 var richText = function richText(props, attribute, attributeKey) {
@@ -221,7 +223,12 @@ var richText = function richText(props, attribute, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(RichText, fieldAttributes);
+	if (fieldAttributes.richText) {
+		delete fieldAttributes.richText;
+		return wp.element.createElement(RichText, fieldAttributes);
+	}
+
+	return wp.element.createElement(PlainText, fieldAttributes);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (richText);
