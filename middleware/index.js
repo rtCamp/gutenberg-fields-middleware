@@ -7,6 +7,7 @@ const { registerBlockType } = wp.blocks;
 import richText from './fields/rich-text';
 import mediaUpload from './fields/media-upload';
 import urlInput from './fields/url-input';
+import selectControl from './fields/select-control';
 
 class GutenbergFieldsMiddleWare {
 	constructor() {
@@ -63,6 +64,9 @@ class GutenbergFieldsMiddleWare {
 						break;
 					case 'audio':
 						this.fields[ attributeKey ] = mediaUpload( props, attribute, attributeKey );
+						break;
+					case 'select':
+						this.fields[ attributeKey ] = selectControl( props, attribute, attributeKey );
 						break;
 				}
 			}

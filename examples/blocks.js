@@ -36,6 +36,23 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 				removeButton: __( 'Remove' ),
 			},
 		},
+		option: {
+			type: 'string',
+			field: {
+				type: 'select',
+				label: 'Select Numbers',
+				options: [
+					{
+						value: 'one',
+						label: 'one',
+					},
+					{
+						value: 'two',
+						label: 'two',
+					},
+				],
+			},
+		},
 	},
 
 	/**
@@ -51,6 +68,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 			middleware.fields.url,
 			middleware.fields.linkText,
 			middleware.fields.image,
+			middleware.fields.option,
 		];
 	},
 

@@ -1,10 +1,10 @@
 /**
- * Url field.
+ * Select field.
  */
 
-const { UrlInput } = wp.blocks;
+const { SelectControl } = wp.components;
 
-const urlInput = ( props, attribute, attributeKey ) => {
+const selectControl = ( props, attribute, attributeKey ) => {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -21,10 +21,10 @@ const urlInput = ( props, attribute, attributeKey ) => {
 	delete fieldAttributes.type;
 
 	return (
-		<UrlInput
+		<SelectControl
 			{ ...fieldAttributes }
 		/>
 	);
 };
 
-export default urlInput;
+export default selectControl;

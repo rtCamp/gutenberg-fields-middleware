@@ -13,7 +13,7 @@ const richText = ( props, attribute, attributeKey ) => {
 			props.setAttributes( newAttributes );
 		},
 
-		value: props.attributes[ attributeKey ],
+		value: props.attributes[ attributeKey ] || '',
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, attribute.field );

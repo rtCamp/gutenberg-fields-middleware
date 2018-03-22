@@ -22,7 +22,7 @@ const mediaUpload = ( props, attribute, attributeKey ) => {
 
 		type: 'image',
 
-		value: image,
+		value: image || '',
 
 		render( { open } ) {
 			const nodes = [];

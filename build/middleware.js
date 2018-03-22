@@ -79,6 +79,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_media_upload__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_url_input__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_select_control__ = __webpack_require__(6);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -88,6 +89,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var _registerBlockType = wp.blocks.registerBlockType;
+
 
 
 
@@ -159,6 +161,9 @@ var GutenbergFieldsMiddleWare = function () {
 						case 'audio':
 							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, attribute, attributeKey);
 							break;
+						case 'select':
+							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_select_control__["a" /* default */])(props, attribute, attributeKey);
+							break;
 					}
 				}
 			});
@@ -209,7 +214,7 @@ var richText = function richText(props, attribute, attributeKey) {
 		},
 
 
-		value: props.attributes[attributeKey]
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
@@ -252,7 +257,7 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 
 		type: 'image',
 
-		value: image,
+		value: image || '',
 
 		render: function render(_ref) {
 			var open = _ref.open;
@@ -363,7 +368,7 @@ var urlInput = function urlInput(props, attribute, attributeKey) {
 		},
 
 
-		value: props.attributes[attributeKey]
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
@@ -374,6 +379,39 @@ var urlInput = function urlInput(props, attribute, attributeKey) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (urlInput);
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Select field.
+ */
+
+var SelectControl = wp.components.SelectControl;
+
+
+var selectControl = function selectControl(props, attribute, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(SelectControl, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (selectControl);
 
 /***/ })
 /******/ ]);
