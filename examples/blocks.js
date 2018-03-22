@@ -17,9 +17,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 		url: {
 			type: 'string',
 			field: {
-				type: 'text',
-				placeholder: __( 'Enter Url' ),
-				tagName: 'h1',
+				type: 'url',
 			},
 		},
 		linkText: {

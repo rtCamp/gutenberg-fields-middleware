@@ -78,6 +78,7 @@ module.exports = __webpack_require__(1);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_media_upload__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_url_input__ = __webpack_require__(5);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -87,6 +88,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var _registerBlockType = wp.blocks.registerBlockType;
+
 
 
 
@@ -145,6 +147,9 @@ var GutenbergFieldsMiddleWare = function () {
 						case 'text':
 							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, attribute, attributeKey);
 							break;
+						case 'url':
+							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_url_input__["a" /* default */])(props, attribute, attributeKey);
+							break;
 						case 'image':
 							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, attribute, attributeKey);
 							break;
@@ -197,9 +202,9 @@ var RichText = wp.blocks.RichText;
 
 var richText = function richText(props, attribute, attributeKey) {
 	var defaultAttributes = {
-		onChange: function onChange(newContent) {
+		onChange: function onChange(value) {
 			var newAttributes = {};
-			newAttributes[attributeKey] = newContent;
+			newAttributes[attributeKey] = value;
 			props.setAttributes(newAttributes);
 		},
 
@@ -235,6 +240,7 @@ var __ = wp.i18n.__;
 
 var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 	var buttonText = attribute.field.buttonText ? attribute.field.buttonText : __('Open Media Library');
+	var image = props.attributes[attributeKey];
 
 	var defaultAttributes = {
 		onSelect: function onSelect(media) {
@@ -246,29 +252,28 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 
 		type: 'image',
 
-		value: props.attributes[attributeKey],
+		value: image,
 
 		render: function render(_ref) {
 			var open = _ref.open;
 
-			var elements = [];
-			var image = props.attributes[attributeKey];
+			var nodes = [];
 
 			if (!image) {
 				if (attribute.field.imagePlaceholder) {
-					elements.push(Object(__WEBPACK_IMPORTED_MODULE_0__image_placeholder__["a" /* default */])(props, attribute, attributeKey));
+					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__image_placeholder__["a" /* default */])(props, attribute, attributeKey));
 				} else {
-					elements.push(wp.element.createElement(
+					nodes.push(wp.element.createElement(
 						Button,
 						{ className: 'button button-large button-upload', onClick: open },
 						buttonText
 					));
 				}
 			} else {
-				elements.push(wp.element.createElement('img', { className: 'uploaded-image', src: image.url, alt: image.alt }));
+				nodes.push(wp.element.createElement('img', { className: 'uploaded-image', src: image.url, alt: image.alt }));
 
 				if (!!attribute.field.removeButton) {
-					elements.push(wp.element.createElement(
+					nodes.push(wp.element.createElement(
 						Button,
 						{ className: 'button button-large button-remove', onClick: function onClick() {
 								var newAttributes = {};
@@ -283,7 +288,7 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 			return wp.element.createElement(
 				'div',
 				{ className: 'blocks-' + attribute.field.type + '-upload' },
-				elements
+				nodes
 			);
 		}
 	};
@@ -292,6 +297,7 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 
 	delete fieldAttributes.buttonText;
 	delete fieldAttributes.imagePlaceholder;
+	delete fieldAttributes.removeButton;
 
 	return wp.element.createElement(MediaUpload, fieldAttributes);
 };
@@ -335,6 +341,39 @@ var imagePlaceholder = function imagePlaceholder(props, attribute, attributeKey)
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Url field.
+ */
+
+var UrlInput = wp.blocks.UrlInput;
+
+
+var urlInput = function urlInput(props, attribute, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey]
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(UrlInput, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (urlInput);
 
 /***/ })
 /******/ ]);

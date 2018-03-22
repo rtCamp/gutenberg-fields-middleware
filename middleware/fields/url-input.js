@@ -1,10 +1,10 @@
 /**
- * Text field.
+ * Url field.
  */
 
-const { RichText } = wp.blocks;
+const { UrlInput } = wp.blocks;
 
-const richText = ( props, attribute, attributeKey ) => {
+const urlInput = ( props, attribute, attributeKey ) => {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -21,10 +21,10 @@ const richText = ( props, attribute, attributeKey ) => {
 	delete fieldAttributes.type;
 
 	return (
-		<RichText
+		<UrlInput
 			{ ...fieldAttributes }
 		/>
 	);
 };
 
-export default richText;
+export default urlInput;

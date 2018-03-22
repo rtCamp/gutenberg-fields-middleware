@@ -10,6 +10,7 @@ import imagePlaceholder from './image-placeholder';
 
 const mediaUpload = ( props, attribute, attributeKey ) => {
 	const buttonText = attribute.field.buttonText ? attribute.field.buttonText : __( 'Open Media Library' );
+	const image = props.attributes[ attributeKey ];
 
 	const defaultAttributes = {
 
@@ -21,29 +22,28 @@ const mediaUpload = ( props, attribute, attributeKey ) => {
 
 		type: 'image',
 
-		value: props.attributes[ attributeKey ],
+		value: image,
 
 		render( { open } ) {
-			const elements = [];
-			const image = props.attributes[ attributeKey ];
+			const nodes = [];
 
 			if ( ! image ) {
 				if ( attribute.field.imagePlaceholder ) {
-					elements.push( imagePlaceholder( props, attribute, attributeKey ) );
+					nodes.push( imagePlaceholder( props, attribute, attributeKey ) );
 				} else {
-					elements.push( (
+					nodes.push( (
 						<Button className="button button-large button-upload" onClick={ open }>
 							{ buttonText }
 						</Button>
 					) );
 				}
 			} else {
-				elements.push( (
+				nodes.push( (
 					<img className="uploaded-image" src={ image.url } alt={ image.alt } />
 				) );
 
 				if ( !! attribute.field.removeButton ) {
-					elements.push( (
+					nodes.push( (
 						<Button className="button button-large button-remove" onClick={ () => {
 							const newAttributes = {};
 							newAttributes[ attributeKey ] = '';
@@ -57,7 +57,7 @@ const mediaUpload = ( props, attribute, attributeKey ) => {
 
 			return (
 				<div className={ 'blocks-' + attribute.field.type + '-upload' }>
-					{ elements }
+					{ nodes }
 				</div>
 			);
 		},
@@ -67,6 +67,7 @@ const mediaUpload = ( props, attribute, attributeKey ) => {
 
 	delete fieldAttributes.buttonText;
 	delete fieldAttributes.imagePlaceholder;
+	delete fieldAttributes.removeButton;
 
 	return (
 		<MediaUpload
