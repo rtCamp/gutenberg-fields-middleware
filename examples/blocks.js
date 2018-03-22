@@ -7,7 +7,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 
 	title: __( 'Simple Example Block' ),
 
-	description: __( 'Creates s simple block.' ),
+	description: __( 'Creates simple block.' ),
 
 	icon: 'universal-access-alt',
 

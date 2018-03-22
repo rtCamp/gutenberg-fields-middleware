@@ -188,19 +188,26 @@ window.gutenbergFieldsMiddleWare = new GutenbergFieldsMiddleWare();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/**
+ * Text field.
+ */
+
 var RichText = wp.blocks.RichText;
 
 
 var richText = function richText(props, attribute, attributeKey) {
-	var fieldAttributes = _.extend({
+	var defaultAttributes = {
 		onChange: function onChange(newContent) {
 			var newAttributes = {};
 			newAttributes[attributeKey] = newContent;
 			props.setAttributes(newAttributes);
 		},
 
+
 		value: props.attributes[attributeKey]
-	}, attribute.field);
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
 
 	delete fieldAttributes.type;
 
@@ -214,6 +221,10 @@ var richText = function richText(props, attribute, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/**
+ * Image, Video, Audio Field.
+ */
+
 var MediaUpload = wp.blocks.MediaUpload;
 var Button = wp.components.Button;
 var __ = wp.i18n.__;
@@ -222,15 +233,18 @@ var __ = wp.i18n.__;
 var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 	var buttonText = attribute.field.buttonText ? attribute.field.buttonText : __('Open Media Library');
 
-	var fieldAttributes = _.extend({
+	var defaultAttributes = {
 		onSelect: function onSelect(media) {
 			var newAttributes = {};
 			newAttributes[attributeKey] = media;
 			props.setAttributes(newAttributes);
 		},
 
+
 		type: 'image',
+
 		value: props.attributes[attributeKey],
+
 		render: function render(_ref) {
 			var open = _ref.open;
 
@@ -240,7 +254,9 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 				buttonText
 			);
 		}
-	}, attribute.field);
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
 
 	delete fieldAttributes.buttonText;
 
