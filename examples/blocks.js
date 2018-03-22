@@ -49,14 +49,9 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 	 * @return {*}
 	 */
 	edit( props, middleware ) {
-		const image = props.attributes.image ? el( 'img', {
-			src: props.attributes.image.url,
-		}, null ) : '';
-
 		return [
 			middleware.fields.url,
 			middleware.fields.linkText,
-			image,
 			middleware.fields.image,
 		];
 	},

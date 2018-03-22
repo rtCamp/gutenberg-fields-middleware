@@ -24,31 +24,42 @@ const mediaUpload = ( props, attribute, attributeKey ) => {
 		value: props.attributes[ attributeKey ],
 
 		render( { open } ) {
-			const buttons = [];
+			const elements = [];
+			const image = props.attributes[ attributeKey ];
 
-			if ( ! props.attributes[ attributeKey ] ) {
+			if ( ! image ) {
 				if ( attribute.field.imagePlaceholder ) {
-					buttons.push( imagePlaceholder( props, attribute, attributeKey ) );
+					elements.push( imagePlaceholder( props, attribute, attributeKey ) );
 				} else {
-					buttons.push( (
+					elements.push( (
 						<Button className="button button-large button-upload" onClick={ open }>
 							{ buttonText }
 						</Button>
 					) );
 				}
-			} else if ( !! attribute.field.removeButton ) {
-				buttons.push( (
-					<Button className="button button-large button-remove" onClick={ () => {
-						const newAttributes = {};
-						newAttributes[ attributeKey ] = '';
-						props.setAttributes( newAttributes );
-					} }>
-						{ attribute.field.removeButton }
-					</Button>
+			} else {
+				elements.push( (
+					<img className="uploaded-image" src={ image.url } alt={ image.alt } />
 				) );
+
+				if ( !! attribute.field.removeButton ) {
+					elements.push( (
+						<Button className="button button-large button-remove" onClick={ () => {
+							const newAttributes = {};
+							newAttributes[ attributeKey ] = '';
+							props.setAttributes( newAttributes );
+						} }>
+							{ attribute.field.removeButton }
+						</Button>
+					) );
+				}
 			}
 
-			return buttons;
+			return (
+				<div className={ 'blocks-' + attribute.field.type + '-upload' }>
+					{ elements }
+				</div>
+			);
 		},
 	};
 

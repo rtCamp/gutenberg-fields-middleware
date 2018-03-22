@@ -251,31 +251,40 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 		render: function render(_ref) {
 			var open = _ref.open;
 
-			var buttons = [];
+			var elements = [];
+			var image = props.attributes[attributeKey];
 
-			if (!props.attributes[attributeKey]) {
+			if (!image) {
 				if (attribute.field.imagePlaceholder) {
-					buttons.push(Object(__WEBPACK_IMPORTED_MODULE_0__image_placeholder__["a" /* default */])(props, attribute, attributeKey));
+					elements.push(Object(__WEBPACK_IMPORTED_MODULE_0__image_placeholder__["a" /* default */])(props, attribute, attributeKey));
 				} else {
-					buttons.push(wp.element.createElement(
+					elements.push(wp.element.createElement(
 						Button,
 						{ className: 'button button-large button-upload', onClick: open },
 						buttonText
 					));
 				}
-			} else if (!!attribute.field.removeButton) {
-				buttons.push(wp.element.createElement(
-					Button,
-					{ className: 'button button-large button-remove', onClick: function onClick() {
-							var newAttributes = {};
-							newAttributes[attributeKey] = '';
-							props.setAttributes(newAttributes);
-						} },
-					attribute.field.removeButton
-				));
+			} else {
+				elements.push(wp.element.createElement('img', { className: 'uploaded-image', src: image.url, alt: image.alt }));
+
+				if (!!attribute.field.removeButton) {
+					elements.push(wp.element.createElement(
+						Button,
+						{ className: 'button button-large button-remove', onClick: function onClick() {
+								var newAttributes = {};
+								newAttributes[attributeKey] = '';
+								props.setAttributes(newAttributes);
+							} },
+						attribute.field.removeButton
+					));
+				}
 			}
 
-			return buttons;
+			return wp.element.createElement(
+				'div',
+				{ className: 'blocks-' + attribute.field.type + '-upload' },
+				elements
+			);
 		}
 	};
 
