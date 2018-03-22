@@ -44,11 +44,11 @@ class GutenbergFieldsMiddleWare {
 	}
 
 	setBlockComponents( props ) {
-		_.each( this.blockConfigs.attributes, ( attribute, key ) => {
+		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
 			if ( attribute.field ) {
 				switch ( attribute.field.type ) {
 					case 'text':
-						this.fields[ key ] = richText( props, attribute, key );
+						this.fields[ attributeKey ] = richText( props, attribute, attributeKey );
 						break;
 				}
 			}

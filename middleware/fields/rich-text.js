@@ -1,19 +1,19 @@
 const { RichText } = wp.blocks;
 
-const richText = ( props, attribute, key ) => {
-	const fieldAttributes = _.extend( {}, attribute.field );
-	delete fieldAttributes.type;
+const richText = ( props, attribute, attributeKey ) => {
+	const fieldAttributes = _.extend( {
+		onChange( newContent ) {
+			const newAttributes = {};
+			newAttributes[ attributeKey ] = newContent;
+			props.setAttributes( newAttributes );
+		},
+		value: props.attributes[ attributeKey ],
+	}, attribute.field );
 
-	const onChange = ( newContent ) => {
-		const newAttributes = {};
-		newAttributes[ key ] = newContent;
-		props.setAttributes( newAttributes );
-	};
+	delete fieldAttributes.type;
 
 	return (
 		<RichText
-			onChange={ onChange }
-			value={ props.attributes[ key ] }
 			{ ...fieldAttributes }
 		/>
 	);

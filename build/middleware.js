@@ -137,11 +137,11 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function setBlockComponents(props) {
 			var _this2 = this;
 
-			_.each(this.blockConfigs.attributes, function (attribute, key) {
+			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
 				if (attribute.field) {
 					switch (attribute.field.type) {
 						case 'text':
-							_this2.fields[key] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, attribute, key);
+							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, attribute, attributeKey);
 							break;
 					}
 				}
@@ -177,25 +177,23 @@ window.gutenbergFieldsMiddleWare = new GutenbergFieldsMiddleWare();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var RichText = wp.blocks.RichText;
 
 
-var richText = function richText(props, attribute, key) {
-	var fieldAttributes = _.extend({}, attribute.field);
+var richText = function richText(props, attribute, attributeKey) {
+	var fieldAttributes = _.extend({
+		onChange: function onChange(newContent) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = newContent;
+			props.setAttributes(newAttributes);
+		},
+
+		value: props.attributes[attributeKey]
+	}, attribute.field);
+
 	delete fieldAttributes.type;
 
-	var onChange = function onChange(newContent) {
-		var newAttributes = {};
-		newAttributes[key] = newContent;
-		props.setAttributes(newAttributes);
-	};
-
-	return wp.element.createElement(RichText, _extends({
-		onChange: onChange,
-		value: props.attributes[key]
-	}, fieldAttributes));
+	return wp.element.createElement(RichText, fieldAttributes);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (richText);
