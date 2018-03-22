@@ -72,8 +72,11 @@ module.exports = __webpack_require__(1);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -82,51 +85,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Gutenberg Fields Middleware.
  */
 
-var _wp$blocks = wp.blocks,
-    _registerBlockType = _wp$blocks.registerBlockType,
-    RichText = _wp$blocks.RichText;
+var _registerBlockType = wp.blocks.registerBlockType;
+
+
+
 
 var GutenbergFieldsMiddleWare = function () {
 	function GutenbergFieldsMiddleWare() {
 		_classCallCheck(this, GutenbergFieldsMiddleWare);
 
-		this.blockConfigs = {};
-		this.fields = {};
-		this.config = {};
-
 		this.setBlockComponents = this.setBlockComponents.bind(this);
 	}
 
 	_createClass(GutenbergFieldsMiddleWare, [{
-		key: 'setBlockComponents',
-		value: function setBlockComponents(props) {
-			var _this = this;
-
-			var changedAttributes = {};
-
-			_.each(this.blockConfigs.attributes, function (attribute, key) {
-				if (attribute.field) {
-					switch (attribute.field.type) {
-						case 'text':
-							_this.fields[key] = wp.element.createElement(RichText, {
-								onChange: function onChange(newContent) {
-									changedAttributes[key] = newContent;
-									props.setAttributes(changedAttributes);
-								},
-								value: props.attributes[key],
-								placeholder: attribute.field.placeholder
-							});
-							break;
-					}
-				}
-			});
-		}
-	}, {
 		key: 'registerBlockType',
 		value: function registerBlockType(namespace, config) {
-			var _this2 = this;
+			var _this = this;
 
-			this.config = config;
+			this.blockConfigs = {};
+			this.fields = {};
+			this.config = _.extend({}, config);
 
 			this.blockConfigs = _.extend({
 				title: '',
@@ -142,17 +120,32 @@ var GutenbergFieldsMiddleWare = function () {
 			}, this.config);
 
 			this.blockConfigs.edit = function (props) {
-				_this2.setBlockComponents(props);
-				return _this2.config.edit ? _this2.config.edit(props, _this2) : _this2.edit(props);
+				_this.setBlockComponents(props);
+				return _this.config.edit ? _this.config.edit(props, _this) : _this.edit(props);
 			};
 
 			this.blockConfigs.save = function (props) {
-				return _this2.config.save ? _this2.config.save(props, _this2) : _this2.save(props);
+				return _this.config.save ? _this.config.save(props, _this) : _this.save(props);
 			};
 
 			_registerBlockType(namespace, this.blockConfigs);
 
 			return this;
+		}
+	}, {
+		key: 'setBlockComponents',
+		value: function setBlockComponents(props) {
+			var _this2 = this;
+
+			_.each(this.blockConfigs.attributes, function (attribute, key) {
+				if (attribute.field) {
+					switch (attribute.field.type) {
+						case 'text':
+							_this2.fields[key] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, attribute, key);
+							break;
+					}
+				}
+			});
 		}
 	}, {
 		key: 'edit',
@@ -178,6 +171,34 @@ var GutenbergFieldsMiddleWare = function () {
 }();
 
 window.gutenbergFieldsMiddleWare = new GutenbergFieldsMiddleWare();
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var RichText = wp.blocks.RichText;
+
+
+var richText = function richText(props, attribute, key) {
+	var fieldAttributes = _.extend({}, attribute.field);
+	delete fieldAttributes.type;
+
+	var onChange = function onChange(newContent) {
+		var newAttributes = {};
+		newAttributes[key] = newContent;
+		props.setAttributes(newAttributes);
+	};
+
+	return wp.element.createElement(RichText, _extends({
+		onChange: onChange,
+		value: props.attributes[key]
+	}, fieldAttributes));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (richText);
 
 /***/ })
 /******/ ]);

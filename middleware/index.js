@@ -2,42 +2,19 @@
  * Gutenberg Fields Middleware.
  */
 
-const { registerBlockType, RichText } = wp.blocks;
+const { registerBlockType } = wp.blocks;
+
+import richText from './fields/rich-text';
 
 class GutenbergFieldsMiddleWare {
 	constructor() {
-		this.blockConfigs = {};
-		this.fields = {};
-		this.config = {};
-
 		this.setBlockComponents = this.setBlockComponents.bind( this );
 	}
 
-	setBlockComponents( props ) {
-		const changedAttributes = {};
-
-		_.each( this.blockConfigs.attributes, ( attribute, key ) => {
-			if ( attribute.field ) {
-				switch ( attribute.field.type ) {
-					case 'text':
-						this.fields[ key ] = (
-							<RichText
-								onChange={ ( newContent ) => {
-									changedAttributes[ key ] = newContent;
-									props.setAttributes( changedAttributes );
-								} }
-								value={ props.attributes[ key ] }
-								placeholder={ attribute.field.placeholder }
-							/>
-						);
-						break;
-				}
-			}
-		} );
-	}
-
 	registerBlockType( namespace, config ) {
-		this.config = config;
+		this.blockConfigs = {};
+		this.fields = {};
+		this.config = _.extend( {}, config );
 
 		this.blockConfigs = _.extend( {
 			title: '',
@@ -64,6 +41,18 @@ class GutenbergFieldsMiddleWare {
 		registerBlockType( namespace, this.blockConfigs );
 
 		return this;
+	}
+
+	setBlockComponents( props ) {
+		_.each( this.blockConfigs.attributes, ( attribute, key ) => {
+			if ( attribute.field ) {
+				switch ( attribute.field.type ) {
+					case 'text':
+						this.fields[ key ] = richText( props, attribute, key );
+						break;
+				}
+			}
+		} );
 	}
 
 	edit( props ) {
