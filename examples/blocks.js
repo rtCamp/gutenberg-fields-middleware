@@ -22,11 +22,18 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 				tagName: 'h1',
 			},
 		},
-		copyright: {
+		linkText: {
 			type: 'string',
 			field: {
 				type: 'text',
-				placeholder: __( 'Enter copyright text' ),
+				placeholder: __( 'Enter link text' ),
+			},
+		},
+		image: {
+			type: 'object',
+			field: {
+				type: 'image',
+				buttonText: __( 'Upload' ),
 			},
 		},
 	},
@@ -40,7 +47,16 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 	 * @return {*}
 	 */
 	edit( props, middleware ) {
-		return [ middleware.fields.url, middleware.fields.copyright ];
+		const image = props.attributes.image ? el( 'img', {
+			src: props.attributes.image.url,
+		}, null ) : '';
+
+		return [
+			middleware.fields.url,
+			middleware.fields.linkText,
+			image,
+			middleware.fields.image,
+		];
 	},
 
 	/**
@@ -50,7 +66,17 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 	 * @return {*}
 	 */
 	save( props ) {
-		return el( 'p', {}, props.copyright );
+		const attributes = props.attributes;
+		const image = attributes.image ? el( 'img', {
+			src: attributes.image.url,
+		}, null ) : '';
+
+		return el( 'div', null, [
+			image,
+			el( 'a', {
+				href: attributes.url,
+			}, attributes.linkText ),
+		] );
 	},
 
 } );

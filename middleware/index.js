@@ -5,6 +5,7 @@
 const { registerBlockType } = wp.blocks;
 
 import richText from './fields/rich-text';
+import mediaUpload from './fields/media-upload';
 
 class GutenbergFieldsMiddleWare {
 	constructor() {
@@ -49,6 +50,15 @@ class GutenbergFieldsMiddleWare {
 				switch ( attribute.field.type ) {
 					case 'text':
 						this.fields[ attributeKey ] = richText( props, attribute, attributeKey );
+						break;
+					case 'image':
+						this.fields[ attributeKey ] = mediaUpload( props, attribute, attributeKey );
+						break;
+					case 'video':
+						this.fields[ attributeKey ] = mediaUpload( props, attribute, attributeKey );
+						break;
+					case 'audio':
+						this.fields[ attributeKey ] = mediaUpload( props, attribute, attributeKey );
 						break;
 				}
 			}

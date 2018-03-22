@@ -77,6 +77,7 @@ module.exports = __webpack_require__(1);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_media_upload__ = __webpack_require__(3);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -86,6 +87,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var _registerBlockType = wp.blocks.registerBlockType;
+
 
 
 
@@ -143,6 +145,15 @@ var GutenbergFieldsMiddleWare = function () {
 						case 'text':
 							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, attribute, attributeKey);
 							break;
+						case 'image':
+							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, attribute, attributeKey);
+							break;
+						case 'video':
+							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, attribute, attributeKey);
+							break;
+						case 'audio':
+							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, attribute, attributeKey);
+							break;
 					}
 				}
 			});
@@ -197,6 +208,46 @@ var richText = function richText(props, attribute, attributeKey) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (richText);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var MediaUpload = wp.blocks.MediaUpload;
+var Button = wp.components.Button;
+var __ = wp.i18n.__;
+
+
+var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
+	var buttonText = attribute.field.buttonText ? attribute.field.buttonText : __('Open Media Library');
+
+	var fieldAttributes = _.extend({
+		onSelect: function onSelect(media) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		},
+
+		type: 'image',
+		value: props.attributes[attributeKey],
+		render: function render(_ref) {
+			var open = _ref.open;
+
+			return wp.element.createElement(
+				Button,
+				{ onClick: open },
+				buttonText
+			);
+		}
+	}, attribute.field);
+
+	delete fieldAttributes.buttonText;
+
+	return wp.element.createElement(MediaUpload, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (mediaUpload);
 
 /***/ })
 /******/ ]);
