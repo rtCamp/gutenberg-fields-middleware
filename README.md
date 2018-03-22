@@ -29,22 +29,99 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 		url: {
 			type: 'string',
 			field: {
-				type: 'text',
-				placeholder: 'Enter Url',
+				type: 'url',
 			},
 		},
-		copyright: {
+		text: {
 			type: 'string',
 			field: {
 				type: 'text',
-				placeholder: 'Enter copyright text',
+				placeholder: __( 'Enter link text' ),
+			},
+		},
+		image: {
+			type: 'object',
+			field: {
+				type: 'image',
+				buttonText: __( 'Upload' ),
+				imagePlaceholder: true,
+				removeButton: __( 'Remove' ),
+			},
+		},
+		option: {
+			type: 'string',
+			field: {
+				type: 'select',
+				label: 'Select Numbers',
+				options: [
+					{
+						value: 'one',
+						label: 'one',
+					},
+					{
+						value: 'two',
+						label: 'two',
+					},
+				],
+			},
+		},
+		radio: {
+			type: 'string',
+			field: {
+				type: 'radio',
+				options: [
+					{
+						value: 'one',
+						label: 'one',
+					},
+					{
+						value: 'two',
+						label: 'two',
+					},
+				],
+			},
+		},
+		range: {
+			type: 'string',
+			field: {
+				type: 'range',
+			},
+		},
+
+		inspectorControls: {
+			type: 'object',
+			controls: {
+				columns: {
+					type: 'range',
+				},
+				layout: {
+					type: 'radio',
+					options: [
+						{
+							value: 'one',
+							label: 'one',
+						},
+						{
+							value: 'two',
+							label: 'two',
+						},
+					],
+				},
 			},
 		},
 	},
 
 	// Optional.
 	edit( props, middleware ) {
-		return [ middleware.fields.url, middleware.fields.copyright ];
+		return [
+	            middleware.inspectorControls,
+	            middleware.fields.url,
+	            middleware.fields.text,
+	            middleware.fields.image,
+	            middleware.fields.option,
+	            middleware.fields.radio,
+	            middleware.fields.range,
+	        ];
 	},
 
 	// Optional.
