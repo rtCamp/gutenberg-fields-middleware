@@ -4,7 +4,7 @@
 
 const { RichText, PlainText } = wp.blocks;
 
-const richText = ( props, attribute, attributeKey ) => {
+const richText = ( props, config, attributeKey ) => {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -16,7 +16,7 @@ const richText = ( props, attribute, attributeKey ) => {
 		value: props.attributes[ attributeKey ] || '',
 	};
 
-	const fieldAttributes = _.extend( defaultAttributes, attribute.field );
+	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	delete fieldAttributes.type;
 

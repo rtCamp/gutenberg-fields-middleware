@@ -75,6 +75,28 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 				type: 'range',
 			},
 		},
+
+		inspectorControls: {
+			type: 'object',
+			controls: {
+				columns: {
+					type: 'range',
+				},
+				layout: {
+					type: 'radio',
+					options: [
+						{
+							value: 'one',
+							label: 'one',
+						},
+						{
+							value: 'two',
+							label: 'two',
+						},
+					],
+				},
+			},
+		},
 	},
 
 	/**
@@ -87,6 +109,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 	 */
 	edit( props, middleware ) {
 		return [
+			middleware.inspectorControls,
 			middleware.fields.url,
 			middleware.fields.text,
 			middleware.fields.image,

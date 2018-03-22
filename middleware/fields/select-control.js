@@ -4,7 +4,7 @@
 
 const { SelectControl } = wp.components;
 
-const selectControl = ( props, attribute, attributeKey ) => {
+const selectControl = ( props, config, attributeKey ) => {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -16,7 +16,7 @@ const selectControl = ( props, attribute, attributeKey ) => {
 		value: props.attributes[ attributeKey ] || '',
 	};
 
-	const fieldAttributes = _.extend( defaultAttributes, attribute.field );
+	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	delete fieldAttributes.type;
 

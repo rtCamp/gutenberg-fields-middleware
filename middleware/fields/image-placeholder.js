@@ -5,7 +5,7 @@
 const { ImagePlaceholder } = wp.blocks;
 const { __ } = wp.i18n;
 
-const imagePlaceholder = ( props, attribute, attributeKey ) => {
+const imagePlaceholder = ( props, config, attributeKey ) => {
 	const defaultAttributes = {
 
 		onSelectImage( media ) {
@@ -23,7 +23,7 @@ const imagePlaceholder = ( props, attribute, attributeKey ) => {
 		multiple: false,
 	};
 
-	const fieldAttributes = _.extend( defaultAttributes, attribute.field );
+	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	return (
 		<ImagePlaceholder

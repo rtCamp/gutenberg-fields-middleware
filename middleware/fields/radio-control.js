@@ -4,7 +4,7 @@
 
 const { RadioControl } = wp.components;
 
-const radioControl = ( props, attribute, attributeKey ) => {
+const radioControl = ( props, config, attributeKey ) => {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -16,7 +16,7 @@ const radioControl = ( props, attribute, attributeKey ) => {
 		selected: props.attributes[ attributeKey ],
 	};
 
-	const fieldAttributes = _.extend( defaultAttributes, attribute.field );
+	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	delete fieldAttributes.type;
 

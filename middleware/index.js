@@ -2,7 +2,7 @@
  * Gutenberg Fields Middleware.
  */
 
-const { registerBlockType } = wp.blocks;
+const { registerBlockType, InspectorControls } = wp.blocks;
 
 /**
  * Fields
@@ -23,6 +23,8 @@ class GutenbergFieldsMiddleWare {
 	registerBlockType( namespace, config ) {
 		this.blockConfigs = {};
 		this.fields = {};
+		this.inspectorControlFields = {};
+		this.inspectorControls = '';
 		this.config = _.extend( {}, config );
 
 		this.blockConfigs = _.extend( {
@@ -40,6 +42,7 @@ class GutenbergFieldsMiddleWare {
 
 		this.blockConfigs.edit = ( props ) => {
 			this.setBlockComponents( props );
+			this.setInspectorControls( props );
 			return this.config.edit ? this.config.edit( props, this ) : this.edit( props );
 		};
 
@@ -52,50 +55,77 @@ class GutenbergFieldsMiddleWare {
 		return this;
 	}
 
+	getFields( fieldType, attributeKey, props, config ) {
+		const fields = {};
+
+		switch ( fieldType ) {
+			case 'text':
+				fields[ attributeKey ] = richText( props, config, attributeKey );
+				break;
+			case 'url':
+				fields[ attributeKey ] = urlInput( props, config, attributeKey );
+				break;
+			case 'image':
+				fields[ attributeKey ] = mediaUpload( props, config, attributeKey );
+				break;
+			case 'video':
+				fields[ attributeKey ] = mediaUpload( props, config, attributeKey );
+				break;
+			case 'audio':
+				fields[ attributeKey ] = mediaUpload( props, config, attributeKey );
+				break;
+			case 'select':
+				fields[ attributeKey ] = selectControl( props, config, attributeKey );
+				break;
+			case 'range':
+				fields[ attributeKey ] = rangeControl( props, config, attributeKey );
+				break;
+			case 'radio':
+				fields[ attributeKey ] = radioControl( props, config, attributeKey );
+				break;
+			case 'checkbox':
+				fields[ attributeKey ] = checkboxControl( props, config, attributeKey );
+				break;
+		}
+
+		return fields;
+	}
+
 	setBlockComponents( props ) {
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
 			if ( attribute.field ) {
-				switch ( attribute.field.type ) {
-					case 'text':
-						this.fields[ attributeKey ] = richText( props, attribute, attributeKey );
-						break;
-					case 'url':
-						this.fields[ attributeKey ] = urlInput( props, attribute, attributeKey );
-						break;
-					case 'image':
-						this.fields[ attributeKey ] = mediaUpload( props, attribute, attributeKey );
-						break;
-					case 'video':
-						this.fields[ attributeKey ] = mediaUpload( props, attribute, attributeKey );
-						break;
-					case 'audio':
-						this.fields[ attributeKey ] = mediaUpload( props, attribute, attributeKey );
-						break;
-					case 'select':
-						this.fields[ attributeKey ] = selectControl( props, attribute, attributeKey );
-						break;
-					case 'range':
-						this.fields[ attributeKey ] = rangeControl( props, attribute, attributeKey );
-						break;
-					case 'radio':
-						this.fields[ attributeKey ] = radioControl( props, attribute, attributeKey );
-						break;
-					case 'checkbox':
-						this.fields[ attributeKey ] = checkboxControl( props, attribute, attributeKey );
-						break;
-				}
+				_.extend( this.fields, this.getFields( attribute.field.type, attributeKey, props, attribute.field ) );
 			}
 		} );
 	}
 
-	edit( props ) {
-		return (
-			<div>
-				{ Object.keys( this.fields ).map( ( key ) => {
-					return this.fields[ key ];
+	setInspectorControls( props ) {
+		if ( this.blockConfigs.attributes.inspectorControls && this.blockConfigs.attributes.inspectorControls.controls ) {
+			_.each( this.blockConfigs.attributes.inspectorControls.controls, ( attribute, attributeKey ) => {
+				_.extend( this.inspectorControlFields, this.getFields( attribute.type, attributeKey, props, attribute ) );
+			} );
+		}
+
+		this.inspectorControls = (
+			<InspectorControls key="inspector-control">
+				{ Object.keys( this.inspectorControlFields ).map( ( key ) => {
+					return this.inspectorControlFields[ key ];
 				} ) }
-			</div>
+			</InspectorControls>
 		);
+	}
+
+	edit( props ) {
+		return [
+			this.inspectorControls,
+			(
+				<div key={ props.className } >
+					{ Object.keys( this.fields ).map( ( key ) => {
+						return this.fields[ key ];
+					} ) }
+				</div>
+			),
+		];
 	}
 
 	save( props ) {

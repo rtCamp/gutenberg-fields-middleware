@@ -91,7 +91,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Gutenberg Fields Middleware.
  */
 
-var _registerBlockType = wp.blocks.registerBlockType;
+var _wp$blocks = wp.blocks,
+    _registerBlockType = _wp$blocks.registerBlockType,
+    InspectorControls = _wp$blocks.InspectorControls;
 
 /**
  * Fields
@@ -119,6 +121,8 @@ var GutenbergFieldsMiddleWare = function () {
 
 			this.blockConfigs = {};
 			this.fields = {};
+			this.inspectorControlFields = {};
+			this.inspectorControls = '';
 			this.config = _.extend({}, config);
 
 			this.blockConfigs = _.extend({
@@ -136,6 +140,7 @@ var GutenbergFieldsMiddleWare = function () {
 
 			this.blockConfigs.edit = function (props) {
 				_this.setBlockComponents(props);
+				_this.setInspectorControls(props);
 				return _this.config.edit ? _this.config.edit(props, _this) : _this.edit(props);
 			};
 
@@ -148,56 +153,84 @@ var GutenbergFieldsMiddleWare = function () {
 			return this;
 		}
 	}, {
+		key: 'getFields',
+		value: function getFields(fieldType, attributeKey, props, config) {
+			var fields = {};
+
+			switch (fieldType) {
+				case 'text':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'url':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_url_input__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'image':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'video':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'audio':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'select':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_select_control__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'range':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_range_control__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'radio':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_radio_control__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'checkbox':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__["a" /* default */])(props, config, attributeKey);
+					break;
+			}
+
+			return fields;
+		}
+	}, {
 		key: 'setBlockComponents',
 		value: function setBlockComponents(props) {
 			var _this2 = this;
 
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
 				if (attribute.field) {
-					switch (attribute.field.type) {
-						case 'text':
-							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, attribute, attributeKey);
-							break;
-						case 'url':
-							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_url_input__["a" /* default */])(props, attribute, attributeKey);
-							break;
-						case 'image':
-							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, attribute, attributeKey);
-							break;
-						case 'video':
-							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, attribute, attributeKey);
-							break;
-						case 'audio':
-							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, attribute, attributeKey);
-							break;
-						case 'select':
-							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_select_control__["a" /* default */])(props, attribute, attributeKey);
-							break;
-						case 'range':
-							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_range_control__["a" /* default */])(props, attribute, attributeKey);
-							break;
-						case 'radio':
-							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_radio_control__["a" /* default */])(props, attribute, attributeKey);
-							break;
-						case 'checkbox':
-							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__["a" /* default */])(props, attribute, attributeKey);
-							break;
-					}
+					_.extend(_this2.fields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
 				}
 			});
 		}
 	}, {
-		key: 'edit',
-		value: function edit(props) {
+		key: 'setInspectorControls',
+		value: function setInspectorControls(props) {
 			var _this3 = this;
 
-			return wp.element.createElement(
-				'div',
-				null,
-				Object.keys(this.fields).map(function (key) {
-					return _this3.fields[key];
+			if (this.blockConfigs.attributes.inspectorControls && this.blockConfigs.attributes.inspectorControls.controls) {
+				_.each(this.blockConfigs.attributes.inspectorControls.controls, function (attribute, attributeKey) {
+					_.extend(_this3.inspectorControlFields, _this3.getFields(attribute.type, attributeKey, props, attribute));
+				});
+			}
+
+			this.inspectorControls = wp.element.createElement(
+				InspectorControls,
+				{ key: 'inspector-control' },
+				Object.keys(this.inspectorControlFields).map(function (key) {
+					return _this3.inspectorControlFields[key];
 				})
 			);
+		}
+	}, {
+		key: 'edit',
+		value: function edit(props) {
+			var _this4 = this;
+
+			return [this.inspectorControls, wp.element.createElement(
+				'div',
+				{ key: props.className },
+				Object.keys(this.fields).map(function (key) {
+					return _this4.fields[key];
+				})
+			)];
 		}
 	}, {
 		key: 'save',
@@ -225,7 +258,7 @@ var _wp$blocks = wp.blocks,
     PlainText = _wp$blocks.PlainText;
 
 
-var richText = function richText(props, attribute, attributeKey) {
+var richText = function richText(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -237,7 +270,7 @@ var richText = function richText(props, attribute, attributeKey) {
 		value: props.attributes[attributeKey] || ''
 	};
 
-	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.type;
 
@@ -268,8 +301,8 @@ var __ = wp.i18n.__;
 
 
 
-var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
-	var buttonText = attribute.field.buttonText ? attribute.field.buttonText : __('Open Media Library');
+var mediaUpload = function mediaUpload(props, config, attributeKey) {
+	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
 	var image = props.attributes[attributeKey];
 
 	var defaultAttributes = {
@@ -290,8 +323,8 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 			var nodes = [];
 
 			if (!image) {
-				if (attribute.field.imagePlaceholder) {
-					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__image_placeholder__["a" /* default */])(props, attribute, attributeKey));
+				if (config.imagePlaceholder) {
+					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__image_placeholder__["a" /* default */])(props, config, attributeKey));
 				} else {
 					nodes.push(wp.element.createElement(
 						Button,
@@ -302,7 +335,7 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 			} else {
 				nodes.push(wp.element.createElement('img', { className: 'uploaded-image', src: image.url, alt: image.alt }));
 
-				if (!!attribute.field.removeButton) {
+				if (!!config.removeButton) {
 					nodes.push(wp.element.createElement(
 						Button,
 						{ className: 'button button-large button-remove', onClick: function onClick() {
@@ -310,20 +343,20 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 								newAttributes[attributeKey] = '';
 								props.setAttributes(newAttributes);
 							} },
-						attribute.field.removeButton
+						config.removeButton
 					));
 				}
 			}
 
 			return wp.element.createElement(
 				'div',
-				{ className: 'blocks-' + attribute.field.type + '-upload' },
+				{ className: 'blocks-' + config.type + '-upload' },
 				nodes
 			);
 		}
 	};
 
-	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.buttonText;
 	delete fieldAttributes.imagePlaceholder;
@@ -347,7 +380,7 @@ var ImagePlaceholder = wp.blocks.ImagePlaceholder;
 var __ = wp.i18n.__;
 
 
-var imagePlaceholder = function imagePlaceholder(props, attribute, attributeKey) {
+var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
 	var defaultAttributes = {
 		onSelectImage: function onSelectImage(media) {
 			var newAttributes = {};
@@ -365,7 +398,7 @@ var imagePlaceholder = function imagePlaceholder(props, attribute, attributeKey)
 		multiple: false
 	};
 
-	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
 };
@@ -384,7 +417,7 @@ var imagePlaceholder = function imagePlaceholder(props, attribute, attributeKey)
 var UrlInput = wp.blocks.UrlInput;
 
 
-var urlInput = function urlInput(props, attribute, attributeKey) {
+var urlInput = function urlInput(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -396,7 +429,7 @@ var urlInput = function urlInput(props, attribute, attributeKey) {
 		value: props.attributes[attributeKey] || ''
 	};
 
-	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.type;
 
@@ -417,7 +450,7 @@ var urlInput = function urlInput(props, attribute, attributeKey) {
 var SelectControl = wp.components.SelectControl;
 
 
-var selectControl = function selectControl(props, attribute, attributeKey) {
+var selectControl = function selectControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -429,7 +462,7 @@ var selectControl = function selectControl(props, attribute, attributeKey) {
 		value: props.attributes[attributeKey] || ''
 	};
 
-	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.type;
 
@@ -483,7 +516,7 @@ var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
 var RadioControl = wp.components.RadioControl;
 
 
-var radioControl = function radioControl(props, attribute, attributeKey) {
+var radioControl = function radioControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -495,7 +528,7 @@ var radioControl = function radioControl(props, attribute, attributeKey) {
 		selected: props.attributes[attributeKey]
 	};
 
-	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.type;
 
@@ -516,7 +549,7 @@ var radioControl = function radioControl(props, attribute, attributeKey) {
 var RangeControl = wp.components.RangeControl;
 
 
-var rangeControl = function rangeControl(props, attribute, attributeKey) {
+var rangeControl = function rangeControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -528,7 +561,7 @@ var rangeControl = function rangeControl(props, attribute, attributeKey) {
 		value: props.attributes[attributeKey] || ''
 	};
 
-	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.type;
 
