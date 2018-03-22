@@ -87,34 +87,11 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 				type: 'range',
 			},
 		},
-
-		inspectorControls: {
-			type: 'object',
-			controls: {
-				columns: {
-					type: 'range',
-				},
-				layout: {
-					type: 'radio',
-					options: [
-						{
-							value: 'one',
-							label: 'one',
-						},
-						{
-							value: 'two',
-							label: 'two',
-						},
-					],
-				},
-			},
-		},
 	},
 
 	// Optional.
 	edit( props, middleware ) {
 		return [
-	            middleware.inspectorControls,
 	            middleware.fields.url,
 	            middleware.fields.text,
 	            middleware.fields.image,
@@ -126,7 +103,7 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 
 	// Optional.
 	save( props ) {
-		return el( 'p', {}, props.copyright );
+		return el( 'p', {}, props.attributes.text );
 	},
 
 } );
