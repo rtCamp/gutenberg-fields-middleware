@@ -221,6 +221,7 @@ var richText = function richText(props, attribute, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_placeholder__ = __webpack_require__(4);
 /**
  * Image, Video, Audio Field.
  */
@@ -228,6 +229,8 @@ var richText = function richText(props, attribute, attributeKey) {
 var MediaUpload = wp.blocks.MediaUpload;
 var Button = wp.components.Button;
 var __ = wp.i18n.__;
+
+
 
 
 var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
@@ -248,22 +251,81 @@ var mediaUpload = function mediaUpload(props, attribute, attributeKey) {
 		render: function render(_ref) {
 			var open = _ref.open;
 
-			return wp.element.createElement(
-				Button,
-				{ onClick: open },
-				buttonText
-			);
+			var buttons = [];
+
+			if (!props.attributes[attributeKey]) {
+				if (attribute.field.imagePlaceholder) {
+					buttons.push(Object(__WEBPACK_IMPORTED_MODULE_0__image_placeholder__["a" /* default */])(props, attribute, attributeKey));
+				} else {
+					buttons.push(wp.element.createElement(
+						Button,
+						{ className: 'button button-large button-upload', onClick: open },
+						buttonText
+					));
+				}
+			} else if (!!attribute.field.removeButton) {
+				buttons.push(wp.element.createElement(
+					Button,
+					{ className: 'button button-large button-remove', onClick: function onClick() {
+							var newAttributes = {};
+							newAttributes[attributeKey] = '';
+							props.setAttributes(newAttributes);
+						} },
+					attribute.field.removeButton
+				));
+			}
+
+			return buttons;
 		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
 
 	delete fieldAttributes.buttonText;
+	delete fieldAttributes.imagePlaceholder;
 
 	return wp.element.createElement(MediaUpload, fieldAttributes);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (mediaUpload);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Image Placeholder.
+ */
+
+var ImagePlaceholder = wp.blocks.ImagePlaceholder;
+var __ = wp.i18n.__;
+
+
+var imagePlaceholder = function imagePlaceholder(props, attribute, attributeKey) {
+	var defaultAttributes = {
+		onSelectImage: function onSelectImage(media) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		},
+
+
+		className: 'image-placeholder',
+
+		icon: 'format-gallery',
+
+		label: __('Image'),
+
+		multiple: false
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+
+	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
 
 /***/ })
 /******/ ]);

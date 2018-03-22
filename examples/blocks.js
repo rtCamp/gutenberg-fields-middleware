@@ -34,6 +34,8 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'image',
 				buttonText: __( 'Upload' ),
+				imagePlaceholder: true,
+				removeButton: __( 'Remove' ),
 			},
 		},
 	},
