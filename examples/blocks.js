@@ -75,26 +75,28 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 				type: 'range',
 			},
 		},
-
-		inspectorControls: {
-			type: 'object',
-			controls: {
-				columns: {
-					type: 'range',
-				},
-				layout: {
-					type: 'radio',
-					options: [
-						{
-							value: 'one',
-							label: 'one',
-						},
-						{
-							value: 'two',
-							label: 'two',
-						},
-					],
-				},
+		layoutOption: {
+			type: 'string',
+			field: {
+				type: 'radio',
+				position: 'inspector',
+				options: [
+					{
+						value: 'one',
+						label: 'one',
+					},
+					{
+						value: 'two',
+						label: 'two',
+					},
+				],
+			},
+		},
+		columns: {
+			type: 'string',
+			field: {
+				type: 'range',
+				position: 'inspector',
 			},
 		},
 	},

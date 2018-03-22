@@ -76,13 +76,13 @@ module.exports = __webpack_require__(1);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_media_upload__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_url_input__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_select_control__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_media_upload__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_url_input__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_select_control__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(12);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -140,7 +140,6 @@ var GutenbergFieldsMiddleWare = function () {
 
 			this.blockConfigs.edit = function (props) {
 				_this.setBlockComponents(props);
-				_this.setInspectorControls(props);
 				return _this.config.edit ? _this.config.edit(props, _this) : _this.edit(props);
 			};
 
@@ -196,39 +195,32 @@ var GutenbergFieldsMiddleWare = function () {
 
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
 				if (attribute.field) {
-					_.extend(_this2.fields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
+					if ('inspector' === attribute.field.position) {
+						_.extend(_this2.inspectorControlFields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
+					} else {
+						_.extend(_this2.fields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
+					}
 				}
 			});
-		}
-	}, {
-		key: 'setInspectorControls',
-		value: function setInspectorControls(props) {
-			var _this3 = this;
-
-			if (this.blockConfigs.attributes.inspectorControls && this.blockConfigs.attributes.inspectorControls.controls) {
-				_.each(this.blockConfigs.attributes.inspectorControls.controls, function (attribute, attributeKey) {
-					_.extend(_this3.inspectorControlFields, _this3.getFields(attribute.type, attributeKey, props, attribute));
-				});
-			}
 
 			this.inspectorControls = wp.element.createElement(
 				InspectorControls,
 				{ key: 'inspector-control' },
 				Object.keys(this.inspectorControlFields).map(function (key) {
-					return _this3.inspectorControlFields[key];
+					return _this2.inspectorControlFields[key];
 				})
 			);
 		}
 	}, {
 		key: 'edit',
 		value: function edit(props) {
-			var _this4 = this;
+			var _this3 = this;
 
 			return [this.inspectorControls, wp.element.createElement(
 				'div',
 				{ key: props.className },
 				Object.keys(this.fields).map(function (key) {
-					return _this4.fields[key];
+					return _this3.fields[key];
 				})
 			)];
 		}
@@ -245,7 +237,10 @@ var GutenbergFieldsMiddleWare = function () {
 window.gutenbergFieldsMiddleWare = new GutenbergFieldsMiddleWare();
 
 /***/ }),
-/* 2 */
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -285,11 +280,11 @@ var richText = function richText(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (richText);
 
 /***/ }),
-/* 3 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_placeholder__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_placeholder__ = __webpack_require__(7);
 /**
  * Image, Video, Audio Field.
  */
@@ -368,7 +363,7 @@ var mediaUpload = function mediaUpload(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (mediaUpload);
 
 /***/ }),
-/* 4 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -406,7 +401,7 @@ var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -439,7 +434,7 @@ var urlInput = function urlInput(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (urlInput);
 
 /***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -472,7 +467,7 @@ var selectControl = function selectControl(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (selectControl);
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -505,7 +500,7 @@ var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (checkboxControl);
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -538,7 +533,7 @@ var radioControl = function radioControl(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (radioControl);
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
