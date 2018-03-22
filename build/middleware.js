@@ -80,6 +80,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_media_upload__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_url_input__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_select_control__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89,6 +92,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var _registerBlockType = wp.blocks.registerBlockType;
+
+/**
+ * Fields
+ */
+
+
 
 
 
@@ -163,6 +172,15 @@ var GutenbergFieldsMiddleWare = function () {
 							break;
 						case 'select':
 							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_select_control__["a" /* default */])(props, attribute, attributeKey);
+							break;
+						case 'range':
+							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_range_control__["a" /* default */])(props, attribute, attributeKey);
+							break;
+						case 'radio':
+							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_radio_control__["a" /* default */])(props, attribute, attributeKey);
+							break;
+						case 'checkbox':
+							_this2.fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__["a" /* default */])(props, attribute, attributeKey);
 							break;
 					}
 				}
@@ -419,6 +437,105 @@ var selectControl = function selectControl(props, attribute, attributeKey) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (selectControl);
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Url field.
+ */
+
+var CheckboxControl = wp.components.CheckboxControl;
+
+
+var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
+	var defaultAttributes = {
+		value: '1'
+	};
+
+	// @todo not working correctly.
+	defaultAttributes.onChange = function (checked) {
+		var newAttributes = {};
+		newAttributes[attributeKey] = checked ? defaultAttributes.value : false;
+		props.setAttributes(newAttributes);
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(CheckboxControl, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (checkboxControl);
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Url field.
+ */
+
+var RadioControl = wp.components.RadioControl;
+
+
+var radioControl = function radioControl(props, attribute, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		selected: props.attributes[attributeKey]
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(RadioControl, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (radioControl);
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Range field.
+ */
+
+var RangeControl = wp.components.RangeControl;
+
+
+var rangeControl = function rangeControl(props, attribute, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(RangeControl, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (rangeControl);
 
 /***/ })
 /******/ ]);

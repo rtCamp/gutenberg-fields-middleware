@@ -4,10 +4,16 @@
 
 const { registerBlockType } = wp.blocks;
 
+/**
+ * Fields
+ */
 import richText from './fields/rich-text';
 import mediaUpload from './fields/media-upload';
 import urlInput from './fields/url-input';
 import selectControl from './fields/select-control';
+import checkboxControl from './fields/checkbox-control';
+import radioControl from './fields/radio-control';
+import rangeControl from './fields/range-control';
 
 class GutenbergFieldsMiddleWare {
 	constructor() {
@@ -67,6 +73,15 @@ class GutenbergFieldsMiddleWare {
 						break;
 					case 'select':
 						this.fields[ attributeKey ] = selectControl( props, attribute, attributeKey );
+						break;
+					case 'range':
+						this.fields[ attributeKey ] = rangeControl( props, attribute, attributeKey );
+						break;
+					case 'radio':
+						this.fields[ attributeKey ] = radioControl( props, attribute, attributeKey );
+						break;
+					case 'checkbox':
+						this.fields[ attributeKey ] = checkboxControl( props, attribute, attributeKey );
 						break;
 				}
 			}

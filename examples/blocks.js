@@ -53,6 +53,28 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 		},
+		radio: {
+			type: 'string',
+			field: {
+				type: 'radio',
+				options: [
+					{
+						value: 'one',
+						label: 'one',
+					},
+					{
+						value: 'two',
+						label: 'two',
+					},
+				],
+			},
+		},
+		range: {
+			type: 'string',
+			field: {
+				type: 'range',
+			},
+		},
 	},
 
 	/**
@@ -69,6 +91,8 @@ gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
 			middleware.fields.text,
 			middleware.fields.image,
 			middleware.fields.option,
+			middleware.fields.radio,
+			middleware.fields.range,
 		];
 	},
 
