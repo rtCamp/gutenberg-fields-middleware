@@ -6,7 +6,7 @@ const { MediaUpload } = wp.blocks;
 const { Button } = wp.components;
 const { __ } = wp.i18n;
 
-import imagePlaceholder from './image-placeholder';
+import imagePlaceholder from '../components/image-placeholder';
 
 const mediaUpload = ( props, config, attributeKey ) => {
 	const buttonText = config.buttonText ? config.buttonText : __( 'Open Media Library' );

@@ -74,6 +74,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'range',
 			},
 		},
+		button: {
+			type: 'string',
+			field: {
+				type: 'button',
+				isLarge: true,
+			},
+		},
 		layoutOption: {
 			type: 'string',
 			field: {
@@ -98,26 +105,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				position: 'inspector',
 			},
 		},
-	},
-
-	/**
-	 * This is optional, can define edit method if you want to to structure your block components differently.
-	 * Make use of all middleware components as middleware.fields.attributeKey and structure it however you want.
-	 *
-	 * @param {object} props Same properties we get in default edit method.
-	 * @param {object} middleware GutenbergMiddleWare instance.
-	 * @return {*}
-	 */
-	edit( props, middleware ) {
-		return [
-			middleware.inspectorControls,
-			middleware.fields.url,
-			middleware.fields.text,
-			middleware.fields.image,
-			middleware.fields.option,
-			middleware.fields.radio,
-			middleware.fields.range,
-		];
 	},
 
 	/**

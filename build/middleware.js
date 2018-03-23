@@ -83,6 +83,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_button__ = __webpack_require__(10);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -97,6 +98,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -181,6 +183,9 @@ var GutenbergFieldsMiddleWare = function () {
 				case 'checkbox':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__["a" /* default */])(props, config, attributeKey);
 					break;
+				case 'button':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_button__["a" /* default */])(props, config, attributeKey);
+					break;
 			}
 
 			return fields;
@@ -200,13 +205,13 @@ var GutenbergFieldsMiddleWare = function () {
 				}
 			});
 
-			this.inspectorControls = wp.element.createElement(
+			this.inspectorControls = props.isSelected ? wp.element.createElement(
 				InspectorControls,
 				{ key: 'inspector-control' },
 				Object.keys(this.inspectorControlFields).map(function (key) {
 					return _this2.inspectorControlFields[key];
 				})
-			);
+			) : null;
 		}
 	}, {
 		key: 'edit',
@@ -237,6 +242,7 @@ addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/a
 		return middleware.getSettings();
 	}
 
+	console.warn(settings);
 	return settings;
 }, 1);
 
@@ -285,7 +291,7 @@ var richText = function richText(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_placeholder__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(11);
 /**
  * Image, Video, Audio Field.
  */
@@ -320,7 +326,7 @@ var mediaUpload = function mediaUpload(props, config, attributeKey) {
 
 			if (!image) {
 				if (config.imagePlaceholder) {
-					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__image_placeholder__["a" /* default */])(props, config, attributeKey));
+					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__["a" /* default */])(props, config, attributeKey));
 				} else {
 					nodes.push(wp.element.createElement(
 						Button,
@@ -364,44 +370,7 @@ var mediaUpload = function mediaUpload(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (mediaUpload);
 
 /***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Image Placeholder.
- */
-
-var ImagePlaceholder = wp.blocks.ImagePlaceholder;
-var __ = wp.i18n.__;
-
-
-var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
-	var defaultAttributes = {
-		onSelectImage: function onSelectImage(media) {
-			var newAttributes = {};
-			newAttributes[attributeKey] = media;
-			props.setAttributes(newAttributes);
-		},
-
-
-		className: 'image-placeholder',
-
-		icon: 'format-gallery',
-
-		label: __('Image'),
-
-		multiple: false
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
-
-/***/ }),
+/* 4 */,
 /* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -565,6 +534,77 @@ var rangeControl = function rangeControl(props, config, attributeKey) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (rangeControl);
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Button field.
+ */
+
+var Button = wp.components.Button;
+var __ = wp.i18n.__;
+
+
+var button = function button(props, config) {
+	var defaultAttributes = {
+		buttonText: __('Button')
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+	var buttonText = fieldAttributes.buttonText;
+
+	delete fieldAttributes.buttonText;
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(
+		Button,
+		fieldAttributes,
+		buttonText
+	);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (button);
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Image Placeholder.
+ */
+
+var ImagePlaceholder = wp.blocks.ImagePlaceholder;
+var __ = wp.i18n.__;
+
+
+var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
+	var defaultAttributes = {
+		onSelectImage: function onSelectImage(media) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		},
+
+
+		className: 'image-placeholder',
+
+		icon: 'format-gallery',
+
+		label: __('Image'),
+
+		multiple: false
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
 
 /***/ })
 /******/ ]);

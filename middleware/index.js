@@ -15,6 +15,7 @@ import selectControl from './fields/select-control';
 import checkboxControl from './fields/checkbox-control';
 import radioControl from './fields/radio-control';
 import rangeControl from './fields/range-control';
+import button from './fields/button';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -84,6 +85,9 @@ class GutenbergFieldsMiddleWare {
 			case 'checkbox':
 				fields[ attributeKey ] = checkboxControl( props, config, attributeKey );
 				break;
+			case 'button':
+				fields[ attributeKey ] = button( props, config, attributeKey );
+				break;
 		}
 
 		return fields;
@@ -100,13 +104,13 @@ class GutenbergFieldsMiddleWare {
 			}
 		} );
 
-		this.inspectorControls = (
+		this.inspectorControls = props.isSelected ? (
 			<InspectorControls key="inspector-control">
 				{ Object.keys( this.inspectorControlFields ).map( ( key ) => {
 					return this.inspectorControlFields[ key ];
 				} ) }
 			</InspectorControls>
-		);
+		) : null;
 	}
 
 	edit( props ) {
@@ -133,5 +137,6 @@ addFilter( 'blocks.registerBlockType', 'gutenberg-field-middleware/registration/
 		return middleware.getSettings();
 	}
 
+	console.warn( settings );
 	return settings;
 }, 1 );
