@@ -26,7 +26,6 @@ const button = ( props, config, attributeKey ) => {
 					newAttributes[ attributeKey ] = value;
 					props.setAttributes( newAttributes );
 				} }
-				formattingControls={ [ 'bold', 'italic', 'strikethrough' ] }
 				className="wp-block-button__link"
 				keepPlaceholderOnFocus
 			/>
