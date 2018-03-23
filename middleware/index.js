@@ -137,6 +137,5 @@ addFilter( 'blocks.registerBlockType', 'gutenberg-field-middleware/registration/
 		return middleware.getSettings();
 	}
 
-	console.warn( settings );
 	return settings;
 }, 1 );

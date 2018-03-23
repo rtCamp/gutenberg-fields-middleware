@@ -242,7 +242,6 @@ addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/a
 		return middleware.getSettings();
 	}
 
-	console.warn(settings);
 	return settings;
 }, 1);
 
@@ -545,19 +544,44 @@ var rangeControl = function rangeControl(props, config, attributeKey) {
  */
 
 var Button = wp.components.Button;
+var RichText = wp.blocks.RichText;
 var __ = wp.i18n.__;
 
 
-var button = function button(props, config) {
+var button = function button(props, config, attributeKey) {
 	var defaultAttributes = {
 		buttonText: __('Button')
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 	var buttonText = fieldAttributes.buttonText;
+	var editable = fieldAttributes.editable;
+
+	var editableButton = wp.element.createElement(
+		"span",
+		{ className: "wp-block-button", key: "button" },
+		wp.element.createElement(RichText, {
+			tagName: "span",
+			placeholder: __('Add text…'),
+			value: props.attributes[attributeKey],
+			onChange: function onChange(value) {
+				var newAttributes = {};
+				newAttributes[attributeKey] = value;
+				props.setAttributes(newAttributes);
+			},
+			formattingControls: ['bold', 'italic', 'strikethrough'],
+			className: "wp-block-button__link",
+			keepPlaceholderOnFocus: true
+		})
+	);
 
 	delete fieldAttributes.buttonText;
 	delete fieldAttributes.type;
+	delete fieldAttributes.editable;
+
+	if (editable) {
+		return editableButton;
+	}
 
 	return wp.element.createElement(
 		Button,
