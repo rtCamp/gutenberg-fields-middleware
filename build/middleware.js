@@ -76,13 +76,13 @@ module.exports = __webpack_require__(1);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_media_upload__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_url_input__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_select_control__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_media_upload__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_url_input__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_select_control__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -91,9 +91,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Gutenberg Fields Middleware.
  */
 
-var _wp$blocks = wp.blocks,
-    _registerBlockType = _wp$blocks.registerBlockType,
-    InspectorControls = _wp$blocks.InspectorControls;
+var InspectorControls = wp.blocks.InspectorControls;
+var addFilter = wp.hooks.addFilter;
 
 /**
  * Fields
@@ -108,22 +107,22 @@ var _wp$blocks = wp.blocks,
 
 
 var GutenbergFieldsMiddleWare = function () {
-	function GutenbergFieldsMiddleWare() {
+	function GutenbergFieldsMiddleWare(config) {
 		_classCallCheck(this, GutenbergFieldsMiddleWare);
+
+		this.blockConfigs = {};
+		this.fields = {};
+		this.inspectorControlFields = {};
+		this.inspectorControls = '';
+		this.config = _.extend({}, config);
 
 		this.setBlockComponents = this.setBlockComponents.bind(this);
 	}
 
 	_createClass(GutenbergFieldsMiddleWare, [{
-		key: 'registerBlockType',
-		value: function registerBlockType(namespace, config) {
+		key: 'getSettings',
+		value: function getSettings() {
 			var _this = this;
-
-			this.blockConfigs = {};
-			this.fields = {};
-			this.inspectorControlFields = {};
-			this.inspectorControls = '';
-			this.config = _.extend({}, config);
 
 			this.blockConfigs = _.extend({
 				title: '',
@@ -147,9 +146,7 @@ var GutenbergFieldsMiddleWare = function () {
 				return _this.config.save ? _this.config.save(props, _this) : _this.save(props);
 			};
 
-			_registerBlockType(namespace, this.blockConfigs);
-
-			return this;
+			return this.blockConfigs;
 		}
 	}, {
 		key: 'getFields',
@@ -234,13 +231,17 @@ var GutenbergFieldsMiddleWare = function () {
 	return GutenbergFieldsMiddleWare;
 }();
 
-window.gutenbergFieldsMiddleWare = new GutenbergFieldsMiddleWare();
+addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/attributes', function (settings, name) {
+	if (!/^core/.test(name)) {
+		var middleware = new GutenbergFieldsMiddleWare(settings);
+		return middleware.getSettings();
+	}
+
+	return settings;
+}, 1);
 
 /***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -280,11 +281,11 @@ var richText = function richText(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (richText);
 
 /***/ }),
-/* 6 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_placeholder__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_placeholder__ = __webpack_require__(4);
 /**
  * Image, Video, Audio Field.
  */
@@ -363,7 +364,7 @@ var mediaUpload = function mediaUpload(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (mediaUpload);
 
 /***/ }),
-/* 7 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -401,7 +402,7 @@ var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
 
 /***/ }),
-/* 8 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -434,7 +435,7 @@ var urlInput = function urlInput(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (urlInput);
 
 /***/ }),
-/* 9 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -467,7 +468,7 @@ var selectControl = function selectControl(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (selectControl);
 
 /***/ }),
-/* 10 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -500,7 +501,7 @@ var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (checkboxControl);
 
 /***/ }),
-/* 11 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -533,7 +534,7 @@ var radioControl = function radioControl(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (radioControl);
 
 /***/ }),
-/* 12 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

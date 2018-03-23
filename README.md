@@ -2,16 +2,7 @@
 
 Provides middleware to easily register fields for Gutenberg blocks.
 
-After activating the plugin use `'gutenberg-fields-middleware'` handle as dependency when enqueueing your block js file. 
-
-And then Instead of using `wp.blocks.registerBlockType` use `gutenbergFieldsMiddleWare.registerBlockType`.
-  
-
-```js
-gutenbergFieldsMiddleWare.registerBlockType( 'namespace/block-name', {
-	// Add Block Configuration.
-} );
-``` 
+After activating the plugin use `'gutenberg-fields-middleware'` handle as dependency when enqueueing your block js file.    
 
 define your fields inside `attributes: { field }` and then use ( Optionally ) those fields inside `edit` method as `middleware.fields.attributeKey`
 
@@ -19,7 +10,7 @@ define your fields inside `attributes: { field }` and then use ( Optionally ) th
 
 
 ```js
-gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
+registerBlockType( 'gb-m-example/simple-block', {
 
 	title: 'Block Title',
 	description: 'Block Description',

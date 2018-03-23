@@ -1,9 +1,8 @@
-/*global gutenbergFieldsMiddleWare */
-
 const { __ } = wp.i18n;
 const el = wp.element.createElement;
+const { registerBlockType } = wp.blocks;
 
-gutenbergFieldsMiddleWare.registerBlockType( 'gb-m-example/simple-block', {
+registerBlockType( 'gb-m-example/simple-block', {
 
 	title: __( 'Simple Example Block' ),
 

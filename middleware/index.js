@@ -2,7 +2,8 @@
  * Gutenberg Fields Middleware.
  */
 
-const { registerBlockType, InspectorControls } = wp.blocks;
+const { InspectorControls } = wp.blocks;
+const { addFilter } = wp.hooks;
 
 /**
  * Fields
@@ -16,17 +17,17 @@ import radioControl from './fields/radio-control';
 import rangeControl from './fields/range-control';
 
 class GutenbergFieldsMiddleWare {
-	constructor() {
-		this.setBlockComponents = this.setBlockComponents.bind( this );
-	}
-
-	registerBlockType( namespace, config ) {
+	constructor( config ) {
 		this.blockConfigs = {};
 		this.fields = {};
 		this.inspectorControlFields = {};
 		this.inspectorControls = '';
 		this.config = _.extend( {}, config );
 
+		this.setBlockComponents = this.setBlockComponents.bind( this );
+	}
+
+	getSettings() {
 		this.blockConfigs = _.extend( {
 			title: '',
 
@@ -49,9 +50,7 @@ class GutenbergFieldsMiddleWare {
 			return this.config.save ? this.config.save( props, this ) : this.save( props );
 		};
 
-		registerBlockType( namespace, this.blockConfigs );
-
-		return this;
+		return this.blockConfigs;
 	}
 
 	getFields( fieldType, attributeKey, props, config ) {
@@ -128,4 +127,11 @@ class GutenbergFieldsMiddleWare {
 	}
 }
 
-window.gutenbergFieldsMiddleWare = new GutenbergFieldsMiddleWare();
+addFilter( 'blocks.registerBlockType', 'gutenberg-field-middleware/registration/attributes', ( settings, name ) => {
+	if ( ! /^core/.test( name ) ) {
+		const middleware = new GutenbergFieldsMiddleWare( settings );
+		return middleware.getSettings();
+	}
+
+	return settings;
+}, 1 );
