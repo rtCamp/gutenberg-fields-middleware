@@ -24,6 +24,29 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'text',
 				placeholder: __( 'Enter link text' ),
+				blockControls: {
+					alignment: {
+						type: 'alignment-toolbar',
+					},
+					toolbar: {
+						type: 'toolbar',
+						controls: [
+							{
+								icon: 'list-view',
+								title: __( 'List View' ),
+							},
+							{
+								icon: 'grid-view',
+								title: __( 'Grid View' ),
+							},
+						],
+						children: {
+							background: {
+								type: 'image',
+							},
+						},
+					},
+				},
 			},
 		},
 		image: {
@@ -80,6 +103,18 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'button',
 				isLarge: true,
 				editable: true,
+			},
+		},
+		backgroundImage: {
+			type: 'string',
+			field: {
+				type: 'background-image',
+			},
+		},
+		backgroundColor: {
+			type: 'string',
+			field: {
+				type: 'background-color',
 			},
 		},
 		layoutOption: {

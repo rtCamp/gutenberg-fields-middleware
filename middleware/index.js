@@ -23,6 +23,7 @@ class GutenbergFieldsMiddleWare {
 		this.fields = {};
 		this.inspectorControlFields = {};
 		this.inspectorControls = '';
+		this.blockControls = {};
 		this.config = _.extend( {}, config );
 
 		this.setBlockComponents = this.setBlockComponents.bind( this );
@@ -101,6 +102,13 @@ class GutenbergFieldsMiddleWare {
 				} else {
 					_.extend( this.fields, this.getFields( attribute.field.type, attributeKey, props, attribute.field ) );
 				}
+
+				if ( attribute.field.blockControls ) {
+					this.blockControls[ attributeKey ] = {};
+					_.each( attribute.field.blockControls, ( blockControlConfig, blockControlKey ) => {
+						this.blockControls[ attributeKey ][ blockControlKey ] = {};
+					} );
+				}
 			}
 		} );
 
@@ -111,6 +119,10 @@ class GutenbergFieldsMiddleWare {
 				} ) }
 			</InspectorControls>
 		) : null;
+	}
+
+	getToolbar() {
+
 	}
 
 	edit( props ) {
