@@ -10,7 +10,7 @@ define your fields inside `attributes: { field }` and then use ( Optionally ) th
 
 
 ```js
-registerBlockType( 'gb-m-example/simple-block', {
+registerBlockType( 'example-namespace/example-block', {
 
 	title: 'Block Title',
 	description: 'Block Description',
@@ -76,6 +76,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'range',
+				position: 'inspector',
+			},
+		},
+		columns: {
+			type: 'string',
+			field: {
+				type: 'range',
+				position: 'inspector',
 			},
 		},
 	},
@@ -83,13 +91,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 	// Optional.
 	edit( props, middleware ) {
 		return [
-	            middleware.fields.url,
-	            middleware.fields.text,
-	            middleware.fields.image,
-	            middleware.fields.option,
-	            middleware.fields.radio,
-	            middleware.fields.range,
-	        ];
+				middleware.fields.url,
+				middleware.fields.text,
+				middleware.fields.image,
+				middleware.fields.option,
+				middleware.fields.radio,
+				middleware.fields.range,
+			];
 	},
 
 	// Optional.
@@ -98,6 +106,29 @@ registerBlockType( 'gb-m-example/simple-block', {
 	},
 
 } );
+```
+
+### Fields
+
+**button**
+* type: (string) your component type.
+* editable: (bool) false, Allow user to edit button text with button it self.
+* buttonText: (string) null, fallback text.
+* isPrimary: (bool) whether the button is styled as a primary button.
+* href: (string) if this property is added, it will use an a rather than a button element.
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/button).
+
+
+```
+button: {
+	type: 'string',
+	field: {
+		type: 'button',
+		isLarge: true,
+		editable: true,
+	},
+}
 ```
 
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
