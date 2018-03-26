@@ -108,17 +108,51 @@ registerBlockType( 'example-namespace/example-block', {
 } );
 ```
 
-### Fields
+## Fields
 
-**button**
-* type: (string) your component type.
-* editable: (bool) false, Allow user to edit button text with button it self.
-* buttonText: (string) null, fallback text.
-* isPrimary: (bool) whether the button is styled as a primary button.
-* href: (string) if this property is added, it will use an a rather than a button element.
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+
+#### button
+
+###### type
+
+Fields type.
+* Type: `String`
+* Required: Yes
+* Default: Null
+
+###### editable
+
+Allow user to edit button text with button it self.
+* Type: `Bool`
+* Required: No
+* Default: false
+
+###### buttonText
+
+Fallback text.
+* Type: `string`
+* Required: No
+* Default: null
+
+###### isPrimary
+
+whether the button is styled as a primary button.
+* Type: `bool`
+* Required: No
+* Default: null
+
+###### href
+
+if this property is added, it will use an a rather than a button element.
+* Type: `string`
+* Required: No
+* Default: null
+
 
 For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/button).
 
+**Example:**
 
 ```
 button: {
@@ -130,5 +164,63 @@ button: {
 	},
 }
 ```
+
+#### image / video / audio
+
+###### type
+
+Fields type.
+* Type: `string`
+* Required: Yes
+* Default: null
+
+###### buttonText
+
+Upload button text.
+* Type: `string`
+* Required: No
+* Default: null
+
+###### imagePlaceholder
+
+Enable imagePlaceholder.
+* Type: `bool`
+* Required: No
+* Default: false
+
+###### removeButtonText
+
+Remove media button text. it will be showing only if there is string available.
+* Type: `string`
+* Required: No
+* Default: null
+
+###### multiple
+
+Whether to allow multiple selections or not.
+* Type: `Boolean`
+* Required: No
+* Default: false
+
+###### value
+
+Media ID (or media IDs if multiple is true) to be selected by default when opening the media library.
+* Type: `Number|Array`
+* Required: No
+
+###### onSelect
+
+Callback called when the media modal is closed, the selected media are passed as an argument.
+* Type: `Func`
+* Required: Yes
+
+###### render
+
+A callback invoked to render the Button opening the media library.
+* Type: `Function`
+* Required: Yes
+
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/media-upload).
 
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
