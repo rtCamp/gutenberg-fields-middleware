@@ -227,13 +227,82 @@ For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/mas
 ```
 image: {
 	type: 'object',
-    field: {
+	field: {
 		type: 'image',
 		buttonText: __( 'Upload' ),
 		imagePlaceholder: true,
 		removeButtonText: __( 'Remove' ),
-    },
+	},
 },
+```
+
+#### radio
+
+###### type
+
+Field Type.
+* Type: `String`
+* Required: Yes
+* Default: Null
+
+###### label
+
+If this property is added, a label will be generated using label property as the content.
+* Type: `String`
+* Required: No
+
+###### help
+
+If this property is added, a help text will be generated using help property as the content.
+* Type: `String`
+* Required: No
+
+
+###### selected
+
+The value property of the currently selected option.
+* Type: `Object`
+* Required: No
+
+###### options
+
+An array of objects containing the following properties:
+* label: (string) The label to be shown to the user.
+* value: (Object) The internal value compared against select and passed to onChange.
+
+
+* Type: `Array`
+* Required: No
+
+###### onChange
+
+A function that receives the value of the new option that is being selected as input.
+* Type: `function`
+* Required: Yes
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/radio-control).
+
+**Example:**
+
+```
+radio: {
+	type: 'string',
+	field: {
+		type: 'radio',
+		label: 'User type',
+		help: 'The type of the current user',
+		options: [
+			{
+				value: 'one',
+				label: 'one',
+			},
+			{
+				value: 'two',
+				label: 'two',
+			},
+		],
+	},
+}
 ```
 
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
