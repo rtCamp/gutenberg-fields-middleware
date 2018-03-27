@@ -4,7 +4,7 @@
 
 const { RichText, PlainText } = wp.blocks;
 
-const richText = ( props, config, attributeKey ) => {
+export default function richText( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -34,6 +34,4 @@ const richText = ( props, config, attributeKey ) => {
 			{ ...fieldAttributes }
 		/>
 	);
-};
-
-export default richText;
+}

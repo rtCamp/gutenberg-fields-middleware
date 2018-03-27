@@ -24,6 +24,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'text',
 				placeholder: __( 'Enter link text' ),
+				richText: true,
 			},
 		},
 		image: {
@@ -68,6 +69,22 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 		},
+		checkbox: {
+			type: 'string',
+			field: {
+				type: 'checkbox',
+				options: [
+					{
+						value: 'one',
+						label: 'one',
+					},
+					{
+						value: 'two',
+						label: 'two',
+					},
+				],
+			},
+		},
 		range: {
 			type: 'string',
 			field: {
@@ -80,6 +97,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'button',
 				isLarge: true,
 				editable: true,
+			},
+		},
+		color: {
+			type: 'string',
+			field: {
+				type: 'color',
 			},
 		},
 		layoutOption: {

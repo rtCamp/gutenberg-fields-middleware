@@ -2,9 +2,9 @@
  * Range field.
  */
 
-const { RangeControl } = wp.components;
+const { ColorPalette } = wp.blocks;
 
-export default function rangeControl( props, config, attributeKey ) {
+export default function colorPalette( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -21,7 +21,7 @@ export default function rangeControl( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<RangeControl
+		<ColorPalette
 			{ ...fieldAttributes }
 		/>
 	);

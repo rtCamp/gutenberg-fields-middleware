@@ -84,6 +84,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_button__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_color_palette__ = __webpack_require__(11);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -98,6 +99,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -186,6 +188,9 @@ var GutenbergFieldsMiddleWare = function () {
 				case 'button':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_button__["a" /* default */])(props, config, attributeKey);
 					break;
+				case 'color':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_color_palette__["a" /* default */])(props, config, attributeKey);
+					break;
 			}
 
 			return fields;
@@ -250,6 +255,7 @@ addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = richText;
 /**
  * Text field.
  */
@@ -259,7 +265,7 @@ var _wp$blocks = wp.blocks,
     PlainText = _wp$blocks.PlainText;
 
 
-var richText = function richText(props, config, attributeKey) {
+function richText(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -281,16 +287,15 @@ var richText = function richText(props, config, attributeKey) {
 	}
 
 	return wp.element.createElement(PlainText, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (richText);
+}
 
 /***/ }),
 /* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(11);
+/* harmony export (immutable) */ __webpack_exports__["a"] = mediaUpload;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(4);
 /**
  * Image, Video, Audio Field.
  */
@@ -302,7 +307,7 @@ var __ = wp.i18n.__;
 
 
 
-var mediaUpload = function mediaUpload(props, config, attributeKey) {
+function mediaUpload(props, config, attributeKey) {
 	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
 	var image = props.attributes[attributeKey];
 
@@ -364,16 +369,52 @@ var mediaUpload = function mediaUpload(props, config, attributeKey) {
 	delete fieldAttributes.removeButton;
 
 	return wp.element.createElement(MediaUpload, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (mediaUpload);
+}
 
 /***/ }),
-/* 4 */,
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Image Placeholder.
+ */
+
+var ImagePlaceholder = wp.blocks.ImagePlaceholder;
+var __ = wp.i18n.__;
+
+
+var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
+	var defaultAttributes = {
+		onSelectImage: function onSelectImage(media) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		},
+
+
+		className: 'image-placeholder',
+
+		icon: 'format-gallery',
+
+		label: __('Image'),
+
+		multiple: false
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
+
+/***/ }),
 /* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = urlInput;
 /**
  * Url field.
  */
@@ -381,7 +422,7 @@ var mediaUpload = function mediaUpload(props, config, attributeKey) {
 var UrlInput = wp.blocks.UrlInput;
 
 
-var urlInput = function urlInput(props, config, attributeKey) {
+function urlInput(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -398,15 +439,14 @@ var urlInput = function urlInput(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(UrlInput, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (urlInput);
+}
 
 /***/ }),
 /* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = selectControl;
 /**
  * Select field.
  */
@@ -414,7 +454,7 @@ var urlInput = function urlInput(props, config, attributeKey) {
 var SelectControl = wp.components.SelectControl;
 
 
-var selectControl = function selectControl(props, config, attributeKey) {
+function selectControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -431,15 +471,14 @@ var selectControl = function selectControl(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(SelectControl, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (selectControl);
+}
 
 /***/ }),
 /* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = checkboxControl;
 /**
  * Url field.
  */
@@ -447,7 +486,7 @@ var selectControl = function selectControl(props, config, attributeKey) {
 var CheckboxControl = wp.components.CheckboxControl;
 
 
-var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
+function checkboxControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: '1'
 	};
@@ -459,20 +498,19 @@ var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
 		props.setAttributes(newAttributes);
 	};
 
-	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(CheckboxControl, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (checkboxControl);
+}
 
 /***/ }),
 /* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = radioControl;
 /**
  * Url field.
  */
@@ -480,7 +518,7 @@ var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
 var RadioControl = wp.components.RadioControl;
 
 
-var radioControl = function radioControl(props, config, attributeKey) {
+function radioControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -497,15 +535,14 @@ var radioControl = function radioControl(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(RadioControl, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (radioControl);
+}
 
 /***/ }),
 /* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = rangeControl;
 /**
  * Range field.
  */
@@ -513,7 +550,7 @@ var radioControl = function radioControl(props, config, attributeKey) {
 var RangeControl = wp.components.RangeControl;
 
 
-var rangeControl = function rangeControl(props, config, attributeKey) {
+function rangeControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -530,15 +567,14 @@ var rangeControl = function rangeControl(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(RangeControl, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (rangeControl);
+}
 
 /***/ }),
 /* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = button;
 /**
  * Button field.
  */
@@ -548,7 +584,7 @@ var RichText = wp.blocks.RichText;
 var __ = wp.i18n.__;
 
 
-var button = function button(props, config, attributeKey) {
+function button(props, config, attributeKey) {
 	var defaultAttributes = {
 		buttonText: __('Button')
 	};
@@ -587,47 +623,39 @@ var button = function button(props, config, attributeKey) {
 		fieldAttributes,
 		buttonText
 	);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (button);
+}
 
 /***/ }),
 /* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = colorPalette;
 /**
- * Image Placeholder.
+ * Range field.
  */
 
-var ImagePlaceholder = wp.blocks.ImagePlaceholder;
-var __ = wp.i18n.__;
+var ColorPalette = wp.blocks.ColorPalette;
 
 
-var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
+function colorPalette(props, config, attributeKey) {
 	var defaultAttributes = {
-		onSelectImage: function onSelectImage(media) {
+		onChange: function onChange(value) {
 			var newAttributes = {};
-			newAttributes[attributeKey] = media;
+			newAttributes[attributeKey] = value;
 			props.setAttributes(newAttributes);
 		},
 
 
-		className: 'image-placeholder',
-
-		icon: 'format-gallery',
-
-		label: __('Image'),
-
-		multiple: false
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
-};
+	delete fieldAttributes.type;
 
-/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
+	return wp.element.createElement(ColorPalette, fieldAttributes);
+}
 
 /***/ })
 /******/ ]);

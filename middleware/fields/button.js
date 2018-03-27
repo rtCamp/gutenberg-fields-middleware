@@ -6,7 +6,7 @@ const { Button } = wp.components;
 const { RichText } = wp.blocks;
 const { __ } = wp.i18n;
 
-const button = ( props, config, attributeKey ) => {
+export default function button( props, config, attributeKey ) {
 	const defaultAttributes = {
 		buttonText: __( 'Button' ),
 	};
@@ -47,6 +47,4 @@ const button = ( props, config, attributeKey ) => {
 			{ buttonText }
 		</Button>
 	);
-};
-
-export default button;
+}
