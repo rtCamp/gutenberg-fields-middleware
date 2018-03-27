@@ -305,4 +305,71 @@ radio: {
 }
 ```
 
+#### select
+
+###### type
+
+Field Type.
+* Type: `String`
+* Required: Yes
+* Default: Null
+
+###### label
+
+If this property is added, a label will be generated using label property as the content.
+* Type: `String`
+* Required: No
+
+###### help
+
+If this property is added, a help text will be generated using help property as the content.
+* Type: `String`
+* Required: No
+
+###### multiple
+
+If this property is added, multiple values can be selected. The value passed should be an array.
+* Type: `Boolean`
+* Required: No
+
+###### options
+
+An array of objects containing the following properties:
+* label: (string) The label to be shown to the user.
+* value: (Object) The internal value used to choose the selected value. This is also the value passed to onChange when the option is selected.
+
+
+* Type: `Array`
+* Required: No
+
+###### onChange
+
+A function that receives the value of the new option that is being selected as input. If multiple is true the value received is an array of the selected value. If multiple is false the value received is a single value with the new selected value.
+* Type: `function`
+* Required: Yes
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/select-control).
+
+**Example:**
+
+```
+option: {
+	type: 'string',
+	field: {
+		type: 'select',
+		label: 'Select Numbers',
+		options: [
+			{
+				value: 'one',
+				label: 'one',
+			},
+			{
+				value: 'two',
+				label: 'two',
+			},
+		],
+	},
+}
+```
+
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
