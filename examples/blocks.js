@@ -105,6 +105,19 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'color',
 			},
 		},
+		dropdown: {
+			type: 'string',
+			field: {
+				type: 'dropdown',
+				position: 'top left',
+			},
+		},
+		editor: {
+			type: 'string',
+			field: {
+				type: 'editor',
+			},
+		},
 		layoutOption: {
 			type: 'string',
 			field: {
