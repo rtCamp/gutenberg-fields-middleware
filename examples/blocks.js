@@ -110,10 +110,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'dropdown',
 				position: 'top left',
-				renderContent() {
-					return (
-						wp.element.createElement( 'div', {}, 'Hello World' ) );
-				},
 			},
 		},
 		editor: {

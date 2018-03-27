@@ -5,15 +5,23 @@
 const { Dropdown } = wp.components;
 const { __ } = wp.i18n;
 
-const dropdown = ( props, config ) => {
+export default function dropdown( props, config ) {
 	const defaultAttributes = {
 
 		renderToggle( { isOpen, onToggle } ) {
-			return ( <button className="button-primary button" onClick={ onToggle } aria-expanded={ isOpen }>Toggle Popover!</button> );
+			return (
+				<button className="button-primary button" onClick={ onToggle } aria-expanded={ isOpen }>
+					{ __( 'Toggle Popover!' ) }
+				</button>
+			);
 		},
 
 		renderContent() {
-			return ( <div>This is the content of the popover!</div> );
+			return (
+				<div>
+					{ __( 'Dummy Popover Content!' ) }
+				</div>
+			);
 		},
 	};
 
@@ -26,6 +34,4 @@ const dropdown = ( props, config ) => {
 			{ ...fieldAttributes }
 		/>
 	);
-};
-
-export default dropdown;
+}

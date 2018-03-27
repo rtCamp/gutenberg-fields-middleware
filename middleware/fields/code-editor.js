@@ -4,7 +4,7 @@
 
 const { CodeEditor } = wp.components;
 
-const editor = ( props, config, attributeKey ) => {
+export default function editor( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -25,6 +25,4 @@ const editor = ( props, config, attributeKey ) => {
 			{ ...fieldAttributes }
 		/>
 	);
-};
-
-export default editor;
+}

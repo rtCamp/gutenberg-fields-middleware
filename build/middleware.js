@@ -671,6 +671,7 @@ function colorPalette(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = dropdown;
 /**
  * Dropdown field.
  */
@@ -679,23 +680,23 @@ var Dropdown = wp.components.Dropdown;
 var __ = wp.i18n.__;
 
 
-var dropdown = function dropdown(props, config) {
+function dropdown(props, config) {
 	var defaultAttributes = {
 		renderToggle: function renderToggle(_ref) {
 			var isOpen = _ref.isOpen,
 			    onToggle = _ref.onToggle;
 
 			return wp.element.createElement(
-				"button",
-				{ className: "button-primary button", onClick: onToggle, "aria-expanded": isOpen },
-				"Toggle Popover!"
+				'button',
+				{ className: 'button-primary button', onClick: onToggle, 'aria-expanded': isOpen },
+				__('Toggle Popover!')
 			);
 		},
 		renderContent: function renderContent() {
 			return wp.element.createElement(
-				"div",
+				'div',
 				null,
-				"This is the content of the popover!"
+				__('Dummy Popover Content!')
 			);
 		}
 	};
@@ -705,15 +706,14 @@ var dropdown = function dropdown(props, config) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(Dropdown, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (dropdown);
+}
 
 /***/ }),
 /* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = editor;
 /**
  * Code editor field.
  */
@@ -721,7 +721,7 @@ var dropdown = function dropdown(props, config) {
 var CodeEditor = wp.components.CodeEditor;
 
 
-var editor = function editor(props, config, attributeKey) {
+function editor(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -738,9 +738,7 @@ var editor = function editor(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(CodeEditor, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (editor);
+}
 
 /***/ })
 /******/ ]);
