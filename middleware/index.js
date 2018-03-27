@@ -16,7 +16,9 @@ import checkboxControl from './fields/checkbox-control';
 import radioControl from './fields/radio-control';
 import rangeControl from './fields/range-control';
 import button from './fields/button';
+import dropdown from './fields/dropdown';
 import colorPalette from './fields/color-palette';
+import editor from './fields/code-editor';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -24,6 +26,7 @@ class GutenbergFieldsMiddleWare {
 		this.fields = {};
 		this.inspectorControlFields = {};
 		this.inspectorControls = '';
+		this.blockControls = {};
 		this.config = _.extend( {}, config );
 
 		this.setBlockComponents = this.setBlockComponents.bind( this );
@@ -89,8 +92,14 @@ class GutenbergFieldsMiddleWare {
 			case 'button':
 				fields[ attributeKey ] = button( props, config, attributeKey );
 				break;
+			case 'dropdown':
+				fields[ attributeKey ] = dropdown( props, config );
+				break;
 			case 'color':
 				fields[ attributeKey ] = colorPalette( props, config, attributeKey );
+				break;
+			case 'editor':
+				fields[ attributeKey ] = editor( props, config, attributeKey );
 				break;
 		}
 
@@ -105,6 +114,13 @@ class GutenbergFieldsMiddleWare {
 				} else {
 					_.extend( this.fields, this.getFields( attribute.field.type, attributeKey, props, attribute.field ) );
 				}
+
+				if ( attribute.field.blockControls ) {
+					this.blockControls[ attributeKey ] = {};
+					_.each( attribute.field.blockControls, ( blockControlConfig, blockControlKey ) => {
+						this.blockControls[ attributeKey ][ blockControlKey ] = {};
+					} );
+				}
 			}
 		} );
 
@@ -115,6 +131,10 @@ class GutenbergFieldsMiddleWare {
 				} ) }
 			</InspectorControls>
 		) : null;
+	}
+
+	getToolbar() {
+
 	}
 
 	edit( props ) {
