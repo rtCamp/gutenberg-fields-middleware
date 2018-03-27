@@ -723,6 +723,13 @@ var CodeEditor = wp.components.CodeEditor;
 
 var editor = function editor(props, config, attributeKey) {
 	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
 		value: props.attributes[attributeKey] || ''
 	};
 

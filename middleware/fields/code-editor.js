@@ -6,6 +6,13 @@ const { CodeEditor } = wp.components;
 
 const editor = ( props, config, attributeKey ) => {
 	const defaultAttributes = {
+
+		onChange( value ) {
+			const newAttributes = {};
+			newAttributes[ attributeKey ] = value;
+			props.setAttributes( newAttributes );
+		},
+
 		value: props.attributes[ attributeKey ] || '',
 	};
 

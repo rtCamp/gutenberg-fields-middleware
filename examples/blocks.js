@@ -120,7 +120,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'editor',
-				value() { return ( wp.element.createElement( 'div', {}, 'Hello World' ) ) },
 			},
 		},
 		layoutOption: {
