@@ -4,7 +4,7 @@
 
 const { UrlInput } = wp.blocks;
 
-const urlInput = ( props, config, attributeKey ) => {
+export default function urlInput( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -25,6 +25,4 @@ const urlInput = ( props, config, attributeKey ) => {
 			{ ...fieldAttributes }
 		/>
 	);
-};
-
-export default urlInput;
+}

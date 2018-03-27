@@ -255,6 +255,7 @@ addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = richText;
 /**
  * Text field.
  */
@@ -264,7 +265,7 @@ var _wp$blocks = wp.blocks,
     PlainText = _wp$blocks.PlainText;
 
 
-var richText = function richText(props, config, attributeKey) {
+function richText(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -286,15 +287,14 @@ var richText = function richText(props, config, attributeKey) {
 	}
 
 	return wp.element.createElement(PlainText, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (richText);
+}
 
 /***/ }),
 /* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = mediaUpload;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(4);
 /**
  * Image, Video, Audio Field.
@@ -307,7 +307,7 @@ var __ = wp.i18n.__;
 
 
 
-var mediaUpload = function mediaUpload(props, config, attributeKey) {
+function mediaUpload(props, config, attributeKey) {
 	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
 	var image = props.attributes[attributeKey];
 
@@ -369,9 +369,7 @@ var mediaUpload = function mediaUpload(props, config, attributeKey) {
 	delete fieldAttributes.removeButton;
 
 	return wp.element.createElement(MediaUpload, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (mediaUpload);
+}
 
 /***/ }),
 /* 4 */
@@ -416,6 +414,7 @@ var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = urlInput;
 /**
  * Url field.
  */
@@ -423,7 +422,7 @@ var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
 var UrlInput = wp.blocks.UrlInput;
 
 
-var urlInput = function urlInput(props, config, attributeKey) {
+function urlInput(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -440,15 +439,14 @@ var urlInput = function urlInput(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(UrlInput, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (urlInput);
+}
 
 /***/ }),
 /* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = selectControl;
 /**
  * Select field.
  */
@@ -456,7 +454,7 @@ var urlInput = function urlInput(props, config, attributeKey) {
 var SelectControl = wp.components.SelectControl;
 
 
-var selectControl = function selectControl(props, config, attributeKey) {
+function selectControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -473,15 +471,14 @@ var selectControl = function selectControl(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(SelectControl, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (selectControl);
+}
 
 /***/ }),
 /* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = checkboxControl;
 /**
  * Url field.
  */
@@ -489,7 +486,7 @@ var selectControl = function selectControl(props, config, attributeKey) {
 var CheckboxControl = wp.components.CheckboxControl;
 
 
-var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
+function checkboxControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: '1'
 	};
@@ -501,20 +498,19 @@ var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
 		props.setAttributes(newAttributes);
 	};
 
-	var fieldAttributes = _.extend(defaultAttributes, attribute.field);
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(CheckboxControl, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (checkboxControl);
+}
 
 /***/ }),
 /* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = radioControl;
 /**
  * Url field.
  */
@@ -522,7 +518,7 @@ var checkboxControl = function checkboxControl(props, attribute, attributeKey) {
 var RadioControl = wp.components.RadioControl;
 
 
-var radioControl = function radioControl(props, config, attributeKey) {
+function radioControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -539,15 +535,14 @@ var radioControl = function radioControl(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(RadioControl, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (radioControl);
+}
 
 /***/ }),
 /* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = rangeControl;
 /**
  * Range field.
  */
@@ -555,7 +550,7 @@ var radioControl = function radioControl(props, config, attributeKey) {
 var RangeControl = wp.components.RangeControl;
 
 
-var rangeControl = function rangeControl(props, config, attributeKey) {
+function rangeControl(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -572,15 +567,14 @@ var rangeControl = function rangeControl(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(RangeControl, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (rangeControl);
+}
 
 /***/ }),
 /* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = button;
 /**
  * Button field.
  */
@@ -590,7 +584,7 @@ var RichText = wp.blocks.RichText;
 var __ = wp.i18n.__;
 
 
-var button = function button(props, config, attributeKey) {
+function button(props, config, attributeKey) {
 	var defaultAttributes = {
 		buttonText: __('Button')
 	};
@@ -629,15 +623,14 @@ var button = function button(props, config, attributeKey) {
 		fieldAttributes,
 		buttonText
 	);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (button);
+}
 
 /***/ }),
 /* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = colorPalette;
 /**
  * Range field.
  */
@@ -645,7 +638,7 @@ var button = function button(props, config, attributeKey) {
 var ColorPalette = wp.blocks.ColorPalette;
 
 
-var colorPalette = function colorPalette(props, config, attributeKey) {
+function colorPalette(props, config, attributeKey) {
 	var defaultAttributes = {
 		onChange: function onChange(value) {
 			var newAttributes = {};
@@ -662,9 +655,7 @@ var colorPalette = function colorPalette(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(ColorPalette, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (colorPalette);
+}
 
 /***/ })
 /******/ ]);

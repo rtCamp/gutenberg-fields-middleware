@@ -24,6 +24,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'text',
 				placeholder: __( 'Enter link text' ),
+				richText: true,
 			},
 		},
 		image: {
@@ -56,6 +57,22 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'radio',
+				options: [
+					{
+						value: 'one',
+						label: 'one',
+					},
+					{
+						value: 'two',
+						label: 'two',
+					},
+				],
+			},
+		},
+		checkbox: {
+			type: 'string',
+			field: {
+				type: 'checkbox',
 				options: [
 					{
 						value: 'one',

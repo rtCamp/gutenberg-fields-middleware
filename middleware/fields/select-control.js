@@ -4,7 +4,7 @@
 
 const { SelectControl } = wp.components;
 
-const selectControl = ( props, config, attributeKey ) => {
+export default function selectControl( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -25,6 +25,4 @@ const selectControl = ( props, config, attributeKey ) => {
 			{ ...fieldAttributes }
 		/>
 	);
-};
-
-export default selectControl;
+}

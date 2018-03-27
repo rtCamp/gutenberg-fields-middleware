@@ -4,7 +4,7 @@
 
 const { RadioControl } = wp.components;
 
-const radioControl = ( props, config, attributeKey ) => {
+export default function radioControl( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -25,6 +25,4 @@ const radioControl = ( props, config, attributeKey ) => {
 			{ ...fieldAttributes }
 		/>
 	);
-};
-
-export default radioControl;
+}
