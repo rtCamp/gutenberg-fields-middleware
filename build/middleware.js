@@ -85,6 +85,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_button__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_dropdown__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_color_palette__ = __webpack_require__(12);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -99,6 +100,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -191,6 +193,9 @@ var GutenbergFieldsMiddleWare = function () {
 					break;
 				case 'dropdown':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_dropdown__["a" /* default */])(props, config);
+					break;
+				case 'color':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_color_palette__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -686,6 +691,39 @@ var dropdown = function dropdown(props, config) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (dropdown);
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Range field.
+ */
+
+var ColorPalette = wp.blocks.ColorPalette;
+
+
+var colorPalette = function colorPalette(props, config, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(ColorPalette, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (colorPalette);
 
 /***/ })
 /******/ ]);

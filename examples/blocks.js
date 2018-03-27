@@ -105,6 +105,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 				editable: true,
 			},
 		},
+		color: {
+			type: 'string',
+			field: {
+				type: 'color',
+			},
+		},
 		dropdown: {
 			type: 'string',
 			field: {
