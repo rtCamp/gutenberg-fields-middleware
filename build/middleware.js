@@ -85,6 +85,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_button__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_color_palette__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_dropdown__ = __webpack_require__(12);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -99,6 +100,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -190,6 +192,9 @@ var GutenbergFieldsMiddleWare = function () {
 					break;
 				case 'color':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_color_palette__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'dropdown':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_dropdown__["a" /* default */])(props, config);
 					break;
 			}
 
@@ -376,6 +381,7 @@ function mediaUpload(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = imagePlaceholder;
 /**
  * Image Placeholder.
  */
@@ -384,7 +390,7 @@ var ImagePlaceholder = wp.blocks.ImagePlaceholder;
 var __ = wp.i18n.__;
 
 
-var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
+function imagePlaceholder(props, config, attributeKey) {
 	var defaultAttributes = {
 		onSelectImage: function onSelectImage(media) {
 			var newAttributes = {};
@@ -405,9 +411,7 @@ var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
+}
 
 /***/ }),
 /* 5 */
@@ -480,7 +484,7 @@ function selectControl(props, config, attributeKey) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = checkboxControl;
 /**
- * Url field.
+ * Checkbox field.
  */
 
 var CheckboxControl = wp.components.CheckboxControl;
@@ -656,6 +660,49 @@ function colorPalette(props, config, attributeKey) {
 
 	return wp.element.createElement(ColorPalette, fieldAttributes);
 }
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Dropdown field.
+ */
+
+var Dropdown = wp.components.Dropdown;
+var __ = wp.i18n.__;
+
+
+var dropdown = function dropdown(props, config) {
+	var defaultAttributes = {
+		renderToggle: function renderToggle(_ref) {
+			var isOpen = _ref.isOpen,
+			    onToggle = _ref.onToggle;
+
+			return wp.element.createElement(
+				"button",
+				{ className: "button-primary button", onClick: onToggle, "aria-expanded": isOpen },
+				"Toggle Popover!"
+			);
+		},
+		renderContent: function renderContent() {
+			return wp.element.createElement(
+				"div",
+				null,
+				"This is the content of the popover!"
+			);
+		}
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(Dropdown, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (dropdown);
 
 /***/ })
 /******/ ]);

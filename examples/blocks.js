@@ -105,6 +105,17 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'color',
 			},
 		},
+		dropdown: {
+			type: 'string',
+			field: {
+				type: 'dropdown',
+				position: 'top left',
+				renderContent() {
+					return (
+						wp.element.createElement( 'div', {}, 'Hello World' ) );
+				},
+			},
+		},
 		layoutOption: {
 			type: 'string',
 			field: {
