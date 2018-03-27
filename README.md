@@ -36,7 +36,7 @@ registerBlockType( 'example-namespace/example-block', {
 				type: 'image',
 				buttonText: __( 'Upload' ),
 				imagePlaceholder: true,
-				removeButton: __( 'Remove' ),
+				removeButtonText: __( 'Remove' ),
 			},
 		},
 		option: {
@@ -115,7 +115,7 @@ registerBlockType( 'example-namespace/example-block', {
 
 ###### type
 
-Fields type.
+Field Type.
 * Type: `String`
 * Required: Yes
 * Default: Null
@@ -221,5 +221,19 @@ A callback invoked to render the Button opening the media library.
 
 
 For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/media-upload).
+
+**Example:**
+
+```
+image: {
+	type: 'object',
+    field: {
+		type: 'image',
+		buttonText: __( 'Upload' ),
+		imagePlaceholder: true,
+		removeButtonText: __( 'Remove' ),
+    },
+},
+```
 
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
