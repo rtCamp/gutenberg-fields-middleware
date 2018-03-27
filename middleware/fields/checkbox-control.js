@@ -1,5 +1,5 @@
 /**
- * Url field.
+ * Checkbox field.
  */
 
 const { CheckboxControl } = wp.components;

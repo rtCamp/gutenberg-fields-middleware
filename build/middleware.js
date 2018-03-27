@@ -84,6 +84,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_button__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_dropdown__ = __webpack_require__(11);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -108,6 +109,7 @@ var addFilter = wp.hooks.addFilter;
 
 
 
+
 var GutenbergFieldsMiddleWare = function () {
 	function GutenbergFieldsMiddleWare(config) {
 		_classCallCheck(this, GutenbergFieldsMiddleWare);
@@ -116,6 +118,7 @@ var GutenbergFieldsMiddleWare = function () {
 		this.fields = {};
 		this.inspectorControlFields = {};
 		this.inspectorControls = '';
+		this.blockControls = {};
 		this.config = _.extend({}, config);
 
 		this.setBlockComponents = this.setBlockComponents.bind(this);
@@ -186,6 +189,9 @@ var GutenbergFieldsMiddleWare = function () {
 				case 'button':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_button__["a" /* default */])(props, config, attributeKey);
 					break;
+				case 'dropdown':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_dropdown__["a" /* default */])(props, config);
+					break;
 			}
 
 			return fields;
@@ -202,6 +208,13 @@ var GutenbergFieldsMiddleWare = function () {
 					} else {
 						_.extend(_this2.fields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
 					}
+
+					if (attribute.field.blockControls) {
+						_this2.blockControls[attributeKey] = {};
+						_.each(attribute.field.blockControls, function (blockControlConfig, blockControlKey) {
+							_this2.blockControls[attributeKey][blockControlKey] = {};
+						});
+					}
 				}
 			});
 
@@ -213,6 +226,9 @@ var GutenbergFieldsMiddleWare = function () {
 				})
 			) : null;
 		}
+	}, {
+		key: 'getToolbar',
+		value: function getToolbar() {}
 	}, {
 		key: 'edit',
 		value: function edit(props) {
@@ -290,7 +306,7 @@ var richText = function richText(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(4);
 /**
  * Image, Video, Audio Field.
  */
@@ -369,7 +385,44 @@ var mediaUpload = function mediaUpload(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (mediaUpload);
 
 /***/ }),
-/* 4 */,
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Image Placeholder.
+ */
+
+var ImagePlaceholder = wp.blocks.ImagePlaceholder;
+var __ = wp.i18n.__;
+
+
+var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
+	var defaultAttributes = {
+		onSelectImage: function onSelectImage(media) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		},
+
+
+		className: 'image-placeholder',
+
+		icon: 'format-gallery',
+
+		label: __('Image'),
+
+		multiple: false
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
+
+/***/ }),
 /* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -441,7 +494,7 @@ var selectControl = function selectControl(props, config, attributeKey) {
 
 "use strict";
 /**
- * Url field.
+ * Checkbox field.
  */
 
 var CheckboxControl = wp.components.CheckboxControl;
@@ -597,37 +650,42 @@ var button = function button(props, config, attributeKey) {
 
 "use strict";
 /**
- * Image Placeholder.
+ * Dropdown field.
  */
 
-var ImagePlaceholder = wp.blocks.ImagePlaceholder;
+var Dropdown = wp.components.Dropdown;
 var __ = wp.i18n.__;
 
 
-var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
+var dropdown = function dropdown(props, config) {
 	var defaultAttributes = {
-		onSelectImage: function onSelectImage(media) {
-			var newAttributes = {};
-			newAttributes[attributeKey] = media;
-			props.setAttributes(newAttributes);
+		renderToggle: function renderToggle(_ref) {
+			var isOpen = _ref.isOpen,
+			    onToggle = _ref.onToggle;
+
+			return wp.element.createElement(
+				"button",
+				{ className: "button-primary button", onClick: onToggle, "aria-expanded": isOpen },
+				"Toggle Popover!"
+			);
 		},
-
-
-		className: 'image-placeholder',
-
-		icon: 'format-gallery',
-
-		label: __('Image'),
-
-		multiple: false
+		renderContent: function renderContent() {
+			return wp.element.createElement(
+				"div",
+				null,
+				"This is the content of the popover!"
+			);
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(Dropdown, fieldAttributes);
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
+/* harmony default export */ __webpack_exports__["a"] = (dropdown);
 
 /***/ })
 /******/ ]);

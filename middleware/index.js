@@ -16,6 +16,7 @@ import checkboxControl from './fields/checkbox-control';
 import radioControl from './fields/radio-control';
 import rangeControl from './fields/range-control';
 import button from './fields/button';
+import dropdown from './fields/dropdown';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -88,6 +89,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'button':
 				fields[ attributeKey ] = button( props, config, attributeKey );
+				break;
+			case 'dropdown':
+				fields[ attributeKey ] = dropdown( props, config );
 				break;
 		}
 
