@@ -122,6 +122,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 				},
 			},
 		},
+		editor: {
+			type: 'string',
+			field: {
+				type: 'editor',
+				value() { return ( wp.element.createElement( 'div', {}, 'Hello World' ) ) },
+			},
+		},
 		backgroundImage: {
 			type: 'string',
 			field: {

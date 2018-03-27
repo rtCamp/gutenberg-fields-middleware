@@ -86,6 +86,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_button__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_dropdown__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_color_palette__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_code_editor__ = __webpack_require__(13);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -100,6 +101,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -196,6 +198,9 @@ var GutenbergFieldsMiddleWare = function () {
 					break;
 				case 'color':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_color_palette__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'editor':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_code_editor__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -724,6 +729,32 @@ var colorPalette = function colorPalette(props, config, attributeKey) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (colorPalette);
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Code editor field.
+ */
+
+var CodeEditor = wp.components.CodeEditor;
+
+
+var editor = function editor(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(CodeEditor, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (editor);
 
 /***/ })
 /******/ ]);
