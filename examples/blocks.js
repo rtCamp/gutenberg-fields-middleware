@@ -82,6 +82,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 				editable: true,
 			},
 		},
+		color: {
+			type: 'string',
+			field: {
+				type: 'color',
+			},
+		},
 		layoutOption: {
 			type: 'string',
 			field: {

@@ -84,6 +84,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_button__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_color_palette__ = __webpack_require__(11);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -98,6 +99,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -185,6 +187,9 @@ var GutenbergFieldsMiddleWare = function () {
 					break;
 				case 'button':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_button__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'color':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_color_palette__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -290,7 +295,7 @@ var richText = function richText(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(4);
 /**
  * Image, Video, Audio Field.
  */
@@ -369,7 +374,44 @@ var mediaUpload = function mediaUpload(props, config, attributeKey) {
 /* harmony default export */ __webpack_exports__["a"] = (mediaUpload);
 
 /***/ }),
-/* 4 */,
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Image Placeholder.
+ */
+
+var ImagePlaceholder = wp.blocks.ImagePlaceholder;
+var __ = wp.i18n.__;
+
+
+var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
+	var defaultAttributes = {
+		onSelectImage: function onSelectImage(media) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		},
+
+
+		className: 'image-placeholder',
+
+		icon: 'format-gallery',
+
+		label: __('Image'),
+
+		multiple: false
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
+
+/***/ }),
 /* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -597,37 +639,32 @@ var button = function button(props, config, attributeKey) {
 
 "use strict";
 /**
- * Image Placeholder.
+ * Range field.
  */
 
-var ImagePlaceholder = wp.blocks.ImagePlaceholder;
-var __ = wp.i18n.__;
+var ColorPalette = wp.blocks.ColorPalette;
 
 
-var imagePlaceholder = function imagePlaceholder(props, config, attributeKey) {
+var colorPalette = function colorPalette(props, config, attributeKey) {
 	var defaultAttributes = {
-		onSelectImage: function onSelectImage(media) {
+		onChange: function onChange(value) {
 			var newAttributes = {};
-			newAttributes[attributeKey] = media;
+			newAttributes[attributeKey] = value;
 			props.setAttributes(newAttributes);
 		},
 
 
-		className: 'image-placeholder',
-
-		icon: 'format-gallery',
-
-		label: __('Image'),
-
-		multiple: false
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(ColorPalette, fieldAttributes);
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (imagePlaceholder);
+/* harmony default export */ __webpack_exports__["a"] = (colorPalette);
 
 /***/ })
 /******/ ]);
