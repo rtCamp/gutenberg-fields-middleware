@@ -91,13 +91,13 @@ registerBlockType( 'example-namespace/example-block', {
 	// Optional.
 	edit( props, middleware ) {
 		return [
-				middleware.fields.url,
-				middleware.fields.text,
-				middleware.fields.image,
-				middleware.fields.option,
-				middleware.fields.radio,
-				middleware.fields.range,
-			];
+			middleware.fields.url,
+			middleware.fields.text,
+			middleware.fields.image,
+			middleware.fields.option,
+			middleware.fields.radio,
+			middleware.fields.range,
+		];
 	},
 
 	// Optional.
@@ -110,7 +110,6 @@ registerBlockType( 'example-namespace/example-block', {
 
 ## Fields
 
-There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
 
 #### button
 
@@ -123,7 +122,7 @@ Fields type.
 
 ###### editable
 
-Allow user to edit button text with button it self.
+Make button editable.
 * Type: `Bool`
 * Required: No
 * Default: false
@@ -144,7 +143,7 @@ whether the button is styled as a primary button.
 
 ###### href
 
-if this property is added, it will use an a rather than a button element.
+if this property is added, it will use an `a` rather than a `button` element.
 * Type: `string`
 * Required: No
 * Default: null
@@ -169,7 +168,7 @@ button: {
 
 ###### type
 
-Fields type.
+Field type.
 * Type: `string`
 * Required: Yes
 * Default: null
