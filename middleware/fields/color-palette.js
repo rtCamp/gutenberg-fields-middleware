@@ -4,7 +4,7 @@
 
 const { ColorPalette } = wp.blocks;
 
-const colorPalette = ( props, config, attributeKey ) => {
+export default function colorPalette( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -25,6 +25,4 @@ const colorPalette = ( props, config, attributeKey ) => {
 			{ ...fieldAttributes }
 		/>
 	);
-};
-
-export default colorPalette;
+}

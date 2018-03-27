@@ -4,7 +4,7 @@
 
 const { CheckboxControl } = wp.components;
 
-const checkboxControl = ( props, attribute, attributeKey ) => {
+export default function checkboxControl( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: '1',
 	};
@@ -16,7 +16,7 @@ const checkboxControl = ( props, attribute, attributeKey ) => {
 		props.setAttributes( newAttributes );
 	};
 
-	const fieldAttributes = _.extend( defaultAttributes, attribute.field );
+	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	delete fieldAttributes.type;
 
@@ -25,6 +25,4 @@ const checkboxControl = ( props, attribute, attributeKey ) => {
 			{ ...fieldAttributes }
 		/>
 	);
-};
-
-export default checkboxControl;
+}

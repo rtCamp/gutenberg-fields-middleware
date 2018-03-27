@@ -24,29 +24,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'text',
 				placeholder: __( 'Enter link text' ),
-				blockControls: {
-					alignment: {
-						type: 'alignment-toolbar',
-					},
-					toolbar: {
-						type: 'toolbar',
-						controls: [
-							{
-								icon: 'list-view',
-								title: __( 'List View' ),
-							},
-							{
-								icon: 'grid-view',
-								title: __( 'Grid View' ),
-							},
-						],
-						children: {
-							background: {
-								type: 'image',
-							},
-						},
-					},
-				},
+				richText: true,
 			},
 		},
 		image: {
@@ -79,6 +57,22 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'radio',
+				options: [
+					{
+						value: 'one',
+						label: 'one',
+					},
+					{
+						value: 'two',
+						label: 'two',
+					},
+				],
+			},
+		},
+		checkbox: {
+			type: 'string',
+			field: {
+				type: 'checkbox',
 				options: [
 					{
 						value: 'one',

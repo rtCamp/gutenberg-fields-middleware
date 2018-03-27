@@ -4,7 +4,7 @@
 
 const { RangeControl } = wp.components;
 
-const rangeControl = ( props, config, attributeKey ) => {
+export default function rangeControl( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -25,6 +25,4 @@ const rangeControl = ( props, config, attributeKey ) => {
 			{ ...fieldAttributes }
 		/>
 	);
-};
-
-export default rangeControl;
+}
