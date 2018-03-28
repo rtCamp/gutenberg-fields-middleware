@@ -305,6 +305,28 @@ radio: {
 }
 ```
 
+#### url
+
+###### type
+
+Field Type.
+* Type: `String`
+* Required: Yes
+* Default: Null
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/url-input).
+
+**Example:**
+
+```
+url: {
+	type: 'string',
+	field: {
+		type: 'url',
+	},
+}
+```
+
 #### select
 
 ###### type
