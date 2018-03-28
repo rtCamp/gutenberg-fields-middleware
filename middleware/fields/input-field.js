@@ -17,12 +17,13 @@ export default function inputField( props, config, attributeKey ) {
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
-	const id = _.uniqueId( attributeKey );
+	const id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId( attributeKey );
 
+	delete fieldAttributes.id;
 	delete fieldAttributes.position;
 
 	return (
-		<BaseControl id={ id } label={ fieldAttributes.label } help={ fieldAttributes.help } >
+		<BaseControl id={ id } label={ fieldAttributes.label } help={ fieldAttributes.help } className={ fieldAttributes.className } >
 			<input
 				id={ id }
 				{ ...fieldAttributes }
