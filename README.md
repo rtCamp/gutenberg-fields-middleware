@@ -464,4 +464,50 @@ option: {
 }
 ```
 
+#### notice
+
+###### type
+
+Field Type.
+* Type: `String`
+* Required: Yes
+* Default: Null
+
+###### status
+
+Can be `warning` (red), `success` (green), `error` (red), `info` (yellow).
+* Type: `String`
+
+###### content
+
+The text of the notice.
+* Type: `String`
+
+###### onRemove
+
+Function called when dismissing the notice
+* Type: `function`
+
+###### isDismissible
+
+Whether the notice should be dismissible or not
+* Type: `bool`
+* Default: true
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/notice).
+
+**Example:**
+
+```
+notice: {
+	field: {
+		type: 'notice',
+		status: 'success',
+		content: 'Notice content',
+		onRemove: onRemoveFunctio,
+		isDismissible: { true }
+	},
+}
+```
+
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
