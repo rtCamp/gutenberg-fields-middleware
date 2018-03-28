@@ -2,17 +2,18 @@
 
 Provides middleware to easily register fields for Gutenberg blocks.
 
-After activating the plugin use `'gutenberg-fields-middleware'` handle as dependency when enqueueing your block js file.    
 
-define your fields inside `attributes: { field }` and then use ( Optionally ) those fields inside `edit` method as `middleware.fields.attributeKey`
+
+After activating the plugin use `gutenberg-fields-middleware` handle as dependency when enqueueing your block js file. Define your fields inside `attributes` as `field` and then use ( optionally ) those fields inside `edit` method as `middleware.fields.attributeKey` 
+
+
 
 ## Example Usage
 
 
 ```js
 registerBlockType( 'example-namespace/example-block', {
-
-	title: 'Block Title',
+	title: 'Example Block',
 	description: 'Block Description',
 	icon: 'universal-access-alt',
 	category: 'common',
@@ -27,16 +28,16 @@ registerBlockType( 'example-namespace/example-block', {
 			type: 'string',
 			field: {
 				type: 'text',
-				placeholder: __( 'Enter link text' ),
+				placeholder: 'Enter link text',
 			},
 		},
 		image: {
 			type: 'object',
 			field: {
 				type: 'image',
-				buttonText: __( 'Upload' ),
+				buttonText: 'Upload',
 				imagePlaceholder: true,
-				removeButtonText: __( 'Remove' ),
+				removeButtonText: 'Remove',
 			},
 		},
 		option: {
@@ -72,10 +73,11 @@ registerBlockType( 'example-namespace/example-block', {
 				],
 			},
 		},
-		range: {
+		number: {
 			type: 'string',
 			field: {
-				type: 'range',
+				type: 'number',
+				label: 'Number',
 				position: 'inspector',
 			},
 		},
@@ -91,60 +93,77 @@ registerBlockType( 'example-namespace/example-block', {
 	// Optional.
 	edit( props, middleware ) {
 		return [
+			middleware.inspectorControls, // When adding inspector controls.
 			middleware.fields.url,
 			middleware.fields.text,
 			middleware.fields.image,
 			middleware.fields.option,
 			middleware.fields.radio,
-			middleware.fields.range,
 		];
 	},
 
-	// Optional.
 	save( props ) {
-		return el( 'p', {}, props.attributes.text );
+		return el(
+			'div', {}, [
+				el( 'p', {}, props.attributes.text ),
+				el( 'a', { href: props.attributes.url }, 'Link' ),
+				// ...
+			]
+		);
 	},
 
 } );
 ```
 
-## Fields
 
 
-#### button
+# Fields
 
-###### type
+Field types:
+
+
+
+## button
+
+##### type:
 
 Field Type.
 * Type: `String`
 * Required: Yes
 * Default: Null
 
-###### editable
+##### editable:
 
 Make button editable.
 * Type: `Bool`
 * Required: No
 * Default: false
 
-###### buttonText
+##### buttonText:
 
-Fallback text.
+Fallback button text.
 * Type: `string`
 * Required: No
 * Default: null
 
-###### isPrimary
+##### isPrimary:
 
-whether the button is styled as a primary button.
+Button class. Other button classes are `isPrimary`, `isSmall`, `isToggled`, `isBusy`. Applicable only when `editable: true`  is not set.
+
 * Type: `bool`
 * Required: No
 * Default: null
 
-###### href
+##### disabled:
 
-if this property is added, it will use an `a` rather than a `button` element.
-* Type: `string`
+- Type: `bool`
+- Required: No
+- Default: null
+
+##### href:
+
+If set, `button` will be replaced with `a`
+* Type: `bool`
 * Required: No
 * Default: null
 
@@ -153,7 +172,7 @@ For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/mas
 
 **Example:**
 
-```
+```js
 button: {
 	type: 'string',
 	field: {
@@ -164,67 +183,69 @@ button: {
 }
 ```
 
-#### image / video / audio
 
-###### type
+
+## image / video / audio
+
+##### type:
 
 Field type.
 * Type: `string`
 * Required: Yes
 * Default: null
 
-###### buttonText
+##### buttonText:
 
 Upload button text.
 * Type: `string`
 * Required: No
 * Default: null
 
-###### imagePlaceholder
+##### imagePlaceholder:
 
-Enable imagePlaceholder.
+Show image placeholder.
 * Type: `bool`
 * Required: No
 * Default: false
 
-###### removeButtonText
+##### removeButtonText:
 
-Remove media button text. it will be showing only if there is string available.
+Remove media button text. Remove button is visible only when `removeButtonText` is set.
 * Type: `string`
 * Required: No
 * Default: null
 
-###### multiple
+##### multiple:
 
 Whether to allow multiple selections or not.
 * Type: `Boolean`
 * Required: No
 * Default: false
 
-###### value
+##### value:
 
 Media ID (or media IDs if multiple is true) to be selected by default when opening the media library.
 * Type: `Number|Array`
 * Required: No
 
-###### onSelect
+##### onSelect:
 
 Callback called when the media modal is closed, the selected media are passed as an argument.
-* Type: `Func`
-* Required: Yes
+* Type: `Function`
+* Required: No
 
-###### render
+##### render:
 
 A callback invoked to render the Button opening the media library.
 * Type: `Function`
-* Required: Yes
+* Required: No
 
 
 For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/media-upload).
 
 **Example:**
 
-```
+```js
 image: {
 	type: 'object',
 	field: {
@@ -236,35 +257,37 @@ image: {
 },
 ```
 
-#### radio
 
-###### type
+
+## radio
+
+##### type:
 
 Field Type.
 * Type: `String`
 * Required: Yes
 * Default: Null
 
-###### label
+##### label:
 
-If this property is added, a label will be generated using label property as the content.
+If set, a label will be generated using label property as the content.
 * Type: `String`
 * Required: No
 
-###### help
+##### help:
 
-If this property is added, a help text will be generated using help property as the content.
+If set, a help text will be generated using help property as the content.
 * Type: `String`
 * Required: No
 
 
-###### selected
+##### selected:
 
 The value property of the currently selected option.
 * Type: `Object`
 * Required: No
 
-###### options
+##### options:
 
 An array of objects containing the following properties:
 * label: (string) The label to be shown to the user.
@@ -274,17 +297,17 @@ An array of objects containing the following properties:
 * Type: `Array`
 * Required: No
 
-###### onChange
+##### onChange:
 
 A function that receives the value of the new option that is being selected as input.
 * Type: `function`
-* Required: Yes
+* Required: No
 
 For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/radio-control).
 
 **Example:**
 
-```
+```js
 radio: {
 	type: 'string',
 	field: {
@@ -306,62 +329,64 @@ radio: {
 ```
 
 
-#### range
 
-###### type
+
+## range
+
+##### type:
 
 Field Type.
 * Type: `String`
 * Required: Yes
 * Default: Null
 
-###### label
+##### label:
 
-If this property is added, a label will be generated using label property as the content.
+If set, a label will be generated using label property value as the content.
 * Type: `String`
 * Required: No
 
-###### help
+##### help:
 
-If this property is added, a help text will be generated using help property as the content.
+If set, a help text will be generated using help property value as the content.
 * Type: `String`
 * Required: No
 
-###### beforeIcon
+##### beforeIcon:
 
-If this property is added, a DashIcon component will be rendered before the slider with the icon equal to beforeIcon.
+If set, a dashIcon component will be rendered before the slider with the icon equal to beforeIcon.
 * Type: `String`
 * Required: No
 
-###### afterIcon
+##### afterIcon:
 
-If this property is added, a DashIcon component will be rendered after the slider with the icon equal to afterIcon.
+If set, a dashIcon component will be rendered after the slider with the icon equal to afterIcon.
 * Type: `String`
 * Required: No
 
-###### allowReset
+##### allowReset:
 
-If this property is true, a button to reset the the slider is rendered.
+If set to `true`, a button to reset the the slider is rendered.
 * Type: `Boolean`
 * Required: No
 
-###### value
+##### value:
 
 The current value of the range slider.
 * Type: `Number`
 * Required: Yes
 
-###### onChange
+##### onChange:
 
 A function that receives the new value. If allowReset is true, when onChange is called without any parameter passed it should reset the value.
 * Type: `function`
-* Required: Yes
+* Required: No
 
 For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/range-control).
 
 **Example:**
 
-```
+```js
 range: {
 	type: 'string',
 	field: {
@@ -375,9 +400,11 @@ range: {
 }
 ```
 
-#### url
 
-###### type
+
+## url
+
+##### type:
 
 Field Type.
 * Type: `String`
@@ -388,7 +415,7 @@ For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/mas
 
 **Example:**
 
-```
+```js
 url: {
 	type: 'string',
 	field: {
@@ -397,55 +424,57 @@ url: {
 }
 ```
 
-#### select
 
-###### type
+
+## select
+
+##### type:
 
 Field Type.
 * Type: `String`
 * Required: Yes
 * Default: Null
 
-###### label
+##### label:
 
-If this property is added, a label will be generated using label property as the content.
+If set, a label will be generated using label property value as the content.
 * Type: `String`
 * Required: No
 
-###### help
+##### help:
 
-If this property is added, a help text will be generated using help property as the content.
+If set, a help text will be generated using help property value as the content.
 * Type: `String`
 * Required: No
 
-###### multiple
+##### multiple:
 
-If this property is added, multiple values can be selected. The value passed should be an array.
+If set, multiple values can be selected.
 * Type: `Boolean`
 * Required: No
 
-###### options
+##### options:
 
 An array of objects containing the following properties:
-* label: (string) The label to be shown to the user.
-* value: (Object) The internal value used to choose the selected value. This is also the value passed to onChange when the option is selected.
+* `label:` (string) The label to be shown to the user.
+* `value:` (Object) The internal value used to choose the selected value. This is also the value passed to onChange when the option is selected.
 
 
 * Type: `Array`
 * Required: No
 
-###### onChange
+##### onChange:
 
 A function that receives the value of the new option that is being selected as input. If multiple is true the value received is an array of the selected value. If multiple is false the value received is a single value with the new selected value.
-* Type: `function`
-* Required: Yes
+* Type: `Function`
+* Required: No
 
 For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/select-control).
 
 **Example:**
 
-```
-option: {
+```js
+selectOption: {
 	type: 'string',
 	field: {
 		type: 'select',
@@ -463,5 +492,9 @@ option: {
 	},
 }
 ```
+
+
+
+---
 
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
