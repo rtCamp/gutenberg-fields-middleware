@@ -121,16 +121,9 @@ registerBlockType( 'example-namespace/example-block', {
 
 Field types:
 
-
+[TOC]
 
 ## button
-
-##### type:
-
-Field Type.
-* Type: `String`
-* Required: Yes
-* Default: Null
 
 ##### editable:
 
@@ -186,13 +179,6 @@ button: {
 
 
 ## image / video / audio
-
-##### type:
-
-Field type.
-* Type: `string`
-* Required: Yes
-* Default: null
 
 ##### buttonText:
 
@@ -261,13 +247,6 @@ image: {
 
 ## radio
 
-##### type:
-
-Field Type.
-* Type: `String`
-* Required: Yes
-* Default: Null
-
 ##### label:
 
 If set, a label will be generated using label property as the content.
@@ -333,13 +312,6 @@ radio: {
 
 ## range
 
-##### type:
-
-Field Type.
-* Type: `String`
-* Required: Yes
-* Default: Null
-
 ##### label:
 
 If set, a label will be generated using label property value as the content.
@@ -404,12 +376,19 @@ range: {
 
 ## url
 
-##### type:
+##### value:
 
-Field Type.
-* Type: `String`
-* Required: Yes
-* Default: Null
+Value of url field.
+
+- Type: `String`
+- Required: No
+
+##### onChange:
+
+A function that receives the value of the new option that is being selected as input.
+
+- Type: `function`
+- Required: No
 
 For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/url-input).
 
@@ -427,13 +406,6 @@ url: {
 
 
 ## select
-
-##### type:
-
-Field Type.
-* Type: `String`
-* Required: Yes
-* Default: Null
 
 ##### label:
 
