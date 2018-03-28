@@ -99,6 +99,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 				editable: true,
 			},
 		},
+		switch: {
+			type: 'string',
+			field: {
+				type: 'switch',
+				label: __( 'Form Toggle' ),
+				position: 'inspector',
+			},
+		},
 		color: {
 			type: 'string',
 			field: {

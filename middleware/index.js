@@ -22,6 +22,7 @@ import editor from './fields/code-editor';
 import dateTimePicker from './fields/date-time';
 import textareaControl from './fields/textarea-control';
 import inputField from './fields/input-field';
+import formToggle from './fields/form-toggle';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -123,6 +124,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'tel':
 				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'switch':
+				fields[ attributeKey ] = formToggle( props, config, attributeKey );
 				break;
 		}
 

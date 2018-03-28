@@ -90,6 +90,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_date_time__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_textarea_control__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_input_field__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_form_toggle__ = __webpack_require__(17);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -104,6 +105,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -227,6 +229,9 @@ var GutenbergFieldsMiddleWare = function () {
 					break;
 				case 'tel':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_input_field__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'switch':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_form_toggle__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -881,6 +886,38 @@ function inputField(props, config, attributeKey) {
 			id: id
 		}, fieldAttributes))
 	);
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = formToggle;
+/**
+ * Switch field.
+ */
+
+var FormToggle = wp.components.FormToggle;
+
+
+function formToggle(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: '1'
+	};
+
+	// @todo not working correctly.
+	defaultAttributes.onChange = function (event) {
+		var newAttributes = {};
+		newAttributes[attributeKey] = event.target.value;
+		props.setAttributes(newAttributes);
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(FormToggle, fieldAttributes);
 }
 
 /***/ })
