@@ -19,6 +19,7 @@ import button from './fields/button';
 import colorPalette from './fields/color-palette';
 import dropdown from './fields/dropdown';
 import editor from './fields/code-editor';
+import tabPanel from './fields/tab-panel';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -99,6 +100,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'editor':
 				fields[ attributeKey ] = editor( props, config, attributeKey );
+				break;
+			case 'tab-panel':
+				fields[ attributeKey ] = tabPanel( props, config, attributeKey );
 				break;
 		}
 
