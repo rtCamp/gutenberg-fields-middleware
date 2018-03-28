@@ -20,6 +20,8 @@ import colorPalette from './fields/color-palette';
 import dropdown from './fields/dropdown';
 import editor from './fields/code-editor';
 import tabPanel from './fields/tab-panel';
+import dateTimePicker from './fields/date-time';
+import textareaControl from './fields/textarea-control';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -103,6 +105,12 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'tab-panel':
 				fields[ attributeKey ] = tabPanel( props, config, attributeKey );
+				break;
+			case 'date-time':
+				fields[ attributeKey ] = dateTimePicker( props, config, attributeKey );
+				break;
+			case 'textarea':
+				fields[ attributeKey ] = textareaControl( props, config, attributeKey );
 				break;
 		}
 

@@ -103,6 +103,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'color',
+				position: 'inspector',
 			},
 		},
 		dropdown: {
@@ -110,6 +111,21 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'dropdown',
 				position: 'top left',
+			},
+		},
+		dateTime: {
+			type: 'string',
+			field: {
+				type: 'date-time',
+				position: 'inspector',
+			},
+		},
+		textarea: {
+			type: 'string',
+			field: {
+				type: 'textarea',
+				label: __( 'Textarea' ),
+				position: 'inspector',
 			},
 		},
 		editor: {
