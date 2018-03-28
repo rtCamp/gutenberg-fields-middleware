@@ -21,6 +21,7 @@ import dropdown from './fields/dropdown';
 import editor from './fields/code-editor';
 import dateTimePicker from './fields/date-time';
 import textareaControl from './fields/textarea-control';
+import inputField from './fields/input-field';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -107,6 +108,21 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'textarea':
 				fields[ attributeKey ] = textareaControl( props, config, attributeKey );
+				break;
+			case 'email':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'hidden':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'number':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'search':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'tel':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
 				break;
 		}
 

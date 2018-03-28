@@ -128,6 +128,46 @@ registerBlockType( 'gb-m-example/simple-block', {
 				position: 'inspector',
 			},
 		},
+		email: {
+			type: 'string',
+			field: {
+				type: 'email',
+				label: __( 'Email' ),
+				position: 'inspector',
+			},
+		},
+		hidden: {
+			type: 'string',
+			field: {
+				type: 'hidden',
+				label: __( 'Hidden' ),
+				position: 'inspector',
+			},
+		},
+		number: {
+			type: 'string',
+			field: {
+				type: 'number',
+				label: __( 'Number' ),
+				position: 'inspector',
+			},
+		},
+		search: {
+			type: 'string',
+			field: {
+				type: 'search',
+				label: __( 'Search' ),
+				position: 'inspector',
+			},
+		},
+		tel: {
+			type: 'string',
+			field: {
+				type: 'tel',
+				label: __( 'Telephone' ),
+				position: 'inspector',
+			},
+		},
 		editor: {
 			type: 'string',
 			field: {
