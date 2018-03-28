@@ -216,6 +216,32 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'editor',
 			},
 		},
+		tabPanel: {
+			type: 'string',
+			field: {
+				type: 'tab-panel',
+				position: 'inspector',
+				tabs: [
+					{
+						name: 'tab1',
+						title: __( 'Tab 1' ),
+						className: 'tab-one',
+					},
+					{
+						name: 'tab2',
+						title: __( 'Tab 2' ),
+						className: 'tab-two',
+					},
+				],
+				children( tabName ) {
+					if ( 'tab2' === tabName ) {
+						return ( wp.element.createElement( 'div', {}, __( 'Tab 2 Content' ) ) );
+					}
+
+					return ( wp.element.createElement( 'div', {}, __( 'Hello World!' ) ) );
+				},
+			},
+		},
 		layoutOption: {
 			type: 'string',
 			field: {
