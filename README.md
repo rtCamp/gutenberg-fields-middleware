@@ -305,4 +305,26 @@ radio: {
 }
 ```
 
+#### url
+
+###### type
+
+Field Type.
+* Type: `String`
+* Required: Yes
+* Default: Null
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/url-input).
+
+**Example:**
+
+```
+url: {
+	type: 'string',
+	field: {
+		type: 'url',
+	},
+}
+```
+
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
