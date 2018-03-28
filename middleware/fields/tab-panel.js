@@ -4,11 +4,13 @@
 
 const { TabPanel } = wp.components;
 
-export default function tabPanel( props, config ) {
+export default function tabPanel( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onSelect( tabName ) {
-			console.log( 'Selecting tab', tabName );
+			const newAttributes = {};
+			newAttributes[ attributeKey ] = tabName;
+			props.setAttributes( newAttributes );
 		},
 
 		children( tabName ) {
@@ -20,8 +22,18 @@ export default function tabPanel( props, config ) {
 
 	const tabData = fieldAttributes.children;
 
+	console.warn( props.attributes[ attributeKey ] );
+
+	if ( fieldAttributes.tabs ) {
+		fieldAttributes.tabs.forEach( ( tab ) => {
+			if ( props.attributes[ attributeKey ] === tab.name ) {
+				tab.className = fieldAttributes.tabs.className +  ' ' + 'is-active';
+			}
+		} );
+	}
+
 	delete fieldAttributes.type;
-	delete fieldAttributes.children();
+	delete fieldAttributes.children;
 
 	return (
 		<TabPanel { ...fieldAttributes } >

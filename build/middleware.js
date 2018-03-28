@@ -795,10 +795,12 @@ function editor(props, config, attributeKey) {
 var TabPanel = wp.components.TabPanel;
 
 
-function tabPanel(props, config) {
+function tabPanel(props, config, attributeKey) {
 	var defaultAttributes = {
 		onSelect: function onSelect(tabName) {
-			console.log('Selecting tab', tabName);
+			var newAttributes = {};
+			newAttributes[attributeKey] = tabName;
+			props.setAttributes(newAttributes);
 		},
 		children: function children(tabName) {
 			return wp.element.createElement('div', {}, 'Selected : ' + tabName);
@@ -809,8 +811,18 @@ function tabPanel(props, config) {
 
 	var tabData = fieldAttributes.children;
 
+	console.warn(props.attributes[attributeKey]);
+
+	if (fieldAttributes.tabs) {
+		fieldAttributes.tabs.forEach(function (tab) {
+			if (props.attributes[attributeKey] === tab.name) {
+				tab.className = fieldAttributes.tabs.className + ' ' + 'is-active';
+			}
+		});
+	}
+
 	delete fieldAttributes.type;
-	delete fieldAttributes.children();
+	delete fieldAttributes.children;
 
 	return wp.element.createElement(
 		TabPanel,
