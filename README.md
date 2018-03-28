@@ -119,27 +119,27 @@ registerBlockType( 'example-namespace/example-block', {
 
 # Fields
 
-Field types:
+Middleware has support for the following field types:
 
-[TOC]
+
 
 ## button
 
-##### editable:
+#### editable:
 
 Make button editable.
 * Type: `Bool`
 * Required: No
 * Default: false
 
-##### buttonText:
+#### buttonText:
 
 Fallback button text.
 * Type: `string`
 * Required: No
 * Default: null
 
-##### isPrimary:
+#### isPrimary:
 
 Button class. Other button classes are `isPrimary`, `isSmall`, `isToggled`, `isBusy`. Applicable only when `editable: true`  is not set.
 
@@ -147,13 +147,13 @@ Button class. Other button classes are `isPrimary`, `isSmall`, `isToggled`, `isB
 * Required: No
 * Default: null
 
-##### disabled:
+#### disabled:
 
 - Type: `bool`
 - Required: No
 - Default: null
 
-##### href:
+#### href:
 
 If set, `button` will be replaced with `a`
 * Type: `bool`
@@ -178,95 +178,28 @@ button: {
 
 
 
-## image / video / audio
-
-##### buttonText:
-
-Upload button text.
-* Type: `string`
-* Required: No
-* Default: null
-
-##### imagePlaceholder:
-
-Show image placeholder.
-* Type: `bool`
-* Required: No
-* Default: false
-
-##### removeButtonText:
-
-Remove media button text. Remove button is visible only when `removeButtonText` is set.
-* Type: `string`
-* Required: No
-* Default: null
-
-##### multiple:
-
-Whether to allow multiple selections or not.
-* Type: `Boolean`
-* Required: No
-* Default: false
-
-##### value:
-
-Media ID (or media IDs if multiple is true) to be selected by default when opening the media library.
-* Type: `Number|Array`
-* Required: No
-
-##### onSelect:
-
-Callback called when the media modal is closed, the selected media are passed as an argument.
-* Type: `Function`
-* Required: No
-
-##### render:
-
-A callback invoked to render the Button opening the media library.
-* Type: `Function`
-* Required: No
-
-
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/media-upload).
-
-**Example:**
-
-```js
-image: {
-	type: 'object',
-	field: {
-		type: 'image',
-		buttonText: __( 'Upload' ),
-		imagePlaceholder: true,
-		removeButtonText: __( 'Remove' ),
-	},
-},
-```
-
-
-
 ## radio
 
-##### label:
+#### label:
 
 If set, a label will be generated using label property as the content.
 * Type: `String`
 * Required: No
 
-##### help:
+#### help:
 
 If set, a help text will be generated using help property as the content.
 * Type: `String`
 * Required: No
 
 
-##### selected:
+#### selected:
 
 The value property of the currently selected option.
 * Type: `Object`
 * Required: No
 
-##### options:
+#### options:
 
 An array of objects containing the following properties:
 * label: (string) The label to be shown to the user.
@@ -276,7 +209,7 @@ An array of objects containing the following properties:
 * Type: `Array`
 * Required: No
 
-##### onChange:
+#### onChange:
 
 A function that receives the value of the new option that is being selected as input.
 * Type: `function`
@@ -312,43 +245,43 @@ radio: {
 
 ## range
 
-##### label:
+#### label:
 
 If set, a label will be generated using label property value as the content.
 * Type: `String`
 * Required: No
 
-##### help:
+#### help:
 
 If set, a help text will be generated using help property value as the content.
 * Type: `String`
 * Required: No
 
-##### beforeIcon:
+#### beforeIcon:
 
 If set, a dashIcon component will be rendered before the slider with the icon equal to beforeIcon.
 * Type: `String`
 * Required: No
 
-##### afterIcon:
+#### afterIcon:
 
 If set, a dashIcon component will be rendered after the slider with the icon equal to afterIcon.
 * Type: `String`
 * Required: No
 
-##### allowReset:
+#### allowReset:
 
 If set to `true`, a button to reset the the slider is rendered.
 * Type: `Boolean`
 * Required: No
 
-##### value:
+#### value:
 
 The current value of the range slider.
 * Type: `Number`
 * Required: Yes
 
-##### onChange:
+#### onChange:
 
 A function that receives the new value. If allowReset is true, when onChange is called without any parameter passed it should reset the value.
 * Type: `function`
@@ -376,14 +309,14 @@ range: {
 
 ## url
 
-##### value:
+#### value:
 
 Value of url field.
 
 - Type: `String`
 - Required: No
 
-##### onChange:
+#### onChange:
 
 A function that receives the value of the new option that is being selected as input.
 
@@ -407,25 +340,25 @@ url: {
 
 ## select
 
-##### label:
+#### label:
 
 If set, a label will be generated using label property value as the content.
 * Type: `String`
 * Required: No
 
-##### help:
+#### help:
 
 If set, a help text will be generated using help property value as the content.
 * Type: `String`
 * Required: No
 
-##### multiple:
+#### multiple:
 
 If set, multiple values can be selected.
 * Type: `Boolean`
 * Required: No
 
-##### options:
+#### options:
 
 An array of objects containing the following properties:
 * `label:` (string) The label to be shown to the user.
@@ -435,7 +368,7 @@ An array of objects containing the following properties:
 * Type: `Array`
 * Required: No
 
-##### onChange:
+#### onChange:
 
 A function that receives the value of the new option that is being selected as input. If multiple is true the value received is an array of the selected value. If multiple is false the value received is a single value with the new selected value.
 * Type: `Function`
@@ -464,6 +397,238 @@ selectOption: {
 	},
 }
 ```
+
+
+
+## image / video / audio
+
+#### buttonText:
+
+Upload button text.
+
+- Type: `string`
+- Required: No
+- Default: null
+
+#### imagePlaceholder:
+
+Show image placeholder.
+
+- Type: `bool`
+- Required: No
+- Default: false
+
+#### removeButtonText:
+
+Remove media button text. Remove button is visible only when `removeButtonText` is set.
+
+- Type: `string`
+- Required: No
+- Default: null
+
+#### multiple:
+
+Whether to allow multiple selections or not.
+
+- Type: `Boolean`
+- Required: No
+- Default: false
+
+#### value:
+
+Media ID (or media IDs if multiple is true) to be selected by default when opening the media library.
+
+- Type: `Number|Array`
+- Required: No
+
+#### onSelect:
+
+Callback called when the media modal is closed, the selected media are passed as an argument.
+
+- Type: `Function`
+- Required: No
+
+#### render:
+
+A callback invoked to render the Button opening the media library.
+
+- Type: `Function`
+- Required: No
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/media-upload).
+
+**Example:**
+
+```js
+image: {
+	type: 'object',
+	field: {
+		type: 'image',
+		buttonText: __( 'Upload' ),
+		imagePlaceholder: true,
+		removeButtonText: __( 'Remove' ),
+	},
+},
+```
+
+
+
+## editor
+
+#### value:
+
+The source code to load into the code editor.
+
+- Type: `string`
+- Required: No
+
+#### focus:
+
+Whether or not the code editor should be focused.
+
+- Type: `bool`
+- Required: No
+- Default: false
+
+#### onFocus:
+
+The function called when the editor is focused.
+
+- Type: Function
+- Required: No
+
+#### onChange:
+
+The function called when the user has modified the source code via the editor. It is passed the new value as an argument.
+
+- Type: `Function`
+- Required: No
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/blob/master/components/code-editor/README.md).
+
+**Example:**
+
+```js
+editorContent: {
+	type: 'string',
+	field: {
+		type: 'editor',
+	},
+},
+```
+
+
+
+## date-time
+
+#### currentDate:
+
+The current date and time at initialization.
+
+- Type: `string`
+- Required: No
+
+#### onChange:
+
+The function called when a new date or time has been selected. It is passed the `currentDate` as an argument.
+
+- Type: `Function`
+- Required: No
+
+#### locale:
+
+The localization for the display of the date and time.
+
+- Type:`string`
+- Required: No
+
+#### is12Hour:
+
+Whether the current timezone is a 12 hour time.
+
+- Type: `bool`
+- Required: No
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/blob/master/components/date-time/README.md).
+
+**Example:**
+
+```js
+dateTime: {
+	type: 'string',
+	field: {
+        type: 'date-time',
+        position: 'inspector',
+	},
+},
+```
+
+
+
+## color
+
+#### value:
+
+The value of color.
+
+- Type: `string`
+- Required: No
+
+#### onChange:
+
+The function called when a new color has been selected. It passes the new value as an argument.
+
+- Type: `Function`
+- Required: No
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/color-palette ).
+
+**Example:**
+
+```js
+color: {
+	type: 'string',
+	field: {
+		type: 'color',
+		position: 'inspector',
+	},
+},
+```
+
+
+
+## switch
+
+#### checked:
+
+Change the accessibility text to "On".
+
+- Type: `bool`
+- Required: No
+
+#### onChange:
+
+The function called when switch toggles. It passes the new value as an argument.
+
+- Type: `Function`
+- Required: No
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/form-toggle ).
+
+**Example:**
+
+```js
+switch: {
+	type: 'string',
+	field: {
+		type: 'switch',
+		label: __( 'Form Toggle' ),
+		position: 'inspector',
+	},
+},
+```
+
+
 
 
 
