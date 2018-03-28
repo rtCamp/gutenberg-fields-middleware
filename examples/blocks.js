@@ -99,6 +99,48 @@ registerBlockType( 'gb-m-example/simple-block', {
 				editable: true,
 			},
 		},
+		treeSelect: {
+			type: 'string',
+			field: {
+				type: 'tree-select',
+				label: __( 'Parent page' ),
+				position: 'inspector',
+				tree: [
+					{
+						name: __( 'Page 1' ),
+						id: 'p1',
+						children: [
+							{ name: __( 'Descend 1 of page 1' ), id: 'p11' },
+							{ name: __( 'Descend 2 of page 1' ), id: 'p12' },
+						],
+					},
+					{
+						name: __( 'Page 2' ),
+						id: 'p2',
+						children: [
+							{
+								name: __( 'Descend 1 of page 2' ),
+								id: 'p21',
+								children: [
+									{
+										name: __( 'Descend 1 of Descend 1 of page 2' ),
+										id: 'p211',
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		},
+		switch: {
+			type: 'string',
+			field: {
+				type: 'switch',
+				label: __( 'Form Toggle' ),
+				position: 'inspector',
+			},
+		},
 		color: {
 			type: 'string',
 			field: {
@@ -125,6 +167,46 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'textarea',
 				label: __( 'Textarea' ),
+				position: 'inspector',
+			},
+		},
+		email: {
+			type: 'string',
+			field: {
+				type: 'email',
+				label: __( 'Email' ),
+				position: 'inspector',
+			},
+		},
+		hidden: {
+			type: 'string',
+			field: {
+				type: 'hidden',
+				label: __( 'Hidden' ),
+				position: 'inspector',
+			},
+		},
+		number: {
+			type: 'string',
+			field: {
+				type: 'number',
+				label: __( 'Number' ),
+				position: 'inspector',
+			},
+		},
+		search: {
+			type: 'string',
+			field: {
+				type: 'search',
+				label: __( 'Search' ),
+				position: 'inspector',
+			},
+		},
+		tel: {
+			type: 'string',
+			field: {
+				type: 'tel',
+				label: __( 'Telephone' ),
 				position: 'inspector',
 			},
 		},

@@ -22,6 +22,9 @@ import editor from './fields/code-editor';
 import tabPanel from './fields/tab-panel';
 import dateTimePicker from './fields/date-time';
 import textareaControl from './fields/textarea-control';
+import inputField from './fields/input-field';
+import formToggle from './fields/form-toggle';
+import treeSelect from './fields/tree-select';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -111,6 +114,27 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'textarea':
 				fields[ attributeKey ] = textareaControl( props, config, attributeKey );
+				break;
+			case 'email':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'hidden':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'number':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'search':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'tel':
+				fields[ attributeKey ] = inputField( props, config, attributeKey );
+				break;
+			case 'switch':
+				fields[ attributeKey ] = formToggle( props, config, attributeKey );
+				break;
+			case 'tree-select':
+				fields[ attributeKey ] = treeSelect( props, config, attributeKey );
 				break;
 		}
 
