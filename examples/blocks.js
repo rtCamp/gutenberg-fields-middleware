@@ -99,6 +99,40 @@ registerBlockType( 'gb-m-example/simple-block', {
 				editable: true,
 			},
 		},
+		treeSelect: {
+			type: 'string',
+			field: {
+				type: 'tree-select',
+				label: __( 'Parent page' ),
+				position: 'inspector',
+				tree: [
+					{
+						name: __( 'Page 1' ),
+						id: 'p1',
+						children: [
+							{ name: __( 'Descend 1 of page 1' ), id: 'p11' },
+							{ name: __( 'Descend 2 of page 1' ), id: 'p12' },
+						],
+					},
+					{
+						name: __( 'Page 2' ),
+						id: 'p2',
+						children: [
+							{
+								name: __( 'Descend 1 of page 2' ),
+								id: 'p21',
+								children: [
+									{
+										name: __( 'Descend 1 of Descend 1 of page 2' ),
+										id: 'p211',
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		},
 		switch: {
 			type: 'string',
 			field: {

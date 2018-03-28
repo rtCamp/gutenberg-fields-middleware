@@ -23,6 +23,7 @@ import dateTimePicker from './fields/date-time';
 import textareaControl from './fields/textarea-control';
 import inputField from './fields/input-field';
 import formToggle from './fields/form-toggle';
+import treeSelect from './fields/tree-select';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -127,6 +128,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'switch':
 				fields[ attributeKey ] = formToggle( props, config, attributeKey );
+				break;
+			case 'tree-select':
+				fields[ attributeKey ] = treeSelect( props, config, attributeKey );
 				break;
 		}
 
