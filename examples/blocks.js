@@ -120,6 +120,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 				position: 'inspector',
 			},
 		},
+		textarea: {
+			type: 'string',
+			field: {
+				type: 'textarea',
+				label: __( 'Textarea' ),
+				position: 'inspector',
+			},
+		},
 		editor: {
 			type: 'string',
 			field: {

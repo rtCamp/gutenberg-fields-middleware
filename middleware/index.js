@@ -20,6 +20,7 @@ import colorPalette from './fields/color-palette';
 import dropdown from './fields/dropdown';
 import editor from './fields/code-editor';
 import dateTimePicker from './fields/date-time';
+import textareaControl from './fields/textarea-control';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -103,6 +104,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'date-time':
 				fields[ attributeKey ] = dateTimePicker( props, config, attributeKey );
+				break;
+			case 'textarea':
+				fields[ attributeKey ] = textareaControl( props, config, attributeKey );
 				break;
 		}
 

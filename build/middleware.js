@@ -88,6 +88,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_dropdown__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_code_editor__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_date_time__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_textarea_control__ = __webpack_require__(15);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -102,6 +103,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -205,6 +207,9 @@ var GutenbergFieldsMiddleWare = function () {
 					break;
 				case 'date-time':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_11__fields_date_time__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'textarea':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_textarea_control__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -785,6 +790,38 @@ function dateTimePicker(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(DateTimePicker, fieldAttributes);
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = textareaControl;
+/**
+ * Textarea field.
+ */
+
+var TextareaControl = wp.components.TextareaControl;
+
+
+function textareaControl(props, config, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(TextareaControl, fieldAttributes);
 }
 
 /***/ })
