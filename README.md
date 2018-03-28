@@ -464,4 +464,96 @@ option: {
 }
 ```
 
+#### tab-panel
+
+###### type
+
+Field Type.
+
+* Type: `String`
+* Required: Yes
+* Default: Null
+
+###### tabs
+
+A list of tabs where each tab is defined by an object with the following fields:
+
+* name: String. Defines the key for the tab
+* title: String. Defines the translated text for the tab
+* className: String. Defines the class to put on the tab.
+
+* Type: `Array`
+* Required: Yes
+
+###### className
+
+The class to give to the outer container for the TabPanel
+
+* Type: `String`
+* Required: No
+* Default: ''
+
+###### orientation
+
+The orientation of the tablist ( `vertical` or `horizontal` )
+
+* Type: `String`
+* Required: No
+* Default: horizontal
+
+###### onSelect
+
+The function called when a tab has been selected. It is passed the `tabName` as an argument.
+
+* Type: `Function`
+* Required: No
+* Default: `noop`
+
+###### activeClass
+
+The class to add to the active tab
+
+* Type: `String`
+* Required: No
+* Default: `is-active`
+
+###### children
+
+A function which renders the tabviews given the selected tab. The function is passed a `tabName` as an argument. The element to which the tooltip should anchor.
+
+* Type: ( `String` ) => `Element`
+* Required: Yes
+
+For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/tab-panel).
+
+**Example:**
+
+```
+tabPanel: {
+    type: 'string',
+    field: {
+        type: 'tab-panel',
+        tabs: [
+                {
+                    name: 'tab1',
+                    title: 'Tab 1',
+                    className: 'tab-one',
+                },
+                {
+                    name: 'tab2',
+                    title: 'Tab 2',
+                    className: 'tab-two',
+                }
+            ],
+        children( tabName ) {
+            if ( tabName === 'tab1' ) {
+                return ( wp.element.createElement( 'div', {}, 'Hello World!' ) );
+            } else {
+                return ( wp.element.createElement( 'div', {}, 'Hello Again!' ) );
+            }
+        },
+    },
+}
+```
+
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
