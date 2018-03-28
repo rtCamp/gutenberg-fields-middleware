@@ -17,6 +17,8 @@ import radioControl from './fields/radio-control';
 import rangeControl from './fields/range-control';
 import button from './fields/button';
 import colorPalette from './fields/color-palette';
+import dropdown from './fields/dropdown';
+import editor from './fields/code-editor';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -91,6 +93,12 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'color':
 				fields[ attributeKey ] = colorPalette( props, config, attributeKey );
+				break;
+			case 'dropdown':
+				fields[ attributeKey ] = dropdown( props, config );
+				break;
+			case 'editor':
+				fields[ attributeKey ] = editor( props, config, attributeKey );
 				break;
 		}
 
