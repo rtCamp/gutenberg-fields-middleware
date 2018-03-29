@@ -988,14 +988,13 @@ var _wp$components = wp.components,
 
 function formToggle(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: '1'
-	};
-
-	// @todo not working correctly.
-	defaultAttributes.onChange = function (event) {
-		var newAttributes = {};
-		newAttributes[attributeKey] = event.target.value;
-		props.setAttributes(newAttributes);
+		onChange: function onChange(event) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = 'on' === event.target.value ? 'off' : 'on';
+			props.setAttributes(newAttributes);
+		},
+		checked: 'on' === props.attributes[attributeKey],
+		value: props.attributes[attributeKey] || 'off'
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -1008,7 +1007,7 @@ function formToggle(props, config, attributeKey) {
 			label: fieldAttributes.label,
 			id: fieldAttributes.id,
 			help: fieldAttributes.help,
-			className: "components-toggle-control"
+			className: 'components-toggle-control'
 		},
 		wp.element.createElement(FormToggle, fieldAttributes)
 	);

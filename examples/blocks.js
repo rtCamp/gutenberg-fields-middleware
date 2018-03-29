@@ -82,7 +82,15 @@ registerBlockType( 'gb-m-example/simple-block', {
 				heading: 'User',
 				label: 'Is author',
 				help: 'Is the user a author or not?',
-			}
+			},
+		},
+		switch: {
+			type: 'string',
+			field: {
+				type: 'switch',
+				label: __( 'Form Toggle' ),
+				position: 'inspector',
+			},
 		},
 		range: {
 			type: 'string',
@@ -130,14 +138,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 						],
 					},
 				],
-			},
-		},
-		switch: {
-			type: 'string',
-			field: {
-				type: 'switch',
-				label: __( 'Form Toggle' ),
-				position: 'inspector',
 			},
 		},
 		color: {
