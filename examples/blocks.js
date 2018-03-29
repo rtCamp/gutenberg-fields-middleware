@@ -75,21 +75,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 		},
-		checkbox: {
-			type: 'string',
+		check: {
+			type: 'boolean',
 			field: {
 				type: 'checkbox',
-				options: [
-					{
-						value: 'one',
-						label: 'one',
-					},
-					{
-						value: 'two',
-						label: 'two',
-					},
-				],
-			},
+				heading: 'User',
+				label: 'Is author',
+				help: 'Is the user a author or not?',
+			}
 		},
 		range: {
 			type: 'string',
