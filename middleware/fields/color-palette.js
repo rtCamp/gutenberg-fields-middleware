@@ -17,7 +17,7 @@ export default function colorPalette( props, config, attributeKey ) {
 
 		value: props.attributes[ attributeKey ] || '',
 
-		title: __( 'Color' ),
+		label: __( 'Color' ),
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -25,7 +25,7 @@ export default function colorPalette( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<PanelColor title={ fieldAttributes.title } colorValue={ fieldAttributes.value } >
+		<PanelColor title={ fieldAttributes.label } colorValue={ fieldAttributes.value } >
 			<ColorPalette
 				{ ...fieldAttributes }
 			/>

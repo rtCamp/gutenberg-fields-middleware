@@ -596,6 +596,14 @@ editorContent: {
 
 ## date-time
 
+#### label:
+
+The title of date time control
+
+- Type: `string`
+- Required: No
+- Default: 'Date'
+
 #### currentDate:
 
 The current date and time at initialization.
@@ -642,7 +650,7 @@ dateTime: {
 
 ## color
 
-#### title:
+#### label:
 
 The title of color control
 

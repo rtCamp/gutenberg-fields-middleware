@@ -2,7 +2,7 @@
  * Switch field.
  */
 
-const { FormToggle } = wp.components;
+const { FormToggle, BaseControl } = wp.components;
 
 export default function formToggle( props, config, attributeKey ) {
 	const defaultAttributes = {
@@ -21,8 +21,15 @@ export default function formToggle( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<FormToggle
-			{ ...fieldAttributes }
-		/>
+		<BaseControl
+			label={ fieldAttributes.label }
+			id={ fieldAttributes.id }
+			help={ fieldAttributes.help }
+			className="components-toggle-control"
+		>
+			<FormToggle
+				{ ...fieldAttributes }
+			/>
+		</BaseControl>
 	);
 }

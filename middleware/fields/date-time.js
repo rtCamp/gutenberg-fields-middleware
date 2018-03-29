@@ -2,8 +2,9 @@
  * Date time field.
  */
 
-const { DateTimePicker } = wp.components;
-const { settings } = wp.date;
+const { DateTimePicker, PanelBody } = wp.components;
+const { dateI18n, settings } = wp.date;
+const { __ } = wp.i18n;
 
 export default function dateTimePicker( props, config, attributeKey ) {
 	const is12HourTime = /a(?!\\)/i.test(
@@ -26,15 +27,29 @@ export default function dateTimePicker( props, config, attributeKey ) {
 		currentDate: props.attributes[ attributeKey ],
 
 		is12Hour: is12HourTime,
+
+		label: __( 'Date' ),
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
+	const label = fieldAttributes.label;
+
+	const getFormattedDate = () => {
+		return props.attributes[ attributeKey ] ? dateI18n( settings.formats.datetime, props.attributes[ attributeKey ] ) : '';
+	};
 
 	delete fieldAttributes.type;
+	delete fieldAttributes.label;
 
 	return (
-		<DateTimePicker
-			{ ...fieldAttributes }
-		/>
+		<PanelBody initialOpen={ false } title={ [
+			label + ': ',
+			<span key="label">{ getFormattedDate() }</span>,
+		]
+		}>
+			<DateTimePicker
+				{ ...fieldAttributes }
+			/>
+		</PanelBody>
 	);
 }

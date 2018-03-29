@@ -695,7 +695,7 @@ function colorPalette(props, config, attributeKey) {
 
 		value: props.attributes[attributeKey] || '',
 
-		title: __('Color')
+		label: __('Color')
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -704,7 +704,7 @@ function colorPalette(props, config, attributeKey) {
 
 	return wp.element.createElement(
 		PanelColor,
-		{ title: fieldAttributes.title, colorValue: fieldAttributes.value },
+		{ title: fieldAttributes.label, colorValue: fieldAttributes.value },
 		wp.element.createElement(ColorPalette, fieldAttributes)
 	);
 }
@@ -793,8 +793,13 @@ function editor(props, config, attributeKey) {
  * Date time field.
  */
 
-var DateTimePicker = wp.components.DateTimePicker;
-var settings = wp.date.settings;
+var _wp$components = wp.components,
+    DateTimePicker = _wp$components.DateTimePicker,
+    PanelBody = _wp$components.PanelBody;
+var _wp$date = wp.date,
+    dateI18n = _wp$date.dateI18n,
+    settings = _wp$date.settings;
+var __ = wp.i18n.__;
 
 
 function dateTimePicker(props, config, attributeKey) {
@@ -815,14 +820,30 @@ function dateTimePicker(props, config, attributeKey) {
 
 		currentDate: props.attributes[attributeKey],
 
-		is12Hour: is12HourTime
+		is12Hour: is12HourTime,
+
+		label: __('Date')
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
+	var label = fieldAttributes.label;
+
+	var getFormattedDate = function getFormattedDate() {
+		return props.attributes[attributeKey] ? dateI18n(settings.formats.datetime, props.attributes[attributeKey]) : '';
+	};
 
 	delete fieldAttributes.type;
+	delete fieldAttributes.label;
 
-	return wp.element.createElement(DateTimePicker, fieldAttributes);
+	return wp.element.createElement(
+		PanelBody,
+		{ initialOpen: false, title: [label + ': ', wp.element.createElement(
+				'span',
+				{ key: 'label' },
+				getFormattedDate()
+			)] },
+		wp.element.createElement(DateTimePicker, fieldAttributes)
+	);
 }
 
 /***/ }),
@@ -914,7 +935,9 @@ function inputField(props, config, attributeKey) {
  * Switch field.
  */
 
-var FormToggle = wp.components.FormToggle;
+var _wp$components = wp.components,
+    FormToggle = _wp$components.FormToggle,
+    BaseControl = _wp$components.BaseControl;
 
 
 function formToggle(props, config, attributeKey) {
@@ -933,7 +956,16 @@ function formToggle(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(FormToggle, fieldAttributes);
+	return wp.element.createElement(
+		BaseControl,
+		{
+			label: fieldAttributes.label,
+			id: fieldAttributes.id,
+			help: fieldAttributes.help,
+			className: "components-toggle-control"
+		},
+		wp.element.createElement(FormToggle, fieldAttributes)
+	);
 }
 
 /***/ }),
