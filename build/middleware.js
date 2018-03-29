@@ -77,22 +77,22 @@ module.exports = __webpack_require__(1);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_plain_text__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_textarea_control__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_url_input__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_media_upload__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_select_control__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_checkbox_control__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_radio_control__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_range_control__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_button__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_color_palette__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_dropdown__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_code_editor__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_date_time__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_form_toggle__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_tree_select__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_plain_text__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_textarea_control__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_url_input__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_media_upload__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_select_control__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_checkbox_control__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_radio_control__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_range_control__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_button__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_color_palette__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_dropdown__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_code_editor__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_date_time__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_form_toggle__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_tree_select__ = __webpack_require__(19);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -339,8 +339,163 @@ function richText(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = plainText;
+/**
+ * Text field.
+ */
+
+var PlainText = wp.blocks.PlainText;
+
+
+function plainText(props, config, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(PlainText, fieldAttributes);
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = textareaControl;
+/**
+ * Textarea field.
+ */
+
+var _wp$components = wp.components,
+    TextareaControl = _wp$components.TextareaControl,
+    BaseControl = _wp$components.BaseControl;
+
+
+function textareaControl(props, config, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+	var label = fieldAttributes.label;
+
+	delete fieldAttributes.type;
+	delete fieldAttributes.label;
+
+	return wp.element.createElement(
+		BaseControl,
+		{
+			label: label,
+			id: fieldAttributes.id,
+			help: fieldAttributes.help
+		},
+		wp.element.createElement(TextareaControl, fieldAttributes)
+	);
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = inputField;
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+/**
+ * Input field for email, hidden, number, search, tel.
+ */
+
+var BaseControl = wp.components.BaseControl;
+
+
+function inputField(props, config, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(event) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = event.target.value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey],
+		className: 'components-text-control__input'
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+	var id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId(attributeKey);
+	var label = fieldAttributes.label;
+	var help = fieldAttributes.help;
+
+	delete fieldAttributes.id;
+	delete fieldAttributes.position;
+	delete fieldAttributes.label;
+	delete fieldAttributes.help;
+
+	return wp.element.createElement(
+		BaseControl,
+		{ id: id, label: label, help: help },
+		wp.element.createElement('input', _extends({
+			id: id
+		}, fieldAttributes))
+	);
+}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = urlInput;
+/**
+ * Url field.
+ */
+
+var UrlInput = wp.blocks.UrlInput;
+
+
+function urlInput(props, config, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(UrlInput, fieldAttributes);
+}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = mediaUpload;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(8);
 /**
  * Image, Video, Audio Field.
  */
@@ -417,7 +572,7 @@ function mediaUpload(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 4 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -454,39 +609,7 @@ function imagePlaceholder(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = urlInput;
-/**
- * Url field.
- */
-
-var UrlInput = wp.blocks.UrlInput;
-
-
-function urlInput(props, config, attributeKey) {
-	var defaultAttributes = {
-		onChange: function onChange(value) {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		},
-
-
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	delete fieldAttributes.type;
-
-	return wp.element.createElement(UrlInput, fieldAttributes);
-}
-
-/***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -518,7 +641,7 @@ function selectControl(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -532,14 +655,16 @@ var CheckboxControl = wp.components.CheckboxControl;
 
 function checkboxControl(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: '1'
-	};
+		value: '1',
 
-	// @todo not working correctly.
-	defaultAttributes.onChange = function (checked) {
-		var newAttributes = {};
-		newAttributes[attributeKey] = checked ? defaultAttributes.value : false;
-		props.setAttributes(newAttributes);
+		onChange: function onChange(checked) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = checked ? defaultAttributes.value : false;
+			props.setAttributes(newAttributes);
+		},
+
+
+		checked: props.attributes[attributeKey]
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -550,7 +675,7 @@ function checkboxControl(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -582,7 +707,7 @@ function radioControl(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -614,7 +739,7 @@ function rangeControl(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -670,7 +795,7 @@ function button(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -710,7 +835,7 @@ function colorPalette(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -752,7 +877,7 @@ function dropdown(props, config) {
 }
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -784,7 +909,7 @@ function editor(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -847,98 +972,7 @@ function dateTimePicker(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 15 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = textareaControl;
-/**
- * Textarea field.
- */
-
-var _wp$components = wp.components,
-    TextareaControl = _wp$components.TextareaControl,
-    BaseControl = _wp$components.BaseControl;
-
-
-function textareaControl(props, config, attributeKey) {
-	var defaultAttributes = {
-		onChange: function onChange(value) {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		},
-
-
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-	var label = fieldAttributes.label;
-
-	delete fieldAttributes.type;
-	delete fieldAttributes.label;
-
-	return wp.element.createElement(
-		BaseControl,
-		{
-			label: label,
-			id: fieldAttributes.id,
-			help: fieldAttributes.help
-		},
-		wp.element.createElement(TextareaControl, fieldAttributes)
-	);
-}
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = inputField;
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-/**
- * Input field for email, hidden, number, search, tel.
- */
-
-var BaseControl = wp.components.BaseControl;
-
-
-function inputField(props, config, attributeKey) {
-	var defaultAttributes = {
-		onChange: function onChange(event) {
-			var newAttributes = {};
-			newAttributes[attributeKey] = event.target.value;
-			props.setAttributes(newAttributes);
-		},
-
-
-		value: props.attributes[attributeKey],
-		className: 'components-text-control__input'
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-	var id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId(attributeKey);
-	var label = fieldAttributes.label;
-	var help = fieldAttributes.help;
-
-	delete fieldAttributes.id;
-	delete fieldAttributes.position;
-	delete fieldAttributes.label;
-	delete fieldAttributes.help;
-
-	return wp.element.createElement(
-		BaseControl,
-		{ id: id, label: label, help: help },
-		wp.element.createElement('input', _extends({
-			id: id
-		}, fieldAttributes))
-	);
-}
-
-/***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -954,14 +988,13 @@ var _wp$components = wp.components,
 
 function formToggle(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: '1'
-	};
-
-	// @todo not working correctly.
-	defaultAttributes.onChange = function (event) {
-		var newAttributes = {};
-		newAttributes[attributeKey] = event.target.value;
-		props.setAttributes(newAttributes);
+		onChange: function onChange(event) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = 'on' === event.target.value ? 'off' : 'on';
+			props.setAttributes(newAttributes);
+		},
+		checked: 'on' === props.attributes[attributeKey],
+		value: props.attributes[attributeKey] || 'off'
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -974,14 +1007,14 @@ function formToggle(props, config, attributeKey) {
 			label: fieldAttributes.label,
 			id: fieldAttributes.id,
 			help: fieldAttributes.help,
-			className: "components-toggle-control"
+			className: 'components-toggle-control'
 		},
 		wp.element.createElement(FormToggle, fieldAttributes)
 	);
 }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1010,38 +1043,6 @@ function treeSelect(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(TreeSelect, fieldAttributes);
-}
-
-/***/ }),
-/* 19 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = plainText;
-/**
- * Text field.
- */
-
-var PlainText = wp.blocks.PlainText;
-
-
-function plainText(props, config, attributeKey) {
-	var defaultAttributes = {
-		onChange: function onChange(value) {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		},
-
-
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	delete fieldAttributes.type;
-
-	return wp.element.createElement(PlainText, fieldAttributes);
 }
 
 /***/ })

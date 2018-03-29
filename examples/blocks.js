@@ -75,20 +75,21 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 		},
-		checkbox: {
-			type: 'string',
+		check: {
+			type: 'boolean',
 			field: {
 				type: 'checkbox',
-				options: [
-					{
-						value: 'one',
-						label: 'one',
-					},
-					{
-						value: 'two',
-						label: 'two',
-					},
-				],
+				heading: 'User',
+				label: 'Is author',
+				help: 'Is the user a author or not?',
+			},
+		},
+		switch: {
+			type: 'string',
+			field: {
+				type: 'switch',
+				label: __( 'Form Toggle' ),
+				position: 'inspector',
 			},
 		},
 		range: {
@@ -137,14 +138,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 						],
 					},
 				],
-			},
-		},
-		switch: {
-			type: 'string',
-			field: {
-				type: 'switch',
-				label: __( 'Form Toggle' ),
-				position: 'inspector',
 			},
 		},
 		color: {
