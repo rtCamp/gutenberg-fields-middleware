@@ -664,7 +664,7 @@ function checkboxControl(props, config, attributeKey) {
 		},
 
 
-		selected: props.attributes[attributeKey]
+		checked: props.attributes[attributeKey]
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);

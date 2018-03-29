@@ -14,7 +14,7 @@ export default function checkboxControl( props, config, attributeKey ) {
 			props.setAttributes( newAttributes );
 		},
 
-		selected: props.attributes[ attributeKey ],
+		checked: props.attributes[ attributeKey ],
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
