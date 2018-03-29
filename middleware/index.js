@@ -187,3 +187,5 @@ addFilter( 'blocks.registerBlockType', 'gutenberg-field-middleware/registration/
 
 	return settings;
 }, 1 );
+
+export default GutenbergFieldsMiddleWare;
