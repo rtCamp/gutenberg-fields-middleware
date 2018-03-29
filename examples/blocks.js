@@ -24,7 +24,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'text',
 				placeholder: __( 'Enter link text' ),
-				richText: true,
+			},
+		},
+		richText: {
+			type: 'string',
+			field: {
+				type: 'rich-text',
+				placeholder: __( 'Enter text' ),
 			},
 		},
 		image: {

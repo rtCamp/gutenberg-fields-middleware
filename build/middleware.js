@@ -77,21 +77,22 @@ module.exports = __webpack_require__(1);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_media_upload__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_url_input__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_select_control__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_radio_control__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_range_control__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_button__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_color_palette__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_dropdown__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_code_editor__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_date_time__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_textarea_control__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_input_field__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_form_toggle__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_tree_select__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_plain_text__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_textarea_control__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_url_input__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_media_upload__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_select_control__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_checkbox_control__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_radio_control__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_range_control__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_button__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_color_palette__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_dropdown__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_code_editor__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_date_time__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_form_toggle__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_tree_select__ = __webpack_require__(18);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -106,6 +107,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -173,70 +175,73 @@ var GutenbergFieldsMiddleWare = function () {
 
 			switch (fieldType) {
 				case 'text':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_plain_text__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'rich-text':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'url':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_url_input__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_url_input__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'image':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_media_upload__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'video':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_media_upload__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'audio':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_media_upload__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_media_upload__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'select':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_select_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_select_control__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'range':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_range_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_range_control__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'radio':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_radio_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_radio_control__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'checkbox':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_checkbox_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_checkbox_control__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'button':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_button__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_button__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'color':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_color_palette__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_11__fields_color_palette__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'dropdown':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_dropdown__["a" /* default */])(props, config);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_dropdown__["a" /* default */])(props, config);
 					break;
 				case 'editor':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_code_editor__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_code_editor__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'date-time':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_11__fields_date_time__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_date_time__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'textarea':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_textarea_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_textarea_control__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'email':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_input_field__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'hidden':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_input_field__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'number':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_input_field__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'search':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_input_field__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'tel':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_input_field__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'switch':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_form_toggle__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_15__fields_form_toggle__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'tree-select':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_15__fields_tree_select__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_16__fields_tree_select__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -307,9 +312,7 @@ addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/a
  * Text field.
  */
 
-var _wp$blocks = wp.blocks,
-    RichText = _wp$blocks.RichText,
-    PlainText = _wp$blocks.PlainText;
+var RichText = wp.blocks.RichText;
 
 
 function richText(props, config, attributeKey) {
@@ -328,12 +331,7 @@ function richText(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	if (fieldAttributes.richText) {
-		delete fieldAttributes.richText;
-		return wp.element.createElement(RichText, fieldAttributes);
-	}
-
-	return wp.element.createElement(PlainText, fieldAttributes);
+	return wp.element.createElement(RichText, fieldAttributes);
 }
 
 /***/ }),
@@ -961,6 +959,38 @@ function treeSelect(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(TreeSelect, fieldAttributes);
+}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = plainText;
+/**
+ * Text field.
+ */
+
+var PlainText = wp.blocks.PlainText;
+
+
+function plainText(props, config, attributeKey) {
+	var defaultAttributes = {
+		onChange: function onChange(value) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		},
+
+
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(PlainText, fieldAttributes);
 }
 
 /***/ })

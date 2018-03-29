@@ -9,8 +9,11 @@ const { addFilter } = wp.hooks;
  * Fields
  */
 import richText from './fields/rich-text';
-import mediaUpload from './fields/media-upload';
+import plainText from './fields/plain-text';
+import textareaControl from './fields/textarea-control';
+import inputField from './fields/input-field';
 import urlInput from './fields/url-input';
+import mediaUpload from './fields/media-upload';
 import selectControl from './fields/select-control';
 import checkboxControl from './fields/checkbox-control';
 import radioControl from './fields/radio-control';
@@ -20,8 +23,6 @@ import colorPalette from './fields/color-palette';
 import dropdown from './fields/dropdown';
 import editor from './fields/code-editor';
 import dateTimePicker from './fields/date-time';
-import textareaControl from './fields/textarea-control';
-import inputField from './fields/input-field';
 import formToggle from './fields/form-toggle';
 import treeSelect from './fields/tree-select';
 
@@ -67,6 +68,9 @@ class GutenbergFieldsMiddleWare {
 
 		switch ( fieldType ) {
 			case 'text':
+				fields[ attributeKey ] = plainText( props, config, attributeKey );
+				break;
+			case 'rich-text':
 				fields[ attributeKey ] = richText( props, config, attributeKey );
 				break;
 			case 'url':

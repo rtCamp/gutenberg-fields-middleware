@@ -2,9 +2,9 @@
  * Text field.
  */
 
-const { RichText } = wp.blocks;
+const { PlainText } = wp.blocks;
 
-export default function richText( props, config, attributeKey ) {
+export default function plainText( props, config, attributeKey ) {
 	const defaultAttributes = {
 
 		onChange( value ) {
@@ -21,7 +21,7 @@ export default function richText( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<RichText
+		<PlainText
 			{ ...fieldAttributes }
 		/>
 	);
