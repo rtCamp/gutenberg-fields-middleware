@@ -557,8 +557,8 @@ For more [read gutenberg readme](https://github.com/WordPress/gutenberg/blob/mas
 dateTime: {
 	type: 'string',
 	field: {
-        type: 'date-time',
-        position: 'inspector',
+		type: 'date-time',
+		position: 'inspector',
 	},
 },
 ```
@@ -601,7 +601,7 @@ color: {
 
 #### checked:
 
-Change the accessibility text to "On".
+Checked attribute of checkbox. Changes the accessibility text to "On/Off".
 
 - Type: `bool`
 - Required: No
@@ -623,6 +623,139 @@ switch: {
 	field: {
 		type: 'switch',
 		label: __( 'Form Toggle' ),
+		position: 'inspector',
+	},
+},
+```
+
+
+
+## textarea
+
+#### value:
+
+The current value of the textarea.
+
+- Type: `string`
+- Required: No
+
+#### onChange:
+
+A function that receives the new value of the textarea each time it changes.
+
+- Type: `Function`
+- Required: No
+
+#### label:
+
+If this property is added, a label will be generated using label property as the content.
+
+- Type: `String`
+- Required: No
+
+#### help:
+
+If set, a help text will be generated using help property as the content.
+
+- Type: `String`
+- Required: No
+
+#### row:
+
+The number of rows the textarea should contain. Defaults to four.
+
+- Type: `String`
+- Required: No
+- Default: 4
+
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/textarea-control).
+
+**Example:**
+
+```js
+textarea: {
+	type: 'string',
+	field: {
+		type: 'textarea',
+		label: __( 'Textarea' ),
+		position: 'inspector',
+	},
+},
+```
+
+
+
+## email / number/ hidden / search / tel
+
+Creates input fields with above types. You can pass key value pairs will be passed to the input. 
+
+#### onChange:
+
+A function that receives the new value of the input field each time it changes.
+
+- Type: `Function`
+- Required: No
+
+#### label:
+
+If this property is added, a label will be generated using label property value as the content.
+
+- Type: `String`
+- Required: No
+
+#### help:
+
+If set, a help text will be generated using help property as the content.
+
+- Type: `String`
+- Required: No
+
+#### className:
+
+CSS class name for the wrapper of the input field.
+
+- Type: `String`
+- Required: No
+
+**Examples:**
+
+```js
+email: {
+	type: 'string',
+	field: {
+		type: 'email',
+		label: __( 'Email' ),
+		position: 'inspector',
+	},
+},
+hidden: {
+	type: 'string',
+	field: {
+		type: 'hidden',
+		position: 'inspector',
+	},
+},
+number: {
+	type: 'string',
+	field: {
+		type: 'number',
+		label: __( 'Number' ),
+		position: 'inspector',
+	},
+},
+search: {
+	type: 'string',
+	field: {
+		type: 'search',
+		label: __( 'Search' ),
+		position: 'inspector',
+	},
+},
+tel: {
+	type: 'string',
+	field: {
+		type: 'tel',
+		label: __( 'Telephone' ),
 		position: 'inspector',
 	},
 },

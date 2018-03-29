@@ -880,13 +880,19 @@ function inputField(props, config, attributeKey) {
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 	var id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId(attributeKey);
+	var label = fieldAttributes.label;
+	var help = fieldAttributes.help;
+	var className = fieldAttributes.className;
 
 	delete fieldAttributes.id;
 	delete fieldAttributes.position;
+	delete fieldAttributes.label;
+	delete fieldAttributes.help;
+	delete fieldAttributes.className;
 
 	return wp.element.createElement(
 		BaseControl,
-		{ id: id, label: fieldAttributes.label, help: fieldAttributes.help, className: fieldAttributes.className },
+		{ id: id, label: label, help: help, className: className },
 		wp.element.createElement("input", _extends({
 			id: id
 		}, fieldAttributes))
