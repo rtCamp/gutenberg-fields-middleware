@@ -3,6 +3,8 @@
  */
 
 const { ColorPalette } = wp.blocks;
+const { PanelColor } = wp.components;
+const { __ } = wp.i18n;
 
 export default function colorPalette( props, config, attributeKey ) {
 	const defaultAttributes = {
@@ -14,6 +16,8 @@ export default function colorPalette( props, config, attributeKey ) {
 		},
 
 		value: props.attributes[ attributeKey ] || '',
+
+		title: __( 'Color' ),
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -21,8 +25,10 @@ export default function colorPalette( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<ColorPalette
-			{ ...fieldAttributes }
-		/>
+		<PanelColor title={ fieldAttributes.title } colorValue={ fieldAttributes.value } >
+			<ColorPalette
+				{ ...fieldAttributes }
+			/>
+		</PanelColor>
 	);
 }

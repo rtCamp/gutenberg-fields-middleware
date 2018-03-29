@@ -680,6 +680,8 @@ function button(props, config, attributeKey) {
  */
 
 var ColorPalette = wp.blocks.ColorPalette;
+var PanelColor = wp.components.PanelColor;
+var __ = wp.i18n.__;
 
 
 function colorPalette(props, config, attributeKey) {
@@ -691,14 +693,20 @@ function colorPalette(props, config, attributeKey) {
 		},
 
 
-		value: props.attributes[attributeKey] || ''
+		value: props.attributes[attributeKey] || '',
+
+		title: __('Color')
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(ColorPalette, fieldAttributes);
+	return wp.element.createElement(
+		PanelColor,
+		{ title: fieldAttributes.title, colorValue: fieldAttributes.value },
+		wp.element.createElement(ColorPalette, fieldAttributes)
+	);
 }
 
 /***/ }),
@@ -873,25 +881,24 @@ function inputField(props, config, attributeKey) {
 		},
 
 
-		value: props.attributes[attributeKey]
+		value: props.attributes[attributeKey],
+		className: 'components-text-control__input'
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 	var id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId(attributeKey);
 	var label = fieldAttributes.label;
 	var help = fieldAttributes.help;
-	var className = fieldAttributes.className;
 
 	delete fieldAttributes.id;
 	delete fieldAttributes.position;
 	delete fieldAttributes.label;
 	delete fieldAttributes.help;
-	delete fieldAttributes.className;
 
 	return wp.element.createElement(
 		BaseControl,
-		{ id: id, label: label, help: help, className: className },
-		wp.element.createElement("input", _extends({
+		{ id: id, label: label, help: help },
+		wp.element.createElement('input', _extends({
 			id: id
 		}, fieldAttributes))
 	);

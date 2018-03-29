@@ -188,7 +188,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'hidden',
-				label: __( 'Hidden' ),
 				position: 'inspector',
 			},
 		},

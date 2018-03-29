@@ -642,6 +642,14 @@ dateTime: {
 
 ## color
 
+#### title:
+
+The title of color control
+
+- Type: `string`
+- Required: No
+- Default: 'Color'
+
 #### value:
 
 The value of color.
@@ -787,7 +795,7 @@ If set, a help text will be generated using help property as the content.
 
 #### className:
 
-CSS class name for the wrapper of the input field.
+CSS class name for the input field.
 
 - Type: `String`
 - Required: No
