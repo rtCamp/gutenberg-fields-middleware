@@ -1,5 +1,5 @@
 /**
- * Range field.
+ * Color Palette field.
  */
 
 const { ColorPalette } = wp.blocks;
