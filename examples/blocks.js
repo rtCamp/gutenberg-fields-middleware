@@ -226,6 +226,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'radio',
 				position: 'inspector',
+				label: __( 'Layout Options' ),
 				options: [
 					{
 						value: 'one',
@@ -242,6 +243,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'range',
+				label: __( 'Columns' ),
 				position: 'inspector',
 			},
 		},

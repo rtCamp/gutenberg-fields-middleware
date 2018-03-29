@@ -598,7 +598,7 @@ editorContent: {
 
 #### label:
 
-The title of date time control
+Field Label
 
 - Type: `string`
 - Required: No
@@ -689,6 +689,13 @@ color: {
 
 
 ## switch
+
+#### label:
+
+Field Label
+
+- Type: `string`
+- Required: No
 
 #### checked:
 

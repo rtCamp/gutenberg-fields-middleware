@@ -856,7 +856,9 @@ function dateTimePicker(props, config, attributeKey) {
  * Textarea field.
  */
 
-var TextareaControl = wp.components.TextareaControl;
+var _wp$components = wp.components,
+    TextareaControl = _wp$components.TextareaControl,
+    BaseControl = _wp$components.BaseControl;
 
 
 function textareaControl(props, config, attributeKey) {
@@ -872,10 +874,20 @@ function textareaControl(props, config, attributeKey) {
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
+	var label = fieldAttributes.label;
 
 	delete fieldAttributes.type;
+	delete fieldAttributes.label;
 
-	return wp.element.createElement(TextareaControl, fieldAttributes);
+	return wp.element.createElement(
+		BaseControl,
+		{
+			label: label,
+			id: fieldAttributes.id,
+			help: fieldAttributes.help
+		},
+		wp.element.createElement(TextareaControl, fieldAttributes)
+	);
 }
 
 /***/ }),
