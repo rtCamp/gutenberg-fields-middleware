@@ -889,7 +889,7 @@ The direction in which the popover should open relative to its parent node. Spec
 A callback invoked to render the dropdown Toggle Button.
 
 - Type: `Function`
-- Required: Yes
+- Required: No
 
 The first argument of the callback is an object containing the following properties:
 
@@ -902,7 +902,7 @@ The first argument of the callback is an object containing the following propert
 A callback invoked to render the content of the dropdown menu. Its first argument is the same as the `renderToggle` prop.
 
 - Type: `Function`
-- Required: Yes
+- Required: No
 
 #### expandOnMobile:
 

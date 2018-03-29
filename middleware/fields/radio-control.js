@@ -1,5 +1,5 @@
 /**
- * Url field.
+ * Radio Control field.
  */
 
 const { RadioControl } = wp.components;
