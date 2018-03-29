@@ -933,6 +933,49 @@ dropdown: {
 }
 ```
 
+
+## editor
+
+#### value:
+
+The source code to load into the code editor.
+
+- Type: `String`
+- Required: Yes
+
+#### focus:
+
+Whether or not the code editor should be focused.
+
+- Type: `boolean`
+- Required: No
+
+#### onFocus:
+
+The function called when the editor is focused.
+
+- Type: `Function`
+- Required: No
+
+#### onChange:
+
+The function called when the user has modified the source code via the editor. It is passed the new value as an argument.
+
+- Type: `Function`
+- Required: No
+
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/code-editor).
+
+**Example:**
+
+```js
+editor: {
+    type: 'string',
+    field: {
+        type: 'editor',
+    },
+},
+```
 ---
 
 The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
