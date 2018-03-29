@@ -7,13 +7,14 @@ const { CheckboxControl } = wp.components;
 export default function checkboxControl( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: '1',
-	};
 
-	// @todo not working correctly.
-	defaultAttributes.onChange = ( checked ) => {
-		const newAttributes = {};
-		newAttributes[ attributeKey ] = checked ? defaultAttributes.value : false;
-		props.setAttributes( newAttributes );
+		onChange( checked ) {
+			const newAttributes = {};
+			newAttributes[ attributeKey ] = checked ? defaultAttributes.value : false;
+			props.setAttributes( newAttributes );
+		},
+
+		selected: props.attributes[ attributeKey ],
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
