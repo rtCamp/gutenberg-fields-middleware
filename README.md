@@ -182,7 +182,7 @@ text: {
 		type: 'text',
 		placeholder: __( 'Enter text' ),
 	},
-},
+}
 ```
 
 
@@ -219,7 +219,7 @@ text: {
 		type: 'rich-text',
 		placeholder: __( 'Enter text' ),
 	},
-},
+}
 ```
 
 
@@ -263,8 +263,9 @@ If set, `button` will be replaced with `a`
 * Required: No
 * Default: null
 
+**NOTE:** buttonText is applicable only when editable is not set to true.
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/button).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/button).
 
 **Example:**
 
@@ -317,7 +318,7 @@ A function that receives the value of the new option that is being selected as i
 * Type: `function`
 * Required: No
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/radio-control).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/radio-control).
 
 **Example:**
 
@@ -377,7 +378,7 @@ A function that receives the checked state (boolean) as input.
 * Type: `function`
 * Required: Yes
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/checkbox-control).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/checkbox-control).
 
 **Example:**
 
@@ -391,7 +392,7 @@ check: {
 		label: 'Is author',
 		help: 'Is the user a author or not?',
 	}
-},
+}
 ```
 
 
@@ -441,7 +442,7 @@ A function that receives the new value. If allowReset is true, when onChange is 
 * Type: `function`
 * Required: No
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/range-control).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/range-control).
 
 **Example:**
 
@@ -477,7 +478,7 @@ A function that receives the value of the new option that is being selected as i
 - Type: `function`
 - Required: No
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/url-input).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/url-input).
 
 **Example:**
 
@@ -528,7 +529,7 @@ A function that receives the value of the new option that is being selected as i
 * Type: `Function`
 * Required: No
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/select-control).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/select-control).
 
 **Example:**
 
@@ -609,7 +610,7 @@ A callback invoked to render the Button opening the media library.
 - Type: `Function`
 - Required: No
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/media-upload).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/media-upload).
 
 **Example:**
 
@@ -622,7 +623,7 @@ image: {
 		imagePlaceholder: true,
 		removeButtonText: __( 'Remove' ),
 	},
-},
+}
 ```
 
 
@@ -658,7 +659,7 @@ The function called when the user has modified the source code via the editor. I
 - Type: `Function`
 - Required: No
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/blob/master/components/code-editor/README.md).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/code-editor).
 
 **Example:**
 
@@ -668,7 +669,7 @@ editorContent: {
 	field: {
 		type: 'editor',
 	},
-},
+}
 ```
 
 
@@ -711,7 +712,7 @@ Whether the current timezone is a 12 hour time.
 - Type: `bool`
 - Required: No
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/blob/master/components/date-time/README.md).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/date-time).
 
 **Example:**
 
@@ -722,7 +723,7 @@ dateTime: {
 		type: 'date-time',
 		position: 'inspector',
 	},
-},
+}
 ```
 
 
@@ -751,7 +752,7 @@ The function called when a new color has been selected. It passes the new value 
 - Type: `Function`
 - Required: No
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/blocks/color-palette ).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/color-palette ).
 
 **Example:**
 
@@ -762,7 +763,7 @@ color: {
 		type: 'color',
 		position: 'inspector',
 	},
-},
+}
 ```
 
 
@@ -790,7 +791,7 @@ The function called when switch toggles. It passes the new value as an argument.
 - Type: `Function`
 - Required: No
 
-For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/master/components/form-toggle ).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/form-toggle ).
 
 **Example:**
 
@@ -802,7 +803,7 @@ switch: {
 		label: __( 'Form Toggle' ),
 		position: 'inspector',
 	},
-},
+}
 ```
 
 
@@ -1009,6 +1010,86 @@ dropdown: {
         type: 'dropdown',
         position: 'top left',
     },
+}
+```
+
+
+## tree-select
+
+#### label:
+
+If this property is added, a label will be generated using label property as the content.
+
+- Type: `String`
+- Required: No
+
+#### noOptionLabel:
+
+If this property is added, an option will be added with this label to represent empty selection.
+
+- Type: `String`
+- Required: No
+
+#### onChange:
+
+A function that receives the id of the new node element that is being selected.
+
+- Type: `function`
+- Required: Yes
+
+#### selectedId:
+
+The id of the currently selected node.
+
+- Type: `Object`
+- Required: No
+
+#### tree:
+
+An array containing the tree objects with the possible nodes the user can select.
+
+- Type: `String`
+- Required: No
+
+
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/tree-select).
+
+**Example:**
+
+```js
+treeSelect: {
+	type: 'string',
+	field: {
+		type: 'tree-select',
+		label: __( 'Parent page' ),
+		position: 'inspector',
+		tree: [
+			{
+				name: __( 'Page 1' ),
+				id: 'p1',
+				children: [
+					{ name: __( 'Descend 1 of page 1' ), id: 'p11' },
+					{ name: __( 'Descend 2 of page 1' ), id: 'p12' },
+				],
+			},
+			{
+				name: __( 'Page 2' ),
+				id: 'p2',
+				children: [
+					{
+						name: __( 'Descend 1 of page 2' ),
+						id: 'p21',
+						children: [
+							{
+								name: __( 'Descend 1 of Descend 1 of page 2' ),
+								id: 'p211',
+							},
+						],
+					},
+				],
+			},
+		],
+	},
 }
 ```
 
