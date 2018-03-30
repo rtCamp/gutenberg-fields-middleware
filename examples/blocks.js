@@ -166,6 +166,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'textarea',
 				label: __( 'Textarea' ),
+				help: __( 'Textarea help text' ),
 				position: 'inspector',
 			},
 		},
