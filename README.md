@@ -1,135 +1,60 @@
 # Gutenberg Fields Middleware
 
-Provides middleware to easily register fields for Gutenberg blocks.
+Register fields for Gutenberg blocks with a simple, declarative API.
 
+This project
 
+[Using](#using) | [Available Fields](#available-fields)
 
-After activating the plugin use `gutenberg-fields-middleware` handle as dependency when enqueueing your block js file. Define your fields inside `attributes` as `field` and then use ( optionally ) those fields inside `edit` method as `middleware.fields.attributeKey` 
+## Using
 
+First, install the Gutenberg Fields Middleware as a standalone WordPress plugin. This will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script:
 
+```php
+wp_enqueue_script(
+	'gutenberg-middleware-examples',
+	plugins_url( 'blocks.js', __FILE__ ),
+	array( 'gutenberg-fields-middleware' ),
+	filemtime( GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR. '/examples/blocks.js' )
+);
+```
 
-## Example Usage
+Once you've required the `gutenberg-fields-middleware` dependency, fields are registered as attribute configuration details.
 
+Here's how you might register `url` and `text` fields:
 
 ```js
 registerBlockType( 'example-namespace/example-block', {
 	title: 'Example Block',
-	description: 'Block Description',
-	icon: 'universal-access-alt',
-	category: 'common',
-	attributes: {
-		url: {
-			type: 'string',
-			field: {
-				type: 'url',
-			},
-		},
-		text: {
-			type: 'string',
-			field: {
-				type: 'text',
-				placeholder: 'Enter link text',
-			},
-		},
-		image: {
-			type: 'object',
-			field: {
-				type: 'image',
-				buttonText: 'Upload',
-				imagePlaceholder: true,
-				removeButtonText: 'Remove',
-			},
-		},
-		option: {
-			type: 'string',
-			field: {
-				type: 'select',
-				label: 'Select Numbers',
-				options: [
-					{
-						value: 'one',
-						label: 'one',
-					},
-					{
-						value: 'two',
-						label: 'two',
-					},
-				],
-			},
-		},
-		radio: {
-			type: 'string',
-			field: {
-				type: 'radio',
-				options: [
-					{
-						value: 'one',
-						label: 'one',
-					},
-					{
-						value: 'two',
-						label: 'two',
-					},
-				],
-			},
-		},
-		number: {
-			type: 'string',
-			field: {
-				type: 'number',
-				label: 'Number',
-				placement: 'inspector',
-			},
-		},
-		columns: {
-			type: 'string',
-			field: {
-				type: 'range',
-				placement: 'inspector',
-			},
+	url: {
+		type: 'string',
+		field: {
+			type: 'url',
 		},
 	},
-
-	// Optional.
-	edit( props, middleware ) {
-		return [
-			middleware.inspectorControls, // When adding inspector controls.
-			middleware.fields.url,
-			middleware.fields.text,
-			middleware.fields.image,
-			middleware.fields.option,
-			middleware.fields.radio,
-		];
+	text: {
+		type: 'string',
+		field: {
+			type: 'text',
+			placeholder: 'Enter link text',
+		},
 	},
-
-	save( props ) {
-		return el(
-			'div', {}, [
-				el( 'p', {}, props.attributes.text ),
-				el( 'a', { href: props.attributes.url }, 'Link' ),
-				// ...
-			]
-		);
-	},
-
-} );
+});
 ```
 
-
-
-If you want `field` can also be added when registering `attributes` server side using `register_block_type` 
-
-**Example:**
+Gutenberg Fields Middleware also works for PHP block registration:
 
 ```php
 register_block_type( 'example-namespace/example-block', array(
 	'attributes' => array(
-		'text' => array(
-			'type' => 'string',
+		'image' => array(
+			'type' => 'object',
 			'field' => array(
-				'type' => 'text',
-				'placeholder' => 'Enter Text..'
-			)
+				'type' => 'image',
+				'buttonText' => 'Upload',
+				'imagePlaceholder' => true,
+				'removeButtonText' => 'Remove',
+			),
 		),
 		'color' => array(
 			'type' => 'string',
@@ -141,17 +66,11 @@ register_block_type( 'example-namespace/example-block', array(
 ) );
 ```
 
+## Available Fields
 
+Gutenberg Fields Middleware supports the following field types and type configuration.
 
-
-
-# Fields
-
-Middleware has support for the following field types:
-
-
-
-## text
+### text
 
 Render an auto-growing textarea allow users to fill any textual content.
 
@@ -185,9 +104,7 @@ text: {
 }
 ```
 
-
-
-## rich-text
+### rich-text
 
 #### placeholder:
 
@@ -222,11 +139,7 @@ text: {
 }
 ```
 
-
-
-
-
-## button
+### button
 
 #### editable:
 
@@ -280,8 +193,7 @@ button: {
 ```
 
 
-
-## radio
+### radio
 
 #### label:
 
@@ -345,7 +257,7 @@ radio: {
 
 
 
-## checkbox
+### checkbox
 
 #### heading:
 
@@ -395,10 +307,7 @@ check: {
 }
 ```
 
-
-
-
-## range
+### range
 
 #### label:
 
@@ -462,7 +371,7 @@ range: {
 
 
 
-## link
+### link
 
 #### value:
 
@@ -493,7 +402,7 @@ url: {
 
 
 
-## select
+### select
 
 #### label:
 
@@ -555,7 +464,7 @@ selectOption: {
 
 
 
-## image
+### image
 
 #### buttonText:
 
@@ -628,7 +537,7 @@ image: {
 
 
 
-## editor
+### editor
 
 #### value:
 
@@ -674,7 +583,7 @@ editorContent: {
 
 
 
-## date-time
+### date-time
 
 #### label:
 
@@ -728,7 +637,7 @@ dateTime: {
 
 
 
-## color
+### color
 
 #### label:
 
@@ -768,7 +677,7 @@ color: {
 
 
 
-## switch
+### switch
 
 #### label:
 
@@ -808,7 +717,7 @@ switch: {
 
 
 
-## textarea
+### textarea
 
 #### value:
 
@@ -863,7 +772,7 @@ textarea: {
 
 
 
-## email / number/ hidden / search / tel
+### email / number/ hidden / search / tel
 
 Creates input fields with above types. You can pass key value pairs will be passed to the input. 
 
@@ -940,7 +849,7 @@ tel: {
 ```
 
 
-## dropdown
+### dropdown
 
 #### className:
 
@@ -1014,7 +923,7 @@ dropdown: {
 ```
 
 
-## tree-select
+### tree-select
 
 #### label:
 
