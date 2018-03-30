@@ -138,7 +138,7 @@ class GutenbergFieldsMiddleWare {
 	setBlockComponents( props ) {
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
 			if ( attribute.field ) {
-				if ( 'inspector' === attribute.field.position ) {
+				if ( 'inspector' === attribute.field.placement ) {
 					_.extend( this.inspectorControlFields, this.getFields( attribute.field.type, attributeKey, props, attribute.field ) );
 				} else {
 					_.extend( this.fields, this.getFields( attribute.field.type, attributeKey, props, attribute.field ) );

@@ -89,7 +89,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'switch',
 				label: __( 'Form Toggle' ),
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		range: {
@@ -111,7 +111,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'tree-select',
 				label: __( 'Parent page' ),
-				position: 'inspector',
+				placement: 'inspector',
 				tree: [
 					{
 						name: __( 'Page 1' ),
@@ -144,7 +144,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'color',
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		dropdown: {
@@ -158,7 +158,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'date-time',
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		textarea: {
@@ -167,7 +167,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'textarea',
 				label: __( 'Textarea' ),
 				help: __( 'Textarea help text' ),
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		email: {
@@ -175,14 +175,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'email',
 				label: __( 'Email' ),
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		hidden: {
 			type: 'string',
 			field: {
 				type: 'hidden',
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		number: {
@@ -190,7 +190,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'number',
 				label: __( 'Number' ),
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		search: {
@@ -198,7 +198,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'search',
 				label: __( 'Search' ),
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		tel: {
@@ -206,7 +206,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'tel',
 				label: __( 'Telephone' ),
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		editor: {
@@ -219,7 +219,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'radio',
-				position: 'inspector',
+				placement: 'inspector',
 				label: __( 'Layout Options' ),
 				options: [
 					{
@@ -238,7 +238,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'range',
 				label: __( 'Columns' ),
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 	},

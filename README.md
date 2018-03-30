@@ -78,14 +78,14 @@ registerBlockType( 'example-namespace/example-block', {
 			field: {
 				type: 'number',
 				label: 'Number',
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 		columns: {
 			type: 'string',
 			field: {
 				type: 'range',
-				position: 'inspector',
+				placement: 'inspector',
 			},
 		},
 	},
@@ -721,7 +721,7 @@ dateTime: {
 	type: 'string',
 	field: {
 		type: 'date-time',
-		position: 'inspector',
+		placement: 'inspector',
 	},
 }
 ```
@@ -761,7 +761,7 @@ color: {
 	type: 'string',
 	field: {
 		type: 'color',
-		position: 'inspector',
+		placement: 'inspector',
 	},
 }
 ```
@@ -801,7 +801,7 @@ switch: {
 	field: {
 		type: 'switch',
 		label: __( 'Form Toggle' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 }
 ```
@@ -856,7 +856,7 @@ textarea: {
 	field: {
 		type: 'textarea',
 		label: __( 'Textarea' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 ```
@@ -903,14 +903,14 @@ email: {
 	field: {
 		type: 'email',
 		label: __( 'Email' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 hidden: {
 	type: 'string',
 	field: {
 		type: 'hidden',
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 number: {
@@ -918,7 +918,7 @@ number: {
 	field: {
 		type: 'number',
 		label: __( 'Number' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 search: {
@@ -926,7 +926,7 @@ search: {
 	field: {
 		type: 'search',
 		label: __( 'Search' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 tel: {
@@ -934,7 +934,7 @@ tel: {
 	field: {
 		type: 'tel',
 		label: __( 'Telephone' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 ```
@@ -1035,7 +1035,7 @@ If this property is added, an option will be added with this label to represent 
 A function that receives the id of the new node element that is being selected.
 
 - Type: `function`
-- Required: Yes
+- Required: No
 
 #### selectedId:
 
@@ -1062,7 +1062,7 @@ treeSelect: {
 	field: {
 		type: 'tree-select',
 		label: __( 'Parent page' ),
-		position: 'inspector',
+		placement: 'inspector',
 		tree: [
 			{
 				name: __( 'Page 1' ),
