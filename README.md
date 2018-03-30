@@ -263,6 +263,7 @@ If set, `button` will be replaced with `a`
 * Required: No
 * Default: null
 
+**NOTE:** buttonText is applicable only when editable is not set to true.
 
 For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/button).
 
