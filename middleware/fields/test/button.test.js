@@ -1,4 +1,4 @@
-import { GutenbergFieldsMiddleWare } from '../index';
+import { button } from '../button';
 
 function sum( a, b ) {
 	return a + b;
