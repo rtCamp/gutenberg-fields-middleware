@@ -117,6 +117,34 @@ registerBlockType( 'example-namespace/example-block', {
 
 
 
+If you want `field` can also be added when registering `attributes` server side using `register_block_type` 
+
+**Example:**
+
+```php
+register_block_type( 'example-namespace/example-block', array(
+	'attributes' => array(
+		'text' => array(
+			'type' => 'string',
+			'field' => array(
+				'type' => 'text',
+				'placeholder' => 'Enter Text..'
+			)
+		),
+		'color' => array(
+			'type' => 'string',
+			'field' => array(
+				'type' => 'color'
+			)
+		)
+	),
+) );
+```
+
+
+
+
+
 # Fields
 
 Middleware has support for the following field types:
@@ -209,7 +237,7 @@ Make button editable.
 
 #### buttonText:
 
-Fallback button text.
+Fallback button text. Applicable when `editable` is not set to `true`.
 * Type: `string`
 * Required: No
 * Default: null
@@ -245,7 +273,6 @@ button: {
 	type: 'string',
 	field: {
 		type: 'button',
-		isLarge: true,
 		editable: true,
 	},
 }
@@ -434,7 +461,7 @@ range: {
 
 
 
-## url
+## link
 
 #### value:
 
@@ -458,7 +485,7 @@ For more [read gutenberg readme](https://github.com/WordPress/gutenberg/tree/mas
 url: {
 	type: 'string',
 	field: {
-		type: 'url',
+		type: 'link',
 	},
 }
 ```

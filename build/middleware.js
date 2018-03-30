@@ -180,7 +180,7 @@ var GutenbergFieldsMiddleWare = function () {
 				case 'rich-text':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, config, attributeKey);
 					break;
-				case 'url':
+				case 'link':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_url_input__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'image':
@@ -301,6 +301,8 @@ addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/a
 
 	return settings;
 }, 1);
+
+/* harmony default export */ __webpack_exports__["default"] = (GutenbergFieldsMiddleWare);
 
 /***/ }),
 /* 2 */
@@ -681,7 +683,7 @@ function checkboxControl(props, config, attributeKey) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = radioControl;
 /**
- * Url field.
+ * Radio Control field.
  */
 
 var RadioControl = wp.components.RadioControl;
@@ -801,7 +803,7 @@ function button(props, config, attributeKey) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = colorPalette;
 /**
- * Range field.
+ * Color Palette field.
  */
 
 var ColorPalette = wp.blocks.ColorPalette;

@@ -73,7 +73,7 @@ class GutenbergFieldsMiddleWare {
 			case 'rich-text':
 				fields[ attributeKey ] = richText( props, config, attributeKey );
 				break;
-			case 'url':
+			case 'link':
 				fields[ attributeKey ] = urlInput( props, config, attributeKey );
 				break;
 			case 'image':

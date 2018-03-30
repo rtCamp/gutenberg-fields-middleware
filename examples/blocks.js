@@ -16,7 +16,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 		url: {
 			type: 'string',
 			field: {
-				type: 'url',
+				type: 'link',
 			},
 		},
 		text: {
@@ -30,7 +30,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'rich-text',
-				placeholder: __( 'Enter text' ),
+				placeholder: __( 'Enter rich text' ),
 			},
 		},
 		image: {
