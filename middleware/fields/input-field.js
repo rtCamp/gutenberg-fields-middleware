@@ -23,7 +23,7 @@ export default function inputField( props, config, attributeKey ) {
 	const help = fieldAttributes.help;
 
 	delete fieldAttributes.id;
-	delete fieldAttributes.position;
+	delete fieldAttributes.placement;
 	delete fieldAttributes.label;
 	delete fieldAttributes.help;
 

@@ -254,7 +254,7 @@ var GutenbergFieldsMiddleWare = function () {
 
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
 				if (attribute.field) {
-					if ('inspector' === attribute.field.position) {
+					if ('inspector' === attribute.field.placement) {
 						_.extend(_this2.inspectorControlFields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
 					} else {
 						_.extend(_this2.fields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
@@ -446,7 +446,7 @@ function inputField(props, config, attributeKey) {
 	var help = fieldAttributes.help;
 
 	delete fieldAttributes.id;
-	delete fieldAttributes.position;
+	delete fieldAttributes.placement;
 	delete fieldAttributes.label;
 	delete fieldAttributes.help;
 
