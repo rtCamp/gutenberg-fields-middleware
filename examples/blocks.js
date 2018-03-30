@@ -39,7 +39,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'image',
 				buttonText: __( 'Upload' ),
 				imagePlaceholder: true,
-				removeButton: __( 'Remove' ),
+				removeButtonText: __( 'Remove' ),
 			},
 		},
 		option: {
