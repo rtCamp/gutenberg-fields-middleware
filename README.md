@@ -1035,7 +1035,7 @@ If this property is added, an option will be added with this label to represent 
 A function that receives the id of the new node element that is being selected.
 
 - Type: `function`
-- Required: Yes
+- Required: No
 
 #### selectedId:
 
