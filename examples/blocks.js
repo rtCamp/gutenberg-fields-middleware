@@ -39,7 +39,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'image',
 				buttonText: __( 'Upload' ),
 				imagePlaceholder: true,
-				removeButton: __( 'Remove' ),
+				removeButtonText: __( 'Remove' ),
 			},
 		},
 		option: {
@@ -166,6 +166,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'textarea',
 				label: __( 'Textarea' ),
+				help: __( 'Textarea help text' ),
 				placement: 'inspector',
 			},
 		},

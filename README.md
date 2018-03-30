@@ -555,11 +555,11 @@ selectOption: {
 
 
 
-## image / video / audio
+## image
 
 #### buttonText:
 
-Upload button text.
+Upload button text.  Only applicable when `imagePlaceholder` is not set to true.
 
 - Type: `string`
 - Required: No

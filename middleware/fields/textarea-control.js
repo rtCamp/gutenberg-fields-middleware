@@ -17,16 +17,12 @@ export default function textareaControl( props, config, attributeKey ) {
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
-	const label = fieldAttributes.label;
 
 	delete fieldAttributes.type;
-	delete fieldAttributes.label;
 
 	return (
 		<BaseControl
-			label={ label }
 			id={ fieldAttributes.id }
-			help={ fieldAttributes.help }
 		>
 			<TextareaControl
 				{ ...fieldAttributes }
