@@ -23,23 +23,42 @@ wp_enqueue_script(
 
 Once you've required the `gutenberg-fields-middleware` dependency, fields are registered as attribute configuration details.
 
-Here's how you might register `url` and `text` fields:
+Here's how you might register `url`, `text` and `range` fields:
 
 ```js
 registerBlockType( 'example-namespace/example-block', {
 	title: 'Example Block',
-	url: {
-		type: 'string',
-		field: {
-			type: 'url',
+	attributes: {
+		url: {
+			type: 'string',
+			field: {
+				type: 'url',
+			},
+		},
+		text: {
+			type: 'string',
+			field: {
+				type: 'text',
+				placeholder: 'Enter link text',
+			},
+		},
+		range: {
+			type: 'string',
+			field: {
+				type: 'range',
+				label: __( 'Columns' ),
+				placement: 'inspector',
+			},
 		},
 	},
-	text: {
-		type: 'string',
-		field: {
-			type: 'text',
-			placeholder: 'Enter link text',
-		},
+
+	edit( props, middleware ) {
+		return [
+			middleware.inspectorControls,
+			middleware.fields.url,
+			middleware.fields.text,
+			middleware.fields.range,
+		];
 	},
 });
 ```
@@ -72,25 +91,6 @@ register_block_type( 'example-namespace/example-block', array(
 **Inspector Controls:**
 
 Inspector controls are shown in the sidebar when a block is selected and can easily be added by using `placement: 'inspector'` when adding attributes as shown in the example below.
-
-```js
-attributes: {
-    columns: {
-        type: 'string',
-        field: {
-            type: 'range',
-            label: __( 'Columns' ),
-            placement: 'inspector',
-        },
-    },
-},
-
-edit( props, middleware ) {
-    return [
-        middleware.inspectorControls,
-    ];
-}
-```
 
 Alternatively the middleware can also be used just by enqueuing `buid/middleware.js` file as dependency.
 
@@ -942,11 +942,11 @@ For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/mas
 
 ```js
 dropdown: {
-    type: 'string',
-    field: {
-        type: 'dropdown',
-        position: 'top left',
-    },
+	type: 'string',
+	field: {
+		type: 'dropdown',
+		position: 'top left',
+	},
 }
 ```
 
