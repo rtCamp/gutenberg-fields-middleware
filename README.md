@@ -71,9 +71,9 @@ register_block_type( 'example-namespace/example-block', array(
 
 **Inspector Controls:**
 
-Use `placement: inspector` with the `field` configurations
+Inspector controls are shown in the sidebar when a block is selected and can easily be added by using `placement: 'inspector'` when adding attributes as shown in the example below.
 
-```
+```js
 attributes: {
     columns: {
         type: 'string',
@@ -85,7 +85,6 @@ attributes: {
     },
 },
 
-// Optional.
 edit( props, middleware ) {
     return [
         middleware.inspectorControls,
@@ -93,7 +92,7 @@ edit( props, middleware ) {
 }
 ```
 
-Alternatively the middleware can also be used just by enqueuing  `buid/middleware.js` file
+Alternatively the middleware can also be used just by enqueuing `buid/middleware.js` file as dependency.
 
 ## Available Fields
 
