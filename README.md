@@ -65,8 +65,35 @@ register_block_type( 'example-namespace/example-block', array(
 			)
 		)
 	),
+	'render_callback' => 'example_callback',
 ) );
 ```
+
+**Inspector Controls:**
+
+Use `placement: inspector` with the `field` configurations
+
+```
+attributes: {
+    columns: {
+        type: 'string',
+        field: {
+            type: 'range',
+            label: __( 'Columns' ),
+            placement: 'inspector',
+        },
+    },
+},
+
+// Optional.
+edit( props, middleware ) {
+    return [
+        middleware.inspectorControls,
+    ];
+}
+```
+
+Alternatively the middleware can also be used just by enqueuing  `buid/middleware.js` file
 
 ## Available Fields
 
