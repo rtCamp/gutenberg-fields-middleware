@@ -26,6 +26,9 @@ Once you've required the `gutenberg-fields-middleware` dependency, fields are re
 Here's how you might register `url`, `text` and `range` fields:
 
 ```js
+// Inspector controls are shown in the sidebar when a block is selected and can easily be added
+// by using `placement: 'inspector'` when adding attributes as shown in the example below.
+
 registerBlockType( 'example-namespace/example-block', {
 	title: 'Example Block',
 	attributes: {
@@ -87,10 +90,6 @@ register_block_type( 'example-namespace/example-block', array(
 	'render_callback' => 'example_callback',
 ) );
 ```
-
-**Inspector Controls:**
-
-Inspector controls are shown in the sidebar when a block is selected and can easily be added by using `placement: 'inspector'` when adding attributes as shown in the example below.
 
 Alternatively the middleware can also be used just by enqueuing `buid/middleware.js` file as dependency.
 
