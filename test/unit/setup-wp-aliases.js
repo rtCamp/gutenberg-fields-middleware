@@ -6,6 +6,8 @@ global.wp = {
 	},
 };
 
+global._ = require( 'underscore' );
+
 [
 	'element',
 	'i18n',
