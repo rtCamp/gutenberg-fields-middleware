@@ -14,12 +14,6 @@ export default function imageUpload( props, config, attributeKey ) {
 
 	const defaultAttributes = {
 
-		onSelect( media ) {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = media;
-			props.setAttributes( newAttributes );
-		},
-
 		type: 'image',
 
 		value: image || '',
@@ -64,6 +58,16 @@ export default function imageUpload( props, config, attributeKey ) {
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
+
+	fieldAttributes.onSelect = ( media ) => {
+		if ( config.onSelect ) {
+			config.onSelect( media, props );
+		} else {
+			const newAttributes = {};
+			newAttributes[ attributeKey ] = media;
+			props.setAttributes( newAttributes );
+		}
+	};
 
 	delete fieldAttributes.buttonText;
 	delete fieldAttributes.imagePlaceholder;

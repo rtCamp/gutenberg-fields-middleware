@@ -110,7 +110,7 @@ The current value of text field.
 
 #### onChange:
 
-A function that receives the new value of the text field each time it changes.
+A function that receives the new value of the text field each time it changes. It passes the new `value` as first argument and `props` as second argument.
 
 - Type: `Function`
 - Required: No
@@ -147,7 +147,7 @@ The current value of rich text field.
 
 #### onChange:
 
-A function that receives the new value of the rich text field each time it changes.
+A function that receives the new value of the rich text field each time it changes. It passes the new `value` as first argument and `props` as second argument.
 
 - Type: `Function`
 - Required: No
@@ -253,7 +253,7 @@ An array of objects containing the following properties:
 
 #### onChange:
 
-A function that receives the value of the new option that is being selected as input.
+A function that receives the value of the new option that is being selected as input. It passes the new `value` as first argument and `props` as second argument.
 * Type: `function`
 * Required: No
 
@@ -313,7 +313,7 @@ If checked is true the checkbox will be checked. If checked is false the checkbo
 
 #### onChange:
 
-A function that receives the checked state (boolean) as input.
+A function that receives the checked state (boolean) as input. It passes the new `checked` value as first argument and `props` as second argument.
 * Type: `function`
 * Required: Yes
 
@@ -374,7 +374,7 @@ The current value of the range slider.
 
 #### onChange:
 
-A function that receives the new value. If allowReset is true, when onChange is called without any parameter passed it should reset the value.
+A function that receives the new value. If allowReset is true, when onChange is called without any parameter passed it should reset the value. It passes the new `value` as first argument and `props` as second argument.
 * Type: `function`
 * Required: No
 
@@ -409,7 +409,7 @@ Value of url field.
 
 #### onChange:
 
-A function that receives the value of the new option that is being selected as input.
+A function that receives the value of the new option that is being selected as input. It passes the new `value` as first argument and `props` as second argument.
 
 - Type: `function`
 - Required: No
@@ -461,7 +461,7 @@ An array of objects containing the following properties:
 
 #### onChange:
 
-A function that receives the value of the new option that is being selected as input. If multiple is true the value received is an array of the selected value. If multiple is false the value received is a single value with the new selected value.
+A function that receives the value of the new option that is being selected as input . If multiple is true the value received is an array of the selected value. If multiple is false the value received is a single value with the new selected value. It passes the new `value` as first argument and `props` as second argument.
 * Type: `Function`
 * Required: No
 
@@ -534,7 +534,7 @@ Media ID (or media IDs if multiple is true) to be selected by default when openi
 
 #### onSelect:
 
-Callback called when the media modal is closed, the selected media are passed as an argument.
+Callback when the media modal is closed, the selected `media` are passed as the first argument and `props` as second argument.
 
 - Type: `Function`
 - Required: No
@@ -590,7 +590,7 @@ The function called when the editor is focused.
 
 #### onChange:
 
-The function called when the user has modified the source code via the editor. It is passed the new value as an argument.
+The function called when the user has modified the source code via the editor. It passes the new `value ` as an argument and `props` as second param.
 
 - Type: `Function`
 - Required: No
@@ -629,7 +629,7 @@ The current date and time at initialization.
 
 #### onChange:
 
-The function called when a new date or time has been selected. It is passed the `currentDate` as an argument.
+The function called when a new date or time has been selected.It passes the `currentDate` as the first argument and `props` as second argument.
 
 - Type: `Function`
 - Required: No
@@ -683,7 +683,7 @@ The value of color.
 
 #### onChange:
 
-The function called when a new color has been selected. It passes the new value as an argument.
+The function called when a new color has been selected. It passes the new `value` as first argument and `props` as second argument.
 
 - Type: `Function`
 - Required: No
@@ -722,7 +722,7 @@ Checked attribute of checkbox. Changes the accessibility text to "On/Off".
 
 #### onChange:
 
-The function called when switch toggles. It passes the new value as an argument.
+The function called when switch toggles. It passes the new `value` as first argument and `props` as second argument.
 
 - Type: `Function`
 - Required: No
@@ -755,7 +755,7 @@ The current value of the textarea.
 
 #### onChange:
 
-A function that receives the new value of the textarea each time it changes.
+A function that receives the new value of the textarea each time it changes. It passes the new `value` as first argument and `props` as second argument.
 
 - Type: `Function`
 - Required: No
@@ -805,7 +805,7 @@ Creates input fields with above types. You can pass key value pairs will be pass
 
 #### onChange:
 
-A function that receives the new value of the input field each time it changes.
+A function that receives the new value of the input field each time it changes. It passes the new `value` as first argument and `props` as second argument.
 
 - Type: `Function`
 - Required: No
@@ -968,7 +968,7 @@ If this property is added, an option will be added with this label to represent 
 
 #### onChange:
 
-A function that receives the id of the new node element that is being selected.
+A function that receives the id of the new node element that is being selected. It passes the new `value` as first argument and `props` as second argument.
 
 - Type: `function`
 - Required: No
