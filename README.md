@@ -35,7 +35,7 @@ registerBlockType( 'example-namespace/example-block', {
 		url: {
 			type: 'string',
 			field: {
-				type: 'url',
+				type: 'link',
 			},
 		},
 		text: {
