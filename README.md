@@ -35,7 +35,7 @@ registerBlockType( 'example-namespace/example-block', {
 		url: {
 			type: 'string',
 			field: {
-				type: 'url',
+				type: 'link',
 			},
 		},
 		text: {
@@ -49,7 +49,7 @@ registerBlockType( 'example-namespace/example-block', {
 			type: 'string',
 			field: {
 				type: 'range',
-				label: __( 'Columns' ),
+				label: 'Columns',
 				placement: 'inspector',
 			},
 		},
