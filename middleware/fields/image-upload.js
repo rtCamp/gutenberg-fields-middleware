@@ -1,5 +1,5 @@
 /**
- * Image, Video, Audio Field.
+ * Image Field.
  */
 
 const { MediaUpload } = wp.blocks;
@@ -8,7 +8,7 @@ const { __ } = wp.i18n;
 
 import imagePlaceholder from '../components/image-placeholder';
 
-export default function mediaUpload( props, config, attributeKey ) {
+export default function imageUpload( props, config, attributeKey ) {
 	const buttonText = config.buttonText ? config.buttonText : __( 'Open Media Library' );
 	const image = props.attributes[ attributeKey ];
 
@@ -42,14 +42,14 @@ export default function mediaUpload( props, config, attributeKey ) {
 					<img className="uploaded-image" src={ image.url } alt={ image.alt } />
 				) );
 
-				if ( !! config.removeButton ) {
+				if ( !! config.removeButtonText ) {
 					nodes.push( (
 						<Button className="button button-large button-remove" onClick={ () => {
 							const newAttributes = {};
 							newAttributes[ attributeKey ] = '';
 							props.setAttributes( newAttributes );
 						} }>
-							{ config.removeButton }
+							{ config.removeButtonText }
 						</Button>
 					) );
 				}
@@ -67,7 +67,7 @@ export default function mediaUpload( props, config, attributeKey ) {
 
 	delete fieldAttributes.buttonText;
 	delete fieldAttributes.imagePlaceholder;
-	delete fieldAttributes.removeButton;
+	delete fieldAttributes.removeButtonText;
 
 	return (
 		<MediaUpload

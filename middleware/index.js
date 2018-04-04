@@ -13,7 +13,7 @@ import plainText from './fields/plain-text';
 import textareaControl from './fields/textarea-control';
 import inputField from './fields/input-field';
 import urlInput from './fields/url-input';
-import mediaUpload from './fields/media-upload';
+import imageUpload from './fields/image-upload';
 import selectControl from './fields/select-control';
 import checkboxControl from './fields/checkbox-control';
 import radioControl from './fields/radio-control';
@@ -77,13 +77,7 @@ class GutenbergFieldsMiddleWare {
 				fields[ attributeKey ] = urlInput( props, config, attributeKey );
 				break;
 			case 'image':
-				fields[ attributeKey ] = mediaUpload( props, config, attributeKey );
-				break;
-			case 'video':
-				fields[ attributeKey ] = mediaUpload( props, config, attributeKey );
-				break;
-			case 'audio':
-				fields[ attributeKey ] = mediaUpload( props, config, attributeKey );
+				fields[ attributeKey ] = imageUpload( props, config, attributeKey );
 				break;
 			case 'select':
 				fields[ attributeKey ] = selectControl( props, config, attributeKey );
@@ -144,7 +138,7 @@ class GutenbergFieldsMiddleWare {
 	setBlockComponents( props ) {
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
 			if ( attribute.field ) {
-				if ( 'inspector' === attribute.field.position ) {
+				if ( 'inspector' === attribute.field.placement ) {
 					_.extend( this.inspectorControlFields, this.getFields( attribute.field.type, attributeKey, props, attribute.field ) );
 				} else {
 					_.extend( this.fields, this.getFields( attribute.field.type, attributeKey, props, attribute.field ) );

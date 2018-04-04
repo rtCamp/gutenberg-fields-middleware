@@ -1,22 +1,36 @@
 # Gutenberg Fields Middleware
 
-Provides middleware to easily register fields for Gutenberg blocks.
+Register fields for Gutenberg blocks with a simple, declarative API.
 
+This project is in its early stages. Please [open an issue](https://github.com/rtCamp/gutenberg-fields-middleware/issues) with questions, feedback, suggestions, and bug reports.
 
+Haven't written a Gutenberg block yet? During the month of April, rtCamp is offering [complimentary technical introductions to Gutenberg](https://gutenberg.rtcamp.com/) as a public service campaign for the community.
 
-After activating the plugin use `gutenberg-fields-middleware` handle as dependency when enqueueing your block js file. Define your fields inside `attributes` as `field` and then use ( optionally ) those fields inside `edit` method as `middleware.fields.attributeKey` 
+[Using](#using) | [Available Fields](#available-fields)
 
+## Using
 
+First, install the Gutenberg Fields Middleware as a standalone WordPress plugin. This will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script:
 
-## Example Usage
+```php
+wp_enqueue_script(
+	'gutenberg-middleware-examples',
+	plugins_url( 'blocks.js', __FILE__ ),
+	array( 'gutenberg-fields-middleware' ),
+	filemtime( GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR. '/examples/blocks.js' )
+);
+```
 
+Once you've required the `gutenberg-fields-middleware` dependency, fields are registered as attribute configuration details.
+
+Here's how you might register `url`, `text` and `range` fields:
 
 ```js
+// Inspector controls are shown in the sidebar when a block is selected and can easily be added
+// by using `placement: 'inspector'` when adding attributes as shown in the example below.
+
 registerBlockType( 'example-namespace/example-block', {
 	title: 'Example Block',
-	description: 'Block Description',
-	icon: 'universal-access-alt',
-	category: 'common',
 	attributes: {
 		url: {
 			type: 'string',
@@ -31,105 +45,40 @@ registerBlockType( 'example-namespace/example-block', {
 				placeholder: 'Enter link text',
 			},
 		},
-		image: {
-			type: 'object',
-			field: {
-				type: 'image',
-				buttonText: 'Upload',
-				imagePlaceholder: true,
-				removeButtonText: 'Remove',
-			},
-		},
-		option: {
-			type: 'string',
-			field: {
-				type: 'select',
-				label: 'Select Numbers',
-				options: [
-					{
-						value: 'one',
-						label: 'one',
-					},
-					{
-						value: 'two',
-						label: 'two',
-					},
-				],
-			},
-		},
-		radio: {
-			type: 'string',
-			field: {
-				type: 'radio',
-				options: [
-					{
-						value: 'one',
-						label: 'one',
-					},
-					{
-						value: 'two',
-						label: 'two',
-					},
-				],
-			},
-		},
-		number: {
-			type: 'string',
-			field: {
-				type: 'number',
-				label: 'Number',
-				position: 'inspector',
-			},
-		},
-		columns: {
+		range: {
 			type: 'string',
 			field: {
 				type: 'range',
-				position: 'inspector',
+				label: __( 'Columns' ),
+				placement: 'inspector',
 			},
 		},
 	},
 
-	// Optional.
 	edit( props, middleware ) {
 		return [
-			middleware.inspectorControls, // When adding inspector controls.
+			middleware.inspectorControls,
 			middleware.fields.url,
 			middleware.fields.text,
-			middleware.fields.image,
-			middleware.fields.option,
-			middleware.fields.radio,
+			middleware.fields.range,
 		];
 	},
-
-	save( props ) {
-		return el(
-			'div', {}, [
-				el( 'p', {}, props.attributes.text ),
-				el( 'a', { href: props.attributes.url }, 'Link' ),
-				// ...
-			]
-		);
-	},
-
-} );
+});
 ```
 
-
-
-If you want `field` can also be added when registering `attributes` server side using `register_block_type` 
-
-**Example:**
+Gutenberg Fields Middleware also works for PHP block registration:
 
 ```php
 register_block_type( 'example-namespace/example-block', array(
 	'attributes' => array(
-		'text' => array(
-			'type' => 'string',
+		'image' => array(
+			'type' => 'object',
 			'field' => array(
-				'type' => 'text',
-				'placeholder' => 'Enter Text..'
-			)
+				'type' => 'image',
+				'buttonText' => 'Upload',
+				'imagePlaceholder' => true,
+				'removeButtonText' => 'Remove',
+			),
 		),
 		'color' => array(
 			'type' => 'string',
@@ -138,20 +87,17 @@ register_block_type( 'example-namespace/example-block', array(
 			)
 		)
 	),
+	'render_callback' => 'example_callback',
 ) );
 ```
 
+Alternatively the middleware can also be used just by enqueuing `buid/middleware.js` file as dependency.
 
+## Available Fields
 
+Gutenberg Fields Middleware supports the following field types and type configuration.
 
-
-# Fields
-
-Middleware has support for the following field types:
-
-
-
-## text
+### text
 
 Render an auto-growing textarea allow users to fill any textual content.
 
@@ -185,9 +131,7 @@ text: {
 }
 ```
 
-
-
-## rich-text
+### rich-text
 
 #### placeholder:
 
@@ -222,11 +166,7 @@ text: {
 }
 ```
 
-
-
-
-
-## button
+### button
 
 #### editable:
 
@@ -280,8 +220,7 @@ button: {
 ```
 
 
-
-## radio
+### radio
 
 #### label:
 
@@ -345,7 +284,7 @@ radio: {
 
 
 
-## checkbox
+### checkbox
 
 #### heading:
 
@@ -395,10 +334,7 @@ check: {
 }
 ```
 
-
-
-
-## range
+### range
 
 #### label:
 
@@ -462,7 +398,7 @@ range: {
 
 
 
-## link
+### link
 
 #### value:
 
@@ -493,7 +429,7 @@ url: {
 
 
 
-## select
+### select
 
 #### label:
 
@@ -555,11 +491,11 @@ selectOption: {
 
 
 
-## image / video / audio
+### image
 
 #### buttonText:
 
-Upload button text.
+Upload button text.  Only applicable when `imagePlaceholder` is not set to true.
 
 - Type: `string`
 - Required: No
@@ -628,7 +564,7 @@ image: {
 
 
 
-## editor
+### editor
 
 #### value:
 
@@ -674,7 +610,7 @@ editorContent: {
 
 
 
-## date-time
+### date-time
 
 #### label:
 
@@ -721,14 +657,14 @@ dateTime: {
 	type: 'string',
 	field: {
 		type: 'date-time',
-		position: 'inspector',
+		placement: 'inspector',
 	},
 }
 ```
 
 
 
-## color
+### color
 
 #### label:
 
@@ -761,14 +697,14 @@ color: {
 	type: 'string',
 	field: {
 		type: 'color',
-		position: 'inspector',
+		placement: 'inspector',
 	},
 }
 ```
 
 
 
-## switch
+### switch
 
 #### label:
 
@@ -801,14 +737,14 @@ switch: {
 	field: {
 		type: 'switch',
 		label: __( 'Form Toggle' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 }
 ```
 
 
 
-## textarea
+### textarea
 
 #### value:
 
@@ -856,14 +792,14 @@ textarea: {
 	field: {
 		type: 'textarea',
 		label: __( 'Textarea' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 ```
 
 
 
-## email / number/ hidden / search / tel
+### email / number/ hidden / search / tel
 
 Creates input fields with above types. You can pass key value pairs will be passed to the input. 
 
@@ -903,14 +839,14 @@ email: {
 	field: {
 		type: 'email',
 		label: __( 'Email' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 hidden: {
 	type: 'string',
 	field: {
 		type: 'hidden',
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 number: {
@@ -918,7 +854,7 @@ number: {
 	field: {
 		type: 'number',
 		label: __( 'Number' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 search: {
@@ -926,7 +862,7 @@ search: {
 	field: {
 		type: 'search',
 		label: __( 'Search' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 tel: {
@@ -934,13 +870,13 @@ tel: {
 	field: {
 		type: 'tel',
 		label: __( 'Telephone' ),
-		position: 'inspector',
+		placement: 'inspector',
 	},
 },
 ```
 
 
-## dropdown
+### dropdown
 
 #### className:
 
@@ -1005,16 +941,16 @@ For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/mas
 
 ```js
 dropdown: {
-    type: 'string',
-    field: {
-        type: 'dropdown',
-        position: 'top left',
-    },
+	type: 'string',
+	field: {
+		type: 'dropdown',
+		position: 'top left',
+	},
 }
 ```
 
 
-## tree-select
+### tree-select
 
 #### label:
 
@@ -1035,7 +971,7 @@ If this property is added, an option will be added with this label to represent 
 A function that receives the id of the new node element that is being selected.
 
 - Type: `function`
-- Required: Yes
+- Required: No
 
 #### selectedId:
 
@@ -1062,7 +998,7 @@ treeSelect: {
 	field: {
 		type: 'tree-select',
 		label: __( 'Parent page' ),
-		position: 'inspector',
+		placement: 'inspector',
 		tree: [
 			{
 				name: __( 'Page 1' ),

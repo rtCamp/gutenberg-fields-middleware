@@ -81,7 +81,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_textarea_control__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_url_input__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_media_upload__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_image_upload__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_select_control__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_checkbox_control__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_radio_control__ = __webpack_require__(11);
@@ -184,13 +184,7 @@ var GutenbergFieldsMiddleWare = function () {
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_url_input__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'image':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_media_upload__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'video':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_media_upload__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'audio':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_media_upload__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_image_upload__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'select':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_select_control__["a" /* default */])(props, config, attributeKey);
@@ -254,7 +248,7 @@ var GutenbergFieldsMiddleWare = function () {
 
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
 				if (attribute.field) {
-					if ('inspector' === attribute.field.position) {
+					if ('inspector' === attribute.field.placement) {
 						_.extend(_this2.inspectorControlFields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
 					} else {
 						_.extend(_this2.fields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
@@ -396,17 +390,13 @@ function textareaControl(props, config, attributeKey) {
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
-	var label = fieldAttributes.label;
 
 	delete fieldAttributes.type;
-	delete fieldAttributes.label;
 
 	return wp.element.createElement(
 		BaseControl,
 		{
-			label: label,
-			id: fieldAttributes.id,
-			help: fieldAttributes.help
+			id: fieldAttributes.id
 		},
 		wp.element.createElement(TextareaControl, fieldAttributes)
 	);
@@ -446,7 +436,7 @@ function inputField(props, config, attributeKey) {
 	var help = fieldAttributes.help;
 
 	delete fieldAttributes.id;
-	delete fieldAttributes.position;
+	delete fieldAttributes.placement;
 	delete fieldAttributes.label;
 	delete fieldAttributes.help;
 
@@ -496,10 +486,10 @@ function urlInput(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = mediaUpload;
+/* harmony export (immutable) */ __webpack_exports__["a"] = imageUpload;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(8);
 /**
- * Image, Video, Audio Field.
+ * Image Field.
  */
 
 var MediaUpload = wp.blocks.MediaUpload;
@@ -509,7 +499,7 @@ var __ = wp.i18n.__;
 
 
 
-function mediaUpload(props, config, attributeKey) {
+function imageUpload(props, config, attributeKey) {
 	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
 	var image = props.attributes[attributeKey];
 
@@ -543,7 +533,7 @@ function mediaUpload(props, config, attributeKey) {
 			} else {
 				nodes.push(wp.element.createElement('img', { className: 'uploaded-image', src: image.url, alt: image.alt }));
 
-				if (!!config.removeButton) {
+				if (!!config.removeButtonText) {
 					nodes.push(wp.element.createElement(
 						Button,
 						{ className: 'button button-large button-remove', onClick: function onClick() {
@@ -551,7 +541,7 @@ function mediaUpload(props, config, attributeKey) {
 								newAttributes[attributeKey] = '';
 								props.setAttributes(newAttributes);
 							} },
-						config.removeButton
+						config.removeButtonText
 					));
 				}
 			}
@@ -568,7 +558,7 @@ function mediaUpload(props, config, attributeKey) {
 
 	delete fieldAttributes.buttonText;
 	delete fieldAttributes.imagePlaceholder;
-	delete fieldAttributes.removeButton;
+	delete fieldAttributes.removeButtonText;
 
 	return wp.element.createElement(MediaUpload, fieldAttributes);
 }
