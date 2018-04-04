@@ -258,8 +258,8 @@ describe( 'GutenbergFieldsMiddleWare', () => {
 		},
 	};
 
-	const middleware = new GutenbergFieldsMiddleWare( settings );
-	const middlewareSettings = middleware.getSettings();
+	const middlewareInstance = new GutenbergFieldsMiddleWare( settings );
+	const middlewareSettings = middlewareInstance.getSettings();
 
 	describe( 'getSettings()', () => {
 		it( 'Should contains all required keys', () => {
@@ -274,4 +274,14 @@ describe( 'GutenbergFieldsMiddleWare', () => {
 			expect( 'function' === typeof middlewareSettings.save ).toBeTruthy();
 		} );
 	} );
+
+	// describe( 'Block Registration', () => {
+	// 	const blockName = 'test-blocks/test-block';
+	//
+	// 	const wrapper = blockEditRender( blockName, settings );
+	//
+	// 	it( 'Should have all fields', () => {
+	// 		expect( wrapper ).toEqual( '' );
+	// 	} );
+	// } );
 } );
