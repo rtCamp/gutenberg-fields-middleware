@@ -261,15 +261,17 @@ describe( 'GutenbergFieldsMiddleWare', () => {
 	const middleware = new GutenbergFieldsMiddleWare( settings );
 	const middlewareSettings = middleware.getSettings();
 
-	test( 'Contains all required keys', () => {
-		expect( _.keys( middlewareSettings ) ).toEqual( [ 'title', 'description', 'icon', 'category', 'attributes', 'save', 'edit' ] );
-	} );
+	describe( 'getSettings()', () => {
+		it( 'Should contains all required keys', () => {
+			expect( _.keys( middlewareSettings ) ).toEqual( [ 'title', 'description', 'icon', 'category', 'attributes', 'save', 'edit' ] );
+		} );
 
-	test( 'Edit method is function', () => {
-		expect( 'function' === typeof middlewareSettings.edit ).toBeTruthy();
-	} );
+		it( 'edit is function', () => {
+			expect( 'function' === typeof middlewareSettings.edit ).toBeTruthy();
+		} );
 
-	test( 'Save method is function', () => {
-		expect( 'function' === typeof middlewareSettings.save ).toBeTruthy();
+		it( 'save is function', () => {
+			expect( 'function' === typeof middlewareSettings.save ).toBeTruthy();
+		} );
 	} );
 } );
