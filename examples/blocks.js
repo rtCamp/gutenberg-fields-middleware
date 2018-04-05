@@ -17,6 +17,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'link',
+				placement: 'inspector',
+				label: 'Enter Link',
 			},
 		},
 		text: {

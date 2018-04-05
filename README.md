@@ -414,6 +414,13 @@ A function that receives the value of the new option that is being selected as i
 - Type: `function`
 - Required: No
 
+#### label:
+
+Label for input but applicable only when using it in inspector controls.
+
+- Type: `String`
+- Required: No
+
 For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/url-input).
 
 **Example:**

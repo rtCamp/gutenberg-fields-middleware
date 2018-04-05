@@ -3,6 +3,7 @@
  */
 
 const { UrlInput } = wp.blocks;
+const { BaseControl } = wp.components;
 
 export default function urlInput( props, config, attributeKey ) {
 	const defaultAttributes = {
@@ -22,6 +23,22 @@ export default function urlInput( props, config, attributeKey ) {
 	};
 
 	delete fieldAttributes.type;
+
+	if ( 'inspector' === config.placement ) {
+		delete fieldAttributes.placement;
+		return (
+			<BaseControl
+				label={ fieldAttributes.label }
+				id={ fieldAttributes.id }
+				help={ fieldAttributes.help }
+				className={ fieldAttributes.className }
+			>
+				<UrlInput
+					{ ...fieldAttributes }
+				/>
+			</BaseControl>
+		);
+	}
 
 	return (
 		<UrlInput

@@ -475,6 +475,7 @@ function inputField(props, config, attributeKey) {
  */
 
 var UrlInput = wp.blocks.UrlInput;
+var BaseControl = wp.components.BaseControl;
 
 
 function urlInput(props, config, attributeKey) {
@@ -495,6 +496,20 @@ function urlInput(props, config, attributeKey) {
 	};
 
 	delete fieldAttributes.type;
+
+	if ('inspector' === config.placement) {
+		delete fieldAttributes.placement;
+		return wp.element.createElement(
+			BaseControl,
+			{
+				label: fieldAttributes.label,
+				id: fieldAttributes.id,
+				help: fieldAttributes.help,
+				className: fieldAttributes.className
+			},
+			wp.element.createElement(UrlInput, fieldAttributes)
+		);
+	}
 
 	return wp.element.createElement(UrlInput, fieldAttributes);
 }
