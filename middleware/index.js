@@ -77,7 +77,15 @@ class GutenbergFieldsMiddleWare {
 		};
 
 		this.blockConfigs.save = ( props ) => {
-			return this.config.save ? this.config.save( props, this ) : this.save( props );
+			if ( this.config.save ) {
+				if ( this.constructor.isClassComponent( this.config.save ) ) {
+					return ( <this.config.save { ...props } /> );
+				}
+
+				return this.config.save( props, this );
+			}
+
+			return this.save( props );
 		};
 
 		return this.blockConfigs;

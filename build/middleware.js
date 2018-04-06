@@ -186,7 +186,15 @@ var GutenbergFieldsMiddleWare = function () {
 			};
 
 			this.blockConfigs.save = function (props) {
-				return _this.config.save ? _this.config.save(props, _this) : _this.save(props);
+				if (_this.config.save) {
+					if (_this.constructor.isClassComponent(_this.config.save)) {
+						return React.createElement(_this.config.save, props);
+					}
+
+					return _this.config.save(props, _this);
+				}
+
+				return _this.save(props);
 			};
 
 			return this.blockConfigs;
