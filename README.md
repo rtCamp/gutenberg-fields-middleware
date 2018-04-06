@@ -84,7 +84,7 @@ register_block_type( 'example-namespace/example-block', array(
 ) );
 ```
 
-✔️ Alternatively the middleware can also be used just by enqueuing `buid/middleware.js` file as dependency. Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' )` as dependency. 
+✔️ Alternatively the middleware can also be used just by enqueuing `buid/middleware.min.js` file as dependency. Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' )` as dependency. 
 
 
 
