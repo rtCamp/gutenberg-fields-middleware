@@ -10,25 +10,15 @@ Haven't written a Gutenberg block yet? During the month of April, rtCamp is offe
 
 ## Using
 
-First, install the Gutenberg Fields Middleware as a standalone WordPress plugin. This will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script:
+1. First, install the Gutenberg Fields Middleware as a standalone WordPress plugin. This will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script:
 
 ```php
-wp_enqueue_script(
-	'gutenberg-middleware-examples',
-	plugins_url( 'blocks.js', __FILE__ ),
-	array( 'gutenberg-fields-middleware' ),
-	filemtime( GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR. '/examples/blocks.js' )
-);
+wp_enqueue_script( 'block-js-handle', plugins_url( 'blocks.js', __FILE__ ), array( 'gutenberg-fields-middleware' ) );
 ```
 
-Once you've required the `gutenberg-fields-middleware` dependency, fields are registered as attribute configuration details.
-
-Here's how you might register `url`, `text` and `range` fields:
+2. Fields are now registered as attribute configuration details. Here's how you might register `url`, `text` and `range` fields:
 
 ```js
-// Inspector controls are shown in the sidebar when a block is selected and can easily be added
-// by using `placement: 'inspector'` when adding attributes as shown in the example below.
-
 registerBlockType( 'example-namespace/example-block', {
 	title: 'Example Block',
 	attributes: {
@@ -50,23 +40,26 @@ registerBlockType( 'example-namespace/example-block', {
 			field: {
 				type: 'range',
 				label: 'Columns',
-				placement: 'inspector',
+				placement: 'inspector', // To show in sidebar.
 			},
 		},
 	},
 
-	edit( props, middleware ) {
+	edit: function( props, middleware ) {
 		return [
-			middleware.inspectorControls,
+			middleware.inspectorControls, // Contains ALL inspector controls.
 			middleware.fields.url,
 			middleware.fields.text,
-			middleware.fields.range,
 		];
 	},
+	
+	save: function( props ) {}
 });
 ```
 
-Gutenberg Fields Middleware also works for PHP block registration:
+
+
+✔️ Gutenberg Fields Middleware also works for PHP block registration:
 
 ```php
 register_block_type( 'example-namespace/example-block', array(
@@ -91,7 +84,9 @@ register_block_type( 'example-namespace/example-block', array(
 ) );
 ```
 
-Alternatively the middleware can also be used just by enqueuing `buid/middleware.js` file as dependency.
+✔️ Alternatively the middleware can also be used just by enqueuing `buid/middleware.js` file as dependency. Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' )` as dependency. 
+
+
 
 ## Available Fields
 
@@ -1004,27 +999,27 @@ treeSelect: {
 	type: 'string',
 	field: {
 		type: 'tree-select',
-		label: __( 'Parent page' ),
+		label: 'Parent page',
 		placement: 'inspector',
 		tree: [
 			{
-				name: __( 'Page 1' ),
+				name: 'Page 1',
 				id: 'p1',
 				children: [
-					{ name: __( 'Descend 1 of page 1' ), id: 'p11' },
-					{ name: __( 'Descend 2 of page 1' ), id: 'p12' },
+					{ name: 'Descend 1 of page 1', id: 'p11' },
+					{ name: 'Descend 2 of page 1', id: 'p12' },
 				],
 			},
 			{
-				name: __( 'Page 2' ),
+				name: 'Page 2',
 				id: 'p2',
 				children: [
 					{
-						name: __( 'Descend 1 of page 2' ),
+						name: 'Descend 1 of page 2',
 						id: 'p21',
 						children: [
 							{
-								name: __( 'Descend 1 of Descend 1 of page 2' ),
+								name: 'Descend 1 of Descend 1 of page 2',
 								id: 'p211',
 							},
 						],
@@ -1036,6 +1031,46 @@ treeSelect: {
 }
 ```
 
----
 
-The plugin is currently just a proof of concept of the idea suggested by Daniel in his post [fields-middleware-for-gutenberg](https://danielbachhuber.com/2018/02/27/fields-middleware-for-gutenberg/)
+
+## Updating Field props
+
+To update or add properties to a field from `edit` method use `middleware.fields.attributeKey.props`.
+
+Example:
+
+```js
+registerBlockType( 'gb-m-example/simple-block', {
+	title: 'Simple Block',
+
+	attributes: {
+		button: {
+            type: 'string',
+            field: {
+                type: 'button',
+            },
+        },
+        color: {
+            type: 'string',
+            field: {
+                type: 'color',
+                placement: 'inspector',
+            },
+        },
+	},
+
+	edit( props, middleware ) {
+        middleware.fields.button.props.style = {
+            backgroundColor: props.attributes.color,
+        };
+        
+        return [
+        	middleware.inspectorControls,
+        	middleware.fields.button
+        ];
+    }
+}
+```
+
+![color-change](https://user-images.githubusercontent.com/6297436/38424317-46694046-39ce-11e8-8713-398c16a1b30c.gif)
+
