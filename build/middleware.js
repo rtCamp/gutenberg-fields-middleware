@@ -256,7 +256,7 @@ var GutenbergFieldsMiddleWare = function () {
 				}
 			});
 
-			this.inspectorControls = props.isSelected ? wp.element.createElement(
+			this.inspectorControls = props.isSelected ? React.createElement(
 				InspectorControls,
 				{ key: 'inspector-control' },
 				Object.keys(this.inspectorControlFields).map(function (key) {
@@ -269,7 +269,7 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function edit(props) {
 			var _this3 = this;
 
-			return [this.inspectorControls, wp.element.createElement(
+			return [this.inspectorControls, React.createElement(
 				'div',
 				{ key: props.className },
 				Object.keys(this.fields).map(function (key) {
@@ -330,7 +330,7 @@ function richText(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(RichText, fieldAttributes);
+	return React.createElement(RichText, fieldAttributes);
 }
 
 /***/ }),
@@ -365,7 +365,7 @@ function plainText(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(PlainText, fieldAttributes);
+	return React.createElement(PlainText, fieldAttributes);
 }
 
 /***/ }),
@@ -402,12 +402,12 @@ function textareaControl(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(
+	return React.createElement(
 		BaseControl,
 		{
 			id: fieldAttributes.id
 		},
-		wp.element.createElement(TextareaControl, fieldAttributes)
+		React.createElement(TextareaControl, fieldAttributes)
 	);
 }
 
@@ -455,10 +455,10 @@ function inputField(props, config, attributeKey) {
 	delete fieldAttributes.label;
 	delete fieldAttributes.help;
 
-	return wp.element.createElement(
+	return React.createElement(
 		BaseControl,
 		{ id: id, label: label, help: help },
-		wp.element.createElement('input', _extends({
+		React.createElement('input', _extends({
 			id: id
 		}, fieldAttributes))
 	);
@@ -499,7 +499,7 @@ function urlInput(props, config, attributeKey) {
 
 	if ('inspector' === config.placement) {
 		delete fieldAttributes.placement;
-		return wp.element.createElement(
+		return React.createElement(
 			BaseControl,
 			{
 				label: fieldAttributes.label,
@@ -507,11 +507,11 @@ function urlInput(props, config, attributeKey) {
 				help: fieldAttributes.help,
 				className: fieldAttributes.className
 			},
-			wp.element.createElement(UrlInput, fieldAttributes)
+			React.createElement(UrlInput, fieldAttributes)
 		);
 	}
 
-	return wp.element.createElement(UrlInput, fieldAttributes);
+	return React.createElement(UrlInput, fieldAttributes);
 }
 
 /***/ }),
@@ -551,17 +551,17 @@ function imageUpload(props, config, attributeKey) {
 				if (config.imagePlaceholder) {
 					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__["a" /* default */])(props, config, attributeKey));
 				} else {
-					nodes.push(wp.element.createElement(
+					nodes.push(React.createElement(
 						Button,
 						{ className: 'button button-large button-upload', onClick: open },
 						buttonText
 					));
 				}
 			} else {
-				nodes.push(wp.element.createElement('img', { className: 'uploaded-image', src: image.url, alt: image.alt }));
+				nodes.push(React.createElement('img', { className: 'uploaded-image', src: image.url, alt: image.alt }));
 
 				if (!!config.removeButtonText) {
-					nodes.push(wp.element.createElement(
+					nodes.push(React.createElement(
 						Button,
 						{ className: 'button button-large button-remove', onClick: function onClick() {
 								var newAttributes = {};
@@ -573,7 +573,7 @@ function imageUpload(props, config, attributeKey) {
 				}
 			}
 
-			return wp.element.createElement(
+			return React.createElement(
 				'div',
 				{ className: 'blocks-' + config.type + '-upload' },
 				nodes
@@ -597,7 +597,7 @@ function imageUpload(props, config, attributeKey) {
 	delete fieldAttributes.imagePlaceholder;
 	delete fieldAttributes.removeButtonText;
 
-	return wp.element.createElement(MediaUpload, fieldAttributes);
+	return React.createElement(MediaUpload, fieldAttributes);
 }
 
 /***/ }),
@@ -634,7 +634,7 @@ function imagePlaceholder(props, config, attributeKey) {
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	return wp.element.createElement(ImagePlaceholder, fieldAttributes);
+	return React.createElement(ImagePlaceholder, fieldAttributes);
 }
 
 /***/ }),
@@ -669,7 +669,7 @@ function selectControl(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(SelectControl, fieldAttributes);
+	return React.createElement(SelectControl, fieldAttributes);
 }
 
 /***/ }),
@@ -705,7 +705,7 @@ function checkboxControl(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(CheckboxControl, fieldAttributes);
+	return React.createElement(CheckboxControl, fieldAttributes);
 }
 
 /***/ }),
@@ -740,7 +740,7 @@ function radioControl(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(RadioControl, fieldAttributes);
+	return React.createElement(RadioControl, fieldAttributes);
 }
 
 /***/ }),
@@ -775,7 +775,7 @@ function rangeControl(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(RangeControl, fieldAttributes);
+	return React.createElement(RangeControl, fieldAttributes);
 }
 
 /***/ }),
@@ -802,10 +802,10 @@ function button(props, config, attributeKey) {
 	var buttonText = fieldAttributes.buttonText;
 	var editable = fieldAttributes.editable;
 
-	var editableButton = wp.element.createElement(
+	var editableButton = React.createElement(
 		"span",
 		{ className: "wp-block-button", key: "button" },
-		wp.element.createElement(RichText, {
+		React.createElement(RichText, {
 			tagName: "span",
 			placeholder: __('Add text…'),
 			value: props.attributes[attributeKey],
@@ -827,7 +827,7 @@ function button(props, config, attributeKey) {
 		return editableButton;
 	}
 
-	return wp.element.createElement(
+	return React.createElement(
 		Button,
 		fieldAttributes,
 		buttonText
@@ -870,10 +870,10 @@ function colorPalette(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(
+	return React.createElement(
 		PanelColor,
 		{ title: fieldAttributes.label, colorValue: fieldAttributes.value },
-		wp.element.createElement(ColorPalette, fieldAttributes)
+		React.createElement(ColorPalette, fieldAttributes)
 	);
 }
 
@@ -897,14 +897,14 @@ function dropdown(props, config) {
 			var isOpen = _ref.isOpen,
 			    onToggle = _ref.onToggle;
 
-			return wp.element.createElement(
+			return React.createElement(
 				'button',
 				{ className: 'button-primary button', onClick: onToggle, 'aria-expanded': isOpen },
 				__('Toggle Popover!')
 			);
 		},
 		renderContent: function renderContent() {
-			return wp.element.createElement(
+			return React.createElement(
 				'div',
 				null,
 				__('Dummy Popover Content!')
@@ -916,7 +916,7 @@ function dropdown(props, config) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(Dropdown, fieldAttributes);
+	return React.createElement(Dropdown, fieldAttributes);
 }
 
 /***/ }),
@@ -951,7 +951,7 @@ function editor(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(CodeEditor, fieldAttributes);
+	return React.createElement(CodeEditor, fieldAttributes);
 }
 
 /***/ }),
@@ -1011,14 +1011,14 @@ function dateTimePicker(props, config, attributeKey) {
 	delete fieldAttributes.type;
 	delete fieldAttributes.label;
 
-	return wp.element.createElement(
+	return React.createElement(
 		PanelBody,
-		{ initialOpen: false, title: [label + ': ', wp.element.createElement(
+		{ initialOpen: false, title: [label + ': ', React.createElement(
 				'span',
 				{ key: 'label' },
 				getFormattedDate()
 			)] },
-		wp.element.createElement(DateTimePicker, fieldAttributes)
+		React.createElement(DateTimePicker, fieldAttributes)
 	);
 }
 
@@ -1057,7 +1057,7 @@ function formToggle(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(
+	return React.createElement(
 		BaseControl,
 		{
 			label: fieldAttributes.label,
@@ -1065,7 +1065,7 @@ function formToggle(props, config, attributeKey) {
 			help: fieldAttributes.help,
 			className: 'components-toggle-control'
 		},
-		wp.element.createElement(FormToggle, fieldAttributes)
+		React.createElement(FormToggle, fieldAttributes)
 	);
 }
 
@@ -1101,7 +1101,7 @@ function treeSelect(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(TreeSelect, fieldAttributes);
+	return React.createElement(TreeSelect, fieldAttributes);
 }
 
 /***/ })
