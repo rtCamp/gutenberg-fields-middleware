@@ -159,12 +159,9 @@ var GutenbergFieldsMiddleWare = function () {
 
 			this.blockConfigs.edit = function (props) {
 				_this.setBlockComponents(props);
-				var isClassComponent = function isClassComponent(component) {
-					return typeof component === 'function' && !!component.prototype.isReactComponent ? true : false;
-				};
 
 				if (_this.config.edit) {
-					if (isClassComponent(_this.config.edit)) {
+					if (_this.constructor.isClassComponent(_this.config.edit)) {
 						return React.createElement(_this.config.edit, props);
 					}
 
@@ -293,6 +290,11 @@ var GutenbergFieldsMiddleWare = function () {
 		key: 'save',
 		value: function save(props) {
 			return null;
+		}
+	}], [{
+		key: 'isClassComponent',
+		value: function isClassComponent(component) {
+			return typeof component === 'function' && !!component.prototype.isReactComponent;
 		}
 	}]);
 

@@ -53,15 +53,9 @@ class GutenbergFieldsMiddleWare {
 
 		this.blockConfigs.edit = ( props ) => {
 			this.setBlockComponents( props );
-			const isClassComponent = function( component ) {
-				return (
-					typeof component === 'function' &&
-					!! component.prototype.isReactComponent
-				) ? true : false;
-			};
 
 			if ( this.config.edit ) {
-				if ( isClassComponent( this.config.edit ) ) {
+				if ( this.constructor.isClassComponent( this.config.edit ) ) {
 					return ( <this.config.edit { ...props } /> );
 				}
 
@@ -76,6 +70,10 @@ class GutenbergFieldsMiddleWare {
 		};
 
 		return this.blockConfigs;
+	}
+
+	static isClassComponent( component ) {
+		return typeof component === 'function' && !! component.prototype.isReactComponent;
 	}
 
 	getFields( fieldType, attributeKey, props, config ) {
