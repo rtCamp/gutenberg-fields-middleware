@@ -27,6 +27,14 @@ class ButtonEditable extends Component {
 		} );
 	}
 
+	componentWillReceiveProps() {
+		if ( _.isEmpty( this.props.focus ) ) {
+			this.setState( {
+				displayForm: false,
+			} );
+		}
+	}
+
 	render() {
 		const form = this.state.displayForm && (
 			<form
@@ -47,6 +55,7 @@ class ButtonEditable extends Component {
 				<span className="wp-block-button" key="button">
 					<RichText
 						onFocus={ this.onFocus }
+						onClick={ this.onFocus } // Hack.
 						{ ...this.props.fieldAttributes }
 					/>
 				</span>

@@ -87,13 +87,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_radio_control__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_range_control__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_button__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_button_editable__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_color_palette__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_dropdown__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_code_editor__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_date_time__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_tree_select__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_button_editable__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_color_palette__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_dropdown__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_code_editor__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_date_time__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_tree_select__ = __webpack_require__(21);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -913,6 +913,167 @@ function button(props, config) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = buttonEditable;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_button_editable__ = __webpack_require__(15);
+/**
+ * Button field.
+ */
+
+var __ = wp.i18n.__;
+
+
+
+function buttonEditable(props, config, attributeKey) {
+	var defaultAttributes = {
+		placeholder: __('Add text…'),
+		tagName: 'span',
+		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : '',
+		className: 'wp-block-button__link',
+		keepPlaceholderOnFocus: true
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			var buttonValue = _.extend({}, props.attributes[attributeKey] || {});
+			buttonValue.text = value;
+			newAttributes[attributeKey] = buttonValue;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	fieldAttributes.onInputChange = function (value) {
+		if (config.onInputChange) {
+			config.onInputChange(value, props);
+		} else {
+			var newAttributes = {};
+			var buttonValue = _.extend({}, props.attributes[attributeKey] || {});
+			buttonValue.link = value;
+			newAttributes[attributeKey] = buttonValue;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_button_editable__["a" /* default */], {
+		fieldAttributes: fieldAttributes,
+		inputValue: props.attributes[attributeKey] ? props.attributes[attributeKey].link : '',
+		buttonValue: fieldAttributes.value,
+		focus: props.focus
+	});
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Component = wp.element.Component;
+var _wp$blocks = wp.blocks,
+    RichText = _wp$blocks.RichText,
+    UrlInput = _wp$blocks.UrlInput;
+var _wp$components = wp.components,
+    Dashicon = _wp$components.Dashicon,
+    IconButton = _wp$components.IconButton;
+var __ = wp.i18n.__;
+
+var ButtonEditable = function (_Component) {
+	_inherits(ButtonEditable, _Component);
+
+	function ButtonEditable() {
+		_classCallCheck(this, ButtonEditable);
+
+		var _this = _possibleConstructorReturn(this, (ButtonEditable.__proto__ || Object.getPrototypeOf(ButtonEditable)).apply(this, arguments));
+
+		_this.state = {
+			displayForm: false
+		};
+
+		_this.onFocus = _this.onFocus.bind(_this);
+		_this.onSubmit = _this.onSubmit.bind(_this);
+		return _this;
+	}
+
+	_createClass(ButtonEditable, [{
+		key: "onFocus",
+		value: function onFocus() {
+			this.setState({
+				displayForm: true
+			});
+		}
+	}, {
+		key: "onSubmit",
+		value: function onSubmit(event) {
+			event.preventDefault();
+			this.setState({
+				displayForm: false
+			});
+		}
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps() {
+			if (_.isEmpty(this.props.focus)) {
+				this.setState({
+					displayForm: false
+				});
+			}
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var form = this.state.displayForm && React.createElement(
+				"form",
+				{
+					key: "form-link",
+					className: "blocks-button__inline-link",
+					onSubmit: this.onSubmit },
+				React.createElement(Dashicon, { icon: "admin-links" }),
+				React.createElement(UrlInput, {
+					value: this.props.inputValue,
+					onChange: this.props.fieldAttributes.onInputChange
+				}),
+				React.createElement(IconButton, { icon: "editor-break", label: __('Apply'), type: "submit" })
+			);
+
+			return React.createElement(
+				"div",
+				{ className: "button-editable" },
+				React.createElement(
+					"span",
+					{ className: "wp-block-button", key: "button" },
+					React.createElement(RichText, _extends({
+						onFocus: this.onFocus,
+						onClick: this.onFocus // Hack.
+					}, this.props.fieldAttributes))
+				),
+				form
+			);
+		}
+	}]);
+
+	return ButtonEditable;
+}(Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (ButtonEditable);
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = colorPalette;
 /**
  * Color Palette field.
@@ -952,7 +1113,7 @@ function colorPalette(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -994,7 +1155,7 @@ function dropdown(props, config) {
 }
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1029,7 +1190,7 @@ function editor(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1097,7 +1258,7 @@ function dateTimePicker(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1144,7 +1305,7 @@ function formToggle(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1177,156 +1338,6 @@ function treeSelect(props, config, attributeKey) {
 
 	return React.createElement(TreeSelect, fieldAttributes);
 }
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = buttonEditable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_button_editable__ = __webpack_require__(21);
-/**
- * Button field.
- */
-
-var __ = wp.i18n.__;
-
-
-
-function buttonEditable(props, config, attributeKey) {
-	var defaultAttributes = {
-		placeholder: __('Add text…'),
-		tagName: 'span',
-		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : '',
-		className: 'wp-block-button__link',
-		keepPlaceholderOnFocus: true
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			var buttonValue = _.extend({}, props.attributes[attributeKey] || {});
-			buttonValue.text = value;
-			newAttributes[attributeKey] = buttonValue;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	fieldAttributes.onInputChange = function (value) {
-		if (config.onInputChange) {
-			config.onInputChange(value, props);
-		} else {
-			var newAttributes = {};
-			var buttonValue = _.extend({}, props.attributes[attributeKey] || {});
-			buttonValue.link = value;
-			newAttributes[attributeKey] = buttonValue;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_button_editable__["a" /* default */], {
-		fieldAttributes: fieldAttributes,
-		inputValue: props.attributes[attributeKey] ? props.attributes[attributeKey].link : '',
-		buttonValue: fieldAttributes.value
-	});
-}
-
-/***/ }),
-/* 21 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Component = wp.element.Component;
-var _wp$blocks = wp.blocks,
-    RichText = _wp$blocks.RichText,
-    UrlInput = _wp$blocks.UrlInput;
-var _wp$components = wp.components,
-    Dashicon = _wp$components.Dashicon,
-    IconButton = _wp$components.IconButton;
-var __ = wp.i18n.__;
-
-var ButtonEditable = function (_Component) {
-	_inherits(ButtonEditable, _Component);
-
-	function ButtonEditable() {
-		_classCallCheck(this, ButtonEditable);
-
-		var _this = _possibleConstructorReturn(this, (ButtonEditable.__proto__ || Object.getPrototypeOf(ButtonEditable)).apply(this, arguments));
-
-		_this.state = {
-			displayForm: false
-		};
-
-		_this.onFocus = _this.onFocus.bind(_this);
-		_this.onSubmit = _this.onSubmit.bind(_this);
-		return _this;
-	}
-
-	_createClass(ButtonEditable, [{
-		key: "onFocus",
-		value: function onFocus() {
-			this.setState({
-				displayForm: true
-			});
-		}
-	}, {
-		key: "onSubmit",
-		value: function onSubmit(event) {
-			event.preventDefault();
-			this.setState({
-				displayForm: false
-			});
-		}
-	}, {
-		key: "render",
-		value: function render() {
-			var form = this.state.displayForm && React.createElement(
-				"form",
-				{
-					key: "form-link",
-					className: "blocks-button__inline-link",
-					onSubmit: this.onSubmit },
-				React.createElement(Dashicon, { icon: "admin-links" }),
-				React.createElement(UrlInput, {
-					value: this.props.inputValue,
-					onChange: this.props.fieldAttributes.onInputChange
-				}),
-				React.createElement(IconButton, { icon: "editor-break", label: __('Apply'), type: "submit" })
-			);
-
-			return React.createElement(
-				"div",
-				{ className: "button-editable" },
-				React.createElement(
-					"span",
-					{ className: "wp-block-button", key: "button" },
-					React.createElement(RichText, _extends({
-						onFocus: this.onFocus
-					}, this.props.fieldAttributes))
-				),
-				form
-			);
-		}
-	}]);
-
-	return ButtonEditable;
-}(Component);
-
-/* harmony default export */ __webpack_exports__["a"] = (ButtonEditable);
 
 /***/ })
 /******/ ]);

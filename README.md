@@ -213,7 +213,7 @@ button: {
 
 #### onChange:
 
-A function that receives the value of the new value when button text changes. It passes the new `value` as first argument and `props` as second argument.
+A function that receives the new value when button text changes. It passes the new `value` as first argument and `props` as second argument.
 
 - Type: `function`
 - Required: No
