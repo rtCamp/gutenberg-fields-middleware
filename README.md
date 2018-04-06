@@ -13,7 +13,7 @@ Haven't written a Gutenberg block yet? During the month of April, rtCamp is offe
 1. First, install the Gutenberg Fields Middleware as a standalone WordPress plugin. This will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script:
 
 ```php
-wp_enqueue_script( 'block-js-handle', plugins_url( 'blocks.js', __FILE__ ), array( 'gutenberg-fields-middleware' ) );
+wp_enqueue_script( 'script-handle', plugins_url( 'blocks.js', __FILE__ ), array( 'gutenberg-fields-middleware' ) );
 ```
 
 2. Fields are now registered as attribute configuration details. Here's how you might register `url`, `text` and `range` fields:
@@ -1060,14 +1060,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 	},
 
 	edit( props, middleware ) {
-        middleware.fields.button.props.style = {
-            backgroundColor: props.attributes.color,
-        };
-        
-        return [
-        	middleware.inspectorControls,
-        	middleware.fields.button
-        ];
+		middleware.fields.button.props.style = {
+			backgroundColor: props.attributes.color,
+		};
+		
+		return [
+		    middleware.inspectorControls,
+		    middleware.fields.button
+		];
     }
 }
 ```
