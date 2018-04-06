@@ -56,10 +56,6 @@ class GutenbergFieldsMiddleWare {
 		this.blockConfigs = _.extend( {
 			title: '',
 
-			description: '',
-
-			icon: 'universal-access-alt',
-
 			category: 'common',
 
 			attributes: {},
