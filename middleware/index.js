@@ -26,7 +26,17 @@ import dateTimePicker from './fields/date-time';
 import formToggle from './fields/form-toggle';
 import treeSelect from './fields/tree-select';
 
+/**
+ * Gutenberg Middleware Class.
+ */
 class GutenbergFieldsMiddleWare {
+	/**
+	 * Constructor.
+	 *
+	 * @param {Object} config Block configuration.
+	 *
+	 * @return {void}
+	 */
 	constructor( config ) {
 		this.blockConfigs = {};
 		this.fields = {};
@@ -34,9 +44,14 @@ class GutenbergFieldsMiddleWare {
 		this.inspectorControls = '';
 		this.config = _.extend( {}, config );
 
-		this.setBlockComponents = this.setBlockComponents.bind( this );
+		this.setupBlockFields = this.setupBlockFields.bind( this );
 	}
 
+	/**
+	 * Get middleware block settings.
+	 *
+	 * @return {Object} Settings.
+	 */
 	getSettings() {
 		this.blockConfigs = _.extend( {
 			title: '',
@@ -52,7 +67,7 @@ class GutenbergFieldsMiddleWare {
 		}, this.config );
 
 		this.blockConfigs.edit = ( props ) => {
-			this.setBlockComponents( props );
+			this.setupBlockFields( props );
 
 			if ( this.config.edit ) {
 				if ( this.constructor.isClassComponent( this.config.edit ) ) {
@@ -72,14 +87,19 @@ class GutenbergFieldsMiddleWare {
 		return this.blockConfigs;
 	}
 
-	static isClassComponent( component ) {
-		return typeof component === 'function' && !! component.prototype.isReactComponent;
-	}
-
-	getFields( fieldType, attributeKey, props, config ) {
+	/**
+	 * Get field according to the field type.
+	 *
+	 * @param {Object} props        Properties.
+	 * @param {Object} config       Field configuration provided.
+	 * @param {String} attributeKey Attribute Key.
+	 *
+	 * @return {Object} Field.
+	 */
+	getField( props, config, attributeKey ) {
 		const fields = {};
 
-		switch ( fieldType ) {
+		switch ( config.type ) {
 			case 'text':
 				fields[ attributeKey ] = plainText( props, config, attributeKey );
 				break;
@@ -148,13 +168,20 @@ class GutenbergFieldsMiddleWare {
 		return fields;
 	}
 
-	setBlockComponents( props ) {
+	/**
+	 * Setup block fields and inspector controls.
+	 *
+	 * @param {Object} props Properties.
+	 *
+	 * @return {void}
+	 */
+	setupBlockFields( props ) {
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
 			if ( attribute.field ) {
 				if ( 'inspector' === attribute.field.placement ) {
-					_.extend( this.inspectorControlFields, this.getFields( attribute.field.type, attributeKey, props, attribute.field ) );
+					_.extend( this.inspectorControlFields, this.getField( props, attribute.field, attributeKey ) );
 				} else {
-					_.extend( this.fields, this.getFields( attribute.field.type, attributeKey, props, attribute.field ) );
+					_.extend( this.fields, this.getField( props, attribute.field, attributeKey ) );
 				}
 			}
 		} );
@@ -168,6 +195,24 @@ class GutenbergFieldsMiddleWare {
 		) : null;
 	}
 
+	/**
+	 * Check if it is a react component.
+	 *
+	 * @param {*} component Component or function.
+	 *
+	 * @return {boolean} Is react component or not.
+	 */
+	static isClassComponent( component ) {
+		return typeof component === 'function' && !! component.prototype.isReactComponent;
+	}
+
+	/**
+	 * Fallback edit method.
+	 *
+	 * @param {Object} props Properties.
+	 *
+	 * @return {Object} Edit elements.
+	 */
 	edit( props ) {
 		return [
 			this.inspectorControls,
@@ -181,18 +226,33 @@ class GutenbergFieldsMiddleWare {
 		];
 	}
 
-	save( props ) {
+	/**
+	 * Fallback save method.
+	 *
+	 * @return {null} Null.
+	 */
+	save() {
 		return null;
 	}
 }
 
-addFilter( 'blocks.registerBlockType', 'gutenberg-field-middleware/registration/attributes', ( settings, name ) => {
+/**
+ * Filters the block settings except for default gutenberg blocks.
+ *
+ * @param {Object} settings Block settings.
+ * @param {String} name     Block name.
+ *
+ * @return {Object} Filtered settings.
+ */
+const filterBlockSettings = ( settings, name ) => {
 	if ( ! /^core/.test( name ) ) {
 		const middleware = new GutenbergFieldsMiddleWare( settings );
 		return middleware.getSettings();
 	}
 
 	return settings;
-}, 1 );
+};
+
+addFilter( 'blocks.registerBlockType', 'gutenberg-field-middleware/registration/attributes', filterBlockSettings, 1 );
 
 export default GutenbergFieldsMiddleWare;

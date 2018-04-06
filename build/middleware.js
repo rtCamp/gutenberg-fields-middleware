@@ -126,7 +126,18 @@ var addFilter = wp.hooks.addFilter;
 
 
 
+/**
+ * Gutenberg Middleware Class.
+ */
+
 var GutenbergFieldsMiddleWare = function () {
+	/**
+  * Constructor.
+  *
+  * @param {Object} config Block configuration.
+  *
+  * @return {void}
+  */
 	function GutenbergFieldsMiddleWare(config) {
 		_classCallCheck(this, GutenbergFieldsMiddleWare);
 
@@ -136,8 +147,15 @@ var GutenbergFieldsMiddleWare = function () {
 		this.inspectorControls = '';
 		this.config = _.extend({}, config);
 
-		this.setBlockComponents = this.setBlockComponents.bind(this);
+		this.setupBlockFields = this.setupBlockFields.bind(this);
 	}
+
+	/**
+  * Get middleware block settings.
+  *
+  * @return {Object} Settings.
+  */
+
 
 	_createClass(GutenbergFieldsMiddleWare, [{
 		key: 'getSettings',
@@ -158,7 +176,7 @@ var GutenbergFieldsMiddleWare = function () {
 			}, this.config);
 
 			this.blockConfigs.edit = function (props) {
-				_this.setBlockComponents(props);
+				_this.setupBlockFields(props);
 
 				if (_this.config.edit) {
 					if (_this.constructor.isClassComponent(_this.config.edit)) {
@@ -177,12 +195,23 @@ var GutenbergFieldsMiddleWare = function () {
 
 			return this.blockConfigs;
 		}
+
+		/**
+   * Get field according to the field type.
+   *
+   * @param {Object} props        Properties.
+   * @param {Object} config       Field configuration provided.
+   * @param {String} attributeKey Attribute Key.
+   *
+   * @return {Object} Field.
+   */
+
 	}, {
-		key: 'getFields',
-		value: function getFields(fieldType, attributeKey, props, config) {
+		key: 'getField',
+		value: function getField(props, config, attributeKey) {
 			var fields = {};
 
-			switch (fieldType) {
+			switch (config.type) {
 				case 'text':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_plain_text__["a" /* default */])(props, config, attributeKey);
 					break;
@@ -250,17 +279,26 @@ var GutenbergFieldsMiddleWare = function () {
 
 			return fields;
 		}
+
+		/**
+   * Setup block fields and inspector controls.
+   *
+   * @param {Object} props Properties.
+   *
+   * @return {void}
+   */
+
 	}, {
-		key: 'setBlockComponents',
-		value: function setBlockComponents(props) {
+		key: 'setupBlockFields',
+		value: function setupBlockFields(props) {
 			var _this2 = this;
 
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
 				if (attribute.field) {
 					if ('inspector' === attribute.field.placement) {
-						_.extend(_this2.inspectorControlFields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
+						_.extend(_this2.inspectorControlFields, _this2.getField(props, attribute.field, attributeKey));
 					} else {
-						_.extend(_this2.fields, _this2.getFields(attribute.field.type, attributeKey, props, attribute.field));
+						_.extend(_this2.fields, _this2.getField(props, attribute.field, attributeKey));
 					}
 				}
 			});
@@ -273,8 +311,26 @@ var GutenbergFieldsMiddleWare = function () {
 				})
 			) : null;
 		}
+
+		/**
+   * Check if it is a react component.
+   *
+   * @param {*} component Component or function.
+   *
+   * @return {boolean} Is react component or not.
+   */
+
 	}, {
 		key: 'edit',
+
+
+		/**
+   * Fallback edit method.
+   *
+   * @param {Object} props Properties.
+   *
+   * @return {Object} Edit elements.
+   */
 		value: function edit(props) {
 			var _this3 = this;
 
@@ -286,9 +342,16 @@ var GutenbergFieldsMiddleWare = function () {
 				})
 			)];
 		}
+
+		/**
+   * Fallback save method.
+   *
+   * @return {null} Null.
+   */
+
 	}, {
 		key: 'save',
-		value: function save(props) {
+		value: function save() {
 			return null;
 		}
 	}], [{
@@ -301,14 +364,26 @@ var GutenbergFieldsMiddleWare = function () {
 	return GutenbergFieldsMiddleWare;
 }();
 
-addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/attributes', function (settings, name) {
+/**
+ * Filters the block settings except for default gutenberg blocks.
+ *
+ * @param {Object} settings Block settings.
+ * @param {String} name     Block name.
+ *
+ * @return {Object} Filtered settings.
+ */
+
+
+var filterBlockSettings = function filterBlockSettings(settings, name) {
 	if (!/^core/.test(name)) {
 		var middleware = new GutenbergFieldsMiddleWare(settings);
 		return middleware.getSettings();
 	}
 
 	return settings;
-}, 1);
+};
+
+addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/attributes', filterBlockSettings, 1);
 
 /* harmony default export */ __webpack_exports__["default"] = (GutenbergFieldsMiddleWare);
 
