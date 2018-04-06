@@ -105,7 +105,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'button',
 				isLarge: true,
-				editable: true,
+			},
+		},
+		buttonEditable: {
+			type: 'object',
+			field: {
+				type: 'button-editable',
 			},
 		},
 		treeSelect: {

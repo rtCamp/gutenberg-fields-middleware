@@ -19,6 +19,7 @@ import checkboxControl from './fields/checkbox-control';
 import radioControl from './fields/radio-control';
 import rangeControl from './fields/range-control';
 import button from './fields/button';
+import buttonEditable from './fields/button-editable';
 import colorPalette from './fields/color-palette';
 import dropdown from './fields/dropdown';
 import editor from './fields/code-editor';
@@ -130,6 +131,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'button':
 				fields[ attributeKey ] = button( props, config, attributeKey );
+				break;
+			case 'button-editable':
+				fields[ attributeKey ] = buttonEditable( props, config, attributeKey );
 				break;
 			case 'color':
 				fields[ attributeKey ] = colorPalette( props, config, attributeKey );

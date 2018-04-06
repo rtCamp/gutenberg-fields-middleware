@@ -163,13 +163,6 @@ text: {
 
 ### button
 
-#### editable:
-
-Make button editable.
-* Type: `Bool`
-* Required: No
-* Default: false
-
 #### buttonText:
 
 Fallback button text. Applicable when `editable` is not set to `true`.
@@ -213,6 +206,41 @@ button: {
 	},
 }
 ```
+
+
+
+### button-editable
+
+#### onChange:
+
+A function that receives the value of the new value when button text changes. It passes the new `value` as first argument and `props` as second argument.
+
+- Type: `function`
+- Required: No
+
+#### style:
+
+The style applies to the button.
+
+- Type: `object`
+- Required: No
+
+
+
+**Example:**
+
+```js
+buttonEditable: {
+	type: 'object',
+	field: {
+		type: 'button-editable',
+		style: {
+			backgroundColor: 'red',
+		},
+	},
+},
+```
+
 
 
 ### radio
