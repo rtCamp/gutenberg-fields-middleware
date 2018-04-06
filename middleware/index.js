@@ -199,7 +199,7 @@ class GutenbergFieldsMiddleWare {
 	 * @return {boolean} Is react component or not.
 	 */
 	static isClassComponent( component ) {
-		return typeof component === 'function' && !! component.prototype.isReactComponent;
+		return typeof component === 'function' && component.prototype && !! component.prototype.isReactComponent;
 	}
 
 	/**

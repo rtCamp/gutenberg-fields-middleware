@@ -165,10 +165,6 @@ var GutenbergFieldsMiddleWare = function () {
 			this.blockConfigs = _.extend({
 				title: '',
 
-				description: '',
-
-				icon: 'universal-access-alt',
-
 				category: 'common',
 
 				attributes: {}
@@ -357,7 +353,7 @@ var GutenbergFieldsMiddleWare = function () {
 	}], [{
 		key: 'isClassComponent',
 		value: function isClassComponent(component) {
-			return typeof component === 'function' && !!component.prototype.isReactComponent;
+			return typeof component === 'function' && component.prototype && !!component.prototype.isReactComponent;
 		}
 	}]);
 
