@@ -68,7 +68,7 @@ class GutenbergFieldsMiddleWare {
 
 			if ( this.config.edit ) {
 				if ( this.constructor.isClassComponent( this.config.edit ) ) {
-					return ( <this.config.edit { ...props } /> );
+					return ( <this.config.edit { ...props } middleware={ this } /> );
 				}
 
 				return this.config.edit( props, this );
@@ -80,7 +80,7 @@ class GutenbergFieldsMiddleWare {
 		this.blockConfigs.save = ( props ) => {
 			if ( this.config.save ) {
 				if ( this.constructor.isClassComponent( this.config.save ) ) {
-					return ( <this.config.save { ...props } /> );
+					return ( <this.config.save { ...props } middleware={ this } /> );
 				}
 
 				return this.config.save( props, this );
