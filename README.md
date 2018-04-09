@@ -165,14 +165,14 @@ text: {
 
 #### buttonText:
 
-Fallback button text. Applicable when `editable` is not set to `true`.
+Fallback button text.
 * Type: `string`
 * Required: No
 * Default: null
 
 #### isPrimary:
 
-Button class. Other button classes are `isPrimary`, `isSmall`, `isToggled`, `isBusy`. Applicable only when `editable: true`  is not set.
+Button class. Other button classes are `isPrimary`, `isSmall`, `isToggled`, `isBusy`.
 
 * Type: `bool`
 * Required: No
@@ -191,8 +191,6 @@ If set, `button` will be replaced with `a`
 * Required: No
 * Default: null
 
-**NOTE:** buttonText is applicable only when editable is not set to true.
-
 For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/button).
 
 **Example:**
@@ -202,7 +200,6 @@ button: {
 	type: 'string',
 	field: {
 		type: 'button',
-		editable: true,
 	},
 }
 ```
