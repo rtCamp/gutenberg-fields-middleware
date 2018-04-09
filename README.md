@@ -49,7 +49,7 @@ registerBlockType( 'example-namespace/example-block', {
 		return [
 			props.middleware.inspectorControls, // Contains ALL inspector controls.
 			props.middleware.fields.url,
-			props
+			props.middleware.fields.text,
 		];
 	},
 	
