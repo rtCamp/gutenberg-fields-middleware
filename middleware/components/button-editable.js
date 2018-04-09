@@ -27,16 +27,8 @@ class ButtonEditable extends Component {
 		} );
 	}
 
-	componentWillReceiveProps() {
-		if ( _.isEmpty( this.props.focus ) ) {
-			this.setState( {
-				displayForm: false,
-			} );
-		}
-	}
-
 	render() {
-		const form = this.state.displayForm && (
+		const form = this.state.displayForm && this.props.isSelected && (
 			<form
 				key="form-link"
 				className="blocks-button__inline-link"

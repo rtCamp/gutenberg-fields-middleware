@@ -962,7 +962,7 @@ function buttonEditable(props, config, attributeKey) {
 		fieldAttributes: fieldAttributes,
 		inputValue: props.attributes[attributeKey] ? props.attributes[attributeKey].link : '',
 		buttonValue: fieldAttributes.value,
-		focus: props.focus
+		isSelected: props.isSelected
 	});
 }
 
@@ -1023,18 +1023,9 @@ var ButtonEditable = function (_Component) {
 			});
 		}
 	}, {
-		key: "componentWillReceiveProps",
-		value: function componentWillReceiveProps() {
-			if (_.isEmpty(this.props.focus)) {
-				this.setState({
-					displayForm: false
-				});
-			}
-		}
-	}, {
 		key: "render",
 		value: function render() {
-			var form = this.state.displayForm && React.createElement(
+			var form = this.state.displayForm && this.props.isSelected && React.createElement(
 				"form",
 				{
 					key: "form-link",

@@ -45,7 +45,7 @@ export default function buttonEditable( props, config, attributeKey ) {
 			fieldAttributes={ fieldAttributes }
 			inputValue={ props.attributes[ attributeKey ] ? props.attributes[ attributeKey ].link : '' }
 			buttonValue={ fieldAttributes.value }
-			focus={ props.focus }
+			isSelected={ props.isSelected }
 		/>
 	);
 }
