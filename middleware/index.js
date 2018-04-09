@@ -66,24 +66,28 @@ class GutenbergFieldsMiddleWare {
 		this.blockConfigs.edit = ( props ) => {
 			this.setupBlockFields( props );
 
+			props.middleware = this;
+
 			if ( this.config.edit ) {
 				if ( this.constructor.isClassComponent( this.config.edit ) ) {
-					return ( <this.config.edit { ...props } middleware={ this } /> );
+					return ( <this.config.edit { ...props } /> );
 				}
 
-				return this.config.edit( props, this );
+				return this.config.edit( props );
 			}
 
 			return this.edit( props );
 		};
 
 		this.blockConfigs.save = ( props ) => {
+			props.middleware = this;
+
 			if ( this.config.save ) {
 				if ( this.constructor.isClassComponent( this.config.save ) ) {
-					return ( <this.config.save { ...props } middleware={ this } /> );
+					return ( <this.config.save { ...props } /> );
 				}
 
-				return this.config.save( props, this );
+				return this.config.save( props );
 			}
 
 			return this.save( props );

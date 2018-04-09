@@ -94,8 +94,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_date_time__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_tree_select__ = __webpack_require__(21);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -178,24 +176,28 @@ var GutenbergFieldsMiddleWare = function () {
 			this.blockConfigs.edit = function (props) {
 				_this.setupBlockFields(props);
 
+				props.middleware = _this;
+
 				if (_this.config.edit) {
 					if (_this.constructor.isClassComponent(_this.config.edit)) {
-						return React.createElement(_this.config.edit, _extends({}, props, { middleware: _this }));
+						return React.createElement(_this.config.edit, props);
 					}
 
-					return _this.config.edit(props, _this);
+					return _this.config.edit(props);
 				}
 
 				return _this.edit(props);
 			};
 
 			this.blockConfigs.save = function (props) {
+				props.middleware = _this;
+
 				if (_this.config.save) {
 					if (_this.constructor.isClassComponent(_this.config.save)) {
-						return React.createElement(_this.config.save, _extends({}, props, { middleware: _this }));
+						return React.createElement(_this.config.save, props);
 					}
 
-					return _this.config.save(props, _this);
+					return _this.config.save(props);
 				}
 
 				return _this.save(props);
