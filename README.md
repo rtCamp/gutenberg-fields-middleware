@@ -45,11 +45,11 @@ registerBlockType( 'example-namespace/example-block', {
 		},
 	},
 
-	edit: function( props, middleware ) {
+	edit: function( props ) {
 		return [
-			middleware.inspectorControls, // Contains ALL inspector controls.
-			middleware.fields.url,
-			middleware.fields.text,
+			props.middleware.inspectorControls, // Contains ALL inspector controls.
+			props.middleware.fields.url,
+			props
 		];
 	},
 	
@@ -1060,7 +1060,7 @@ treeSelect: {
 
 ## Updating Field props
 
-To update or add properties to a field from `edit` method use `middleware.fields.attributeKey.props`.
+To update or add properties to a field from `edit` method use `props.middleware.fields.attributeKey.props`.
 
 Example:
 
@@ -1084,14 +1084,14 @@ registerBlockType( 'gb-m-example/simple-block', {
         },
 	},
 
-	edit( props, middleware ) {
-		middleware.fields.button.props.style = {
+	edit( props ) {
+		props.middleware.fields.button.props.style = {
 			backgroundColor: props.attributes.color,
 		};
 		
 		return [
-		    middleware.inspectorControls,
-		    middleware.fields.button
+		    props.middleware.inspectorControls,
+		    props.middleware.fields.button
 		];
     }
 }
