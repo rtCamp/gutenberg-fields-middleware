@@ -82,18 +82,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_url_input__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_image_upload__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_select_control__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_checkbox_control__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_radio_control__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_range_control__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_button__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_button_editable__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_color_palette__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_dropdown__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_code_editor__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_date_time__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_tree_select__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_video_upload_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_select_control__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_checkbox_control__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_radio_control__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_range_control__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_button__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_button_editable__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_color_palette__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_dropdown__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_code_editor__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_date_time__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_form_toggle__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__fields_tree_select__ = __webpack_require__(23);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -110,6 +111,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -232,35 +234,38 @@ var GutenbergFieldsMiddleWare = function () {
 				case 'image':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_image_upload__["a" /* default */])(props, config, attributeKey);
 					break;
+				case 'video':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_video_upload_js__["a" /* default */])(props, config, attributeKey);
+					break;
 				case 'select':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_select_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_select_control__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'range':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_range_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_range_control__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'radio':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_radio_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_radio_control__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'checkbox':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_checkbox_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_checkbox_control__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'button':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_button__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_11__fields_button__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'button-editable':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_11__fields_button_editable__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_button_editable__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'color':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_color_palette__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_color_palette__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'dropdown':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_dropdown__["a" /* default */])(props, config);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_dropdown__["a" /* default */])(props, config);
 					break;
 				case 'editor':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_code_editor__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_15__fields_code_editor__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'date-time':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_15__fields_date_time__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_16__fields_date_time__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'textarea':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_textarea_control__["a" /* default */])(props, config, attributeKey);
@@ -281,10 +286,10 @@ var GutenbergFieldsMiddleWare = function () {
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'switch':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_17__fields_form_toggle__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'tree-select':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_17__fields_tree_select__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_18__fields_tree_select__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -742,6 +747,137 @@ function imagePlaceholder(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = videoPlaceholder;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_video_placeholder__ = __webpack_require__(10);
+/**
+ * @TODO: Add Description here.
+ */
+var __ = wp.i18n.__;
+
+
+
+function videoPlaceholder(props, config, attributeKey) {
+
+	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
+	var defaultAttributes = {
+
+		icon: 'media-video',
+
+		label: __('Video')
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.abcd = function (media) {
+
+		if (media && media.url) {
+			props.setAttributes({ src: media.url, id: media.id });
+		}
+	};
+
+	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_video_placeholder__["a" /* default */], fieldAttributes);
+}
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Component = wp.element.Component;
+var __ = wp.i18n.__;
+var _wp$blocks = wp.blocks,
+    ImagePlaceholder = _wp$blocks.ImagePlaceholder,
+    MediaUpload = _wp$blocks.MediaUpload;
+var _wp$components = wp.components,
+    Placeholder = _wp$components.Placeholder,
+    FormFileUpload = _wp$components.FormFileUpload,
+    Button = _wp$components.Button;
+var mediaUpload = wp.utils.mediaUpload;
+
+var VideoPlaceholder = function (_Component) {
+	_inherits(VideoPlaceholder, _Component);
+
+	function VideoPlaceholder(props) {
+		_classCallCheck(this, VideoPlaceholder);
+
+		return _possibleConstructorReturn(this, (VideoPlaceholder.__proto__ || Object.getPrototypeOf(VideoPlaceholder)).apply(this, arguments));
+	}
+
+	_createClass(VideoPlaceholder, [{
+		key: "render",
+		value: function render() {
+			var _this2 = this;
+
+			var onSelectVideo = function onSelectVideo(media) {
+				if (media && media.url) {
+					_this2.setState({ src: media.url, editing: false });
+					_this2.props.abcd(media);
+				}
+			};
+
+			var setVideo = function setVideo(_ref) {
+				var _ref2 = _slicedToArray(_ref, 1),
+				    audio = _ref2[0];
+
+				return onSelectVideo(audio);
+			};
+			var uploadFromFiles = function uploadFromFiles(event) {
+				return mediaUpload(event.target.files, setVideo, 'video');
+			};
+
+			return React.createElement(
+				Placeholder,
+				{
+					key: "placeholder",
+					icon: "media-video",
+					label: __('Video'),
+					instructions: __('Select a video file from your library, or upload a new one') },
+				React.createElement(
+					FormFileUpload,
+					{
+						isLarge: true,
+						className: "wp-block-video__upload-button",
+						onChange: uploadFromFiles,
+						accept: "video/*"
+					},
+					__('Upload')
+				),
+				React.createElement(MediaUpload, {
+					onSelect: onSelectVideo,
+					type: "video",
+					render: function render(_ref3) {
+						var open = _ref3.open;
+						return React.createElement(
+							Button,
+							{ isLarge: true, onClick: open },
+							__('Add from Media Library')
+						);
+					}
+				})
+			);
+		}
+	}]);
+
+	return VideoPlaceholder;
+}(Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (VideoPlaceholder);
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = selectControl;
 /**
  * Select field.
@@ -773,7 +909,7 @@ function selectControl(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -809,7 +945,7 @@ function checkboxControl(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -844,7 +980,7 @@ function radioControl(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -879,7 +1015,7 @@ function rangeControl(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -911,12 +1047,12 @@ function button(props, config) {
 }
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buttonEditable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_button_editable__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_button_editable__ = __webpack_require__(17);
 /**
  * Button field.
  */
@@ -969,7 +1105,7 @@ function buttonEditable(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1063,7 +1199,7 @@ var ButtonEditable = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ButtonEditable);
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1106,7 +1242,7 @@ function colorPalette(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1148,7 +1284,7 @@ function dropdown(props, config) {
 }
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1183,7 +1319,7 @@ function editor(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1251,7 +1387,7 @@ function dateTimePicker(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1298,7 +1434,7 @@ function formToggle(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -14,6 +14,7 @@ import textareaControl from './fields/textarea-control';
 import inputField from './fields/input-field';
 import urlInput from './fields/url-input';
 import imageUpload from './fields/image-upload';
+import video from './fields/video-upload.js';
 import selectControl from './fields/select-control';
 import checkboxControl from './fields/checkbox-control';
 import radioControl from './fields/radio-control';
@@ -116,6 +117,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'image':
 				fields[ attributeKey ] = imageUpload( props, config, attributeKey );
+				break;
+			case 'video':
+				fields[ attributeKey ] = video( props, config, attributeKey );
 				break;
 			case 'select':
 				fields[ attributeKey ] = selectControl( props, config, attributeKey );
