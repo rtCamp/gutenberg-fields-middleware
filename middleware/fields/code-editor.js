@@ -4,7 +4,7 @@
 
 const { CodeEditor } = wp.components;
 
-export default function editor( props, config, attributeKey ) {
+export default function codeEditor( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
 	};

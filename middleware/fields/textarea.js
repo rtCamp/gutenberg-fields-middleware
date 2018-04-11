@@ -1,12 +1,12 @@
 /**
- * Radio Control field.
+ * Textarea field.
  */
 
-const { RadioControl } = wp.components;
+const { TextareaControl, BaseControl } = wp.components;
 
-export default function radioControl( props, config, attributeKey ) {
+export default function textarea( props, config, attributeKey ) {
 	const defaultAttributes = {
-		selected: props.attributes[ attributeKey ],
+		value: props.attributes[ attributeKey ] || '',
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -24,8 +24,12 @@ export default function radioControl( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<RadioControl
-			{ ...fieldAttributes }
-		/>
+		<BaseControl
+			id={ fieldAttributes.id }
+		>
+			<TextareaControl
+				{ ...fieldAttributes }
+			/>
+		</BaseControl>
 	);
 }
