@@ -768,10 +768,13 @@ function videoPlaceholder(props, config, attributeKey) {
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.abcd = function (media) {
+	fieldAttributes.videoData = props.attributes[attributeKey];
 
-		if (media && media.url) {
-			props.setAttributes({ src: media.url, id: media.id });
+	fieldAttributes.setVideoAttributes = function (src) {
+		if (src) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = src;
+			props.setAttributes(newAttributes);
 		}
 	};
 
@@ -796,12 +799,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Component = wp.element.Component;
 var __ = wp.i18n.__;
 var _wp$blocks = wp.blocks,
-    ImagePlaceholder = _wp$blocks.ImagePlaceholder,
-    MediaUpload = _wp$blocks.MediaUpload;
+    MediaUpload = _wp$blocks.MediaUpload,
+    BlockControls = _wp$blocks.BlockControls;
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
     FormFileUpload = _wp$components.FormFileUpload,
-    Button = _wp$components.Button;
+    Button = _wp$components.Button,
+    Toolbar = _wp$components.Toolbar,
+    IconButton = _wp$components.IconButton;
 var mediaUpload = wp.utils.mediaUpload;
 
 var VideoPlaceholder = function (_Component) {
@@ -810,19 +815,38 @@ var VideoPlaceholder = function (_Component) {
 	function VideoPlaceholder(props) {
 		_classCallCheck(this, VideoPlaceholder);
 
-		return _possibleConstructorReturn(this, (VideoPlaceholder.__proto__ || Object.getPrototypeOf(VideoPlaceholder)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (VideoPlaceholder.__proto__ || Object.getPrototypeOf(VideoPlaceholder)).apply(this, arguments));
+
+		_this.state = {
+			editing: _this.props.videoData ? false : true,
+			src: _this.props.videoData ? _this.props.videoData : ''
+		};
+		return _this;
 	}
 
 	_createClass(VideoPlaceholder, [{
-		key: "render",
+		key: 'render',
 		value: function render() {
 			var _this2 = this;
+
+			var switchToEditing = function switchToEditing() {
+				_this2.setState({ editing: true });
+			};
 
 			var onSelectVideo = function onSelectVideo(media) {
 				if (media && media.url) {
 					_this2.setState({ src: media.url, editing: false });
-					_this2.props.abcd(media);
+					_this2.props.setVideoAttributes(media.url);
 				}
+			};
+			var onSelectUrl = function onSelectUrl(event) {
+				event.preventDefault();
+				if (src) {
+					// set the block's src from the edit component's state, and switch off the editing UI
+					_this2.setState({ editing: false });
+					_this2.props.setVideoAttributes(src);
+				}
+				return false;
 			};
 
 			var setVideo = function setVideo(_ref) {
@@ -834,37 +858,81 @@ var VideoPlaceholder = function (_Component) {
 			var uploadFromFiles = function uploadFromFiles(event) {
 				return mediaUpload(event.target.files, setVideo, 'video');
 			};
+			var _state = this.state,
+			    editing = _state.editing,
+			    src = _state.src;
 
-			return React.createElement(
-				Placeholder,
-				{
-					key: "placeholder",
-					icon: "media-video",
-					label: __('Video'),
-					instructions: __('Select a video file from your library, or upload a new one') },
-				React.createElement(
-					FormFileUpload,
-					{
-						isLarge: true,
-						className: "wp-block-video__upload-button",
-						onChange: uploadFromFiles,
-						accept: "video/*"
-					},
-					__('Upload')
-				),
-				React.createElement(MediaUpload, {
-					onSelect: onSelectVideo,
-					type: "video",
-					render: function render(_ref3) {
-						var open = _ref3.open;
-						return React.createElement(
-							Button,
-							{ isLarge: true, onClick: open },
-							__('Add from Media Library')
-						);
-					}
-				})
+			var controls = React.createElement(
+				BlockControls,
+				{ key: 'controls' },
+				!editing && React.createElement(
+					Toolbar,
+					null,
+					React.createElement(IconButton, {
+						className: 'components-icon-button components-toolbar__control',
+						label: __('Edit video'),
+						onClick: switchToEditing,
+						icon: 'edit'
+					})
+				)
 			);
+			if (editing) {
+				return [controls, React.createElement(
+					Placeholder,
+					{
+						key: 'placeholder',
+						icon: 'media-video',
+						label: __('Video'),
+						instructions: __('Select a video file from your library, or upload a new one') },
+					React.createElement(
+						'form',
+						{ onSubmit: onSelectUrl },
+						React.createElement('input', {
+							type: 'url',
+							className: 'components-placeholder__input',
+							placeholder: __('Enter URL of video file here…'),
+							onChange: function onChange(event) {
+								return _this2.setState({ src: event.target.value });
+							},
+							value: src || '' }),
+						React.createElement(
+							Button,
+							{
+								isLarge: true,
+								type: 'submit' },
+							__('Use URL')
+						)
+					),
+					React.createElement(
+						FormFileUpload,
+						{
+							isLarge: true,
+							className: 'wp-block-video__upload-button',
+							onChange: uploadFromFiles,
+							accept: 'video/*'
+						},
+						__('Upload')
+					),
+					React.createElement(MediaUpload, {
+						onSelect: onSelectVideo,
+						type: 'video',
+						render: function render(_ref3) {
+							var open = _ref3.open;
+							return React.createElement(
+								Button,
+								{ isLarge: true, onClick: open },
+								__('Add from Media Library')
+							);
+						}
+					})
+				)];
+			}
+
+			return [controls, React.createElement(
+				'figure',
+				{ key: 'video', className: this.props.className },
+				React.createElement('video', { controls: true, src: src })
+			)];
 		}
 	}]);
 

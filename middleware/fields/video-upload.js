@@ -16,10 +16,13 @@ export default function videoPlaceholder( props, config, attributeKey ) {
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
-	fieldAttributes.abcd = ( media ) => {
+	fieldAttributes.videoData = props.attributes[attributeKey];
 
-		if ( media && media.url ) {
-			props.setAttributes( { src: media.url, id: media.id } );
+	fieldAttributes.setVideoAttributes = ( src ) => {
+		if ( src ) {
+			const newAttributes = {};
+			newAttributes[ attributeKey ] = src;
+			props.setAttributes( newAttributes );
 		}
 	};
 
