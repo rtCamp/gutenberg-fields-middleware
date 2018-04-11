@@ -798,9 +798,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Component = wp.element.Component;
 var __ = wp.i18n.__;
+<<<<<<< HEAD
 var _wp$blocks = wp.blocks,
     MediaUpload = _wp$blocks.MediaUpload,
     BlockControls = _wp$blocks.BlockControls;
+=======
+var MediaUpload = wp.blocks.MediaUpload;
+>>>>>>> 795e857654905df5ce0c7b9d4a956963acee3c49
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
     FormFileUpload = _wp$components.FormFileUpload,
@@ -812,7 +816,7 @@ var mediaUpload = wp.utils.mediaUpload;
 var VideoPlaceholder = function (_Component) {
 	_inherits(VideoPlaceholder, _Component);
 
-	function VideoPlaceholder(props) {
+	function VideoPlaceholder() {
 		_classCallCheck(this, VideoPlaceholder);
 
 		var _this = _possibleConstructorReturn(this, (VideoPlaceholder.__proto__ || Object.getPrototypeOf(VideoPlaceholder)).apply(this, arguments));
