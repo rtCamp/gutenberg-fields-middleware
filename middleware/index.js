@@ -106,67 +106,67 @@ class GutenbergFieldsMiddleWare {
 	 * @return {Object} Field.
 	 */
 	getField( props, config, attributeKey ) {
-		const fields = {};
+		const field = {};
 
 		switch ( config.type ) {
 			case 'text':
-				fields[ attributeKey ] = text( props, config, attributeKey );
+				field[ attributeKey ] = text( props, config, attributeKey );
 				break;
 			case 'rich-text':
-				fields[ attributeKey ] = richText( props, config, attributeKey );
+				field[ attributeKey ] = richText( props, config, attributeKey );
 				break;
 			case 'link':
-				fields[ attributeKey ] = link( props, config, attributeKey );
+				field[ attributeKey ] = link( props, config, attributeKey );
 				break;
 			case 'image':
-				fields[ attributeKey ] = image( props, config, attributeKey );
+				field[ attributeKey ] = image( props, config, attributeKey );
 				break;
 			case 'select':
-				fields[ attributeKey ] = select( props, config, attributeKey );
+				field[ attributeKey ] = select( props, config, attributeKey );
 				break;
 			case 'range':
-				fields[ attributeKey ] = range( props, config, attributeKey );
+				field[ attributeKey ] = range( props, config, attributeKey );
 				break;
 			case 'radio':
-				fields[ attributeKey ] = radio( props, config, attributeKey );
+				field[ attributeKey ] = radio( props, config, attributeKey );
 				break;
 			case 'checkbox':
-				fields[ attributeKey ] = checkbox( props, config, attributeKey );
+				field[ attributeKey ] = checkbox( props, config, attributeKey );
 				break;
 			case 'button':
-				fields[ attributeKey ] = button( props, config, attributeKey );
+				field[ attributeKey ] = button( props, config, attributeKey );
 				break;
 			case 'button-editable':
-				fields[ attributeKey ] = buttonEditable( props, config, attributeKey );
+				field[ attributeKey ] = buttonEditable( props, config, attributeKey );
 				break;
 			case 'color':
-				fields[ attributeKey ] = color( props, config, attributeKey );
+				field[ attributeKey ] = color( props, config, attributeKey );
 				break;
 			case 'dropdown':
-				fields[ attributeKey ] = dropdown( props, config );
+				field[ attributeKey ] = dropdown( props, config );
 				break;
 			case 'code-editor':
-				fields[ attributeKey ] = codeEditor( props, config, attributeKey );
+				field[ attributeKey ] = codeEditor( props, config, attributeKey );
 				break;
 			case 'date-time':
-				fields[ attributeKey ] = dateTime( props, config, attributeKey );
+				field[ attributeKey ] = dateTime( props, config, attributeKey );
 				break;
 			case 'textarea':
-				fields[ attributeKey ] = textarea( props, config, attributeKey );
+				field[ attributeKey ] = textarea( props, config, attributeKey );
 				break;
 			case 'switch':
-				fields[ attributeKey ] = formToggle( props, config, attributeKey );
+				field[ attributeKey ] = formToggle( props, config, attributeKey );
 				break;
 			case 'tree-select':
-				fields[ attributeKey ] = treeSelect( props, config, attributeKey );
+				field[ attributeKey ] = treeSelect( props, config, attributeKey );
 				break;
 		}
 
-		if ( _.contains( config.type, [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ] ) ) {
-			fields[ attributeKey ] = inputField( props, config, attributeKey );
+		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {
+			field[ attributeKey ] = inputField( props, config, attributeKey );
 		}
 
-		return fields;
+		return field;
 	}
 
 	/**

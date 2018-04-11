@@ -1058,6 +1058,10 @@ treeSelect: {
 
 
 
+:heavy_check_mark: The following input type field are also supported `'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'`
+
+
+
 ## Updating Field props
 
 To update or add properties to a field from `edit` method use `props.middleware.fields.attributeKey.props`.
