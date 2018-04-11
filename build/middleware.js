@@ -824,8 +824,9 @@ var RadioControl = wp.components.RadioControl;
 
 
 function radioControl(props, config, attributeKey) {
+	var defaultValue = config.default || '';
 	var defaultAttributes = {
-		selected: props.attributes[attributeKey]
+		selected: props.attributes[attributeKey] || defaultValue
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);

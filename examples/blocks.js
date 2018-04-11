@@ -65,6 +65,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'radio',
+				default: 'one',
 				options: [
 					{
 						value: 'one',
