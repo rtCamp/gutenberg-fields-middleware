@@ -241,7 +241,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 		},
 		columns: {
-			type: 'string',
+			type: 'array',
 			field: {
 				type: 'range',
 				label: __( 'Columns' ),
@@ -252,9 +252,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'object',
 			field: {
 				type: 'file-upload',
-				buttonText: __( 'Upload' ),
-				isLarge: true,
-				accept: "video/*",
 			},
 		},
 	},

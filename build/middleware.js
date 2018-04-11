@@ -1349,17 +1349,30 @@ function treeSelect(props, config, attributeKey) {
 
 var FormFileUpload = wp.components.FormFileUpload;
 var __ = wp.i18n.__;
+var mediaUpload = wp.utils.mediaUpload;
 
 
 function fileUpload(props, config, attributeKey) {
-	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
+	var buttonText = config.buttonText ? config.buttonText : __('Upload');
+	var fileType = config.fileType ? config.fileType : 'image';
+
+	var setMedia = function setMedia(file) {
+		var newAttributes = {};
+		newAttributes[attributeKey] = file;
+		props.setAttributes(newAttributes);
+	};
 
 	var defaultAttributes = {
-		onSelect: function onSelect(file) {
-			var newAttributes = {};
-			newAttributes[attributeKey] = file;
-			props.setAttributes(newAttributes);
-		}
+		onChange: function onChange(event) {
+			mediaUpload(event.target.files, setMedia, fileType);
+		},
+
+
+		fileType: fileType,
+
+		accept: "image/*",
+
+		isLarge: true
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
