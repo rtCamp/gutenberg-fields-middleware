@@ -77,43 +77,24 @@ module.exports = __webpack_require__(1);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_text__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_textarea__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_text__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_textarea__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(5);
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_url_input__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_image_upload__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_link__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_image__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_video_upload_js__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_select_control__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_checkbox_control__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_radio_control__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_range_control__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_select__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_checkbox__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_radio__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_range__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_button__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_button_editable__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_color_palette__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_color__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_dropdown__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_code_editor__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_date_time__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_form_toggle__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__fields_tree_select__ = __webpack_require__(23);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_link__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_image__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_select__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_checkbox__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_radio__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_range__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_button__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_button_editable__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_color__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_dropdown__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_code_editor__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_date_time__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_tree_select__ = __webpack_require__(21);
->>>>>>> develop
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -259,29 +240,16 @@ var GutenbergFieldsMiddleWare = function () {
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_video_upload_js__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'select':
-<<<<<<< HEAD
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_select_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_select__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'range':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_range_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_range__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'radio':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_radio_control__["a" /* default */])(props, config, attributeKey);
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_radio__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'checkbox':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_checkbox_control__["a" /* default */])(props, config, attributeKey);
-=======
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_select__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'range':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_range__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'radio':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_radio__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'checkbox':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_checkbox__["a" /* default */])(props, config, attributeKey);
->>>>>>> develop
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_checkbox__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'button':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_11__fields_button__["a" /* default */])(props, config, attributeKey);
@@ -290,22 +258,13 @@ var GutenbergFieldsMiddleWare = function () {
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_button_editable__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'color':
-<<<<<<< HEAD
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_color_palette__["a" /* default */])(props, config, attributeKey);
-=======
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_color__["a" /* default */])(props, config, attributeKey);
->>>>>>> develop
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_color__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'dropdown':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_dropdown__["a" /* default */])(props, config);
 					break;
-<<<<<<< HEAD
-				case 'editor':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_15__fields_code_editor__["a" /* default */])(props, config, attributeKey);
-=======
 				case 'code-editor':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_code_editor__["a" /* default */])(props, config, attributeKey);
->>>>>>> develop
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_15__fields_code_editor__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'date-time':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_16__fields_date_time__["a" /* default */])(props, config, attributeKey);
@@ -482,8 +441,84 @@ function richText(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 3 */,
-/* 4 */,
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = text;
+/**
+ * Text field.
+ */
+
+var PlainText = wp.blocks.PlainText;
+
+
+function text(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(PlainText, fieldAttributes);
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = textarea;
+/**
+ * Textarea field.
+ */
+
+var _wp$components = wp.components,
+    TextareaControl = _wp$components.TextareaControl,
+    BaseControl = _wp$components.BaseControl;
+
+
+function textarea(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(
+		BaseControl,
+		{
+			id: fieldAttributes.id
+		},
+		React.createElement(TextareaControl, fieldAttributes)
+	);
+}
+
+/***/ }),
 /* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -537,8 +572,142 @@ function inputField(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 6 */,
-/* 7 */,
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = link;
+/**
+ * Url field.
+ */
+
+var UrlInput = wp.blocks.UrlInput;
+var BaseControl = wp.components.BaseControl;
+
+
+function link(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	if ('inspector' === config.placement) {
+		delete fieldAttributes.placement;
+		return React.createElement(
+			BaseControl,
+			{
+				label: fieldAttributes.label,
+				id: fieldAttributes.id,
+				help: fieldAttributes.help,
+				className: fieldAttributes.className
+			},
+			React.createElement(UrlInput, fieldAttributes)
+		);
+	}
+
+	return React.createElement(UrlInput, fieldAttributes);
+}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = image;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(8);
+/**
+ * Image Field.
+ */
+
+var MediaUpload = wp.blocks.MediaUpload;
+var Button = wp.components.Button;
+var __ = wp.i18n.__;
+
+
+
+
+function image(props, config, attributeKey) {
+	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
+	var image = props.attributes[attributeKey];
+
+	var defaultAttributes = {
+
+		type: 'image',
+
+		value: image || '',
+
+		render: function render(_ref) {
+			var open = _ref.open;
+
+			var nodes = [];
+
+			if (!image) {
+				if (config.imagePlaceholder) {
+					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__["a" /* default */])(props, config, attributeKey));
+				} else {
+					nodes.push(React.createElement(
+						Button,
+						{ className: 'button button-large button-upload', onClick: open },
+						buttonText
+					));
+				}
+			} else {
+				nodes.push(React.createElement('img', { className: 'uploaded-image', src: image.url, alt: image.alt }));
+
+				if (!!config.removeButtonText) {
+					nodes.push(React.createElement(
+						Button,
+						{ className: 'button button-large button-remove', onClick: function onClick() {
+								var newAttributes = {};
+								newAttributes[attributeKey] = '';
+								props.setAttributes(newAttributes);
+							} },
+						config.removeButtonText
+					));
+				}
+			}
+
+			return React.createElement(
+				'div',
+				{ className: 'blocks-' + config.type + '-upload' },
+				nodes
+			);
+		}
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onSelect = function (media) {
+		if (config.onSelect) {
+			config.onSelect(media, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.buttonText;
+	delete fieldAttributes.imagePlaceholder;
+	delete fieldAttributes.removeButtonText;
+
+	return React.createElement(MediaUpload, fieldAttributes);
+}
+
+/***/ }),
 /* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -576,15 +745,10 @@ function imagePlaceholder(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-<<<<<<< HEAD
 /* harmony export (immutable) */ __webpack_exports__["a"] = videoPlaceholder;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_video_placeholder__ = __webpack_require__(10);
 /**
@@ -595,26 +759,33 @@ var __ = wp.i18n.__;
 
 
 function videoPlaceholder(props, config, attributeKey) {
-
-	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
 	var defaultAttributes = {
+		label: __('Video'),
 
-		icon: 'media-video',
+		placeholderText: __('Select a video file from your library, or upload a new one'),
 
-		label: __('Video')
+		buttonText: __('Upload')
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.videoData = props.attributes[attributeKey];
-
-	fieldAttributes.setVideoAttributes = function (src) {
-		if (src) {
+	fieldAttributes.setVideoAttributes = function (media) {
+		if (media && media.url) {
 			var newAttributes = {};
-			newAttributes[attributeKey] = src;
+			newAttributes[attributeKey] = media;
 			props.setAttributes(newAttributes);
 		}
 	};
+
+	fieldAttributes.setCaption = function (caption) {
+		if (props.attributes[attributeKey]) {
+			props.attributes[attributeKey].videoCaption = caption;
+			props.setAttributes(attributeKey, props.attributes[attributeKey]);
+		}
+	};
+
+	fieldAttributes.videoData = props.attributes[attributeKey];
+	fieldAttributes.isSelected = props.isSelected;
 
 	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_video_placeholder__["a" /* default */], fieldAttributes);
 }
@@ -636,13 +807,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Component = wp.element.Component;
 var __ = wp.i18n.__;
-<<<<<<< HEAD
 var _wp$blocks = wp.blocks,
+    RichText = _wp$blocks.RichText,
     MediaUpload = _wp$blocks.MediaUpload,
     BlockControls = _wp$blocks.BlockControls;
-=======
-var MediaUpload = wp.blocks.MediaUpload;
->>>>>>> 795e857654905df5ce0c7b9d4a956963acee3c49
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
     FormFileUpload = _wp$components.FormFileUpload,
@@ -654,14 +822,14 @@ var mediaUpload = wp.utils.mediaUpload;
 var VideoPlaceholder = function (_Component) {
 	_inherits(VideoPlaceholder, _Component);
 
-	function VideoPlaceholder() {
+	function VideoPlaceholder(props) {
 		_classCallCheck(this, VideoPlaceholder);
 
 		var _this = _possibleConstructorReturn(this, (VideoPlaceholder.__proto__ || Object.getPrototypeOf(VideoPlaceholder)).apply(this, arguments));
 
 		_this.state = {
-			editing: _this.props.videoData ? false : true,
-			src: _this.props.videoData ? _this.props.videoData : ''
+			editing: !_this.props.videoData,
+			src: _this.props.videoData || ''
 		};
 		return _this;
 	}
@@ -670,26 +838,6 @@ var VideoPlaceholder = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var _this2 = this;
-
-			var switchToEditing = function switchToEditing() {
-				_this2.setState({ editing: true });
-			};
-
-			var onSelectVideo = function onSelectVideo(media) {
-				if (media && media.url) {
-					_this2.setState({ src: media.url, editing: false });
-					_this2.props.setVideoAttributes(media.url);
-				}
-			};
-			var onSelectUrl = function onSelectUrl(event) {
-				event.preventDefault();
-				if (src) {
-					// set the block's src from the edit component's state, and switch off the editing UI
-					_this2.setState({ editing: false });
-					_this2.props.setVideoAttributes(src);
-				}
-				return false;
-			};
 
 			var setVideo = function setVideo(_ref) {
 				var _ref2 = _slicedToArray(_ref, 1),
@@ -703,6 +851,47 @@ var VideoPlaceholder = function (_Component) {
 			var _state = this.state,
 			    editing = _state.editing,
 			    src = _state.src;
+			var _props = this.props,
+			    videoData = _props.videoData,
+			    placeholderText = _props.placeholderText,
+			    buttonText = _props.buttonText,
+			    className = _props.className,
+			    isSelected = _props.isSelected,
+			    setVideoAttributes = _props.setVideoAttributes,
+			    setCaption = _props.setCaption;
+
+
+			var switchToEditing = function switchToEditing() {
+				_this2.setState({ editing: true });
+			};
+
+			var onSelectVideo = function onSelectVideo(media) {
+				if (media && media.url) {
+					_this2.setState({ src: media, editing: false });
+					setVideoAttributes(media);
+				}
+			};
+
+			var onSelectUrl = function onSelectUrl(event) {
+				event.preventDefault();
+				if (src) {
+					_this2.setState({ editing: false });
+					setVideoAttributes(src);
+				}
+				return false;
+			};
+
+			var ontUrlChange = function ontUrlChange(event) {
+				_this2.setState({ src: {
+						url: event.target.value
+					} });
+			};
+
+			var caption = function caption() {
+				if (videoData && videoData.videoCaption) {
+					return videoData.videoCaption[0] || '';
+				}
+			};
 
 			var controls = React.createElement(
 				BlockControls,
@@ -718,6 +907,7 @@ var VideoPlaceholder = function (_Component) {
 					})
 				)
 			);
+
 			if (editing) {
 				return [controls, React.createElement(
 					Placeholder,
@@ -725,7 +915,8 @@ var VideoPlaceholder = function (_Component) {
 						key: 'placeholder',
 						icon: 'media-video',
 						label: __('Video'),
-						instructions: __('Select a video file from your library, or upload a new one') },
+						className: className,
+						instructions: placeholderText },
 					React.createElement(
 						'form',
 						{ onSubmit: onSelectUrl },
@@ -733,10 +924,8 @@ var VideoPlaceholder = function (_Component) {
 							type: 'url',
 							className: 'components-placeholder__input',
 							placeholder: __('Enter URL of video file here…'),
-							onChange: function onChange(event) {
-								return _this2.setState({ src: event.target.value });
-							},
-							value: src || '' }),
+							onChange: ontUrlChange,
+							value: src.url || '' }),
 						React.createElement(
 							Button,
 							{
@@ -753,7 +942,7 @@ var VideoPlaceholder = function (_Component) {
 							onChange: uploadFromFiles,
 							accept: 'video/*'
 						},
-						__('Upload')
+						buttonText
 					),
 					React.createElement(MediaUpload, {
 						onSelect: onSelectVideo,
@@ -772,8 +961,16 @@ var VideoPlaceholder = function (_Component) {
 
 			return [controls, React.createElement(
 				'figure',
-				{ key: 'video', className: this.props.className },
-				React.createElement('video', { controls: true, src: src })
+				{ key: 'video', className: className },
+				React.createElement('video', { controls: true, src: src.url }),
+				isSelected && React.createElement(RichText, {
+					tagName: 'figcaption',
+					placeholder: __('Write caption…'),
+					value: caption(),
+					isSelected: isSelected,
+					onChange: setCaption,
+					inlineToolbar: true
+				})
 			)];
 		}
 	}]);
@@ -788,69 +985,59 @@ var VideoPlaceholder = function (_Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = selectControl;
-=======
-/* harmony export (immutable) */ __webpack_exports__["a"] = button;
->>>>>>> develop
+/* harmony export (immutable) */ __webpack_exports__["a"] = select;
 /**
- * Button field.
+ * Select field.
  */
 
-var Button = wp.components.Button;
-var __ = wp.i18n.__;
+var SelectControl = wp.components.SelectControl;
 
 
-function button(props, config) {
+function select(props, config, attributeKey) {
 	var defaultAttributes = {
-		buttonText: __('Button')
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-	var buttonText = fieldAttributes.buttonText;
-
-	delete fieldAttributes.buttonText;
-	delete fieldAttributes.type;
-
-	return React.createElement(
-		Button,
-		fieldAttributes,
-		buttonText
-	);
-}
-
-/***/ }),
-<<<<<<< HEAD
-/* 12 */
-=======
-/* 14 */
->>>>>>> develop
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = buttonEditable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_button_editable__ = __webpack_require__(15);
-/**
- * Button field.
- */
-
-var __ = wp.i18n.__;
-
-
-
-function buttonEditable(props, config, attributeKey) {
-	var defaultAttributes = {
-		placeholder: __('Add text…'),
-		tagName: 'span',
-		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : '',
-		className: 'wp-block-button__link',
-		keepPlaceholderOnFocus: true
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	fieldAttributes.onChange = function (value) {
 		if (config.onChange) {
-<<<<<<< HEAD
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(SelectControl, fieldAttributes);
+}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = checkbox;
+/**
+ * Checkbox field.
+ */
+
+var CheckboxControl = wp.components.CheckboxControl;
+
+
+function checkbox(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: '1',
+		checked: props.attributes[attributeKey]
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (checked) {
+		if (config.onChange) {
 			config.onChange(checked, props);
 		} else {
 			var newAttributes = {};
@@ -869,7 +1056,7 @@ function buttonEditable(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = radioControl;
+/* harmony export (immutable) */ __webpack_exports__["a"] = radio;
 /**
  * Radio Control field.
  */
@@ -877,9 +1064,10 @@ function buttonEditable(props, config, attributeKey) {
 var RadioControl = wp.components.RadioControl;
 
 
-function radioControl(props, config, attributeKey) {
+function radio(props, config, attributeKey) {
+	var defaultValue = config.default || '';
 	var defaultAttributes = {
-		selected: props.attributes[attributeKey]
+		selected: props.attributes[attributeKey] || defaultValue
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -904,7 +1092,7 @@ function radioControl(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = rangeControl;
+/* harmony export (immutable) */ __webpack_exports__["a"] = range;
 /**
  * Range field.
  */
@@ -912,7 +1100,7 @@ function radioControl(props, config, attributeKey) {
 var RangeControl = wp.components.RangeControl;
 
 
-function rangeControl(props, config, attributeKey) {
+function range(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || ''
 	};
@@ -994,8 +1182,6 @@ function buttonEditable(props, config, attributeKey) {
 
 	fieldAttributes.onChange = function (value) {
 		if (config.onChange) {
-=======
->>>>>>> develop
 			config.onChange(value, props);
 		} else {
 			var newAttributes = {};
@@ -1121,12 +1307,11 @@ var ButtonEditable = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ButtonEditable);
 
 /***/ }),
-<<<<<<< HEAD
 /* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = colorPalette;
+/* harmony export (immutable) */ __webpack_exports__["a"] = color;
 /**
  * Color Palette field.
  */
@@ -1136,7 +1321,7 @@ var PanelColor = wp.components.PanelColor;
 var __ = wp.i18n.__;
 
 
-function colorPalette(props, config, attributeKey) {
+function color(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || '',
 
@@ -1166,10 +1351,6 @@ function colorPalette(props, config, attributeKey) {
 
 /***/ }),
 /* 19 */
-=======
-/* 16 */,
-/* 17 */
->>>>>>> develop
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1393,405 +1574,6 @@ function treeSelect(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return React.createElement(TreeSelect, fieldAttributes);
-}
-
-/***/ }),
-/* 22 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = checkbox;
-/**
- * Checkbox field.
- */
-
-var CheckboxControl = wp.components.CheckboxControl;
-
-
-function checkbox(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: '1',
-		checked: props.attributes[attributeKey]
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (checked) {
-		if (config.onChange) {
-			config.onChange(checked, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = checked ? defaultAttributes.value : false;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(CheckboxControl, fieldAttributes);
-}
-
-/***/ }),
-/* 23 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = color;
-/**
- * Color Palette field.
- */
-
-var ColorPalette = wp.blocks.ColorPalette;
-var PanelColor = wp.components.PanelColor;
-var __ = wp.i18n.__;
-
-
-function color(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || '',
-
-		label: __('Color')
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(
-		PanelColor,
-		{ title: fieldAttributes.label, colorValue: fieldAttributes.value },
-		React.createElement(ColorPalette, fieldAttributes)
-	);
-}
-
-/***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = textarea;
-/**
- * Textarea field.
- */
-
-var _wp$components = wp.components,
-    TextareaControl = _wp$components.TextareaControl,
-    BaseControl = _wp$components.BaseControl;
-
-
-function textarea(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(
-		BaseControl,
-		{
-			id: fieldAttributes.id
-		},
-		React.createElement(TextareaControl, fieldAttributes)
-	);
-}
-
-/***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = select;
-/**
- * Select field.
- */
-
-var SelectControl = wp.components.SelectControl;
-
-
-function select(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(SelectControl, fieldAttributes);
-}
-
-/***/ }),
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = radio;
-/**
- * Radio Control field.
- */
-
-var RadioControl = wp.components.RadioControl;
-
-
-function radio(props, config, attributeKey) {
-	var defaultValue = config.default || '';
-	var defaultAttributes = {
-		selected: props.attributes[attributeKey] || defaultValue
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(RadioControl, fieldAttributes);
-}
-
-/***/ }),
-/* 27 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = range;
-/**
- * Range field.
- */
-
-var RangeControl = wp.components.RangeControl;
-
-
-function range(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(RangeControl, fieldAttributes);
-}
-
-/***/ }),
-/* 28 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = text;
-/**
- * Text field.
- */
-
-var PlainText = wp.blocks.PlainText;
-
-
-function text(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(PlainText, fieldAttributes);
-}
-
-/***/ }),
-/* 29 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = link;
-/**
- * Url field.
- */
-
-var UrlInput = wp.blocks.UrlInput;
-var BaseControl = wp.components.BaseControl;
-
-
-function link(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	if ('inspector' === config.placement) {
-		delete fieldAttributes.placement;
-		return React.createElement(
-			BaseControl,
-			{
-				label: fieldAttributes.label,
-				id: fieldAttributes.id,
-				help: fieldAttributes.help,
-				className: fieldAttributes.className
-			},
-			React.createElement(UrlInput, fieldAttributes)
-		);
-	}
-
-	return React.createElement(UrlInput, fieldAttributes);
-}
-
-/***/ }),
-/* 30 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = image;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(8);
-/**
- * Image Field.
- */
-
-var MediaUpload = wp.blocks.MediaUpload;
-var Button = wp.components.Button;
-var __ = wp.i18n.__;
-
-
-
-
-function image(props, config, attributeKey) {
-	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
-	var image = props.attributes[attributeKey];
-
-	var defaultAttributes = {
-
-		type: 'image',
-
-		value: image || '',
-
-		render: function render(_ref) {
-			var open = _ref.open;
-
-			var nodes = [];
-
-			if (!image) {
-				if (config.imagePlaceholder) {
-					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__["a" /* default */])(props, config, attributeKey));
-				} else {
-					nodes.push(React.createElement(
-						Button,
-						{ className: 'button button-large button-upload', onClick: open },
-						buttonText
-					));
-				}
-			} else {
-				nodes.push(React.createElement('img', { className: 'uploaded-image', src: image.url, alt: image.alt }));
-
-				if (!!config.removeButtonText) {
-					nodes.push(React.createElement(
-						Button,
-						{ className: 'button button-large button-remove', onClick: function onClick() {
-								var newAttributes = {};
-								newAttributes[attributeKey] = '';
-								props.setAttributes(newAttributes);
-							} },
-						config.removeButtonText
-					));
-				}
-			}
-
-			return React.createElement(
-				'div',
-				{ className: 'blocks-' + config.type + '-upload' },
-				nodes
-			);
-		}
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onSelect = function (media) {
-		if (config.onSelect) {
-			config.onSelect(media, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = media;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.buttonText;
-	delete fieldAttributes.imagePlaceholder;
-	delete fieldAttributes.removeButtonText;
-
-	return React.createElement(MediaUpload, fieldAttributes);
 }
 
 /***/ })
