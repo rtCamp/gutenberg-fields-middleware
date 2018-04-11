@@ -93,6 +93,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_date_time__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_form_toggle__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_tree_select__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_file_upload__ = __webpack_require__(20);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -107,6 +108,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -236,6 +238,9 @@ var GutenbergFieldsMiddleWare = function () {
 					break;
 				case 'tree-select':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_16__fields_tree_select__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'file-upload':
+					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_17__fields_file_upload__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -1035,6 +1040,42 @@ function treeSelect(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(TreeSelect, fieldAttributes);
+}
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = fileUpload;
+/**
+ * File Upload.
+ */
+
+var FormFileUpload = wp.components.FormFileUpload;
+var __ = wp.i18n.__;
+
+
+function fileUpload(props, config, attributeKey) {
+	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
+
+	var defaultAttributes = {
+		onSelect: function onSelect(file) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = file;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	delete fieldAttributes.buttonText;
+
+	return wp.element.createElement(
+		FormFileUpload,
+		fieldAttributes,
+		buttonText
+	);
 }
 
 /***/ })

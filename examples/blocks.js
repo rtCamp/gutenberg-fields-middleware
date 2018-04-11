@@ -241,6 +241,15 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 			},
 		},
+		fileUpload: {
+			type: 'object',
+			field: {
+				type: 'file-upload',
+				buttonText: __( 'Upload' ),
+				isLarge: true,
+				accept: "video/*",
+			},
+		},
 	},
 
 	/**

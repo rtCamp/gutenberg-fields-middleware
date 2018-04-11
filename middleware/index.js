@@ -25,6 +25,7 @@ import editor from './fields/code-editor';
 import dateTimePicker from './fields/date-time';
 import formToggle from './fields/form-toggle';
 import treeSelect from './fields/tree-select';
+import fileUpload from './fields/file-upload';
 
 class GutenbergFieldsMiddleWare {
 	constructor( config ) {
@@ -129,6 +130,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'tree-select':
 				fields[ attributeKey ] = treeSelect( props, config, attributeKey );
+				break;
+			case 'file-upload':
+				fields[ attributeKey ] = fileUpload( props, config, attributeKey );
 				break;
 		}
 
