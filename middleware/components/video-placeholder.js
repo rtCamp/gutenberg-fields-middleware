@@ -2,7 +2,6 @@ const { Component } = wp.element;
 const { __ } = wp.i18n;
 
 const {
-	ImagePlaceholder,
 	MediaUpload,
 } = wp.blocks;
 
@@ -14,14 +13,8 @@ const {
 
 const { mediaUpload } = wp.utils;
 
-
 class VideoPlaceholder extends Component {
-	constructor( props ) {
-		super( ...arguments );
-	}
-
 	render() {
-
 		const onSelectVideo = ( media ) => {
 			if ( media && media.url ) {
 				this.setState( { src: media.url, editing: false } );
