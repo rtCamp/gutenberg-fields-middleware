@@ -2,7 +2,7 @@
  * Input field for email, hidden, number, search, tel.
  */
 
-const { BaseControl } = wp.components;
+const { BaseControl, TextControl } = wp.components;
 
 export default function inputField( props, config, attributeKey ) {
 	const defaultAttributes = {
@@ -35,7 +35,7 @@ export default function inputField( props, config, attributeKey ) {
 
 	return (
 		<BaseControl id={ id } label={ label } help={ help } >
-			<input
+			<TextControl
 				id={ id }
 				{ ...fieldAttributes }
 			/>

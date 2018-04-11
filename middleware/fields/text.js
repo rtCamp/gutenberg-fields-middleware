@@ -3,8 +3,13 @@
  */
 
 const { PlainText } = wp.blocks;
+import inputField from './input-field';
 
 export default function text( props, config, attributeKey ) {
+	if ( 'inspector' === config.placement ) {
+		return inputField( props, config, attributeKey );
+	}
+
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
 	};

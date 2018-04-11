@@ -267,27 +267,16 @@ var GutenbergFieldsMiddleWare = function () {
 				case 'textarea':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_textarea__["a" /* default */])(props, config, attributeKey);
 					break;
-				case 'email':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'hidden':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'number':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'search':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'tel':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
-					break;
 				case 'switch':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'tree-select':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_17__fields_tree_select__["a" /* default */])(props, config, attributeKey);
 					break;
+			}
+
+			if (_.contains(config.type, ['email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'])) {
+				fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
 			}
 
 			return fields;
@@ -449,7 +438,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * Input field for email, hidden, number, search, tel.
  */
 
-var BaseControl = wp.components.BaseControl;
+var _wp$components = wp.components,
+    BaseControl = _wp$components.BaseControl,
+    TextControl = _wp$components.TextControl;
 
 
 function inputField(props, config, attributeKey) {
@@ -484,7 +475,7 @@ function inputField(props, config, attributeKey) {
 	return React.createElement(
 		BaseControl,
 		{ id: id, label: label, help: help },
-		React.createElement('input', _extends({
+		React.createElement(TextControl, _extends({
 			id: id
 		}, fieldAttributes))
 	);
@@ -1179,6 +1170,7 @@ function range(props, config, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = text;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__input_field__ = __webpack_require__(5);
 /**
  * Text field.
  */
@@ -1186,7 +1178,12 @@ function range(props, config, attributeKey) {
 var PlainText = wp.blocks.PlainText;
 
 
+
 function text(props, config, attributeKey) {
+	if ('inspector' === config.placement) {
+		return Object(__WEBPACK_IMPORTED_MODULE_0__input_field__["a" /* default */])(props, config, attributeKey);
+	}
+
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || ''
 	};

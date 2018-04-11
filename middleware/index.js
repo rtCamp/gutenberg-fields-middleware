@@ -154,27 +154,16 @@ class GutenbergFieldsMiddleWare {
 			case 'textarea':
 				fields[ attributeKey ] = textarea( props, config, attributeKey );
 				break;
-			case 'email':
-				fields[ attributeKey ] = inputField( props, config, attributeKey );
-				break;
-			case 'hidden':
-				fields[ attributeKey ] = inputField( props, config, attributeKey );
-				break;
-			case 'number':
-				fields[ attributeKey ] = inputField( props, config, attributeKey );
-				break;
-			case 'search':
-				fields[ attributeKey ] = inputField( props, config, attributeKey );
-				break;
-			case 'tel':
-				fields[ attributeKey ] = inputField( props, config, attributeKey );
-				break;
 			case 'switch':
 				fields[ attributeKey ] = formToggle( props, config, attributeKey );
 				break;
 			case 'tree-select':
 				fields[ attributeKey ] = treeSelect( props, config, attributeKey );
 				break;
+		}
+
+		if ( _.contains( config.type, [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ] ) ) {
+			fields[ attributeKey ] = inputField( props, config, attributeKey );
 		}
 
 		return fields;
