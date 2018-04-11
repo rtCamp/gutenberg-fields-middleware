@@ -1,10 +1,10 @@
 /**
- * Range field.
+ * Text field.
  */
 
-const { RangeControl } = wp.components;
+const { PlainText } = wp.blocks;
 
-export default function rangeControl( props, config, attributeKey ) {
+export default function text( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
 	};
@@ -24,7 +24,7 @@ export default function rangeControl( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<RangeControl
+		<PlainText
 			{ ...fieldAttributes }
 		/>
 	);

@@ -9,21 +9,21 @@ const { addFilter } = wp.hooks;
  * Fields
  */
 import richText from './fields/rich-text';
-import plainText from './fields/plain-text';
-import textareaControl from './fields/textarea-control';
+import text from './fields/text';
+import textarea from './fields/textarea';
 import inputField from './fields/input-field';
-import urlInput from './fields/url-input';
-import imageUpload from './fields/image-upload';
-import selectControl from './fields/select-control';
-import checkboxControl from './fields/checkbox-control';
-import radioControl from './fields/radio-control';
-import rangeControl from './fields/range-control';
+import link from './fields/link';
+import image from './fields/image';
+import select from './fields/select';
+import checkbox from './fields/checkbox';
+import radio from './fields/radio';
+import range from './fields/range';
 import button from './fields/button';
 import buttonEditable from './fields/button-editable';
-import colorPalette from './fields/color-palette';
+import color from './fields/color';
 import dropdown from './fields/dropdown';
-import editor from './fields/code-editor';
-import dateTimePicker from './fields/date-time';
+import codeEditor from './fields/code-editor';
+import dateTime from './fields/date-time';
 import formToggle from './fields/form-toggle';
 import treeSelect from './fields/tree-select';
 
@@ -110,28 +110,28 @@ class GutenbergFieldsMiddleWare {
 
 		switch ( config.type ) {
 			case 'text':
-				fields[ attributeKey ] = plainText( props, config, attributeKey );
+				fields[ attributeKey ] = text( props, config, attributeKey );
 				break;
 			case 'rich-text':
 				fields[ attributeKey ] = richText( props, config, attributeKey );
 				break;
 			case 'link':
-				fields[ attributeKey ] = urlInput( props, config, attributeKey );
+				fields[ attributeKey ] = link( props, config, attributeKey );
 				break;
 			case 'image':
-				fields[ attributeKey ] = imageUpload( props, config, attributeKey );
+				fields[ attributeKey ] = image( props, config, attributeKey );
 				break;
 			case 'select':
-				fields[ attributeKey ] = selectControl( props, config, attributeKey );
+				fields[ attributeKey ] = select( props, config, attributeKey );
 				break;
 			case 'range':
-				fields[ attributeKey ] = rangeControl( props, config, attributeKey );
+				fields[ attributeKey ] = range( props, config, attributeKey );
 				break;
 			case 'radio':
-				fields[ attributeKey ] = radioControl( props, config, attributeKey );
+				fields[ attributeKey ] = radio( props, config, attributeKey );
 				break;
 			case 'checkbox':
-				fields[ attributeKey ] = checkboxControl( props, config, attributeKey );
+				fields[ attributeKey ] = checkbox( props, config, attributeKey );
 				break;
 			case 'button':
 				fields[ attributeKey ] = button( props, config, attributeKey );
@@ -140,19 +140,19 @@ class GutenbergFieldsMiddleWare {
 				fields[ attributeKey ] = buttonEditable( props, config, attributeKey );
 				break;
 			case 'color':
-				fields[ attributeKey ] = colorPalette( props, config, attributeKey );
+				fields[ attributeKey ] = color( props, config, attributeKey );
 				break;
 			case 'dropdown':
 				fields[ attributeKey ] = dropdown( props, config );
 				break;
-			case 'editor':
-				fields[ attributeKey ] = editor( props, config, attributeKey );
+			case 'code-editor':
+				fields[ attributeKey ] = codeEditor( props, config, attributeKey );
 				break;
 			case 'date-time':
-				fields[ attributeKey ] = dateTimePicker( props, config, attributeKey );
+				fields[ attributeKey ] = dateTime( props, config, attributeKey );
 				break;
 			case 'textarea':
-				fields[ attributeKey ] = textareaControl( props, config, attributeKey );
+				fields[ attributeKey ] = textarea( props, config, attributeKey );
 				break;
 			case 'email':
 				fields[ attributeKey ] = inputField( props, config, attributeKey );

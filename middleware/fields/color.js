@@ -1,12 +1,16 @@
 /**
- * Text field.
+ * Color Palette field.
  */
 
-const { PlainText } = wp.blocks;
+const { ColorPalette } = wp.blocks;
+const { PanelColor } = wp.components;
+const { __ } = wp.i18n;
 
-export default function plainText( props, config, attributeKey ) {
+export default function color( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
+
+		label: __( 'Color' ),
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -24,8 +28,10 @@ export default function plainText( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<PlainText
-			{ ...fieldAttributes }
-		/>
+		<PanelColor title={ fieldAttributes.label } colorValue={ fieldAttributes.value } >
+			<ColorPalette
+				{ ...fieldAttributes }
+			/>
+		</PanelColor>
 	);
 }

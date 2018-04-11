@@ -591,7 +591,7 @@ image: {
 
 
 
-### editor
+### code-editor
 
 #### value:
 

@@ -6,7 +6,7 @@ const { DateTimePicker, PanelBody } = wp.components;
 const { dateI18n, settings } = wp.date;
 const { __ } = wp.i18n;
 
-export default function dateTimePicker( props, config, attributeKey ) {
+export default function dateTime( props, config, attributeKey ) {
 	const is12HourTime = /a(?!\\)/i.test(
 		settings.formats.time
 			.toLowerCase() // Test only the lower case a
