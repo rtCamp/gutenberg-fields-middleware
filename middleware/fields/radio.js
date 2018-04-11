@@ -1,12 +1,13 @@
 /**
- * Range field.
+ * Radio Control field.
  */
 
-const { RangeControl } = wp.components;
+const { RadioControl } = wp.components;
 
-export default function rangeControl( props, config, attributeKey ) {
+export default function radio( props, config, attributeKey ) {
+	const defaultValue = config.default || '';
 	const defaultAttributes = {
-		value: props.attributes[ attributeKey ] || '',
+		selected: props.attributes[ attributeKey ] || defaultValue,
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -24,7 +25,7 @@ export default function rangeControl( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<RangeControl
+		<RadioControl
 			{ ...fieldAttributes }
 		/>
 	);

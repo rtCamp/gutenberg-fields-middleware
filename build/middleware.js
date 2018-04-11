@@ -60,43 +60,96 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = __webpack_require__(1);
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = inputField;
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+/**
+ * Input field for email, hidden, number, search, tel.
+ */
+
+var _wp$components = wp.components,
+    BaseControl = _wp$components.BaseControl,
+    TextControl = _wp$components.TextControl;
+
+
+function inputField(props, config, attributeKey) {
+	var defaultAttributes = {
+
+		value: props.attributes[attributeKey],
+
+		className: 'components-text-control__input'
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	var id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId(attributeKey);
+	var label = fieldAttributes.label;
+	var help = fieldAttributes.help;
+
+	delete fieldAttributes.id;
+	delete fieldAttributes.placement;
+	delete fieldAttributes.label;
+	delete fieldAttributes.help;
+
+	return React.createElement(
+		BaseControl,
+		{ id: id, label: label, help: help },
+		React.createElement(TextControl, _extends({
+			id: id
+		}, fieldAttributes))
+	);
+}
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(2);
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_plain_text__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_textarea_control__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_url_input__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_image_upload__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_select_control__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_checkbox_control__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_radio_control__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_range_control__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_text__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_textarea__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_link__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_image__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_select__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_checkbox__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_radio__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_range__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_button__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_button_editable__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_color_palette__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_color__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_dropdown__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_code_editor__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_date_time__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_tree_select__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__fields_file_upload__ = __webpack_require__(22);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -180,24 +233,28 @@ var GutenbergFieldsMiddleWare = function () {
 			this.blockConfigs.edit = function (props) {
 				_this.setupBlockFields(props);
 
+				props.middleware = _this;
+
 				if (_this.config.edit) {
 					if (_this.constructor.isClassComponent(_this.config.edit)) {
-						return React.createElement(_this.config.edit, _extends({}, props, { middleware: _this }));
+						return React.createElement(_this.config.edit, props);
 					}
 
-					return _this.config.edit(props, _this);
+					return _this.config.edit(props);
 				}
 
 				return _this.edit(props);
 			};
 
 			this.blockConfigs.save = function (props) {
+				props.middleware = _this;
+
 				if (_this.config.save) {
 					if (_this.constructor.isClassComponent(_this.config.save)) {
-						return React.createElement(_this.config.save, _extends({}, props, { middleware: _this }));
+						return React.createElement(_this.config.save, props);
 					}
 
-					return _this.config.save(props, _this);
+					return _this.config.save(props);
 				}
 
 				return _this.save(props);
@@ -219,81 +276,70 @@ var GutenbergFieldsMiddleWare = function () {
 	}, {
 		key: 'getField',
 		value: function getField(props, config, attributeKey) {
-			var fields = {};
+			var field = {};
 
 			switch (config.type) {
 				case 'text':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_plain_text__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_text__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'rich-text':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'link':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_url_input__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_link__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'image':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_image_upload__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_image__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'select':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_select_control__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_select__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'range':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_range_control__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_range__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'radio':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_radio_control__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_radio__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'checkbox':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_checkbox_control__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_checkbox__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'button':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_button__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_button__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'button-editable':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_11__fields_button_editable__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_11__fields_button_editable__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'color':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_color_palette__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_color__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'dropdown':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_dropdown__["a" /* default */])(props, config);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_dropdown__["a" /* default */])(props, config);
 					break;
-				case 'editor':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_code_editor__["a" /* default */])(props, config, attributeKey);
+				case 'code-editor':
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_code_editor__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'date-time':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_15__fields_date_time__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_15__fields_date_time__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'textarea':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_textarea_control__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'email':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'hidden':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'number':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'search':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
-					break;
-				case 'tel':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_textarea__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'switch':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_16__fields_form_toggle__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'tree-select':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_17__fields_tree_select__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_17__fields_tree_select__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'file-upload':
 					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_18__fields_file_upload__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
-			return fields;
+			if (_.contains(['email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'], config.type)) {
+				field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
+			}
+
+			return field;
 		}
 
 		/**
@@ -404,7 +450,7 @@ addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/a
 /* harmony default export */ __webpack_exports__["default"] = (GutenbergFieldsMiddleWare);
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -439,11 +485,12 @@ function richText(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = plainText;
+/* harmony export (immutable) */ __webpack_exports__["a"] = text;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__input_field__ = __webpack_require__(0);
 /**
  * Text field.
  */
@@ -451,7 +498,12 @@ function richText(props, config, attributeKey) {
 var PlainText = wp.blocks.PlainText;
 
 
-function plainText(props, config, attributeKey) {
+
+function text(props, config, attributeKey) {
+	if ('inspector' === config.placement) {
+		return Object(__WEBPACK_IMPORTED_MODULE_0__input_field__["a" /* default */])(props, config, attributeKey);
+	}
+
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || ''
 	};
@@ -474,11 +526,11 @@ function plainText(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = textareaControl;
+/* harmony export (immutable) */ __webpack_exports__["a"] = textarea;
 /**
  * Textarea field.
  */
@@ -488,7 +540,7 @@ var _wp$components = wp.components,
     BaseControl = _wp$components.BaseControl;
 
 
-function textareaControl(props, config, attributeKey) {
+function textarea(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || ''
 	};
@@ -517,64 +569,11 @@ function textareaControl(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = inputField;
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-/**
- * Input field for email, hidden, number, search, tel.
- */
-
-var BaseControl = wp.components.BaseControl;
-
-
-function inputField(props, config, attributeKey) {
-	var defaultAttributes = {
-
-		value: props.attributes[attributeKey],
-
-		className: 'components-text-control__input'
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (event) {
-		if (config.onChange) {
-			config.onChange(event, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = event.target.value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	var id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId(attributeKey);
-	var label = fieldAttributes.label;
-	var help = fieldAttributes.help;
-
-	delete fieldAttributes.id;
-	delete fieldAttributes.placement;
-	delete fieldAttributes.label;
-	delete fieldAttributes.help;
-
-	return React.createElement(
-		BaseControl,
-		{ id: id, label: label, help: help },
-		React.createElement('input', _extends({
-			id: id
-		}, fieldAttributes))
-	);
-}
-
-/***/ }),
 /* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = urlInput;
+/* harmony export (immutable) */ __webpack_exports__["a"] = link;
 /**
  * Url field.
  */
@@ -583,9 +582,10 @@ var UrlInput = wp.blocks.UrlInput;
 var BaseControl = wp.components.BaseControl;
 
 
-function urlInput(props, config, attributeKey) {
+function link(props, config, attributeKey) {
+	var defaultValue = config.default || '';
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
+		value: props.attributes[attributeKey] || defaultValue
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -624,7 +624,7 @@ function urlInput(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = imageUpload;
+/* harmony export (immutable) */ __webpack_exports__["a"] = image;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(8);
 /**
  * Image Field.
@@ -637,7 +637,7 @@ var __ = wp.i18n.__;
 
 
 
-function imageUpload(props, config, attributeKey) {
+function image(props, config, attributeKey) {
 	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
 	var image = props.attributes[attributeKey];
 
@@ -747,7 +747,7 @@ function imagePlaceholder(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = selectControl;
+/* harmony export (immutable) */ __webpack_exports__["a"] = select;
 /**
  * Select field.
  */
@@ -755,7 +755,7 @@ function imagePlaceholder(props, config, attributeKey) {
 var SelectControl = wp.components.SelectControl;
 
 
-function selectControl(props, config, attributeKey) {
+function select(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || ''
 	};
@@ -782,7 +782,7 @@ function selectControl(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = checkboxControl;
+/* harmony export (immutable) */ __webpack_exports__["a"] = checkbox;
 /**
  * Checkbox field.
  */
@@ -790,7 +790,7 @@ function selectControl(props, config, attributeKey) {
 var CheckboxControl = wp.components.CheckboxControl;
 
 
-function checkboxControl(props, config, attributeKey) {
+function checkbox(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: '1',
 		checked: props.attributes[attributeKey]
@@ -818,7 +818,7 @@ function checkboxControl(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = radioControl;
+/* harmony export (immutable) */ __webpack_exports__["a"] = radio;
 /**
  * Radio Control field.
  */
@@ -826,9 +826,10 @@ function checkboxControl(props, config, attributeKey) {
 var RadioControl = wp.components.RadioControl;
 
 
-function radioControl(props, config, attributeKey) {
+function radio(props, config, attributeKey) {
+	var defaultValue = config.default || '';
 	var defaultAttributes = {
-		selected: props.attributes[attributeKey]
+		selected: props.attributes[attributeKey] || defaultValue
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -853,7 +854,7 @@ function radioControl(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = rangeControl;
+/* harmony export (immutable) */ __webpack_exports__["a"] = range;
 /**
  * Range field.
  */
@@ -861,7 +862,7 @@ function radioControl(props, config, attributeKey) {
 var RangeControl = wp.components.RangeControl;
 
 
-function rangeControl(props, config, attributeKey) {
+function range(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || ''
 	};
@@ -931,10 +932,11 @@ var __ = wp.i18n.__;
 
 
 function buttonEditable(props, config, attributeKey) {
+	var defaultValue = config.default || '';
 	var defaultAttributes = {
 		placeholder: __('Add text…'),
 		tagName: 'span',
-		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : '',
+		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : defaultValue,
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true
 	};
@@ -1072,7 +1074,7 @@ var ButtonEditable = function (_Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = colorPalette;
+/* harmony export (immutable) */ __webpack_exports__["a"] = color;
 /**
  * Color Palette field.
  */
@@ -1082,7 +1084,7 @@ var PanelColor = wp.components.PanelColor;
 var __ = wp.i18n.__;
 
 
-function colorPalette(props, config, attributeKey) {
+function color(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || '',
 
@@ -1157,7 +1159,7 @@ function dropdown(props, config) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = editor;
+/* harmony export (immutable) */ __webpack_exports__["a"] = codeEditor;
 /**
  * Code editor field.
  */
@@ -1165,7 +1167,7 @@ function dropdown(props, config) {
 var CodeEditor = wp.components.CodeEditor;
 
 
-function editor(props, config, attributeKey) {
+function codeEditor(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || ''
 	};
@@ -1192,7 +1194,7 @@ function editor(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = dateTimePicker;
+/* harmony export (immutable) */ __webpack_exports__["a"] = dateTime;
 /**
  * Date time field.
  */
@@ -1206,7 +1208,7 @@ var _wp$date = wp.date,
 var __ = wp.i18n.__;
 
 
-function dateTimePicker(props, config, attributeKey) {
+function dateTime(props, config, attributeKey) {
 	var is12HourTime = /a(?!\\)/i.test(settings.formats.time.toLowerCase() // Test only the lower case a
 	.replace(/\\\\/g, '') // Replace "//" with empty strings
 	.split('').reverse().join('') // Reverse the string and test for "a" not followed by a slash

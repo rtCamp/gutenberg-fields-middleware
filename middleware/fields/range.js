@@ -1,16 +1,12 @@
 /**
- * Color Palette field.
+ * Range field.
  */
 
-const { ColorPalette } = wp.blocks;
-const { PanelColor } = wp.components;
-const { __ } = wp.i18n;
+const { RangeControl } = wp.components;
 
-export default function colorPalette( props, config, attributeKey ) {
+export default function range( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
-
-		label: __( 'Color' ),
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -28,10 +24,8 @@ export default function colorPalette( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<PanelColor title={ fieldAttributes.label } colorValue={ fieldAttributes.value } >
-			<ColorPalette
-				{ ...fieldAttributes }
-			/>
-		</PanelColor>
+		<RangeControl
+			{ ...fieldAttributes }
+		/>
 	);
 }

@@ -4,7 +4,7 @@
 
 const { CheckboxControl } = wp.components;
 
-export default function checkboxControl( props, config, attributeKey ) {
+export default function checkbox( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: '1',
 		checked: props.attributes[ attributeKey ],

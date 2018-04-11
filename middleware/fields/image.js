@@ -8,7 +8,7 @@ const { __ } = wp.i18n;
 
 import imagePlaceholder from '../components/image-placeholder';
 
-export default function imageUpload( props, config, attributeKey ) {
+export default function image( props, config, attributeKey ) {
 	const buttonText = config.buttonText ? config.buttonText : __( 'Open Media Library' );
 	const image = props.attributes[ attributeKey ];
 

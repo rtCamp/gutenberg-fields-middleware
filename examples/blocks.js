@@ -65,6 +65,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'radio',
+				default: 'one',
 				options: [
 					{
 						value: 'one',
@@ -196,8 +197,11 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'number',
-				label: __( 'Number' ),
+				label: 'Number',
+				min: 20,
+				max: 40,
 				placement: 'inspector',
+				placeholder: __( 'Enter link text' ),
 			},
 		},
 		search: {
@@ -216,10 +220,10 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 			},
 		},
-		editor: {
+		codeEditor: {
 			type: 'string',
 			field: {
-				type: 'editor',
+				type: 'code-editor',
 			},
 		},
 		layoutOption: {
@@ -259,8 +263,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 	/**
 	 * This is optional, if not defined, save would be null.
 	 *
-	 * @param {object} props Same properties we get in default edit method.
-	 * @return {*}
+	 * @param {Object} props Same properties we get in default edit method.
+	 * @return {Object} React elements.
 	 */
 	save( props ) {
 		const attributes = props.attributes;

@@ -1,12 +1,17 @@
 /**
- * Radio Control field.
+ * Text field.
  */
 
-const { RadioControl } = wp.components;
+const { PlainText } = wp.blocks;
+import inputField from './input-field';
 
-export default function radioControl( props, config, attributeKey ) {
+export default function text( props, config, attributeKey ) {
+	if ( 'inspector' === config.placement ) {
+		return inputField( props, config, attributeKey );
+	}
+
 	const defaultAttributes = {
-		selected: props.attributes[ attributeKey ],
+		value: props.attributes[ attributeKey ] || '',
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -24,7 +29,7 @@ export default function radioControl( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<RadioControl
+		<PlainText
 			{ ...fieldAttributes }
 		/>
 	);
