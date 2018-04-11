@@ -6,8 +6,9 @@ const { UrlInput } = wp.blocks;
 const { BaseControl } = wp.components;
 
 export default function link( props, config, attributeKey ) {
+	const defaultValue = config.default || '';
 	const defaultAttributes = {
-		value: props.attributes[ attributeKey ] || '',
+		value: props.attributes[ attributeKey ] || defaultValue,
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
