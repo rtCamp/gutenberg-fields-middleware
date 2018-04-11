@@ -7,17 +7,23 @@ const { BaseControl } = wp.components;
 export default function inputField( props, config, attributeKey ) {
 	const defaultAttributes = {
 
-		onChange( event ) {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = event.target.value;
-			props.setAttributes( newAttributes );
-		},
-
 		value: props.attributes[ attributeKey ],
+
 		className: 'components-text-control__input',
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
+
+	fieldAttributes.onChange = ( event ) => {
+		if ( config.onChange ) {
+			config.onChange( event, props );
+		} else {
+			const newAttributes = {};
+			newAttributes[ attributeKey ] = event.target.value;
+			props.setAttributes( newAttributes );
+		}
+	};
+
 	const id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId( attributeKey );
 	const label = fieldAttributes.label;
 	const help = fieldAttributes.help;

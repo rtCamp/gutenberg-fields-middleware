@@ -1,4 +1,6 @@
-const glob = require( "glob" );
+const webpack = require( 'webpack' );
+const glob = require( 'glob' );
+const PROD = JSON.parse( process.env.PROD_ENV || '0' );
 
 const externals = {
 	react: 'React',
@@ -13,17 +15,26 @@ module.exports = [
 		},
 		output: {
 			path: __dirname + '/build/',
-			filename: 'middleware.js',
+			filename: PROD ? 'middleware.min.js' : 'middleware.js',
 		},
 		externals,
+		devtool: 'source-map',
 		module: {
 			loaders: [
 				{
 					test: /.js$/,
 					loader: 'babel-loader',
 					exclude: /node_modules/,
+					query: {
+						presets: [ 'react' ],
+					},
 				},
 			],
 		},
+		plugins: PROD ? [
+			new webpack.optimize.UglifyJsPlugin( {
+				compress: { warnings: false },
+			} ),
+		] : [],
 	},
 ];

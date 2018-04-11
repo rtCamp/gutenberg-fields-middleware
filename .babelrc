@@ -1,5 +1,6 @@
 {
 	"presets": [
+		"react",
 		[ "env", {
 			"modules": false,
 			"targets": {
@@ -15,6 +16,11 @@
 			}
 		} ]
 	],
+	"env": {
+		"test": {
+			"presets": [["env"], "react"]
+		}
+	},
 	"plugins": [
 	  	"transform-object-rest-spread",
 		[ "transform-react-jsx", {

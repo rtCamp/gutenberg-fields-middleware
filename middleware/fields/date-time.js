@@ -16,12 +16,6 @@ export default function dateTimePicker( props, config, attributeKey ) {
 
 	const defaultAttributes = {
 
-		onChange( value ) {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = value;
-			props.setAttributes( newAttributes );
-		},
-
 		locale: settings.l10n.locale,
 
 		currentDate: props.attributes[ attributeKey ],
@@ -32,6 +26,17 @@ export default function dateTimePicker( props, config, attributeKey ) {
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
+
+	fieldAttributes.onChange = ( value ) => {
+		if ( config.onChange ) {
+			config.onChange( value, props );
+		} else {
+			const newAttributes = {};
+			newAttributes[ attributeKey ] = value;
+			props.setAttributes( newAttributes );
+		}
+	};
+
 	const label = fieldAttributes.label;
 
 	const getFormattedDate = () => {
