@@ -4,12 +4,10 @@
 const { __ } = wp.i18n;
 import VideoPlaceholder from './../components/video-placeholder';
 
-export default function videoPlaceholder(props, config, attributeKey){
-
+export default function videoPlaceholder( props, config, attributeKey ) {
 	const defaultAttributes = {
-		label: __('Video'),
+		label: __( 'Video' ),
 		placeholderText: __( 'Select a video file from your library, or upload a new one' ),
-
 		buttonText: __( 'Upload' ),
 	};
 
@@ -17,7 +15,6 @@ export default function videoPlaceholder(props, config, attributeKey){
 
 	fieldAttributes.setVideoAttributes = ( media ) => {
 		if ( media && media.url ) {
-
 			const newAttributes = {};
 			newAttributes[ attributeKey ] = media;
 			props.setAttributes( newAttributes );
@@ -31,12 +28,10 @@ export default function videoPlaceholder(props, config, attributeKey){
 		}
 	};
 
-	fieldAttributes.videoData = props.attributes[attributeKey];
+	fieldAttributes.videoData = props.attributes[ attributeKey ];
 	fieldAttributes.isSelected = props.isSelected;
 
 	return (
-		<VideoPlaceholder 
-			{ ...fieldAttributes }
-		/>
-	)
+		<VideoPlaceholder { ...fieldAttributes } />
+	);
 }
