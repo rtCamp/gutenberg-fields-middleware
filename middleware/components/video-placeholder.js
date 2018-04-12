@@ -1,7 +1,20 @@
 const { Component } = wp.element;
 const { __ } = wp.i18n;
-const { RichText, MediaUpload, BlockControls, } = wp.blocks;
-const { Placeholder, FormFileUpload, Button, Toolbar, IconButton, } = wp.components;
+
+const {
+	RichText,
+	MediaUpload,
+	BlockControls,
+} = wp.blocks;
+
+const {
+	Placeholder,
+	FormFileUpload,
+	Button,
+	Toolbar,
+	IconButton,
+} = wp.components;
+
 const { mediaUpload } = wp.utils;
 
 class VideoPlaceholder extends Component {
@@ -17,8 +30,20 @@ class VideoPlaceholder extends Component {
 	render() {
 		const setVideo = ( [ audio ] ) => onSelectVideo( audio );
 		const uploadFromFiles = ( event ) => mediaUpload( event.target.files, setVideo, 'video' );
-		const { editing, src } = this.state;
-		const { videoData, placeholderText, buttonText, className, isSelected, setVideoAttributes, setCaption } = this.props;
+		const {
+			editing,
+			src,
+		} = this.state;
+
+		const {
+			videoData,
+			placeholderText,
+			buttonText,
+			className,
+			isSelected,
+			setVideoAttributes,
+			setCaption
+		} = this.props;
 
 		const switchToEditing = () => {
 			this.setState( { editing: true } );
@@ -33,6 +58,7 @@ class VideoPlaceholder extends Component {
 
 		const onSelectUrl = ( event ) => {
 			event.preventDefault();
+
 			if ( src ) {
 				this.setState( { editing: false } );
 				setVideoAttributes( src );
@@ -74,7 +100,7 @@ class VideoPlaceholder extends Component {
 					key="placeholder"
 					icon="media-video"
 					label={ __( 'Video' ) }
-					className={ className }
+					className={ 'wp-block-video ' + className }
 					instructions={ placeholderText } >
 					<form onSubmit={ onSelectUrl }>
 						<input
@@ -112,7 +138,7 @@ class VideoPlaceholder extends Component {
 
 		return [
 			controls,
-			<figure key="video" className={ className }>
+			<figure key="video" className={ 'wp-block-video ' + className }>
 				<video controls src={ src.url } />
 				{ isSelected && (
 					<RichText

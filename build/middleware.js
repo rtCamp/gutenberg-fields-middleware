@@ -759,9 +759,9 @@ var __ = wp.i18n.__;
 
 
 function videoPlaceholder(props, config, attributeKey) {
+
 	var defaultAttributes = {
 		label: __('Video'),
-
 		placeholderText: __('Select a video file from your library, or upload a new one'),
 
 		buttonText: __('Upload')
@@ -771,6 +771,7 @@ function videoPlaceholder(props, config, attributeKey) {
 
 	fieldAttributes.setVideoAttributes = function (media) {
 		if (media && media.url) {
+
 			var newAttributes = {};
 			newAttributes[attributeKey] = media;
 			props.setAttributes(newAttributes);
@@ -874,6 +875,7 @@ var VideoPlaceholder = function (_Component) {
 
 			var onSelectUrl = function onSelectUrl(event) {
 				event.preventDefault();
+
 				if (src) {
 					_this2.setState({ editing: false });
 					setVideoAttributes(src);
@@ -915,7 +917,7 @@ var VideoPlaceholder = function (_Component) {
 						key: 'placeholder',
 						icon: 'media-video',
 						label: __('Video'),
-						className: className,
+						className: 'wp-block-video ' + className,
 						instructions: placeholderText },
 					React.createElement(
 						'form',
@@ -961,7 +963,7 @@ var VideoPlaceholder = function (_Component) {
 
 			return [controls, React.createElement(
 				'figure',
-				{ key: 'video', className: className },
+				{ key: 'video', className: 'wp-block-video ' + className },
 				React.createElement('video', { controls: true, src: src.url }),
 				isSelected && React.createElement(RichText, {
 					tagName: 'figcaption',
