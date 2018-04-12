@@ -18,7 +18,7 @@ const {
 const { mediaUpload } = wp.utils;
 
 class VideoPlaceholder extends Component {
-	constructor( props ) {
+	constructor() {
 		super( ...arguments );
 
 		this.state = {
@@ -42,7 +42,7 @@ class VideoPlaceholder extends Component {
 			className,
 			isSelected,
 			setVideoAttributes,
-			setCaption
+			setCaption,
 		} = this.props;
 
 		const switchToEditing = () => {
@@ -74,9 +74,9 @@ class VideoPlaceholder extends Component {
 
 		const caption = () => {
 			if ( videoData && videoData.videoCaption ) {
-				return videoData.videoCaption[0] || '';
+				return videoData.videoCaption[ 0 ] || '';
 			}
-		}
+		};
 
 		const controls = (
 			<BlockControls key="controls">
