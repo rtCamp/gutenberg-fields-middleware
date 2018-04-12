@@ -1057,6 +1057,55 @@ treeSelect: {
 ```
 
 
+### file-upload
+
+#### accept:
+
+File types to accept with uploader.
+
+- Type: `String`
+- Required: No
+
+#### fileType:
+
+Selected file type to be upload on library.
+
+- Type: `String`
+- Required: No
+
+#### onChange:
+
+A function that receives the event object which has selected files..
+
+- Type: `function`
+- Required: No
+
+#### isLarge:
+
+Adds class `button-large` if set true.
+
+- Type: `boolean`
+- Required: No
+
+#### buttonText:
+
+Text of file-upload button.
+
+- Type: `String`
+- Required: No
+
+**Example:**
+
+```js
+fileUpload: {
+    type: 'object',
+    field: {
+        type: 'file-upload',
+        placement: 'inspector',
+    },
+}
+```
+
 
 :heavy_check_mark: The following input type field are also supported `'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'`
 
