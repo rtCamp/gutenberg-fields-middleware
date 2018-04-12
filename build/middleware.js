@@ -830,85 +830,89 @@ var VideoPlaceholder = function (_Component) {
 			editing: !_this.props.videoData,
 			src: _this.props.videoData || ''
 		};
+
+		_this.uploadFromFiles = _this.uploadFromFiles.bind(_this);
+		_this.onSelectVideo = _this.onSelectVideo.bind(_this);
+		_this.switchToEditing = _this.switchToEditing.bind(_this);
+		_this.onSelectUrl = _this.onSelectUrl.bind(_this);
+		_this.onUrlChange = _this.onUrlChange.bind(_this);
 		return _this;
 	}
 
 	_createClass(VideoPlaceholder, [{
-		key: 'render',
-		value: function render() {
+		key: 'uploadFromFiles',
+		value: function uploadFromFiles(event) {
 			var _this2 = this;
 
-			var setVideo = function setVideo(_ref) {
+			mediaUpload(event.target.files, function (_ref) {
 				var _ref2 = _slicedToArray(_ref, 1),
 				    audio = _ref2[0];
 
-				return onSelectVideo(audio);
-			};
-			var uploadFromFiles = function uploadFromFiles(event) {
-				return mediaUpload(event.target.files, setVideo, 'video');
-			};
-			var _state = this.state,
-			    editing = _state.editing,
-			    src = _state.src;
+				return _this2.onSelectVideo(audio);
+			}, 'video');
+		}
+	}, {
+		key: 'onSelectVideo',
+		value: function onSelectVideo(media) {
+			if (media && media.url) {
+				this.setState({ src: media, editing: false });
+				this.props.setVideoAttributes(media);
+			}
+		}
+	}, {
+		key: 'switchToEditing',
+		value: function switchToEditing() {
+			this.setState({ editing: true });
+		}
+	}, {
+		key: 'onSelectUrl',
+		value: function onSelectUrl(event) {
+			event.preventDefault();
+
+			if (this.state.src) {
+				this.setState({
+					editing: false
+				});
+				this.props.setVideoAttributes(this.state.src);
+			}
+		}
+	}, {
+		key: 'onUrlChange',
+		value: function onUrlChange(event) {
+			this.setState({ src: {
+					url: event.target.value
+				} });
+		}
+	}, {
+		key: 'render',
+		value: function render() {
 			var _props = this.props,
 			    videoData = _props.videoData,
 			    placeholderText = _props.placeholderText,
 			    buttonText = _props.buttonText,
 			    className = _props.className,
 			    isSelected = _props.isSelected,
-			    setVideoAttributes = _props.setVideoAttributes,
 			    setCaption = _props.setCaption;
 
 
-			var switchToEditing = function switchToEditing() {
-				_this2.setState({ editing: true });
-			};
-
-			var onSelectVideo = function onSelectVideo(media) {
-				if (media && media.url) {
-					_this2.setState({ src: media, editing: false });
-					setVideoAttributes(media);
-				}
-			};
-
-			var onSelectUrl = function onSelectUrl(event) {
-				event.preventDefault();
-
-				if (src) {
-					_this2.setState({ editing: false });
-					setVideoAttributes(src);
-				}
-				return false;
-			};
-
-			var ontUrlChange = function ontUrlChange(event) {
-				_this2.setState({ src: {
-						url: event.target.value
-					} });
-			};
-
-			var caption = function caption() {
-				if (videoData && videoData.videoCaption) {
-					return videoData.videoCaption[0] || '';
-				}
-			};
+			var caption = videoData && videoData.videoCaption ? videoData.videoCaption[0] || '' : '';
 
 			var controls = React.createElement(
 				BlockControls,
 				{ key: 'controls' },
-				!editing && React.createElement(
+				!this.state.editing && React.createElement(
 					Toolbar,
 					null,
 					React.createElement(IconButton, {
 						className: 'components-icon-button components-toolbar__control',
 						label: __('Edit video'),
-						onClick: switchToEditing,
+						onClick: this.switchToEditing,
 						icon: 'edit'
 					})
 				)
 			);
 
-			if (editing) {
+			if (this.state.editing) {
 				return [controls, React.createElement(
 					Placeholder,
 					{
@@ -919,13 +923,13 @@ var VideoPlaceholder = function (_Component) {
 						instructions: placeholderText },
 					React.createElement(
 						'form',
-						{ onSubmit: onSelectUrl },
+						{ onSubmit: this.onSelectUrl },
 						React.createElement('input', {
 							type: 'url',
 							className: 'components-placeholder__input',
 							placeholder: __('Enter URL of video file here…'),
-							onChange: ontUrlChange,
-							value: src.url || '' }),
+							onChange: this.onUrlChange,
+							value: this.state.src.url || '' }),
 						React.createElement(
 							Button,
 							{
@@ -939,13 +943,13 @@ var VideoPlaceholder = function (_Component) {
 						{
 							isLarge: true,
 							className: 'wp-block-video__upload-button',
-							onChange: uploadFromFiles,
+							onChange: this.uploadFromFiles,
 							accept: 'video/*'
 						},
 						buttonText
 					),
 					React.createElement(MediaUpload, {
-						onSelect: onSelectVideo,
+						onSelect: this.onSelectVideo,
 						type: 'video',
 						render: function render(_ref3) {
 							var open = _ref3.open;
@@ -962,11 +966,11 @@ var VideoPlaceholder = function (_Component) {
 			return [controls, React.createElement(
 				'figure',
 				{ key: 'video', className: 'wp-block-video ' + className },
-				React.createElement('video', { controls: true, src: src.url }),
+				React.createElement('video', { controls: true, src: this.state.src.url }),
 				isSelected && React.createElement(RichText, {
 					tagName: 'figcaption',
 					placeholder: __('Write caption…'),
-					value: caption(),
+					value: caption,
 					isSelected: isSelected,
 					onChange: setCaption,
 					inlineToolbar: true

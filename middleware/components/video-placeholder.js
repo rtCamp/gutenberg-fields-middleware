@@ -25,67 +25,66 @@ class VideoPlaceholder extends Component {
 			editing: ! this.props.videoData,
 			src: this.props.videoData || '',
 		};
+
+		this.uploadFromFiles = this.uploadFromFiles.bind( this );
+		this.onSelectVideo = this.onSelectVideo.bind( this );
+		this.switchToEditing = this.switchToEditing.bind( this );
+		this.onSelectUrl = this.onSelectUrl.bind( this );
+		this.onUrlChange = this.onUrlChange.bind( this );
+	}
+
+	uploadFromFiles( event ) {
+		mediaUpload( event.target.files, ( [ audio ] ) => this.onSelectVideo( audio ), 'video' );
+	}
+
+	onSelectVideo( media ) {
+		if ( media && media.url ) {
+			this.setState( { src: media, editing: false } );
+			this.props.setVideoAttributes( media );
+		}
+	}
+
+	switchToEditing() {
+		this.setState( { editing: true } );
+	}
+
+	onSelectUrl( event ) {
+		event.preventDefault();
+
+		if ( this.state.src ) {
+			this.setState( {
+				editing: false,
+			} );
+			this.props.setVideoAttributes( this.state.src );
+		}
+	}
+
+	onUrlChange( event ) {
+		this.setState( { src: {
+			url: event.target.value,
+		} } );
 	}
 
 	render() {
-		const setVideo = ( [ audio ] ) => onSelectVideo( audio );
-		const uploadFromFiles = ( event ) => mediaUpload( event.target.files, setVideo, 'video' );
-		const {
-			editing,
-			src,
-		} = this.state;
-
 		const {
 			videoData,
 			placeholderText,
 			buttonText,
 			className,
 			isSelected,
-			setVideoAttributes,
 			setCaption,
 		} = this.props;
 
-		const switchToEditing = () => {
-			this.setState( { editing: true } );
-		};
-
-		const onSelectVideo = ( media ) => {
-			if ( media && media.url ) {
-				this.setState( { src: media, editing: false } );
-				setVideoAttributes( media );
-			}
-		};
-
-		const onSelectUrl = ( event ) => {
-			event.preventDefault();
-
-			if ( src ) {
-				this.setState( { editing: false } );
-				setVideoAttributes( src );
-			}
-			return false;
-		};
-
-		const ontUrlChange = ( event ) => {
-			this.setState( { src: {
-				url: event.target.value,
-			} } );
-		};
-
-		const caption = () => {
-			if ( videoData && videoData.videoCaption ) {
-				return videoData.videoCaption[ 0 ] || '';
-			}
-		};
+		const caption = videoData && videoData.videoCaption ? videoData.videoCaption[ 0 ] || '' : '';
 
 		const controls = (
 			<BlockControls key="controls">
-				{ ! editing && (
+				{ ! this.state.editing && (
 					<Toolbar>
 						<IconButton
 							className="components-icon-button components-toolbar__control"
 							label={ __( 'Edit video' ) }
-							onClick={ switchToEditing }
+							onClick={ this.switchToEditing }
 							icon="edit"
 						/>
 					</Toolbar>
@@ -93,7 +92,7 @@ class VideoPlaceholder extends Component {
 			</BlockControls>
 		);
 
-		if ( editing ) {
+		if ( this.state.editing ) {
 			return [
 				controls,
 				<Placeholder
@@ -102,13 +101,13 @@ class VideoPlaceholder extends Component {
 					label={ __( 'Video' ) }
 					className={ 'wp-block-video ' + className }
 					instructions={ placeholderText } >
-					<form onSubmit={ onSelectUrl }>
+					<form onSubmit={ this.onSelectUrl }>
 						<input
 							type="url"
 							className="components-placeholder__input"
 							placeholder={ __( 'Enter URL of video file here…' ) }
-							onChange={ ontUrlChange }
-							value={ src.url || '' } />
+							onChange={ this.onUrlChange }
+							value={ this.state.src.url || '' } />
 						<Button
 							isLarge
 							type="submit">
@@ -118,13 +117,13 @@ class VideoPlaceholder extends Component {
 					<FormFileUpload
 						isLarge
 						className="wp-block-video__upload-button"
-						onChange={ uploadFromFiles }
+						onChange={ this.uploadFromFiles }
 						accept="video/*"
 					>
 						{ buttonText }
 					</FormFileUpload>
 					<MediaUpload
-						onSelect={ onSelectVideo }
+						onSelect={ this.onSelectVideo }
 						type="video"
 						render={ ( { open } ) => (
 							<Button isLarge onClick={ open } >
@@ -139,12 +138,12 @@ class VideoPlaceholder extends Component {
 		return [
 			controls,
 			<figure key="video" className={ 'wp-block-video ' + className }>
-				<video controls src={ src.url } />
+				<video controls src={ this.state.src.url } />
 				{ isSelected && (
 					<RichText
 						tagName="figcaption"
 						placeholder={ __( 'Write caption…' ) }
-						value={ caption() }
+						value={ caption }
 						isSelected={ isSelected }
 						onChange={ setCaption }
 						inlineToolbar
