@@ -2,7 +2,7 @@
  * Input field for email, hidden, number, search, tel.
  */
 
-const { BaseControl } = wp.components;
+const { BaseControl, TextControl } = wp.components;
 
 export default function inputField( props, config, attributeKey ) {
 	const defaultAttributes = {
@@ -14,12 +14,12 @@ export default function inputField( props, config, attributeKey ) {
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
-	fieldAttributes.onChange = ( event ) => {
+	fieldAttributes.onChange = ( value ) => {
 		if ( config.onChange ) {
-			config.onChange( event, props );
+			config.onChange( value, props );
 		} else {
 			const newAttributes = {};
-			newAttributes[ attributeKey ] = event.target.value;
+			newAttributes[ attributeKey ] = value;
 			props.setAttributes( newAttributes );
 		}
 	};
@@ -35,7 +35,7 @@ export default function inputField( props, config, attributeKey ) {
 
 	return (
 		<BaseControl id={ id } label={ label } help={ help } >
-			<input
+			<TextControl
 				id={ id }
 				{ ...fieldAttributes }
 			/>

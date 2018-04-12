@@ -205,8 +205,11 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'number',
-				label: __( 'Number' ),
+				label: 'Number',
+				min: 20,
+				max: 40,
 				placement: 'inspector',
+				placeholder: __( 'Enter link text' ),
 			},
 		},
 		search: {
