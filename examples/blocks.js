@@ -61,6 +61,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 		},
+		video: {
+			type: 'object',
+			field: {
+				type: 'video',
+				buttonText: __( 'Upload' ),
+				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
+			},
+		},
 		radio: {
 			type: 'string',
 			field: {
