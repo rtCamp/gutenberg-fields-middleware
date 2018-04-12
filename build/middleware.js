@@ -898,7 +898,7 @@ var VideoPlaceholder = function (_Component) {
 			var controls = React.createElement(
 				BlockControls,
 				{ key: 'controls' },
-				!this.state.editing && React.createElement(
+				!this.state.editing && isSelected && React.createElement(
 					Toolbar,
 					null,
 					React.createElement(IconButton, {

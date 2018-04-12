@@ -79,7 +79,7 @@ class VideoPlaceholder extends Component {
 
 		const controls = (
 			<BlockControls key="controls">
-				{ ! this.state.editing && (
+				{ ! this.state.editing && isSelected && (
 					<Toolbar>
 						<IconButton
 							className="components-icon-button components-toolbar__control"
