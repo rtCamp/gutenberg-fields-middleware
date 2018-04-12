@@ -17,6 +17,9 @@ const {
 
 const { mediaUpload } = wp.utils;
 
+/**
+ * VideoPlaceholder component class.
+ */
 class VideoPlaceholder extends Component {
 	constructor() {
 		super( ...arguments );
