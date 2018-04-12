@@ -6,7 +6,6 @@ import VideoPlaceholder from './../components/video-placeholder';
 
 export default function videoPlaceholder( props, config, attributeKey ) {
 	const defaultAttributes = {
-		label: __( 'Video' ),
 		placeholderText: __( 'Select a video file from your library, or upload a new one' ),
 		buttonText: __( 'Upload' ),
 	};
