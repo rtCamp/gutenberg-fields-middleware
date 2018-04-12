@@ -26,7 +26,7 @@ class VideoPlaceholder extends Component {
 
 		this.state = {
 			editing: ! this.props.videoData,
-			src: this.props.videoData || '',
+			videoData: this.props.videoData || '',
 		};
 
 		this.uploadFromFiles = this.uploadFromFiles.bind( this );
@@ -56,7 +56,7 @@ class VideoPlaceholder extends Component {
 	 */
 	onSelectVideo( media ) {
 		if ( media && media.url ) {
-			this.setState( { src: media, editing: false } );
+			this.setState( { videoData: media, editing: false } );
 			this.props.setVideoAttributes( media );
 		}
 	}
@@ -80,11 +80,11 @@ class VideoPlaceholder extends Component {
 	onSelectUrl( event ) {
 		event.preventDefault();
 
-		if ( this.state.src ) {
+		if ( this.state.videoData ) {
 			this.setState( {
 				editing: false,
 			} );
-			this.props.setVideoAttributes( this.state.src );
+			this.props.setVideoAttributes( this.state.videoData );
 		}
 	}
 
@@ -96,7 +96,7 @@ class VideoPlaceholder extends Component {
 	 * @return {void}
 	 */
 	onUrlChange( event ) {
-		this.setState( { src: {
+		this.setState( { videoData: {
 			url: event.target.value,
 		} } );
 	}
@@ -143,7 +143,7 @@ class VideoPlaceholder extends Component {
 							className="components-placeholder__input"
 							placeholder={ __( 'Enter URL of video file here…' ) }
 							onChange={ this.onUrlChange }
-							value={ this.state.src.url || '' } />
+							value={ this.state.videoData.url || '' } />
 						<Button
 							isLarge
 							type="submit">
@@ -174,7 +174,7 @@ class VideoPlaceholder extends Component {
 		return [
 			controls,
 			<figure key="video" className={ 'wp-block-video ' + className }>
-				<video controls src={ this.state.src.url } />
+				<video controls src={ this.state.videoData.url } />
 				{ isSelected && (
 					<RichText
 						tagName="figcaption"

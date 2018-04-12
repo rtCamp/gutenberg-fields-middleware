@@ -816,6 +816,10 @@ var _wp$components = wp.components,
     IconButton = _wp$components.IconButton;
 var mediaUpload = wp.utils.mediaUpload;
 
+/**
+ * VideoPlaceholder component class.
+ */
+
 var VideoPlaceholder = function (_Component) {
 	_inherits(VideoPlaceholder, _Component);
 
@@ -826,7 +830,7 @@ var VideoPlaceholder = function (_Component) {
 
 		_this.state = {
 			editing: !_this.props.videoData,
-			src: _this.props.videoData || ''
+			videoData: _this.props.videoData || ''
 		};
 
 		_this.uploadFromFiles = _this.uploadFromFiles.bind(_this);
@@ -836,6 +840,15 @@ var VideoPlaceholder = function (_Component) {
 		_this.onUrlChange = _this.onUrlChange.bind(_this);
 		return _this;
 	}
+
+	/**
+  * Upload from file.
+  *
+  * @param {Object} event Event.
+  *
+  * @return {void}
+  */
+
 
 	_createClass(VideoPlaceholder, [{
 		key: 'uploadFromFiles',
@@ -849,35 +862,69 @@ var VideoPlaceholder = function (_Component) {
 				return _this2.onSelectVideo(audio);
 			}, 'video');
 		}
+
+		/**
+   * Callback method when video is selected.
+   *
+   * @param {Object} media Media.
+   *
+   * @return {void}
+   */
+
 	}, {
 		key: 'onSelectVideo',
 		value: function onSelectVideo(media) {
 			if (media && media.url) {
-				this.setState({ src: media, editing: false });
+				this.setState({ videoData: media, editing: false });
 				this.props.setVideoAttributes(media);
 			}
 		}
+
+		/**
+   * Set editing state to true.
+   *
+   * @return {void}
+   */
+
 	}, {
 		key: 'switchToEditing',
 		value: function switchToEditing() {
 			this.setState({ editing: true });
 		}
+
+		/**
+   * Handles when url is selected.
+   *
+   * @param {Object} event Event
+   *
+   * @return {void}
+   */
+
 	}, {
 		key: 'onSelectUrl',
 		value: function onSelectUrl(event) {
 			event.preventDefault();
 
-			if (this.state.src) {
+			if (this.state.videoData) {
 				this.setState({
 					editing: false
 				});
-				this.props.setVideoAttributes(this.state.src);
+				this.props.setVideoAttributes(this.state.videoData);
 			}
 		}
+
+		/**
+   * Callback method when url changes.
+   *
+   * @param {Object} event Event.
+   *
+   * @return {void}
+   */
+
 	}, {
 		key: 'onUrlChange',
 		value: function onUrlChange(event) {
-			this.setState({ src: {
+			this.setState({ videoData: {
 					url: event.target.value
 				} });
 		}
@@ -927,7 +974,7 @@ var VideoPlaceholder = function (_Component) {
 							className: 'components-placeholder__input',
 							placeholder: __('Enter URL of video file here…'),
 							onChange: this.onUrlChange,
-							value: this.state.src.url || '' }),
+							value: this.state.videoData.url || '' }),
 						React.createElement(
 							Button,
 							{
@@ -964,9 +1011,9 @@ var VideoPlaceholder = function (_Component) {
 			return [controls, React.createElement(
 				'figure',
 				{ key: 'video', className: 'wp-block-video ' + className },
-				React.createElement('video', { controls: true, src: this.state.src.url }),
+				React.createElement('video', { controls: true, src: this.state.videoData.url }),
 				isSelected && React.createElement(RichText, {
-					tagName: 'figcaption',
+					tagName: 'figcaption0',
 					placeholder: __('Write caption…'),
 					value: caption,
 					isSelected: isSelected,

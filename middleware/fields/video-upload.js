@@ -8,6 +8,7 @@ export default function videoPlaceholder( props, config, attributeKey ) {
 	const defaultAttributes = {
 		placeholderText: __( 'Select a video file from your library, or upload a new one' ),
 		buttonText: __( 'Upload' ),
+		isSelected: props.isSelected,
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
