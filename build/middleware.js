@@ -759,7 +759,8 @@ var __ = wp.i18n.__;
 function videoPlaceholder(props, config, attributeKey) {
 	var defaultAttributes = {
 		placeholderText: __('Select a video file from your library, or upload a new one'),
-		buttonText: __('Upload')
+		buttonText: __('Upload'),
+		isSelected: props.isSelected
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -780,7 +781,6 @@ function videoPlaceholder(props, config, attributeKey) {
 	};
 
 	fieldAttributes.videoData = props.attributes[attributeKey];
-	fieldAttributes.isSelected = props.isSelected;
 
 	delete fieldAttributes.type;
 
@@ -1013,7 +1013,7 @@ var VideoPlaceholder = function (_Component) {
 				{ key: 'video', className: 'wp-block-video ' + className },
 				React.createElement('video', { controls: true, src: this.state.videoData.url }),
 				isSelected && React.createElement(RichText, {
-					tagName: 'figcaption0',
+					tagName: 'figcaption',
 					placeholder: __('Write caption…'),
 					value: caption,
 					isSelected: isSelected,
@@ -1210,6 +1210,8 @@ function button(props, config) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buttonEditable;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_button_editable__ = __webpack_require__(17);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 /**
  * Button field.
  */
@@ -1254,12 +1256,11 @@ function buttonEditable(props, config, attributeKey) {
 		}
 	};
 
-	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_button_editable__["a" /* default */], {
-		fieldAttributes: fieldAttributes,
+	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_button_editable__["a" /* default */], _extends({}, fieldAttributes, {
 		inputValue: props.attributes[attributeKey] ? props.attributes[attributeKey].link : '',
 		buttonValue: fieldAttributes.value,
 		isSelected: props.isSelected
-	});
+	}));
 }
 
 /***/ }),
@@ -1330,7 +1331,7 @@ var ButtonEditable = function (_Component) {
 				React.createElement(Dashicon, { icon: "admin-links" }),
 				React.createElement(UrlInput, {
 					value: this.props.inputValue,
-					onChange: this.props.fieldAttributes.onInputChange
+					onChange: this.props.onInputChange
 				}),
 				React.createElement(IconButton, { icon: "editor-break", label: __('Apply'), type: "submit" })
 			);
@@ -1344,7 +1345,7 @@ var ButtonEditable = function (_Component) {
 					React.createElement(RichText, _extends({
 						onFocus: this.onFocus,
 						onClick: this.onFocus // Hack.
-					}, this.props.fieldAttributes))
+					}, this.props))
 				),
 				form
 			);

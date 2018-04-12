@@ -43,7 +43,7 @@ export default function buttonEditable( props, config, attributeKey ) {
 
 	return (
 		<ButtonEditable
-			fieldAttributes={ fieldAttributes }
+			{ ...fieldAttributes }
 			inputValue={ props.attributes[ attributeKey ] ? props.attributes[ attributeKey ].link : '' }
 			buttonValue={ fieldAttributes.value }
 			isSelected={ props.isSelected }
