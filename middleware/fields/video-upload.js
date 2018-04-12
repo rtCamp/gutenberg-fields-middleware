@@ -31,8 +31,6 @@ export default function videoPlaceholder( props, config, attributeKey ) {
 	fieldAttributes.isSelected = props.isSelected;
 
 	delete fieldAttributes.type;
-	delete fieldAttributes.buttonText;
-	delete fieldAttributes.placeholderText;
 
 	return (
 		<VideoPlaceholder { ...fieldAttributes } />
