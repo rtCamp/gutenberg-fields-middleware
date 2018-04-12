@@ -33,10 +33,24 @@ class VideoPlaceholder extends Component {
 		this.onUrlChange = this.onUrlChange.bind( this );
 	}
 
+	/**
+	 * Upload from file.
+	 *
+	 * @param {Object} event Event.
+	 *
+	 * @return {void}
+	 */
 	uploadFromFiles( event ) {
 		mediaUpload( event.target.files, ( [ audio ] ) => this.onSelectVideo( audio ), 'video' );
 	}
 
+	/**
+	 * Callback method when video is selected.
+	 *
+	 * @param {Object} media Media.
+	 *
+	 * @return {void}
+	 */
 	onSelectVideo( media ) {
 		if ( media && media.url ) {
 			this.setState( { src: media, editing: false } );
@@ -44,10 +58,22 @@ class VideoPlaceholder extends Component {
 		}
 	}
 
+	/**
+	 * Set editing state to true.
+	 *
+	 * @return {void}
+	 */
 	switchToEditing() {
 		this.setState( { editing: true } );
 	}
 
+	/**
+	 * Handles when url is selected.
+	 *
+	 * @param {Object} event Event
+	 *
+	 * @return {void}
+	 */
 	onSelectUrl( event ) {
 		event.preventDefault();
 
@@ -59,6 +85,13 @@ class VideoPlaceholder extends Component {
 		}
 	}
 
+	/**
+	 * Callback method when url changes.
+	 *
+	 * @param {Object} event Event.
+	 *
+	 * @return {void}
+	 */
 	onUrlChange( event ) {
 		this.setState( { src: {
 			url: event.target.value,
