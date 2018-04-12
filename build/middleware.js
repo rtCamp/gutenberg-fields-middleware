@@ -759,11 +759,9 @@ var __ = wp.i18n.__;
 
 
 function videoPlaceholder(props, config, attributeKey) {
-
 	var defaultAttributes = {
 		label: __('Video'),
 		placeholderText: __('Select a video file from your library, or upload a new one'),
-
 		buttonText: __('Upload')
 	};
 
@@ -771,7 +769,6 @@ function videoPlaceholder(props, config, attributeKey) {
 
 	fieldAttributes.setVideoAttributes = function (media) {
 		if (media && media.url) {
-
 			var newAttributes = {};
 			newAttributes[attributeKey] = media;
 			props.setAttributes(newAttributes);
@@ -787,6 +784,10 @@ function videoPlaceholder(props, config, attributeKey) {
 
 	fieldAttributes.videoData = props.attributes[attributeKey];
 	fieldAttributes.isSelected = props.isSelected;
+
+	delete fieldAttributes.type;
+	delete fieldAttributes.buttonText;
+	delete fieldAttributes.placeholderText;
 
 	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_video_placeholder__["a" /* default */], fieldAttributes);
 }
@@ -823,7 +824,7 @@ var mediaUpload = wp.utils.mediaUpload;
 var VideoPlaceholder = function (_Component) {
 	_inherits(VideoPlaceholder, _Component);
 
-	function VideoPlaceholder(props) {
+	function VideoPlaceholder() {
 		_classCallCheck(this, VideoPlaceholder);
 
 		var _this = _possibleConstructorReturn(this, (VideoPlaceholder.__proto__ || Object.getPrototypeOf(VideoPlaceholder)).apply(this, arguments));
