@@ -162,7 +162,7 @@ class GutenbergFieldsMiddleWare {
 				field[ attributeKey ] = treeSelect( props, config, attributeKey );
 				break;
 			case 'file-upload':
-				fields[ attributeKey ] = fileUpload( props, config, attributeKey );
+				field[ attributeKey ] = fileUpload( props, config, attributeKey );
 				break;
 		}
 

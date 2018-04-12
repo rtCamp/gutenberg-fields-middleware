@@ -331,7 +331,7 @@ var GutenbergFieldsMiddleWare = function () {
 					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_17__fields_tree_select__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'file-upload':
-					fields[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_18__fields_file_upload__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_18__fields_file_upload__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -1380,11 +1380,32 @@ function fileUpload(props, config, attributeKey) {
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.buttonText;
+	delete fieldAttributes.fileType;
 
 	return React.createElement(
-		FormFileUpload,
-		fieldAttributes,
-		buttonText
+		'div',
+		null,
+		React.createElement(
+			FormFileUpload,
+			fieldAttributes,
+			buttonText
+		),
+		props.attributes[attributeKey].map(function (file) {
+
+			if (file.id) {
+
+				var href = void 0,
+				    name = void 0;
+				href = file.url;
+				name = href.substring(href.lastIndexOf('/') + 1);
+
+				return React.createElement(
+					'a',
+					{ target: '_blank', href: href },
+					name
+				);
+			}
+		})
 	);
 }
 

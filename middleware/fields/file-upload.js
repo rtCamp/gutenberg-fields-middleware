@@ -32,12 +32,30 @@ export default function fileUpload( props, config, attributeKey ) {
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	delete fieldAttributes.buttonText;
+	delete fieldAttributes.fileType;
 
 	return (
-		<FormFileUpload
-			{ ...fieldAttributes }
-		>
-			{ buttonText }
-		</FormFileUpload>
+		<div>
+			<FormFileUpload
+				{ ...fieldAttributes }
+			>
+				{ buttonText }
+			</FormFileUpload>
+
+			{ props.attributes[attributeKey].map( ( file ) => {
+
+				if ( file.id ) {
+
+					let href, name;
+					href = file.url;
+					name = href.substring( href.lastIndexOf( '/' ) + 1 );
+
+					return (
+						<a target="_blank" href={ href }>{ name }</a>
+					);
+				}
+
+			} ) }
+		</div>
 	);
 }
