@@ -123,6 +123,7 @@ class GutenbergFieldsMiddleWare {
 				field[ attributeKey ] = image( props, config, attributeKey );
 				break;
 			case 'video':
+			case 'audio':
 				field[ attributeKey ] = video( props, config, attributeKey );
 				break;
 			case 'select':

@@ -292,6 +292,7 @@ var GutenbergFieldsMiddleWare = function () {
 					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_image__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'video':
+				case 'audio':
 					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_video_upload_js__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'select':
@@ -786,7 +787,7 @@ function videoPlaceholder(props, config, attributeKey) {
 
 	fieldAttributes.videoData = props.attributes[attributeKey];
 
-	delete fieldAttributes.type;
+	// delete fieldAttributes.type;
 
 	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_video_placeholder__["a" /* default */], fieldAttributes);
 }
@@ -861,10 +862,10 @@ var VideoPlaceholder = function (_Component) {
 
 			mediaUpload(event.target.files, function (_ref) {
 				var _ref2 = _slicedToArray(_ref, 1),
-				    audio = _ref2[0];
+				    media = _ref2[0];
 
-				return _this2.onSelectVideo(audio);
-			}, 'video');
+				return _this2.onSelectVideo(media);
+			}, this.props.type);
 		}
 
 		/**
@@ -936,6 +937,7 @@ var VideoPlaceholder = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
+			    type = _props.type,
 			    videoData = _props.videoData,
 			    placeholderText = _props.placeholderText,
 			    buttonText = _props.buttonText,
@@ -945,6 +947,7 @@ var VideoPlaceholder = function (_Component) {
 
 
 			var caption = videoData && videoData.videoCaption ? videoData.videoCaption[0] || '' : '';
+			var mediaEle = '';
 
 			var controls = !this.state.editing && isSelected && React.createElement(
 				BlockControls,
@@ -954,7 +957,7 @@ var VideoPlaceholder = function (_Component) {
 					null,
 					React.createElement(IconButton, {
 						className: 'components-icon-button components-toolbar__control',
-						label: __('Edit video'),
+						label: __('Edit ') + type,
 						onClick: this.switchToEditing,
 						icon: 'edit'
 					})
@@ -967,7 +970,7 @@ var VideoPlaceholder = function (_Component) {
 					{
 						key: 'placeholder',
 						icon: 'media-video',
-						label: __('Video'),
+						label: type,
 						className: 'wp-block-video ' + className,
 						instructions: placeholderText },
 					React.createElement(
@@ -976,7 +979,7 @@ var VideoPlaceholder = function (_Component) {
 						React.createElement('input', {
 							type: 'url',
 							className: 'components-placeholder__input',
-							placeholder: __('Enter URL of video file here…'),
+							placeholder: __('Enter URL of ') + type + __(' file here…'),
 							onChange: this.onUrlChange,
 							value: this.state.videoData.url || '' }),
 						React.createElement(
@@ -993,13 +996,13 @@ var VideoPlaceholder = function (_Component) {
 							isLarge: true,
 							className: 'wp-block-video__upload-button',
 							onChange: this.uploadFromFiles,
-							accept: 'video/*'
+							accept: type
 						},
 						buttonText
 					),
 					React.createElement(MediaUpload, {
 						onSelect: this.onSelectVideo,
-						type: 'video',
+						type: type,
 						render: function render(_ref3) {
 							var open = _ref3.open;
 							return React.createElement(
@@ -1012,10 +1015,16 @@ var VideoPlaceholder = function (_Component) {
 				)];
 			}
 
+			if ('video' === type) {
+				mediaEle = React.createElement('video', { controls: true, src: this.state.videoData.url });
+			} else if ('audio' === type) {
+				mediaEle = React.createElement('audio', { controls: true, src: this.state.videoData.url });
+			}
+
 			return [controls, React.createElement(
 				'figure',
 				{ key: 'video', className: 'wp-block-video ' + className },
-				React.createElement('video', { controls: true, src: this.state.videoData.url }),
+				mediaEle,
 				isSelected && React.createElement(RichText, {
 					tagName: 'figcaption',
 					placeholder: __('Write caption…'),

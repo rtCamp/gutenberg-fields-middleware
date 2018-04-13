@@ -30,7 +30,7 @@ export default function videoPlaceholder( props, config, attributeKey ) {
 
 	fieldAttributes.videoData = props.attributes[ attributeKey ];
 
-	delete fieldAttributes.type;
+	// delete fieldAttributes.type;
 
 	return (
 		<VideoPlaceholder { ...fieldAttributes } />
