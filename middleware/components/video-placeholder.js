@@ -114,8 +114,8 @@ class VideoPlaceholder extends Component {
 		const caption = videoData && videoData.videoCaption ? videoData.videoCaption[ 0 ] || '' : '';
 
 		const controls = (
-			<BlockControls key="controls">
-				{ ! this.state.editing && isSelected && (
+			! this.state.editing && isSelected && (
+				<BlockControls key="controls">
 					<Toolbar>
 						<IconButton
 							className="components-icon-button components-toolbar__control"
@@ -124,8 +124,8 @@ class VideoPlaceholder extends Component {
 							icon="edit"
 						/>
 					</Toolbar>
-				) }
-			</BlockControls>
+				</BlockControls>
+			)
 		);
 
 		if ( this.state.editing ) {
