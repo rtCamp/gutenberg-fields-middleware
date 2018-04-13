@@ -76,3 +76,7 @@ treeSelect: {
 	},
 }
 ```
+
+### Return
+
+- Type: `string` - Print selected value

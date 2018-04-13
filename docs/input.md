@@ -41,6 +41,7 @@ email: {
 		placement: 'inspector',
 	},
 },
+
 hidden: {
 	type: 'string',
 	field: {
@@ -48,6 +49,7 @@ hidden: {
 		placement: 'inspector',
 	},
 },
+
 number: {
 	type: 'string',
 	field: {
@@ -56,6 +58,7 @@ number: {
 		placement: 'inspector',
 	},
 },
+
 search: {
 	type: 'string',
 	field: {
@@ -64,6 +67,7 @@ search: {
 		placement: 'inspector',
 	},
 },
+
 tel: {
 	type: 'string',
 	field: {
@@ -72,6 +76,91 @@ tel: {
 		placement: 'inspector',
 	},
 },
+
+time: {
+	type: 'string',
+	field: {
+		type: 'time',
+		label: __( 'Time' ),
+		placement: 'inspector',
+	},
+},
+
+date: {
+	type: 'string',
+	field: {
+		type: 'date',
+		label: __( 'Date' ),
+		placement: 'inspector',
+	},
+},
+
+datetimeLocal: {
+	type: 'string',
+	field: {
+		type: 'datetime-local',
+		label: __( 'Date Time Local' ),
+		placement: 'inspector',
+	},
+},
+
+file: {
+	type: 'string',
+	field: {
+		type: 'file',
+		label: __( 'File' ),
+		placement: 'inspector',
+	},
+},
+
+month: {
+	type: 'string',
+	field: {
+		type: 'month',
+		label: __( 'Month' ),
+		placement: 'inspector',
+	},
+},
+
+week: {
+	type: 'string',
+	field: {
+		type: 'week',
+		label: __( 'Week' ),
+		placement: 'inspector',
+	},
+},
+
+time: {
+	type: 'string',
+	field: {
+		type: 'time',
+		label: __( 'Time' ),
+		placement: 'inspector',
+	},
+},
+
+url: {
+	type: 'string',
+	field: {
+		type: 'url',
+		label: __( 'URL Link' ),
+		placement: 'inspector',
+	},
+},
+
+password: {
+	type: 'string',
+	field: {
+		type: 'password',
+		label: __( 'Password' ),
+		placement: 'inspector',
+	},
+},
 ```
 
 :heavy_check_mark: The following input type field are also supported `'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'`
+
+### Return
+
+- Type: `string`

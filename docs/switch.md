@@ -35,3 +35,7 @@ switch: {
 	},
 }
 ```
+
+### Return
+
+- Type: `string` - Print `on` or `off` in output

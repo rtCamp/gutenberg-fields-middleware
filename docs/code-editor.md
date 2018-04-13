@@ -37,7 +37,11 @@ For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/mas
 editorContent: {
 	type: 'string',
 	field: {
-		type: 'editor',
+		type: 'code-editor',
 	},
 }
 ```
+
+### Return
+
+- Type: `string` - Print code-editor text

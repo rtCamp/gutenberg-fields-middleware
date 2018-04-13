@@ -60,3 +60,7 @@ radio: {
 	default: 'one',
 }
 ```
+
+### Return
+
+- Type: `string` - Print selected value

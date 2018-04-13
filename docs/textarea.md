@@ -50,3 +50,7 @@ textarea: {
 	},
 },
 ```
+
+### Return
+
+- Type: `string` - Print text

@@ -59,3 +59,7 @@ range: {
 	},
 }
 ```
+
+### Return
+
+- Type: `string` - Print selected range

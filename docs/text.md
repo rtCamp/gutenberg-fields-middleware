@@ -31,3 +31,7 @@ text: {
 	},
 }
 ```
+
+### Return
+
+- Type: `string` - Print text

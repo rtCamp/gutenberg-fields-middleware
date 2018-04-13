@@ -35,3 +35,7 @@ color: {
 	},
 }
 ```
+
+### Return
+
+- Type: `string` - Print color hex code. For eg. `#000000`

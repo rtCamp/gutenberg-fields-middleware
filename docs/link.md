@@ -33,3 +33,7 @@ url: {
 	},
 }
 ```
+
+### Return
+
+- Type: `string` - Print link

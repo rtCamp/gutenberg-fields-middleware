@@ -46,3 +46,7 @@ check: {
 	},
 }
 ```
+
+### Return
+
+- Type: `boolean`
