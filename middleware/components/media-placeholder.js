@@ -18,19 +18,19 @@ const {
 const { mediaUpload } = wp.utils;
 
 /**
- * VideoPlaceholder component class.
+ * MediaPlaceholder component class.
  */
-class VideoPlaceholder extends Component {
+class MediaPlaceholder extends Component {
 	constructor() {
 		super( ...arguments );
 
 		this.state = {
-			editing: ! this.props.videoData,
-			videoData: this.props.videoData || '',
+			editing: ! this.props.mediaData,
+			mediaData: this.props.mediaData || '',
 		};
 
 		this.uploadFromFiles = this.uploadFromFiles.bind( this );
-		this.onSelectVideo = this.onSelectVideo.bind( this );
+		this.onSelectMedia = this.onSelectMedia.bind( this );
 		this.switchToEditing = this.switchToEditing.bind( this );
 		this.onSelectUrl = this.onSelectUrl.bind( this );
 		this.onUrlChange = this.onUrlChange.bind( this );
@@ -44,20 +44,20 @@ class VideoPlaceholder extends Component {
 	 * @return {void}
 	 */
 	uploadFromFiles( event ) {
-		mediaUpload( event.target.files, ( [ media ] ) => this.onSelectVideo( media ), this.props.type );
+		mediaUpload( event.target.files, ( [ media ] ) => this.onSelectMedia( media ), this.props.type );
 	}
 
 	/**
-	 * Callback method when video is selected.
+	 * Callback method when media is selected.
 	 *
 	 * @param {Object} media Media.
 	 *
 	 * @return {void}
 	 */
-	onSelectVideo( media ) {
+	onSelectMedia( media ) {
 		if ( media && media.url ) {
-			this.setState( { videoData: media, editing: false } );
-			this.props.setVideoAttributes( media );
+			this.setState( { mediaData: media, editing: false } );
+			this.props.setMediaAttributes( media );
 		}
 	}
 
@@ -80,11 +80,11 @@ class VideoPlaceholder extends Component {
 	onSelectUrl( event ) {
 		event.preventDefault();
 
-		if ( this.state.videoData ) {
+		if ( this.state.mediaData ) {
 			this.setState( {
 				editing: false,
 			} );
-			this.props.setVideoAttributes( this.state.videoData );
+			this.props.setMediaAttributes( this.state.mediaData );
 		}
 	}
 
@@ -96,7 +96,7 @@ class VideoPlaceholder extends Component {
 	 * @return {void}
 	 */
 	onUrlChange( event ) {
-		this.setState( { videoData: {
+		this.setState( { mediaData: {
 			url: event.target.value,
 		} } );
 	}
@@ -104,7 +104,7 @@ class VideoPlaceholder extends Component {
 	render() {
 		const {
 			type,
-			videoData,
+			mediaData,
 			placeholderText,
 			buttonText,
 			className,
@@ -112,7 +112,7 @@ class VideoPlaceholder extends Component {
 			setCaption,
 		} = this.props;
 
-		const caption = videoData && videoData.videoCaption ? videoData.videoCaption[ 0 ] || '' : '';
+		const caption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption[ 0 ] || '' : '';
 		let mediaEle = '';
 
 		const controls = (
@@ -131,21 +131,23 @@ class VideoPlaceholder extends Component {
 		);
 
 		if ( this.state.editing ) {
+			const mediaIcon = 'media-' + type;
+
 			return [
 				controls,
 				<Placeholder
 					key="placeholder"
-					icon="media-video"
+					icon={ mediaIcon }
 					label={ type }
-					className={ 'wp-block-video ' + className }
+					className={ className + ' wp-block-' + type }
 					instructions={ placeholderText } >
 					<form onSubmit={ this.onSelectUrl }>
 						<input
 							type="url"
 							className="components-placeholder__input"
-							placeholder={ __( 'Enter URL of ') + type + __( ' file here…' ) }
+							placeholder={ __( 'Enter URL of ' ) + type + __( ' file here…' ) }
 							onChange={ this.onUrlChange }
-							value={ this.state.videoData.url || '' } />
+							value={ this.state.mediaData.url || '' } />
 						<Button
 							isLarge
 							type="submit">
@@ -161,7 +163,7 @@ class VideoPlaceholder extends Component {
 						{ buttonText }
 					</FormFileUpload>
 					<MediaUpload
-						onSelect={ this.onSelectVideo }
+						onSelect={ this.onSelectMedia }
 						type={ type }
 						render={ ( { open } ) => (
 							<Button isLarge onClick={ open } >
@@ -174,14 +176,14 @@ class VideoPlaceholder extends Component {
 		}
 
 		if ( 'video' === type ) {
-			mediaEle = ( <video controls src={ this.state.videoData.url }></video> );
+			mediaEle = ( <video controls src={ this.state.mediaData.url }></video> );
 		} else if ( 'audio' === type ) {
-			mediaEle = ( <audio controls src={ this.state.videoData.url }></audio> );
+			mediaEle = ( <audio controls src={ this.state.mediaData.url }></audio> );
 		}
 
 		return [
 			controls,
-			<figure key="video" className={ 'wp-block-video ' + className }>
+			<figure key={ type } className={ className + ' wp-block-' + type }>
 				{ mediaEle }
 				{ isSelected && (
 					<RichText
@@ -198,4 +200,4 @@ class VideoPlaceholder extends Component {
 	}
 }
 
-export default VideoPlaceholder;
+export default MediaPlaceholder;
