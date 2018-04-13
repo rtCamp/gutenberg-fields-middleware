@@ -750,7 +750,7 @@ function imagePlaceholder(props, config, attributeKey) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = videoPlaceholder;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_video_placeholder__ = __webpack_require__(10);
 /**
- * @TODO: Add Description here.
+ * Video field.
  */
 var __ = wp.i18n.__;
 
@@ -942,10 +942,10 @@ var VideoPlaceholder = function (_Component) {
 
 			var caption = videoData && videoData.videoCaption ? videoData.videoCaption[0] || '' : '';
 
-			var controls = React.createElement(
+			var controls = !this.state.editing && isSelected && React.createElement(
 				BlockControls,
 				{ key: 'controls' },
-				!this.state.editing && isSelected && React.createElement(
+				React.createElement(
 					Toolbar,
 					null,
 					React.createElement(IconButton, {
