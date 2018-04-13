@@ -583,9 +583,8 @@ var BaseControl = wp.components.BaseControl;
 
 
 function link(props, config, attributeKey) {
-	var defaultValue = config.default || '';
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || defaultValue
+		value: props.attributes[attributeKey]
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -1114,9 +1113,8 @@ var RadioControl = wp.components.RadioControl;
 
 
 function radio(props, config, attributeKey) {
-	var defaultValue = config.default || '';
 	var defaultAttributes = {
-		selected: props.attributes[attributeKey] || defaultValue
+		selected: props.attributes[attributeKey]
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -1221,11 +1219,10 @@ var __ = wp.i18n.__;
 
 
 function buttonEditable(props, config, attributeKey) {
-	var defaultValue = config.default || '';
 	var defaultAttributes = {
 		placeholder: __('Add text…'),
 		tagName: 'span',
-		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : defaultValue,
+		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : '',
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true
 	};

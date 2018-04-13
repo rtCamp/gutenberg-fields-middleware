@@ -72,8 +72,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 		radio: {
 			type: 'string',
 			field: {
+				label: __( 'Radio Options' ),
 				type: 'radio',
-				default: 'one',
 				options: [
 					{
 						value: 'one',
@@ -85,6 +85,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 					},
 				],
 			},
+			default: 'one',
 		},
 		check: {
 			type: 'boolean',
@@ -251,6 +252,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 					},
 				],
 			},
+			default: 'one',
 		},
 		columns: {
 			type: 'string',

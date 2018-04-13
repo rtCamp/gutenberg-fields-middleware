@@ -5,9 +5,8 @@
 const { RadioControl } = wp.components;
 
 export default function radio( props, config, attributeKey ) {
-	const defaultValue = config.default || '';
 	const defaultAttributes = {
-		selected: props.attributes[ attributeKey ] || defaultValue,
+		selected: props.attributes[ attributeKey ],
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
