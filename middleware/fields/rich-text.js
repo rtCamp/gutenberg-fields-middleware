@@ -7,6 +7,11 @@ const { RichText } = wp.blocks;
 export default function richText( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
+		inlineToolbar: true,
+		isSelected: false,
+		onFocus() {
+			this.isSelected = true;
+		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

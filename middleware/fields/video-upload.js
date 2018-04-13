@@ -1,5 +1,5 @@
 /**
- * @TODO: Add Description here.
+ * Video field.
  */
 const { __ } = wp.i18n;
 import VideoPlaceholder from './../components/video-placeholder';
