@@ -464,7 +464,12 @@ var RichText = wp.blocks.RichText;
 
 function richText(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
+		value: props.attributes[attributeKey] || '',
+		inlineToolbar: true,
+		isSelected: false,
+		onFocus: function onFocus() {
+			this.isSelected = true;
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
