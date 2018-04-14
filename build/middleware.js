@@ -1356,7 +1356,6 @@ var mediaUpload = wp.utils.mediaUpload;
 
 function fileUpload(props, config, attributeKey) {
 	var buttonText = config.buttonText ? config.buttonText : __('Upload');
-	var fileType = config.fileType ? config.fileType : 'image';
 
 	var setMedia = function setMedia(file) {
 		var newAttributes = {};
@@ -1365,22 +1364,32 @@ function fileUpload(props, config, attributeKey) {
 	};
 
 	var defaultAttributes = {
-		onChange: function onChange(event) {
-			mediaUpload(event.target.files, setMedia, fileType);
-		},
-
-
-		fileType: fileType,
-
-		accept: 'image/*',
-
+		accept: '*',
+		allowedTypes: ['image', 'video', 'audio', 'text', 'message', 'application'],
 		isLarge: true
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
+	var getAllowedType = function getAllowedType(files) {
+		if (files && _.first(files) && _.first(files).type) {
+			var fileType = _.first(files).type;
+			if (fileType) {
+				var typeParts = fileType.split('/');
+				return _.first(typeParts) && _.contains(fieldAttributes.allowedTypes, _.first(typeParts)) ? _.first(typeParts) : '';
+			}
+		}
+	};
+
+	fieldAttributes.onChange = function (event) {
+		if (config.onChange) {
+			config.onChange(event, props);
+		} else {
+			mediaUpload(event.target.files, setMedia, getAllowedType(event.target.files));
+		}
+	};
+
 	delete fieldAttributes.buttonText;
-	delete fieldAttributes.fileType;
 
 	return React.createElement(
 		'div',

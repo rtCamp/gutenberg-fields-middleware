@@ -8,7 +8,6 @@ const { mediaUpload } = wp.utils;
 
 export default function fileUpload( props, config, attributeKey ) {
 	const buttonText = config.buttonText ? config.buttonText : __( 'Upload' );
-	const fileType = config.fileType ? config.fileType : 'image';
 
 	const setMedia = ( file ) => {
 		const newAttributes = {};
@@ -17,22 +16,32 @@ export default function fileUpload( props, config, attributeKey ) {
 	};
 
 	const defaultAttributes = {
-
-		onChange( event ) {
-			mediaUpload( event.target.files, setMedia, fileType );
-		},
-
-		fileType: fileType,
-
-		accept: 'image/*',
-
+		accept: '*',
+		allowedTypes: [ 'image', 'video', 'audio', 'text', 'message', 'application' ],
 		isLarge: true,
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
+	const getAllowedType = ( files ) => {
+		if ( files && _.first( files ) && _.first( files ).type ) {
+			const fileType = _.first( files ).type;
+			if ( fileType ) {
+				const typeParts = fileType.split( '/' );
+				return _.first( typeParts ) && _.contains( fieldAttributes.allowedTypes, _.first( typeParts ) ) ? _.first( typeParts ) : '';
+			}
+		}
+	};
+
+	fieldAttributes.onChange = ( event ) => {
+		if ( config.onChange ) {
+			config.onChange( event, props );
+		} else {
+			mediaUpload( event.target.files, setMedia, getAllowedType( event.target.files ) );
+		}
+	};
+
 	delete fieldAttributes.buttonText;
-	delete fieldAttributes.fileType;
 
 	return (
 		<div>
