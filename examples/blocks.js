@@ -245,7 +245,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 		},
 		columns: {
-			type: 'array',
+			type: 'string',
 			field: {
 				type: 'range',
 				label: __( 'Columns' ),

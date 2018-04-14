@@ -1372,7 +1372,7 @@ function fileUpload(props, config, attributeKey) {
 
 		fileType: fileType,
 
-		accept: "image/*",
+		accept: 'image/*',
 
 		isLarge: true
 	};
@@ -1390,14 +1390,10 @@ function fileUpload(props, config, attributeKey) {
 			fieldAttributes,
 			buttonText
 		),
-		props.attributes[attributeKey].map(function (file) {
-
+		props.attributes[attributeKey] && props.attributes[attributeKey].map(function (file) {
 			if (file.id) {
-
-				var href = void 0,
-				    name = void 0;
-				href = file.url;
-				name = href.substring(href.lastIndexOf('/') + 1);
+				var href = file.url;
+				var name = href.substring(href.lastIndexOf('/') + 1);
 
 				return React.createElement(
 					'a',

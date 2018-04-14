@@ -24,7 +24,7 @@ export default function fileUpload( props, config, attributeKey ) {
 
 		fileType: fileType,
 
-		accept: "image/*",
+		accept: 'image/*',
 
 		isLarge: true,
 	};
@@ -42,19 +42,15 @@ export default function fileUpload( props, config, attributeKey ) {
 				{ buttonText }
 			</FormFileUpload>
 
-			{ props.attributes[attributeKey].map( ( file ) => {
-
+			{ props.attributes[ attributeKey ] && props.attributes[ attributeKey ].map( ( file ) => {
 				if ( file.id ) {
-
-					let href, name;
-					href = file.url;
-					name = href.substring( href.lastIndexOf( '/' ) + 1 );
+					const href = file.url;
+					const name = href.substring( href.lastIndexOf( '/' ) + 1 );
 
 					return (
 						<a target="_blank" href={ href }>{ name }</a>
 					);
 				}
-
 			} ) }
 		</div>
 	);
