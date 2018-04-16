@@ -38,4 +38,6 @@ switch: {
 
 ### Return
 
-- Type: `string` - Print `on` or `off` in output
+This will return `on` or `off` in output.
+
+- Type: `string`

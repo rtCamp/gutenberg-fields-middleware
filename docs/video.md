@@ -31,7 +31,9 @@ video: {
 
 ### Return
 
-- Type: `object` - Print video object
+This will return complete video object.
+
+- Type: `object`
 
 ```javascript
 {

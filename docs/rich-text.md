@@ -35,4 +35,6 @@ text: {
 
 ### Return
 
-- Type: `string` - Print text
+This will return rich-text output.
+
+- Type: `string`

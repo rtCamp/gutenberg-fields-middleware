@@ -44,4 +44,6 @@ editorContent: {
 
 ### Return
 
-- Type: `string` - Print code-editor text
+This will return code-editor output.
+
+- Type: `string`

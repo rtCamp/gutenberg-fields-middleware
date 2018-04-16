@@ -40,14 +40,3 @@ button: {
 	},
 }
 ```
-
-### Return
-
-- Type: `object`
-
-```javascript
-{
-  "text": [ "Action" ],
-  "link": "http://example.org/"
-}
-```

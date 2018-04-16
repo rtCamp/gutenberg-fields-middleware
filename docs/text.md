@@ -34,4 +34,6 @@ text: {
 
 ### Return
 
-- Type: `string` - Print text
+This will return text.
+
+- Type: `string`

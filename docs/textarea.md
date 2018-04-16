@@ -53,4 +53,6 @@ textarea: {
 
 ### Return
 
-- Type: `string` - Print text
+This will return string.
+
+- Type: `string`

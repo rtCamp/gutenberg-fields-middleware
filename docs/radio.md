@@ -63,4 +63,6 @@ radio: {
 
 ### Return
 
-- Type: `string` - Print selected value
+This will return selected value.
+
+- Type: `string`

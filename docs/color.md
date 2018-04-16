@@ -38,4 +38,6 @@ color: {
 
 ### Return
 
-- Type: `string` - Print color hex code. For eg. `#000000`
+This will return color hex code. For eg. `#000000`
+
+- Type: `string` 

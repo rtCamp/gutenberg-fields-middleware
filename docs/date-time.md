@@ -52,4 +52,6 @@ dateTime: {
 
 ### Return
 
-- Type: `string` - Print date and time. For eg. `2018-04-13T18:09:59`
+This will return date and time as string. For eg. `2018-04-13T18:09:59`
+
+- Type: `string`

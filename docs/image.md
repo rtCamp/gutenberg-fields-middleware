@@ -71,7 +71,9 @@ image: {
 
 ### Return
 
-- Type: `object` - Print image object
+This will return complete image object.
+
+- Type: `object`
 
 ```javascript
 {

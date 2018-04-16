@@ -62,4 +62,6 @@ range: {
 
 ### Return
 
-- Type: `string` - Print selected range
+This will return selected range number.
+
+- Type: `string`

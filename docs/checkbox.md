@@ -49,4 +49,6 @@ check: {
 
 ### Return
 
+This will return true or false.
+
 - Type: `boolean`

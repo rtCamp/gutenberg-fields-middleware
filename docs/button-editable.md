@@ -30,6 +30,8 @@ buttonEditable: {
 
 ### Return
 
+This will return complete button object.
+
 - Type: `object`
 
 ```javascript

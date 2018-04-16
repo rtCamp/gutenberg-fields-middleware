@@ -36,4 +36,6 @@ url: {
 
 ### Return
 
-- Type: `string` - Print link
+This will return link.
+
+- Type: `string`

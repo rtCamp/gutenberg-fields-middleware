@@ -131,15 +131,6 @@ week: {
 	},
 },
 
-time: {
-	type: 'string',
-	field: {
-		type: 'time',
-		label: __( 'Time' ),
-		placement: 'inspector',
-	},
-},
-
 url: {
 	type: 'string',
 	field: {
@@ -159,8 +150,8 @@ password: {
 },
 ```
 
-:heavy_check_mark: The following input type field are also supported `'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'`
-
 ### Return
+
+This will return string.
 
 - Type: `string`
