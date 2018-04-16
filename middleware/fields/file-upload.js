@@ -83,12 +83,22 @@ export default function fileUpload( props, config, attributeKey ) {
 
 		if ( 'zip' === fileExtenstion ) {
 			return 'dashicons-media-archive';
-		} else if ( 'pdf' === fileExtenstion ) {
-			return 'dashicons-media-document';
-		} else if ( 'jpg' === fileExtenstion ) {
+		} else if ( 'pdf' === fileExtenstion || 'epub' === fileExtenstion || 'azw' === fileExtenstion || 'indd' === fileExtenstion ) {
+			return 'dashicons-book';
+		} else if ( 'jpg' === fileExtenstion || 'png' === fileExtenstion || 'gif' === fileExtenstion || 'jpeg' === fileExtenstion || 'tif' === fileExtenstion || 'ico' === fileExtenstion || 'bmp' === fileExtenstion || 'svg' === fileExtenstion ) {
 			return 'dashicons-format-image';
-		} else if ( 'mp4' === fileExtenstion ) {
+		} else if ( 'mp4' === fileExtenstion || 'avi' === fileExtenstion || 'flv' === fileExtenstion || 'mov' === fileExtenstion || 'mpg' === fileExtenstion || 'rm' === fileExtenstion || 'swf' === fileExtenstion || 'wmv' === fileExtenstion || 'ogv' === fileExtenstion || '3gp' === fileExtenstion || '3g2' === fileExtenstion || 'm4v' === fileExtenstion ) {
 			return 'dashicons-media-video';
+		} else if ( 'pptx' === fileExtenstion || 'pptm' === fileExtenstion || 'ppt' === fileExtenstion || 'pot' === fileExtenstion || 'potx' === fileExtenstion || 'potm' === fileExtenstion || 'pps' === fileExtenstion || 'ppsx' === fileExtenstion ) {
+			return 'dashicons-media-interactive';
+		} else if ( 'mp3' === fileExtenstion || 'm4a' === fileExtenstion || 'ogg' === fileExtenstion || 'wav' === fileExtenstion ) {
+			return 'dashicons-media-audio';
+		} else if ( 'xls' === fileExtenstion || 'xlsx' === fileExtenstion || 'xla' === fileExtenstion || 'xlb' === fileExtenstion || 'xlc' === fileExtenstion || 'xld' === fileExtenstion || 'xlk' === fileExtenstion || 'xll' === fileExtenstion || 'xlm' === fileExtenstion || 'xlt' === fileExtenstion || 'xlv' === fileExtenstion || 'xlw' === fileExtenstion || 'numbers' === fileExtenstion ) {
+			return 'dashicons-media-spreadsheet';
+		} else if ( 'doc' === fileExtenstion || 'docx' === fileExtenstion || 'docm' === fileExtenstion || 'pages' === fileExtenstion ) {
+			return 'dashicons-media-document';
+		} else if ( 'txt' === fileExtenstion || 'odt' === fileExtenstion || 'rtf' === fileExtenstion || 'log' === fileExtenstion ) {
+			return 'dashicons-media-text';
 		}
 
 		return 'dashicons-media-default';
