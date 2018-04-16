@@ -1676,6 +1676,13 @@ function fileUpload(props, config, attributeKey) {
 		props.setAttributes(newAttributes);
 	};
 
+	var updateMedia = function updateMedia(files) {
+		var newAttributes = {};
+		newAttributes[attributeKey] = files;
+
+		props.setAttributes(newAttributes);
+	};
+
 	var defaultAttributes = {
 		accept: '*',
 		allowedTypes: ['image', 'video', 'audio', 'text', 'message', 'application'],
@@ -1706,7 +1713,7 @@ function fileUpload(props, config, attributeKey) {
 		if (config.removeFiles) {
 			config.removeFiles(event, props);
 		} else {
-			setMedia([]);
+			updateMedia('');
 		}
 	};
 
@@ -1714,12 +1721,12 @@ function fileUpload(props, config, attributeKey) {
 		if (config.removeFile) {
 			config.removeFile(event, props);
 		} else {
-			var key = event.currentTarget.dataset.key;
-			props.attributes[attributeKey].splice(key, 1);
-			setMedia([]); // To force update.
-			setMedia(props.attributes[attributeKey]);
-			if (_.isEmpty(props.attributes[attributeKey])) {
-				setMedia([]); // To remove 'remove' button.
+			var key = parseInt(event.currentTarget.dataset.key, 10);
+			var newValues = props.attributes[attributeKey].splice(key, 1);
+			updateMedia(''); // To force update.
+			updateMedia(newValues);
+			if (_.isEmpty(newValues)) {
+				updateMedia(''); // To remove 'remove' button.
 			}
 		}
 	};
