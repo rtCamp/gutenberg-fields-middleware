@@ -1349,7 +1349,9 @@ function treeSelect(props, config, attributeKey) {
  * File Upload.
  */
 
-var FormFileUpload = wp.components.FormFileUpload;
+var _wp$components = wp.components,
+    FormFileUpload = _wp$components.FormFileUpload,
+    Button = _wp$components.Button;
 var __ = wp.i18n.__;
 var mediaUpload = wp.utils.mediaUpload;
 
@@ -1389,16 +1391,31 @@ function fileUpload(props, config, attributeKey) {
 		}
 	};
 
+	fieldAttributes.remove = function (event) {
+		if (config.remove) {
+			config.remove(event, props);
+		} else {
+			setMedia('');
+		}
+	};
+
+	var removeButton = props.attributes[attributeKey] && React.createElement(
+		Button,
+		{ isLarge: true, onClick: fieldAttributes.remove },
+		__('Remove')
+	);
+
 	delete fieldAttributes.buttonText;
 
 	return React.createElement(
 		'div',
-		null,
+		{ className: 'file-upload-field' },
 		React.createElement(
 			FormFileUpload,
 			fieldAttributes,
 			buttonText
 		),
+		removeButton,
 		props.attributes[attributeKey] && props.attributes[attributeKey].map(function (file) {
 			if (file.id) {
 				var href = file.url;

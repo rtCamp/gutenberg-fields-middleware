@@ -2,7 +2,7 @@
  * File Upload.
  */
 
-const { FormFileUpload } = wp.components;
+const { FormFileUpload, Button } = wp.components;
 const { __ } = wp.i18n;
 const { mediaUpload } = wp.utils;
 
@@ -41,15 +41,31 @@ export default function fileUpload( props, config, attributeKey ) {
 		}
 	};
 
+	fieldAttributes.remove = ( event ) => {
+		if ( config.remove ) {
+			config.remove( event, props );
+		} else {
+			setMedia( '' );
+		}
+	};
+
+	const removeButton = props.attributes[ attributeKey ] && (
+		<Button isLarge onClick={ fieldAttributes.remove } >
+			{ __( 'Remove' ) }
+		</Button>
+	);
+
 	delete fieldAttributes.buttonText;
 
 	return (
-		<div>
+		<div className="file-upload-field">
 			<FormFileUpload
 				{ ...fieldAttributes }
 			>
 				{ buttonText }
 			</FormFileUpload>
+
+			{ removeButton }
 
 			{ props.attributes[ attributeKey ] && props.attributes[ attributeKey ].map( ( file ) => {
 				if ( file.id ) {
