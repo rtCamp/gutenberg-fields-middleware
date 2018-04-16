@@ -158,7 +158,7 @@ class MediaPlaceholder extends Component {
 						isLarge
 						className="wp-block-video__upload-button"
 						onChange={ this.uploadFromFiles }
-						accept={ type }
+						accept={ type + '/*' }
 					>
 						{ buttonText }
 					</FormFileUpload>

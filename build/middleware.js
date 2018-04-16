@@ -997,7 +997,7 @@ var MediaPlaceholder = function (_Component) {
 							isLarge: true,
 							className: 'wp-block-video__upload-button',
 							onChange: this.uploadFromFiles,
-							accept: type
+							accept: type + '/*'
 						},
 						buttonText
 					),
