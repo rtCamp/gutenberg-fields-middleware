@@ -23,9 +23,12 @@ export default function mediaPlaceholder( props, config, attributeKey ) {
 	};
 
 	fieldAttributes.setCaption = ( caption ) => {
-		if ( props.attributes[ attributeKey ] ) {
-			props.attributes[ attributeKey ].mediaCaption = caption;
-			props.setAttributes( attributeKey, props.attributes[ attributeKey ] );
+		const attributeValue = _.extend( {}, props.attributes[ attributeKey ] );
+		if ( attributeValue ) {
+			const newAttributes = {};
+			attributeValue.mediaCaption = caption;
+			newAttributes[ attributeKey ] = attributeValue;
+			props.setAttributes( newAttributes );
 		}
 	};
 
