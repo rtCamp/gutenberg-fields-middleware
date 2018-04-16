@@ -1640,6 +1640,8 @@ function treeSelect(props, config, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = fileUpload;
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 /**
  * File Upload.
  * @todo Create a component for file upload.
@@ -1657,6 +1659,10 @@ function fileUpload(props, config, attributeKey) {
 
 	var setMedia = function setMedia(files) {
 		var newAttributes = {};
+
+		if (!_.isEmpty(props.attributes[attributeKey]) && files) {
+			files = [].concat(_toConsumableArray(props.attributes[attributeKey]), _toConsumableArray(files));
+		}
 
 		if (!_.isEmpty(files)) {
 			files = files.map(function (file) {

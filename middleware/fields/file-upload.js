@@ -13,6 +13,10 @@ export default function fileUpload( props, config, attributeKey ) {
 	const setMedia = ( files ) => {
 		const newAttributes = {};
 
+		if ( ! _.isEmpty( props.attributes[ attributeKey ] ) && files ) {
+			files = [ ...props.attributes[ attributeKey ], ...files ];
+		}
+
 		if ( ! _.isEmpty( files ) ) {
 			files = files.map( ( file ) => {
 				file.name = file.url ? file.url.substring( file.url.lastIndexOf( '/' ) + 1 ) : '';
