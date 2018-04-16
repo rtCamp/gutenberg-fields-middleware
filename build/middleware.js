@@ -1347,6 +1347,7 @@ function treeSelect(props, config, attributeKey) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = fileUpload;
 /**
  * File Upload.
+ * @todo Create a component for file upload.
  */
 
 var _wp$components = wp.components,
@@ -1391,19 +1392,27 @@ function fileUpload(props, config, attributeKey) {
 		}
 	};
 
-	fieldAttributes.remove = function (event) {
-		if (config.remove) {
-			config.remove(event, props);
+	var removeFiles = function removeFiles(event) {
+		if (config.removeFiles) {
+			config.removeFiles(event, props);
 		} else {
 			setMedia('');
 		}
 	};
 
-	var removeButton = props.attributes[attributeKey] && React.createElement(
-		Button,
-		{ isLarge: true, onClick: fieldAttributes.remove },
-		__('Remove')
-	);
+	var removeFile = function removeFile(event) {
+		if (config.removeFile) {
+			config.removeFile(event, props);
+		} else {
+			var key = event.currentTarget.dataset.key;
+			props.attributes[attributeKey].splice(key, 1);
+			setMedia(''); // To force update.
+			setMedia(props.attributes[attributeKey]);
+			if (_.isEmpty(props.attributes[attributeKey])) {
+				setMedia(''); // To remove 'remove' button.
+			}
+		}
+	};
 
 	// @todo Needs more work.
 	var getDashIcon = function getDashIcon(fileName) {
@@ -1438,12 +1447,16 @@ function fileUpload(props, config, attributeKey) {
 				fieldAttributes,
 				buttonText
 			),
-			removeButton
+			props.attributes[attributeKey] && React.createElement(
+				Button,
+				{ isLarge: true, onClick: removeFiles },
+				__('Remove')
+			)
 		),
 		props.attributes[attributeKey] && React.createElement(
 			'ul',
 			{ className: 'file-upload-field-files' },
-			props.attributes[attributeKey].map(function (file) {
+			props.attributes[attributeKey].map(function (file, key) {
 				if (file.id) {
 					var href = file.url;
 					var name = href.substring(href.lastIndexOf('/') + 1);
@@ -1452,6 +1465,7 @@ function fileUpload(props, config, attributeKey) {
 					return React.createElement(
 						'li',
 						null,
+						React.createElement('button', { className: 'dashicons dashicons-no-alt middleware-remove-file', 'data-key': key, onClick: removeFile }),
 						React.createElement(
 							'div',
 							{ className: 'middleware-field-media-thumbnail' },

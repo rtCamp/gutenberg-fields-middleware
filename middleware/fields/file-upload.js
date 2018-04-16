@@ -1,5 +1,6 @@
 /**
  * File Upload.
+ * @todo Create a component for file upload.
  */
 
 const { FormFileUpload, Button } = wp.components;
@@ -41,19 +42,27 @@ export default function fileUpload( props, config, attributeKey ) {
 		}
 	};
 
-	fieldAttributes.remove = ( event ) => {
-		if ( config.remove ) {
-			config.remove( event, props );
+	const removeFiles = ( event ) => {
+		if ( config.removeFiles ) {
+			config.removeFiles( event, props );
 		} else {
 			setMedia( '' );
 		}
 	};
 
-	const removeButton = props.attributes[ attributeKey ] && (
-		<Button isLarge onClick={ fieldAttributes.remove } >
-			{ __( 'Remove' ) }
-		</Button>
-	);
+	const removeFile = ( event ) => {
+		if ( config.removeFile ) {
+			config.removeFile( event, props );
+		} else {
+			const key = event.currentTarget.dataset.key;
+			props.attributes[ attributeKey ].splice( key, 1 );
+			setMedia( '' ); // To force update.
+			setMedia( props.attributes[ attributeKey ] );
+			if ( _.isEmpty( props.attributes[ attributeKey ] ) ) {
+				setMedia( '' ); // To remove 'remove' button.
+			}
+		}
+	};
 
 	// @todo Needs more work.
 	const getDashIcon = ( fileName ) => {
@@ -86,12 +95,16 @@ export default function fileUpload( props, config, attributeKey ) {
 					{ buttonText }
 				</FormFileUpload>
 
-				{ removeButton }
+				{ props.attributes[ attributeKey ] && (
+					<Button isLarge onClick={ removeFiles } >
+						{ __( 'Remove' ) }
+					</Button>
+				) }
 			</div>
 
 			{ props.attributes[ attributeKey ] && (
 				<ul className="file-upload-field-files">
-					{ props.attributes[ attributeKey ].map( ( file ) => {
+					{ props.attributes[ attributeKey ].map( ( file, key ) => {
 						if ( file.id ) {
 							const href = file.url;
 							const name = href.substring( href.lastIndexOf( '/' ) + 1 );
@@ -99,6 +112,7 @@ export default function fileUpload( props, config, attributeKey ) {
 
 							return (
 								<li>
+									<button className="dashicons dashicons-no-alt middleware-remove-file" data-key={ key } onClick={ removeFile } />
 									<div className="middleware-field-media-thumbnail">
 										<span className={ 'dashicons ' + dashIcon } />
 									</div>

@@ -22,7 +22,6 @@ ul.file-upload-field-files,
 
 .block-field .file-upload-field-files li {
 	color: #444;
-	cursor: pointer;
 	padding: 8px;
 	border: 1px solid #ccc;
 	width: 20%;
@@ -43,4 +42,8 @@ ul.file-upload-field-files,
 	height: 60px;
 	width: 60px;
 	margin: 0 auto;
+}
+
+.middleware-remove-file {
+	cursor: pointer;
 }
