@@ -104,6 +104,7 @@ class MediaPlaceholder extends Component {
 	render() {
 		const {
 			type,
+			caption,
 			mediaData,
 			placeholderText,
 			buttonText,
@@ -112,7 +113,7 @@ class MediaPlaceholder extends Component {
 			setCaption,
 		} = this.props;
 
-		const caption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption[ 0 ] || '' : '';
+		const captionVal = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption[ 0 ] || '' : '';
 		let mediaEl = '';
 
 		const controls = (
@@ -185,11 +186,11 @@ class MediaPlaceholder extends Component {
 			controls,
 			<figure key={ type } className={ className + ' wp-block-' + type }>
 				{ mediaEl }
-				{ isSelected && (
+				{ isSelected && caption && (
 					<RichText
 						tagName="figcaption"
 						placeholder={ __( 'Write caption…' ) }
-						value={ caption }
+						value={ captionVal }
 						isSelected={ isSelected }
 						onChange={ setCaption }
 						inlineToolbar
