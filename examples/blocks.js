@@ -74,7 +74,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'audio',
 				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
+				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
 			},
 		},
 		radio: {
