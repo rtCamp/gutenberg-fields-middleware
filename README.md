@@ -613,7 +613,7 @@ Video placeholder text.
 video: {
 	type: 'object',
 	field: {
-		type: 'video', 
+		type: 'video',
 		buttonText: __( 'Upload' ),
 		placeholderText: __( 'Select a video file from your library, or upload a new one' ),
 	},
