@@ -1655,9 +1655,18 @@ var mediaUpload = wp.utils.mediaUpload;
 function fileUpload(props, config, attributeKey) {
 	var buttonText = config.buttonText ? config.buttonText : __('Upload');
 
-	var setMedia = function setMedia(file) {
+	var setMedia = function setMedia(files) {
 		var newAttributes = {};
-		newAttributes[attributeKey] = file;
+
+		if (!_.isEmpty(files)) {
+			files = files.map(function (file) {
+				file.name = file.url ? file.url.substring(file.url.lastIndexOf('/') + 1) : '';
+				return file;
+			});
+		}
+
+		newAttributes[attributeKey] = files;
+
 		props.setAttributes(newAttributes);
 	};
 
@@ -1742,19 +1751,19 @@ function fileUpload(props, config, attributeKey) {
 				fieldAttributes,
 				buttonText
 			),
-			props.attributes[attributeKey] && React.createElement(
+			!_.isEmpty(props.attributes[attributeKey]) && React.createElement(
 				Button,
 				{ isLarge: true, onClick: removeFiles },
 				__('Remove')
 			)
 		),
-		props.attributes[attributeKey] && React.createElement(
+		props.attributes[attributeKey] && !_.isEmpty(props.attributes[attributeKey]) && React.createElement(
 			'ul',
 			{ className: 'file-upload-field-files' },
 			props.attributes[attributeKey].map(function (file, key) {
-				if (file.id) {
+				if (file.id && file.name) {
 					var href = file.url;
-					var name = href.substring(href.lastIndexOf('/') + 1);
+					var name = file.name;
 					var dashIcon = getDashIcon(name);
 
 					return React.createElement(
