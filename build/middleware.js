@@ -1405,29 +1405,71 @@ function fileUpload(props, config, attributeKey) {
 		__('Remove')
 	);
 
+	// @todo Needs more work.
+	var getDashIcon = function getDashIcon(fileName) {
+		var fileExtenstion = fileName.split('.').pop();
+
+		if ('zip' === fileExtenstion) {
+			return 'dashicons-media-archive';
+		} else if ('pdf' === fileExtenstion) {
+			return 'dashicons-media-document';
+		} else if ('jpg' === fileExtenstion) {
+			return 'dashicons-format-image';
+		} else if ('mp4' === fileExtenstion) {
+			return 'dashicons-media-video';
+		}
+
+		return 'dashicons-media-default';
+	};
+
+	var fieldWrapperClasses = 'file-upload-field';
+	fieldWrapperClasses += 'inspector' !== config.placement ? ' block-field' : '';
+
 	delete fieldAttributes.buttonText;
 
 	return React.createElement(
 		'div',
-		{ className: 'file-upload-field' },
+		{ className: fieldWrapperClasses },
 		React.createElement(
-			FormFileUpload,
-			fieldAttributes,
-			buttonText
+			'div',
+			{ className: 'file-upload-filed-actions' },
+			React.createElement(
+				FormFileUpload,
+				fieldAttributes,
+				buttonText
+			),
+			removeButton
 		),
-		removeButton,
-		props.attributes[attributeKey] && props.attributes[attributeKey].map(function (file) {
-			if (file.id) {
-				var href = file.url;
-				var name = href.substring(href.lastIndexOf('/') + 1);
+		props.attributes[attributeKey] && React.createElement(
+			'ul',
+			{ className: 'file-upload-field-files' },
+			props.attributes[attributeKey].map(function (file) {
+				if (file.id) {
+					var href = file.url;
+					var name = href.substring(href.lastIndexOf('/') + 1);
+					var dashIcon = getDashIcon(name);
 
-				return React.createElement(
-					'a',
-					{ target: '_blank', href: href },
-					name
-				);
-			}
-		})
+					return React.createElement(
+						'li',
+						null,
+						React.createElement(
+							'div',
+							{ className: 'middleware-field-media-thumbnail' },
+							React.createElement('span', { className: 'dashicons ' + dashIcon })
+						),
+						React.createElement(
+							'div',
+							{ className: 'middleware-file' },
+							React.createElement(
+								'a',
+								{ target: '_blank', href: href },
+								name
+							)
+						)
+					);
+				}
+			})
+		)
 	);
 }
 

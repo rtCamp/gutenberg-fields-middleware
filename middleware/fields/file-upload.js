@@ -55,28 +55,62 @@ export default function fileUpload( props, config, attributeKey ) {
 		</Button>
 	);
 
+	// @todo Needs more work.
+	const getDashIcon = ( fileName ) => {
+		const fileExtenstion = fileName.split( '.' ).pop();
+
+		if ( 'zip' === fileExtenstion ) {
+			return 'dashicons-media-archive';
+		} else if ( 'pdf' === fileExtenstion ) {
+			return 'dashicons-media-document';
+		} else if ( 'jpg' === fileExtenstion ) {
+			return 'dashicons-format-image';
+		} else if ( 'mp4' === fileExtenstion ) {
+			return 'dashicons-media-video';
+		}
+
+		return 'dashicons-media-default';
+	};
+
+	let fieldWrapperClasses = 'file-upload-field';
+	fieldWrapperClasses += 'inspector' !== config.placement ? ' block-field' : '';
+
 	delete fieldAttributes.buttonText;
 
 	return (
-		<div className="file-upload-field">
-			<FormFileUpload
-				{ ...fieldAttributes }
-			>
-				{ buttonText }
-			</FormFileUpload>
+		<div className={ fieldWrapperClasses }>
+			<div className="file-upload-filed-actions">
+				<FormFileUpload
+					{ ...fieldAttributes }
+				>
+					{ buttonText }
+				</FormFileUpload>
 
-			{ removeButton }
+				{ removeButton }
+			</div>
 
-			{ props.attributes[ attributeKey ] && props.attributes[ attributeKey ].map( ( file ) => {
-				if ( file.id ) {
-					const href = file.url;
-					const name = href.substring( href.lastIndexOf( '/' ) + 1 );
+			{ props.attributes[ attributeKey ] && (
+				<ul className="file-upload-field-files">
+					{ props.attributes[ attributeKey ].map( ( file ) => {
+						if ( file.id ) {
+							const href = file.url;
+							const name = href.substring( href.lastIndexOf( '/' ) + 1 );
+							const dashIcon = getDashIcon( name );
 
-					return (
-						<a target="_blank" href={ href }>{ name }</a>
-					);
-				}
-			} ) }
+							return (
+								<li>
+									<div className="middleware-field-media-thumbnail">
+										<span className={ 'dashicons ' + dashIcon } />
+									</div>
+									<div className="middleware-file">
+										<a target="_blank" href={ href }>{ name }</a>
+									</div>
+								</li>
+							);
+						}
+					} ) }
+				</ul>
+			) }
 		</div>
 	);
 }

@@ -256,6 +256,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'object',
 			field: {
 				type: 'file-upload',
+			},
+		},
+		fileUploadInspector: {
+			type: 'object',
+			field: {
+				type: 'file-upload',
 				placement: 'inspector',
 			},
 		},

@@ -1,0 +1,46 @@
+
+/*==============================
+          File Upload
+===============================*/
+
+.file-upload-filed-actions {
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.file-upload-filed-actions .components-form-file-upload {
+	margin-right: 10px;
+}
+
+ul.file-upload-field-files,
+.edit-post-visual-editor ul.file-upload-field-files {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.block-field .file-upload-field-files li {
+	color: #444;
+	cursor: pointer;
+	padding: 8px;
+	border: 1px solid #ccc;
+	width: 20%;
+	text-align: center;
+}
+
+.middleware-field-media-thumbnail {
+	display: none;
+}
+
+.block-field .middleware-field-media-thumbnail {
+	display: inline-block;
+}
+
+.middleware-field-media-thumbnail span {
+	font-size: 60px;
+	display: block;
+	height: 60px;
+	width: 60px;
+	margin: 0 auto;
+}
