@@ -18,7 +18,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'link',
 				placement: 'inspector',
-				label: 'Enter Link',
+				label: __( 'Enter Link' ),
 			},
 		},
 		text: {
@@ -48,43 +48,52 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'select',
-				label: 'Select Numbers',
+				label: __( 'Select Numbers' ),
 				options: [
 					{
 						value: 'one',
-						label: 'one',
+						label: __( 'One' ),
 					},
 					{
 						value: 'two',
-						label: 'two',
+						label: __( 'Two' ),
 					},
 				],
+			},
+		},
+		video: {
+			type: 'object',
+			field: {
+				type: 'video',
+				buttonText: __( 'Upload' ),
+				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
 			},
 		},
 		radio: {
 			type: 'string',
 			field: {
+				label: __( 'Radio Options' ),
 				type: 'radio',
-				default: 'one',
 				options: [
 					{
 						value: 'one',
-						label: 'one',
+						label: __( 'One' ),
 					},
 					{
 						value: 'two',
-						label: 'two',
+						label: __( 'Two' ),
 					},
 				],
 			},
+			default: 'one',
 		},
 		check: {
 			type: 'boolean',
 			field: {
 				type: 'checkbox',
-				heading: 'User',
-				label: 'Is author',
-				help: 'Is the user a author or not?',
+				heading: __( 'User' ),
+				label: __( 'Is author' ),
+				help: __( 'Is the user a author or not?' ),
 			},
 		},
 		switch: {
@@ -99,6 +108,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'range',
+				label: __( 'Range' ),
 			},
 		},
 		button: {
@@ -197,11 +207,11 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'number',
-				label: 'Number',
+				label: __( 'Number' ),
 				min: 20,
 				max: 40,
 				placement: 'inspector',
-				placeholder: __( 'Enter link text' ),
+				placeholder: __( 'Enter number' ),
 			},
 		},
 		search: {
@@ -220,6 +230,62 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 			},
 		},
+		time: {
+			type: 'string',
+			field: {
+				type: 'time',
+				label: __( 'Time' ),
+				placement: 'inspector',
+			},
+		},
+		date: {
+			type: 'string',
+			field: {
+				type: 'date',
+				label: __( 'Date' ),
+				placement: 'inspector',
+			},
+		},
+		datetimeLocal: {
+			type: 'string',
+			field: {
+				type: 'datetime-local',
+				label: __( 'Date Time Local' ),
+				placement: 'inspector',
+			},
+		},
+		file: {
+			type: 'string',
+			field: {
+				type: 'file',
+				label: __( 'File' ),
+				placement: 'inspector',
+			},
+		},
+		month: {
+			type: 'string',
+			field: {
+				type: 'month',
+				label: __( 'Month' ),
+				placement: 'inspector',
+			},
+		},
+		week: {
+			type: 'string',
+			field: {
+				type: 'week',
+				label: __( 'Week' ),
+				placement: 'inspector',
+			},
+		},
+		password: {
+			type: 'string',
+			field: {
+				type: 'password',
+				label: __( 'Password' ),
+				placement: 'inspector',
+			},
+		},
 		codeEditor: {
 			type: 'string',
 			field: {
@@ -235,14 +301,15 @@ registerBlockType( 'gb-m-example/simple-block', {
 				options: [
 					{
 						value: 'one',
-						label: 'one',
+						label: __( 'One' ),
 					},
 					{
 						value: 'two',
-						label: 'two',
+						label: __( 'Two' ),
 					},
 				],
 			},
+			default: 'one',
 		},
 		columns: {
 			type: 'string',

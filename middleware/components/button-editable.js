@@ -36,7 +36,7 @@ class ButtonEditable extends Component {
 				<Dashicon icon="admin-links" />
 				<UrlInput
 					value={ this.props.inputValue }
-					onChange={ this.props.fieldAttributes.onInputChange }
+					onChange={ this.props.onInputChange }
 				/>
 				<IconButton icon="editor-break" label={ __( 'Apply' ) } type="submit" />
 			</form>
@@ -48,7 +48,7 @@ class ButtonEditable extends Component {
 					<RichText
 						onFocus={ this.onFocus }
 						onClick={ this.onFocus } // Hack.
-						{ ...this.props.fieldAttributes }
+						{ ...this.props }
 					/>
 				</span>
 				{ form }

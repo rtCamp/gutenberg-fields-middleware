@@ -6,11 +6,10 @@ const { __ } = wp.i18n;
 import ButtonEditable from './../components/button-editable';
 
 export default function buttonEditable( props, config, attributeKey ) {
-	const defaultValue = config.default || '';
 	const defaultAttributes = {
 		placeholder: __( 'Add text…' ),
 		tagName: 'span',
-		value: props.attributes[ attributeKey ] ? props.attributes[ attributeKey ].text : defaultValue,
+		value: props.attributes[ attributeKey ] ? props.attributes[ attributeKey ].text : '',
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true,
 	};
@@ -43,7 +42,7 @@ export default function buttonEditable( props, config, attributeKey ) {
 
 	return (
 		<ButtonEditable
-			fieldAttributes={ fieldAttributes }
+			{ ...fieldAttributes }
 			inputValue={ props.attributes[ attributeKey ] ? props.attributes[ attributeKey ].link : '' }
 			buttonValue={ fieldAttributes.value }
 			isSelected={ props.isSelected }
