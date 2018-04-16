@@ -113,7 +113,7 @@ class MediaPlaceholder extends Component {
 		} = this.props;
 
 		const caption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption[ 0 ] || '' : '';
-		let mediaEle = '';
+		let mediaEl = '';
 
 		const controls = (
 			! this.state.editing && isSelected && (
@@ -176,15 +176,15 @@ class MediaPlaceholder extends Component {
 		}
 
 		if ( 'video' === type ) {
-			mediaEle = ( <video controls src={ this.state.mediaData.url }></video> );
+			mediaEl = ( <video controls src={ this.state.mediaData.url }></video> );
 		} else if ( 'audio' === type ) {
-			mediaEle = ( <audio controls src={ this.state.mediaData.url }></audio> );
+			mediaEl = ( <audio controls src={ this.state.mediaData.url }></audio> );
 		}
 
 		return [
 			controls,
 			<figure key={ type } className={ className + ' wp-block-' + type }>
-				{ mediaEle }
+				{ mediaEl }
 				{ isSelected && (
 					<RichText
 						tagName="figcaption"
