@@ -2,7 +2,7 @@ const { Component } = wp.element;
 const { __ } = wp.i18n;
 
 const {
-	RichText,
+    PlainText,
 	MediaUpload,
 	BlockControls,
 } = wp.blocks;
@@ -113,7 +113,7 @@ class MediaPlaceholder extends Component {
 			setCaption,
 		} = this.props;
 
-		const captionVal = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption[ 0 ] || '' : '';
+		const captionVal = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 		let mediaEl = '';
 
 		const controls = (
@@ -187,13 +187,11 @@ class MediaPlaceholder extends Component {
 			<figure key={ type } className={ className + ' wp-block-' + type }>
 				{ mediaEl }
 				{ isSelected && caption && (
-					<RichText
-						tagName="figcaption"
+					<PlainText
 						placeholder={ __( 'Write caption…' ) }
 						value={ captionVal }
 						isSelected={ isSelected }
 						onChange={ setCaption }
-						inlineToolbar
 					/>
 				) }
 			</figure>,

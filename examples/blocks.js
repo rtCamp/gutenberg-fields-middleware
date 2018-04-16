@@ -67,6 +67,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'video',
 				buttonText: __( 'Upload' ),
 				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
+				caption: true,
 			},
 		},
 		audio: {
@@ -75,6 +76,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'audio',
 				buttonText: __( 'Upload' ),
 				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
+				caption: true,
 			},
 		},
 		radio: {
