@@ -13,7 +13,7 @@ export default function fileUpload( props, config, attributeKey ) {
 	const setMedia = ( files ) => {
 		const newAttributes = {};
 
-		if ( ! _.isEmpty( props.attributes[ attributeKey ] ) && files ) {
+		if ( ! _.isEmpty( props.attributes[ attributeKey ] ) && ! _.isEmpty( files ) ) {
 			files = [ ...props.attributes[ attributeKey ], ...files ];
 		}
 
@@ -59,7 +59,7 @@ export default function fileUpload( props, config, attributeKey ) {
 		if ( config.removeFiles ) {
 			config.removeFiles( event, props );
 		} else {
-			setMedia( '' );
+			setMedia( [] );
 		}
 	};
 
@@ -69,10 +69,10 @@ export default function fileUpload( props, config, attributeKey ) {
 		} else {
 			const key = event.currentTarget.dataset.key;
 			props.attributes[ attributeKey ].splice( key, 1 );
-			setMedia( '' ); // To force update.
+			setMedia( [] ); // To force update.
 			setMedia( props.attributes[ attributeKey ] );
 			if ( _.isEmpty( props.attributes[ attributeKey ] ) ) {
-				setMedia( '' ); // To remove 'remove' button.
+				setMedia( [] ); // To remove 'remove' button.
 			}
 		}
 	};
