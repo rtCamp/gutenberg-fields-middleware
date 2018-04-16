@@ -320,14 +320,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 		},
 		fileUpload: {
-			type: 'object',
+			type: 'array',
 			field: {
 				type: 'file-upload',
 				multiple: true,
 			},
 		},
 		fileUploadInspector: {
-			type: 'object',
+			type: 'array',
 			field: {
 				type: 'file-upload',
 				placement: 'inspector',

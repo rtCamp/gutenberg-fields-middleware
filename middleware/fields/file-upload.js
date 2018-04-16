@@ -10,9 +10,18 @@ const { mediaUpload } = wp.utils;
 export default function fileUpload( props, config, attributeKey ) {
 	const buttonText = config.buttonText ? config.buttonText : __( 'Upload' );
 
-	const setMedia = ( file ) => {
+	const setMedia = ( files ) => {
 		const newAttributes = {};
-		newAttributes[ attributeKey ] = file;
+
+		if ( ! _.isEmpty( files ) ) {
+			files = files.map( ( file ) => {
+				file.name = file.url ? file.url.substring( file.url.lastIndexOf( '/' ) + 1 ) : '';
+				return file;
+			} );
+		}
+
+		newAttributes[ attributeKey ] = files;
+
 		props.setAttributes( newAttributes );
 	};
 
@@ -105,19 +114,19 @@ export default function fileUpload( props, config, attributeKey ) {
 					{ buttonText }
 				</FormFileUpload>
 
-				{ props.attributes[ attributeKey ] && (
+				{ ! _.isEmpty( props.attributes[ attributeKey ] ) && (
 					<Button isLarge onClick={ removeFiles } >
 						{ __( 'Remove' ) }
 					</Button>
 				) }
 			</div>
 
-			{ props.attributes[ attributeKey ] && (
+			{ props.attributes[ attributeKey ] && ! _.isEmpty( props.attributes[ attributeKey ] ) && (
 				<ul className="file-upload-field-files">
 					{ props.attributes[ attributeKey ].map( ( file, key ) => {
-						if ( file.id ) {
+						if ( file.id && file.name ) {
 							const href = file.url;
-							const name = href.substring( href.lastIndexOf( '/' ) + 1 );
+							const name = file.name;
 							const dashIcon = getDashIcon( name );
 
 							return (
