@@ -1727,7 +1727,7 @@ function fileUpload(props, config, attributeKey) {
 	};
 
 	var fieldWrapperClasses = 'file-upload-field';
-	fieldWrapperClasses += 'inspector' !== config.placement ? ' block-field' : '';
+	fieldWrapperClasses += 'inspector' !== config.placement ? ' block-field' : ' inspector-field';
 
 	delete fieldAttributes.buttonText;
 

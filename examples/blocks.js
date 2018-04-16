@@ -323,6 +323,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'object',
 			field: {
 				type: 'file-upload',
+				multiple: true,
 			},
 		},
 		fileUploadInspector: {
@@ -330,6 +331,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'file-upload',
 				placement: 'inspector',
+				multiple: true,
 			},
 		},
 	},
