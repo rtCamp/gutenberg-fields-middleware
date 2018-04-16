@@ -28,7 +28,7 @@ ul.file-upload-field-files,
 	padding: 0;
 }
 
-.block-field .file-upload-field-files li {
+.file-upload-field-files li {
 	background: #f5f5f5;
 	border: 1px solid #ccc;
 	-webkit-box-shadow: inset 0 0 15px rgba(0,0,0,.1), inset 0 0 0 1px rgba(0,0,0,.05);
@@ -42,11 +42,15 @@ ul.file-upload-field-files,
 	width: 20%;
 }
 
+.edit-post-block-inspector-panel .file-upload-field-files li {
+	width: 43.8%;
+}
+
 .middleware-field-media-thumbnail {
 	display: none;
 }
 
-.block-field .middleware-field-media-thumbnail {
+.middleware-field-media-thumbnail {
 	display: inline-block;
 	margin-top: 10px;
 }
@@ -92,4 +96,9 @@ ul.file-upload-field-files,
 	color: #444;
 	font-weight: 500;
 	text-decoration: none;
+}
+
+.file-upload-field .components-icon-button svg {
+	position: relative;
+	top: 3px;
 }
