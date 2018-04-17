@@ -6,22 +6,22 @@ const { MediaUpload } = wp.blocks;
 const { Button } = wp.components;
 const { __ } = wp.i18n;
 
-import imagePlaceholder from '../components/image-placeholder';
+import imagePlaceholder from './../../components/image-placeholder';
 
 export default function image( props, config, attributeKey ) {
 	const buttonText = config.buttonText ? config.buttonText : __( 'Open Media Library' );
-	const image = props.attributes[ attributeKey ];
+	const imageObject = props.attributes[ attributeKey ];
 
 	const defaultAttributes = {
 
 		type: 'image',
 
-		value: image || '',
+		value: imageObject || '',
 
 		render( { open } ) {
 			const nodes = [];
 
-			if ( ! image ) {
+			if ( ! imageObject ) {
 				if ( config.imagePlaceholder ) {
 					nodes.push( imagePlaceholder( props, config, attributeKey ) );
 				} else {
@@ -33,7 +33,7 @@ export default function image( props, config, attributeKey ) {
 				}
 			} else {
 				nodes.push( (
-					<img className="uploaded-image" src={ image.url } alt={ image.alt } />
+					<img className="uploaded-image" src={ imageObject.url } alt={ imageObject.alt } />
 				) );
 
 				if ( !! config.removeButtonText ) {

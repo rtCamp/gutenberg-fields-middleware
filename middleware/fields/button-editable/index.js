@@ -3,7 +3,7 @@
  */
 
 const { __ } = wp.i18n;
-import ButtonEditable from './../components/button-editable';
+import ButtonEditable from './../../components/button-editable';
 
 export default function buttonEditable( props, config, attributeKey ) {
 	const defaultAttributes = {

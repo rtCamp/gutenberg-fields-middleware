@@ -2,9 +2,9 @@
  * Video/Audio field.
  */
 const { __ } = wp.i18n;
-import MediaPlaceholder from './../components/media-placeholder';
+import MediaPlaceholder from './../../components/media-placeholder';
 
-export default function mediaPlaceholder( props, config, attributeKey ) {
+export default function mediaUpload( props, config, attributeKey ) {
 	const defaultAttributes = {
 		placeholderText: __( 'Select a ' ) + config.type + __( ' file from your library, or upload a new one' ),
 		buttonText: __( 'Upload' ),

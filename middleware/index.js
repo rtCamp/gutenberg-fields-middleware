@@ -14,7 +14,7 @@ import textarea from './fields/textarea';
 import inputField from './fields/input-field';
 import link from './fields/link';
 import image from './fields/image';
-import mediaPlaceholder from './fields/media-upload.js';
+import mediaUpload from './fields/media-upload';
 import select from './fields/select';
 import checkbox from './fields/checkbox';
 import radio from './fields/radio';
@@ -125,7 +125,7 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'video':
 			case 'audio':
-				field[ attributeKey ] = mediaPlaceholder( props, config, attributeKey );
+				field[ attributeKey ] = mediaUpload( props, config, attributeKey );
 				break;
 			case 'select':
 				field[ attributeKey ] = select( props, config, attributeKey );
