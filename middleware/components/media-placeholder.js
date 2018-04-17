@@ -2,7 +2,7 @@ const { Component } = wp.element;
 const { __ } = wp.i18n;
 
 const {
-    PlainText,
+	PlainText,
 	MediaUpload,
 	BlockControls,
 } = wp.blocks;
@@ -113,8 +113,7 @@ class MediaPlaceholder extends Component {
 			setCaption,
 		} = this.props;
 
-		const captionVal = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
-		let mediaEl = '';
+		const mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
 		const controls = (
 			! this.state.editing && isSelected && (
@@ -176,20 +175,19 @@ class MediaPlaceholder extends Component {
 			];
 		}
 
-		if ( 'video' === type ) {
-			mediaEl = ( <video controls src={ this.state.mediaData.url }></video> );
-		} else if ( 'audio' === type ) {
-			mediaEl = ( <audio controls src={ this.state.mediaData.url }></audio> );
-		}
-
 		return [
 			controls,
 			<figure key={ type } className={ className + ' wp-block-' + type }>
-				{ mediaEl }
+				{ 'video' === type && (
+					<video controls src={ this.state.mediaData.url } />
+				) }
+				{ 'audio' === type && (
+					<audio controls src={ this.state.mediaData.url } />
+				) }
 				{ isSelected && caption && (
 					<PlainText
 						placeholder={ __( 'Write caption…' ) }
-						value={ captionVal }
+						value={ mediaCaption }
 						isSelected={ isSelected }
 						onChange={ setCaption }
 					/>
