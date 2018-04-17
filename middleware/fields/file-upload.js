@@ -1,6 +1,5 @@
 /**
  * File Upload.
- * @todo Create a component for file upload.
  */
 
 const { FormFileUpload, Button } = wp.components;
@@ -9,6 +8,14 @@ const { mediaUpload } = wp.utils;
 
 export default function fileUpload( props, config, attributeKey ) {
 	const buttonText = config.buttonText ? config.buttonText : __( 'Upload' );
+
+	const defaultAttributes = {
+		accept: '*',
+		allowedTypes: [ 'image', 'video', 'audio', 'text', 'message', 'application' ],
+		isLarge: true,
+	};
+
+	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	const setMedia = ( files ) => {
 		const newAttributes = {};
@@ -36,29 +43,13 @@ export default function fileUpload( props, config, attributeKey ) {
 		props.setAttributes( newAttributes );
 	};
 
-	const defaultAttributes = {
-		accept: '*',
-		allowedTypes: [ 'image', 'video', 'audio', 'text', 'message', 'application' ],
-		isLarge: true,
-	};
-
-	const fieldAttributes = _.extend( defaultAttributes, config );
-
 	const getAllowedType = ( files ) => {
-		if ( files && _.first( files ) && _.first( files ).type ) {
+		if ( files && ! _.isEmpty( files ) && _.first( files ).type ) {
 			const fileType = _.first( files ).type;
 			if ( fileType ) {
 				const typeParts = fileType.split( '/' );
 				return _.first( typeParts ) && _.contains( fieldAttributes.allowedTypes, _.first( typeParts ) ) ? _.first( typeParts ) : '';
 			}
-		}
-	};
-
-	fieldAttributes.onChange = ( event ) => {
-		if ( config.onChange ) {
-			config.onChange( event, props );
-		} else {
-			mediaUpload( event.target.files, setMedia, getAllowedType( event.target.files ) );
 		}
 	};
 
@@ -84,27 +75,34 @@ export default function fileUpload( props, config, attributeKey ) {
 		}
 	};
 
-	// @todo Needs more work.
-	const getDashIcon = ( fileName ) => {
-		const fileExtenstion = fileName.split( '.' ).pop();
+	fieldAttributes.onChange = ( event ) => {
+		if ( config.onChange ) {
+			config.onChange( event, props );
+		} else {
+			mediaUpload( event.target.files, setMedia, getAllowedType( event.target.files ) );
+		}
+	};
 
-		if ( 'zip' === fileExtenstion ) {
+	const getDashIcon = ( fileName ) => {
+		const fileExtension = fileName.split( '.' ).pop();
+
+		if ( 'zip' === fileExtension ) {
 			return 'dashicons-media-archive';
-		} else if ( 'pdf' === fileExtenstion || 'epub' === fileExtenstion || 'azw' === fileExtenstion || 'indd' === fileExtenstion ) {
+		} else if ( _.contains( [ 'pdf', 'epub', 'azw', 'indd' ], fileExtension ) ) {
 			return 'dashicons-book';
-		} else if ( 'jpg' === fileExtenstion || 'png' === fileExtenstion || 'gif' === fileExtenstion || 'jpeg' === fileExtenstion || 'tif' === fileExtenstion || 'ico' === fileExtenstion || 'bmp' === fileExtenstion || 'svg' === fileExtenstion ) {
+		} else if ( _.contains( [ 'jpg', 'png', 'gif', 'jpeg', 'tif', 'ico', 'bmp', 'svg' ], fileExtension ) ) {
 			return 'dashicons-format-image';
-		} else if ( 'mp4' === fileExtenstion || 'avi' === fileExtenstion || 'flv' === fileExtenstion || 'mov' === fileExtenstion || 'mpg' === fileExtenstion || 'rm' === fileExtenstion || 'swf' === fileExtenstion || 'wmv' === fileExtenstion || 'ogv' === fileExtenstion || '3gp' === fileExtenstion || '3g2' === fileExtenstion || 'm4v' === fileExtenstion ) {
+		} else if ( _.contains( [ 'mp4', 'avi', 'flv', 'mov', 'mpg', 'rm', 'swf', 'wmv', 'ogv', '3gp', '3g2', 'm4v' ], fileExtension ) ) {
 			return 'dashicons-media-video';
-		} else if ( 'pptx' === fileExtenstion || 'pptm' === fileExtenstion || 'ppt' === fileExtenstion || 'pot' === fileExtenstion || 'potx' === fileExtenstion || 'potm' === fileExtenstion || 'pps' === fileExtenstion || 'ppsx' === fileExtenstion ) {
+		} else if ( _.contains( [ 'pptx', 'pptm', 'ppt', 'pot', 'potx', 'potm', 'pps', 'ppsx' ], fileExtension ) ) {
 			return 'dashicons-media-interactive';
-		} else if ( 'mp3' === fileExtenstion || 'm4a' === fileExtenstion || 'ogg' === fileExtenstion || 'wav' === fileExtenstion ) {
+		} else if ( _.contains( [ 'mp3', 'm4a', 'ogg', 'wav' ], fileExtension ) ) {
 			return 'dashicons-media-audio';
-		} else if ( 'xls' === fileExtenstion || 'xlsx' === fileExtenstion || 'xla' === fileExtenstion || 'xlb' === fileExtenstion || 'xlc' === fileExtenstion || 'xld' === fileExtenstion || 'xlk' === fileExtenstion || 'xll' === fileExtenstion || 'xlm' === fileExtenstion || 'xlt' === fileExtenstion || 'xlv' === fileExtenstion || 'xlw' === fileExtenstion || 'numbers' === fileExtenstion ) {
+		} else if ( _.contains( [ 'xls', 'xlsx', 'xla', 'xlb', 'xlc', 'xld', 'xlk', 'xll', 'xlm', 'xlt', 'xlv', 'xlw', 'numbers' ], fileExtension ) ) {
 			return 'dashicons-media-spreadsheet';
-		} else if ( 'doc' === fileExtenstion || 'docx' === fileExtenstion || 'docm' === fileExtenstion || 'pages' === fileExtenstion ) {
+		} else if ( _.contains( [ 'doc', 'docx', 'docm', 'pages' ], fileExtension ) ) {
 			return 'dashicons-media-document';
-		} else if ( 'txt' === fileExtenstion || 'odt' === fileExtenstion || 'rtf' === fileExtenstion || 'log' === fileExtenstion ) {
+		} else if ( _.contains( [ 'txt', 'odt', 'rtf', 'log' ], fileExtension ) ) {
 			return 'dashicons-media-text';
 		}
 
