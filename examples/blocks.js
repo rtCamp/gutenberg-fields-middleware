@@ -349,7 +349,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 		const attributes = props.attributes;
 
 		const text = attributes.text ? el( 'p', null, attributes.text ) : '';
-		const richText = attributes.richText ? el( 'div', { className: 'rich-text' }, attributes.richText ) : '';
+		const richText = el( 'div', { className: 'rich-text' }, attributes.richText || '' );
 		const image = attributes.image ? el( 'img', { src: attributes.image.url }, null ) : '';
 		// Rest of the fields go here.
 
