@@ -90,6 +90,6 @@ This will return complete video object.
 		"item": "",
 		"meta": ""
 	},
-	"videoCaption": []
+	"mediaCaption": "Video Caption" // Caption added by user.
 }
 ```
