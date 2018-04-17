@@ -14,6 +14,12 @@ export default function mediaUpload( props, config, attributeKey ) {
 
 	fieldAttributes.className = props.className;
 
+	fieldAttributes.removeMediaAttributes = () => {
+		const newAttributes = {};
+		newAttributes[ attributeKey ] = '';
+		props.setAttributes( newAttributes );
+	};
+
 	fieldAttributes.setMediaAttributes = ( media ) => {
 		if ( media && media.url ) {
 			const newAttributes = {};

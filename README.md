@@ -94,12 +94,10 @@ Gutenberg Fields Middleware supports the following field types and type configur
 
 - [audio](docs/audio.md)
 - [button-editable](docs/button-editable.md)
-- [button](docs/button.md)
 - [checkbox](docs/checkbox.md)
 - [code-editor](docs/code-editor.md)
 - [color](docs/color.md)
 - [date-time](docs/date-time.md)
-- [dropdown](docs/dropdown.md)
 - [file-upload](docs/file-upload.md)
 - [image](docs/image.md)
 - [input types: email / number/ hidden / search / tel etc.](docs/input.md)
@@ -127,9 +125,9 @@ registerBlockType( 'gb-m-example/simple-block', {
 
 	attributes: {
 		button: {
-			type: 'string',
+			type: 'object',
 			field: {
-				type: 'button',
+				type: 'button-editable',
 			},
 		},
 		color: {
@@ -153,6 +151,4 @@ registerBlockType( 'gb-m-example/simple-block', {
 	}
 } );
 ```
-
-![color-change](https://user-images.githubusercontent.com/6297436/38424317-46694046-39ce-11e8-8713-398c16a1b30c.gif)
 

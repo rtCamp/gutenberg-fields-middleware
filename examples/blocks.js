@@ -341,6 +341,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 	save( props ) {
 		const attributes = props.attributes;
 
+
 		return (
 			el( 'div', { className: props.className },
 				el( 'div', { className: 'gutenberg-fields-middleware-wrapper' },
@@ -470,7 +471,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 						className: 'file-upload-inspector',
 						href: attributes.fileUploadInspector[ 0 ].url,
 					}, attributes.fileUploadInspector[ 0 ].name ),
-
 				)
 			)
 		);

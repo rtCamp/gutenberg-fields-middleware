@@ -120,17 +120,11 @@ class GutenbergFieldsMiddleWare {
 			case 'checkbox':
 				field[ attributeKey ] = fields.checkbox( props, config, attributeKey );
 				break;
-			case 'button':
-				field[ attributeKey ] = fields.button( props, config, attributeKey );
-				break;
 			case 'button-editable':
 				field[ attributeKey ] = fields.buttonEditable( props, config, attributeKey );
 				break;
 			case 'color':
 				field[ attributeKey ] = fields.color( props, config, attributeKey );
-				break;
-			case 'dropdown':
-				field[ attributeKey ] = fields.dropdown( props, config );
 				break;
 			case 'code-editor':
 				field[ attributeKey ] = fields.codeEditor( props, config, attributeKey );
