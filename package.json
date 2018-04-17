@@ -32,7 +32,7 @@
 		"webpack": "^3.10.0"
 	},
 	"scripts": {
-		"build": "cross-env BABEL_ENV=default NODE_ENV=production PROD_ENV=1 webpack",
+//		"build": "cross-env BABEL_ENV=default NODE_ENV=production PROD_ENV=1 webpack",
 		"dev": "cross-env BABEL_ENV=default webpack --watch",
 		"test": "jest"
 	},
