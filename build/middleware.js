@@ -1426,7 +1426,7 @@ var MediaPlaceholder = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (MediaPlaceholder.__proto__ || Object.getPrototypeOf(MediaPlaceholder)).apply(this, arguments));
 
 		_this.state = {
-			editing: !_this.props.mediaData,
+			editing: !(_this.props.mediaData && _this.props.mediaData.url),
 			mediaData: _this.props.mediaData || ''
 		};
 

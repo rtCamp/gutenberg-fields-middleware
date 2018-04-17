@@ -25,7 +25,7 @@ class MediaPlaceholder extends Component {
 		super( ...arguments );
 
 		this.state = {
-			editing: ! this.props.mediaData,
+			editing: ! ( this.props.mediaData && this.props.mediaData.url ),
 			mediaData: this.props.mediaData || '',
 		};
 
