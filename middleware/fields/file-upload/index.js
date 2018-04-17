@@ -2,6 +2,8 @@
  * File Upload.
  */
 
+import './editor.scss';
+
 const { FormFileUpload, Button } = wp.components;
 const { __ } = wp.i18n;
 const { mediaUpload } = wp.utils;
