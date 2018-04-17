@@ -340,7 +340,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 	},
 
 	/**
-	 * This is optional, if not defined, save would be null.
+	 * If not defined, save would be null.
 	 *
 	 * @param {Object} props Same properties we get in default edit method.
 	 * @return {Object} React elements.
@@ -351,7 +351,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 		const text = attributes.text ? el( 'p', null, attributes.text ) : '';
 		const richText = attributes.richText ? el( 'div', { className: 'rich-text' }, attributes.richText ) : '';
 		const image = attributes.image ? el( 'img', { src: attributes.image.url }, null ) : '';
-		// Rest of the fields goes here.
+		// Rest of the fields go here.
 
 		return el( 'div', null, [ text, richText, image ] );
 	},

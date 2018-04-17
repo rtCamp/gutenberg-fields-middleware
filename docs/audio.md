@@ -90,6 +90,6 @@ This will return complete audio object.
 		"item": "",
 		"meta": ""
 	},
-	"audioCaption": []
+	"mediaCaption": "Audio Caption" // Caption added by user.
 }
 ```
