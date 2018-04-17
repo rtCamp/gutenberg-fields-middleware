@@ -13,14 +13,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 	category: 'common',
 
 	attributes: {
-		url: {
-			type: 'string',
-			field: {
-				type: 'link',
-				placement: 'inspector',
-				label: __( 'Enter Link' ),
-			},
-		},
 		text: {
 			type: 'string',
 			field: {
