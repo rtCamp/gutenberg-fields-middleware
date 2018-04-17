@@ -68,6 +68,7 @@ class MediaPlaceholder extends Component {
 	 */
 	switchToEditing() {
 		this.setState( { editing: true } );
+		this.props.removeMediaAttributes();
 	}
 
 	/**

@@ -131,7 +131,7 @@ module.exports = __webpack_require__(2);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields__ = __webpack_require__(3);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -422,733 +422,69 @@ addFilter('blocks.registerBlockType', 'gutenberg-field-middleware/registration/a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = richText;
-/**
- * Text field.
- */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button__ = __webpack_require__(4);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__button__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button_editable__ = __webpack_require__(5);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__button_editable__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox__ = __webpack_require__(7);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__checkbox__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__code_editor__ = __webpack_require__(8);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__code_editor__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__color__ = __webpack_require__(9);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__color__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__date_time__ = __webpack_require__(10);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__date_time__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdown__ = __webpack_require__(11);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__dropdown__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__file_upload__ = __webpack_require__(12);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__file_upload__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__form_toggle__ = __webpack_require__(13);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__form_toggle__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__image__ = __webpack_require__(14);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_9__image__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__input_field__ = __webpack_require__(0);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_10__input_field__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__link__ = __webpack_require__(16);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_11__link__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__media_upload__ = __webpack_require__(17);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_12__media_upload__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__radio__ = __webpack_require__(19);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_13__radio__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__range__ = __webpack_require__(20);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_14__range__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__rich_text__ = __webpack_require__(21);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_15__rich_text__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__select__ = __webpack_require__(22);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_16__select__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__text__ = __webpack_require__(23);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_17__text__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__textarea__ = __webpack_require__(24);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_18__textarea__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__tree_select__ = __webpack_require__(25);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_19__tree_select__["a"]; });
 
-var RichText = wp.blocks.RichText;
 
 
-function richText(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || '',
-		inlineToolbar: true,
-		isSelected: false,
-		onFocus: function onFocus() {
-			this.isSelected = true;
-		}
-	};
 
-	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
 
-	delete fieldAttributes.type;
 
-	return React.createElement(RichText, fieldAttributes);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = text;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__input_field__ = __webpack_require__(0);
-/**
- * Text field.
- */
-
-var PlainText = wp.blocks.PlainText;
-
-
-
-function text(props, config, attributeKey) {
-	if ('inspector' === config.placement) {
-		return Object(__WEBPACK_IMPORTED_MODULE_0__input_field__["a" /* default */])(props, config, attributeKey);
-	}
-
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(PlainText, fieldAttributes);
-}
-
-/***/ }),
-/* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = textarea;
-/**
- * Textarea field.
- */
-
-var _wp$components = wp.components,
-    TextareaControl = _wp$components.TextareaControl,
-    BaseControl = _wp$components.BaseControl;
-
-
-function textarea(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(
-		BaseControl,
-		{
-			id: fieldAttributes.id
-		},
-		React.createElement(TextareaControl, fieldAttributes)
-	);
-}
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = link;
-/**
- * Url field.
- */
-
-var UrlInput = wp.blocks.UrlInput;
-var BaseControl = wp.components.BaseControl;
-
-
-function link(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey]
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	if ('inspector' === config.placement) {
-		delete fieldAttributes.placement;
-		return React.createElement(
-			BaseControl,
-			{
-				label: fieldAttributes.label,
-				id: fieldAttributes.id,
-				help: fieldAttributes.help,
-				className: fieldAttributes.className
-			},
-			React.createElement(UrlInput, fieldAttributes)
-		);
-	}
-
-	return React.createElement(UrlInput, fieldAttributes);
-}
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = image;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(8);
-/**
- * Image Field.
- */
-
-var MediaUpload = wp.blocks.MediaUpload;
-var Button = wp.components.Button;
-var __ = wp.i18n.__;
-
-
-
-
-function image(props, config, attributeKey) {
-	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
-	var imageObject = props.attributes[attributeKey];
-
-	var defaultAttributes = {
-
-		type: 'image',
-
-		value: imageObject || '',
-
-		render: function render(_ref) {
-			var open = _ref.open;
-
-			var nodes = [];
-
-			if (!imageObject) {
-				if (config.imagePlaceholder) {
-					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__["a" /* default */])(props, config, attributeKey));
-				} else {
-					nodes.push(React.createElement(
-						Button,
-						{ className: 'button button-large button-upload', onClick: open },
-						buttonText
-					));
-				}
-			} else {
-				nodes.push(React.createElement('img', { className: 'uploaded-image', src: imageObject.url, alt: imageObject.alt }));
-
-				if (!!config.removeButtonText) {
-					nodes.push(React.createElement(
-						Button,
-						{ className: 'button button-large button-remove', onClick: function onClick() {
-								var newAttributes = {};
-								newAttributes[attributeKey] = '';
-								props.setAttributes(newAttributes);
-							} },
-						config.removeButtonText
-					));
-				}
-			}
-
-			return React.createElement(
-				'div',
-				{ className: 'blocks-' + config.type + '-upload' },
-				nodes
-			);
-		}
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onSelect = function (media) {
-		if (config.onSelect) {
-			config.onSelect(media, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = media;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.buttonText;
-	delete fieldAttributes.imagePlaceholder;
-	delete fieldAttributes.removeButtonText;
-
-	return React.createElement(MediaUpload, fieldAttributes);
-}
-
-/***/ }),
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = imagePlaceholder;
-/**
- * Image Placeholder.
- */
-
-var ImagePlaceholder = wp.blocks.ImagePlaceholder;
-var __ = wp.i18n.__;
-
-
-function imagePlaceholder(props, config, attributeKey) {
-	var defaultAttributes = {
-		onSelectImage: function onSelectImage(media) {
-			var newAttributes = {};
-			newAttributes[attributeKey] = media;
-			props.setAttributes(newAttributes);
-		},
-
-
-		className: 'image-placeholder',
-
-		icon: 'format-gallery',
-
-		label: __('Image'),
-
-		multiple: false
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	return React.createElement(ImagePlaceholder, fieldAttributes);
-}
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = mediaUpload;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_media_placeholder__ = __webpack_require__(10);
-/**
- * Video/Audio field.
- */
-var __ = wp.i18n.__;
-
-
-
-function mediaUpload(props, config, attributeKey) {
-	var defaultAttributes = {
-		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
-		buttonText: __('Upload'),
-		isSelected: props.isSelected
-	};
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.className = props.className;
-
-	fieldAttributes.setMediaAttributes = function (media) {
-		if (media && media.url) {
-			var newAttributes = {};
-			newAttributes[attributeKey] = media;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	fieldAttributes.setCaption = function (caption) {
-		var attributeValue = _.extend({}, props.attributes[attributeKey]);
-		if (attributeValue) {
-			var newAttributes = {};
-			attributeValue.mediaCaption = caption;
-			newAttributes[attributeKey] = attributeValue;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	fieldAttributes.mediaData = props.attributes[attributeKey];
-
-	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_media_placeholder__["a" /* default */], fieldAttributes);
-}
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Component = wp.element.Component;
-var __ = wp.i18n.__;
-var _wp$blocks = wp.blocks,
-    PlainText = _wp$blocks.PlainText,
-    MediaUpload = _wp$blocks.MediaUpload,
-    BlockControls = _wp$blocks.BlockControls;
-var _wp$components = wp.components,
-    Placeholder = _wp$components.Placeholder,
-    FormFileUpload = _wp$components.FormFileUpload,
-    Button = _wp$components.Button,
-    Toolbar = _wp$components.Toolbar,
-    IconButton = _wp$components.IconButton;
-var mediaUpload = wp.utils.mediaUpload;
-
-/**
- * MediaPlaceholder component class.
- */
-
-var MediaPlaceholder = function (_Component) {
-	_inherits(MediaPlaceholder, _Component);
-
-	function MediaPlaceholder() {
-		_classCallCheck(this, MediaPlaceholder);
-
-		var _this = _possibleConstructorReturn(this, (MediaPlaceholder.__proto__ || Object.getPrototypeOf(MediaPlaceholder)).apply(this, arguments));
-
-		_this.state = {
-			editing: !_this.props.mediaData,
-			mediaData: _this.props.mediaData || ''
-		};
-
-		_this.uploadFromFiles = _this.uploadFromFiles.bind(_this);
-		_this.onSelectMedia = _this.onSelectMedia.bind(_this);
-		_this.switchToEditing = _this.switchToEditing.bind(_this);
-		_this.onSelectUrl = _this.onSelectUrl.bind(_this);
-		_this.onUrlChange = _this.onUrlChange.bind(_this);
-		return _this;
-	}
-
-	/**
-  * Upload from file.
-  *
-  * @param {Object} event Event.
-  *
-  * @return {void}
-  */
-
-
-	_createClass(MediaPlaceholder, [{
-		key: 'uploadFromFiles',
-		value: function uploadFromFiles(event) {
-			var _this2 = this;
-
-			mediaUpload(event.target.files, function (_ref) {
-				var _ref2 = _slicedToArray(_ref, 1),
-				    media = _ref2[0];
-
-				return _this2.onSelectMedia(media);
-			}, this.props.type);
-		}
-
-		/**
-   * Callback method when media is selected.
-   *
-   * @param {Object} media Media.
-   *
-   * @return {void}
-   */
-
-	}, {
-		key: 'onSelectMedia',
-		value: function onSelectMedia(media) {
-			if (media && media.url) {
-				this.setState({ mediaData: media, editing: false });
-				this.props.setMediaAttributes(media);
-			}
-		}
-
-		/**
-   * Set editing state to true.
-   *
-   * @return {void}
-   */
-
-	}, {
-		key: 'switchToEditing',
-		value: function switchToEditing() {
-			this.setState({ editing: true });
-		}
-
-		/**
-   * Handles when url is selected.
-   *
-   * @param {Object} event Event
-   *
-   * @return {void}
-   */
-
-	}, {
-		key: 'onSelectUrl',
-		value: function onSelectUrl(event) {
-			event.preventDefault();
-
-			if (this.state.mediaData) {
-				this.setState({
-					editing: false
-				});
-				this.props.setMediaAttributes(this.state.mediaData);
-			}
-		}
-
-		/**
-   * Callback method when url changes.
-   *
-   * @param {Object} event Event.
-   *
-   * @return {void}
-   */
-
-	}, {
-		key: 'onUrlChange',
-		value: function onUrlChange(event) {
-			this.setState({ mediaData: {
-					url: event.target.value
-				} });
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var _props = this.props,
-			    type = _props.type,
-			    caption = _props.caption,
-			    mediaData = _props.mediaData,
-			    placeholderText = _props.placeholderText,
-			    buttonText = _props.buttonText,
-			    className = _props.className,
-			    isSelected = _props.isSelected,
-			    setCaption = _props.setCaption;
-
-
-			var mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
-
-			var controls = !this.state.editing && isSelected && React.createElement(
-				BlockControls,
-				{ key: 'controls' },
-				React.createElement(
-					Toolbar,
-					null,
-					React.createElement(IconButton, {
-						className: 'components-icon-button components-toolbar__control',
-						label: __('Edit ') + type,
-						onClick: this.switchToEditing,
-						icon: 'edit'
-					})
-				)
-			);
-
-			if (this.state.editing) {
-				var mediaIcon = 'media-' + type;
-
-				return [controls, React.createElement(
-					Placeholder,
-					{
-						key: 'placeholder',
-						icon: mediaIcon,
-						label: type,
-						className: className + ' wp-block-' + type,
-						instructions: placeholderText },
-					React.createElement(
-						'form',
-						{ onSubmit: this.onSelectUrl },
-						React.createElement('input', {
-							type: 'url',
-							className: 'components-placeholder__input',
-							placeholder: __('Enter URL of ') + type + __(' file here…'),
-							onChange: this.onUrlChange,
-							value: this.state.mediaData.url || '' }),
-						React.createElement(
-							Button,
-							{
-								isLarge: true,
-								type: 'submit' },
-							__('Use URL')
-						)
-					),
-					React.createElement(
-						FormFileUpload,
-						{
-							isLarge: true,
-							className: 'wp-block-video__upload-button',
-							onChange: this.uploadFromFiles,
-							accept: type + '/*'
-						},
-						buttonText
-					),
-					React.createElement(MediaUpload, {
-						onSelect: this.onSelectMedia,
-						type: type,
-						render: function render(_ref3) {
-							var open = _ref3.open;
-							return React.createElement(
-								Button,
-								{ isLarge: true, onClick: open },
-								__('Add from Media Library')
-							);
-						}
-					})
-				)];
-			}
-
-			return [controls, React.createElement(
-				'figure',
-				{ key: type, className: className + ' wp-block-' + type },
-				'video' === type && React.createElement('video', { controls: true, src: this.state.mediaData.url }),
-				'audio' === type && React.createElement('audio', { controls: true, src: this.state.mediaData.url }),
-				isSelected && caption && React.createElement(PlainText, {
-					placeholder: __('Write caption…'),
-					value: mediaCaption,
-					isSelected: isSelected,
-					onChange: setCaption
-				})
-			)];
-		}
-	}]);
-
-	return MediaPlaceholder;
-}(Component);
-
-/* harmony default export */ __webpack_exports__["a"] = (MediaPlaceholder);
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = select;
-/**
- * Select field.
- */
-
-var SelectControl = wp.components.SelectControl;
-
-
-function select(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(SelectControl, fieldAttributes);
-}
-
-/***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = checkbox;
-/**
- * Checkbox field.
- */
-
-var CheckboxControl = wp.components.CheckboxControl;
-
-
-function checkbox(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: '1',
-		checked: props.attributes[attributeKey]
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (checked) {
-		if (config.onChange) {
-			config.onChange(checked, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = checked ? defaultAttributes.value : false;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(CheckboxControl, fieldAttributes);
-}
-
-/***/ }),
-/* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = radio;
-/**
- * Radio Control field.
- */
-
-var RadioControl = wp.components.RadioControl;
-
-
-function radio(props, config, attributeKey) {
-	var defaultAttributes = {
-		selected: props.attributes[attributeKey]
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(RadioControl, fieldAttributes);
-}
-
-/***/ }),
-/* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = range;
-/**
- * Range field.
- */
-
-var RangeControl = wp.components.RangeControl;
-
-
-function range(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(RangeControl, fieldAttributes);
-}
-
-/***/ }),
-/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1180,12 +516,12 @@ function button(props, config) {
 }
 
 /***/ }),
-/* 16 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buttonEditable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_button_editable__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_button_editable__ = __webpack_require__(6);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 /**
@@ -1239,7 +575,7 @@ function buttonEditable(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 17 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1333,7 +669,78 @@ var ButtonEditable = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ButtonEditable);
 
 /***/ }),
-/* 18 */
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = checkbox;
+/**
+ * Checkbox field.
+ */
+
+var CheckboxControl = wp.components.CheckboxControl;
+
+
+function checkbox(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: '1',
+		checked: props.attributes[attributeKey]
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (checked) {
+		if (config.onChange) {
+			config.onChange(checked, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = checked ? defaultAttributes.value : false;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(CheckboxControl, fieldAttributes);
+}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = codeEditor;
+/**
+ * Code editor field.
+ */
+
+var CodeEditor = wp.components.CodeEditor;
+
+
+function codeEditor(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(CodeEditor, fieldAttributes);
+}
+
+/***/ }),
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1376,84 +783,7 @@ function color(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 19 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = dropdown;
-/**
- * Dropdown field.
- */
-
-var Dropdown = wp.components.Dropdown;
-var __ = wp.i18n.__;
-
-
-function dropdown(props, config) {
-	var defaultAttributes = {
-		renderToggle: function renderToggle(_ref) {
-			var isOpen = _ref.isOpen,
-			    onToggle = _ref.onToggle;
-
-			return React.createElement(
-				'button',
-				{ className: 'button-primary button', onClick: onToggle, 'aria-expanded': isOpen },
-				__('Toggle Popover!')
-			);
-		},
-		renderContent: function renderContent() {
-			return React.createElement(
-				'div',
-				null,
-				__('Dummy Popover Content!')
-			);
-		}
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	delete fieldAttributes.type;
-
-	return React.createElement(Dropdown, fieldAttributes);
-}
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = codeEditor;
-/**
- * Code editor field.
- */
-
-var CodeEditor = wp.components.CodeEditor;
-
-
-function codeEditor(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(CodeEditor, fieldAttributes);
-}
-
-/***/ }),
-/* 21 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1521,89 +851,49 @@ function dateTime(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 22 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = formToggle;
+/* harmony export (immutable) */ __webpack_exports__["a"] = dropdown;
 /**
- * Switch field.
+ * Dropdown field.
  */
 
-var _wp$components = wp.components,
-    FormToggle = _wp$components.FormToggle,
-    BaseControl = _wp$components.BaseControl;
+var Dropdown = wp.components.Dropdown;
+var __ = wp.i18n.__;
 
 
-function formToggle(props, config, attributeKey) {
+function dropdown(props, config) {
 	var defaultAttributes = {
-		checked: 'on' === props.attributes[attributeKey],
-		value: props.attributes[attributeKey] || 'off'
-	};
+		renderToggle: function renderToggle(_ref) {
+			var isOpen = _ref.isOpen,
+			    onToggle = _ref.onToggle;
 
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (event) {
-		if (config.onChange) {
-			config.onChange(event, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = 'on' === event.target.value ? 'off' : 'on';
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	delete fieldAttributes.type;
-
-	return React.createElement(
-		BaseControl,
-		{
-			label: fieldAttributes.label,
-			id: fieldAttributes.id,
-			help: fieldAttributes.help,
-			className: 'components-toggle-control'
+			return React.createElement(
+				'button',
+				{ className: 'button-primary button', onClick: onToggle, 'aria-expanded': isOpen },
+				__('Toggle Popover!')
+			);
 		},
-		React.createElement(FormToggle, fieldAttributes)
-	);
-}
-
-/***/ }),
-/* 23 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = treeSelect;
-/**
- * tree-select field.
- */
-
-var TreeSelect = wp.components.TreeSelect;
-
-
-function treeSelect(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey]
+		renderContent: function renderContent() {
+			return React.createElement(
+				'div',
+				null,
+				__('Dummy Popover Content!')
+			);
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
 	delete fieldAttributes.type;
 
-	return React.createElement(TreeSelect, fieldAttributes);
+	return React.createElement(Dropdown, fieldAttributes);
 }
 
 /***/ }),
-/* 24 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1822,70 +1112,787 @@ function fileUpload(props, config, attributeKey) {
 }
 
 /***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = formToggle;
+/**
+ * Switch field.
+ */
+
+var _wp$components = wp.components,
+    FormToggle = _wp$components.FormToggle,
+    BaseControl = _wp$components.BaseControl;
+
+
+function formToggle(props, config, attributeKey) {
+	var defaultAttributes = {
+		checked: 'on' === props.attributes[attributeKey],
+		value: props.attributes[attributeKey] || 'off'
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (event) {
+		if (config.onChange) {
+			config.onChange(event, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = 'on' === event.target.value ? 'off' : 'on';
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(
+		BaseControl,
+		{
+			label: fieldAttributes.label,
+			id: fieldAttributes.id,
+			help: fieldAttributes.help,
+			className: 'components-toggle-control'
+		},
+		React.createElement(FormToggle, fieldAttributes)
+	);
+}
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = image;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(15);
+/**
+ * Image Field.
+ */
+
+var MediaUpload = wp.blocks.MediaUpload;
+var Button = wp.components.Button;
+var __ = wp.i18n.__;
+
+
+
+
+function image(props, config, attributeKey) {
+	var buttonText = config.buttonText ? config.buttonText : __('Open Media Library');
+	var imageObject = props.attributes[attributeKey];
+
+	var defaultAttributes = {
+
+		type: 'image',
+
+		value: imageObject || '',
+
+		render: function render(_ref) {
+			var open = _ref.open;
+
+			var nodes = [];
+
+			if (!imageObject) {
+				if (config.imagePlaceholder) {
+					nodes.push(Object(__WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__["a" /* default */])(props, config, attributeKey));
+				} else {
+					nodes.push(React.createElement(
+						Button,
+						{ className: 'button button-large button-upload', onClick: open },
+						buttonText
+					));
+				}
+			} else {
+				nodes.push(React.createElement('img', { className: 'uploaded-image', src: imageObject.url, alt: imageObject.alt }));
+
+				if (!!config.removeButtonText) {
+					nodes.push(React.createElement(
+						Button,
+						{ className: 'button button-large button-remove', onClick: function onClick() {
+								var newAttributes = {};
+								newAttributes[attributeKey] = '';
+								props.setAttributes(newAttributes);
+							} },
+						config.removeButtonText
+					));
+				}
+			}
+
+			return React.createElement(
+				'div',
+				{ className: 'blocks-' + config.type + '-upload' },
+				nodes
+			);
+		}
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onSelect = function (media) {
+		if (config.onSelect) {
+			config.onSelect(media, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.buttonText;
+	delete fieldAttributes.imagePlaceholder;
+	delete fieldAttributes.removeButtonText;
+
+	return React.createElement(MediaUpload, fieldAttributes);
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = imagePlaceholder;
+/**
+ * Image Placeholder.
+ */
+
+var ImagePlaceholder = wp.blocks.ImagePlaceholder;
+var __ = wp.i18n.__;
+
+
+function imagePlaceholder(props, config, attributeKey) {
+	var defaultAttributes = {
+		onSelectImage: function onSelectImage(media) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		},
+
+
+		className: 'image-placeholder',
+
+		icon: 'format-gallery',
+
+		label: __('Image'),
+
+		multiple: false
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	return React.createElement(ImagePlaceholder, fieldAttributes);
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = link;
+/**
+ * Url field.
+ */
+
+var UrlInput = wp.blocks.UrlInput;
+var BaseControl = wp.components.BaseControl;
+
+
+function link(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey]
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	if ('inspector' === config.placement) {
+		delete fieldAttributes.placement;
+		return React.createElement(
+			BaseControl,
+			{
+				label: fieldAttributes.label,
+				id: fieldAttributes.id,
+				help: fieldAttributes.help,
+				className: fieldAttributes.className
+			},
+			React.createElement(UrlInput, fieldAttributes)
+		);
+	}
+
+	return React.createElement(UrlInput, fieldAttributes);
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = mediaUpload;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_media_placeholder__ = __webpack_require__(18);
+/**
+ * Video/Audio field.
+ */
+var __ = wp.i18n.__;
+
+
+
+function mediaUpload(props, config, attributeKey) {
+	var defaultAttributes = {
+		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
+		buttonText: __('Upload'),
+		isSelected: props.isSelected
+	};
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.className = props.className;
+
+	fieldAttributes.removeMediaAttributes = function () {
+		var newAttributes = {};
+		newAttributes[attributeKey] = '';
+		props.setAttributes(newAttributes);
+	};
+
+	fieldAttributes.setMediaAttributes = function (media) {
+		if (media && media.url) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	fieldAttributes.setCaption = function (caption) {
+		var attributeValue = _.extend({}, props.attributes[attributeKey]);
+		if (attributeValue) {
+			var newAttributes = {};
+			attributeValue.mediaCaption = caption;
+			newAttributes[attributeKey] = attributeValue;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	fieldAttributes.mediaData = props.attributes[attributeKey];
+
+	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_media_placeholder__["a" /* default */], fieldAttributes);
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Component = wp.element.Component;
+var __ = wp.i18n.__;
+var _wp$blocks = wp.blocks,
+    PlainText = _wp$blocks.PlainText,
+    MediaUpload = _wp$blocks.MediaUpload,
+    BlockControls = _wp$blocks.BlockControls;
+var _wp$components = wp.components,
+    Placeholder = _wp$components.Placeholder,
+    FormFileUpload = _wp$components.FormFileUpload,
+    Button = _wp$components.Button,
+    Toolbar = _wp$components.Toolbar,
+    IconButton = _wp$components.IconButton;
+var mediaUpload = wp.utils.mediaUpload;
+
+/**
+ * MediaPlaceholder component class.
+ */
+
+var MediaPlaceholder = function (_Component) {
+	_inherits(MediaPlaceholder, _Component);
+
+	function MediaPlaceholder() {
+		_classCallCheck(this, MediaPlaceholder);
+
+		var _this = _possibleConstructorReturn(this, (MediaPlaceholder.__proto__ || Object.getPrototypeOf(MediaPlaceholder)).apply(this, arguments));
+
+		_this.state = {
+			editing: !_this.props.mediaData,
+			mediaData: _this.props.mediaData || ''
+		};
+
+		_this.uploadFromFiles = _this.uploadFromFiles.bind(_this);
+		_this.onSelectMedia = _this.onSelectMedia.bind(_this);
+		_this.switchToEditing = _this.switchToEditing.bind(_this);
+		_this.onSelectUrl = _this.onSelectUrl.bind(_this);
+		_this.onUrlChange = _this.onUrlChange.bind(_this);
+		return _this;
+	}
+
+	/**
+  * Upload from file.
+  *
+  * @param {Object} event Event.
+  *
+  * @return {void}
+  */
+
+
+	_createClass(MediaPlaceholder, [{
+		key: 'uploadFromFiles',
+		value: function uploadFromFiles(event) {
+			var _this2 = this;
+
+			mediaUpload(event.target.files, function (_ref) {
+				var _ref2 = _slicedToArray(_ref, 1),
+				    media = _ref2[0];
+
+				return _this2.onSelectMedia(media);
+			}, this.props.type);
+		}
+
+		/**
+   * Callback method when media is selected.
+   *
+   * @param {Object} media Media.
+   *
+   * @return {void}
+   */
+
+	}, {
+		key: 'onSelectMedia',
+		value: function onSelectMedia(media) {
+			if (media && media.url) {
+				this.setState({ mediaData: media, editing: false });
+				this.props.setMediaAttributes(media);
+			}
+		}
+
+		/**
+   * Set editing state to true.
+   *
+   * @return {void}
+   */
+
+	}, {
+		key: 'switchToEditing',
+		value: function switchToEditing() {
+			this.setState({ editing: true });
+			this.props.removeMediaAttributes();
+		}
+
+		/**
+   * Handles when url is selected.
+   *
+   * @param {Object} event Event
+   *
+   * @return {void}
+   */
+
+	}, {
+		key: 'onSelectUrl',
+		value: function onSelectUrl(event) {
+			event.preventDefault();
+
+			if (this.state.mediaData) {
+				this.setState({
+					editing: false
+				});
+				this.props.setMediaAttributes(this.state.mediaData);
+			}
+		}
+
+		/**
+   * Callback method when url changes.
+   *
+   * @param {Object} event Event.
+   *
+   * @return {void}
+   */
+
+	}, {
+		key: 'onUrlChange',
+		value: function onUrlChange(event) {
+			this.setState({ mediaData: {
+					url: event.target.value
+				} });
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _props = this.props,
+			    type = _props.type,
+			    caption = _props.caption,
+			    mediaData = _props.mediaData,
+			    placeholderText = _props.placeholderText,
+			    buttonText = _props.buttonText,
+			    className = _props.className,
+			    isSelected = _props.isSelected,
+			    setCaption = _props.setCaption;
+
+
+			var mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
+
+			var controls = !this.state.editing && isSelected && React.createElement(
+				BlockControls,
+				{ key: 'controls' },
+				React.createElement(
+					Toolbar,
+					null,
+					React.createElement(IconButton, {
+						className: 'components-icon-button components-toolbar__control',
+						label: __('Edit ') + type,
+						onClick: this.switchToEditing,
+						icon: 'edit'
+					})
+				)
+			);
+
+			if (this.state.editing) {
+				var mediaIcon = 'media-' + type;
+
+				return [controls, React.createElement(
+					Placeholder,
+					{
+						key: 'placeholder',
+						icon: mediaIcon,
+						label: type,
+						className: className + ' wp-block-' + type,
+						instructions: placeholderText },
+					React.createElement(
+						'form',
+						{ onSubmit: this.onSelectUrl },
+						React.createElement('input', {
+							type: 'url',
+							className: 'components-placeholder__input',
+							placeholder: __('Enter URL of ') + type + __(' file here…'),
+							onChange: this.onUrlChange,
+							value: this.state.mediaData.url || '' }),
+						React.createElement(
+							Button,
+							{
+								isLarge: true,
+								type: 'submit' },
+							__('Use URL')
+						)
+					),
+					React.createElement(
+						FormFileUpload,
+						{
+							isLarge: true,
+							className: 'wp-block-video__upload-button',
+							onChange: this.uploadFromFiles,
+							accept: type + '/*'
+						},
+						buttonText
+					),
+					React.createElement(MediaUpload, {
+						onSelect: this.onSelectMedia,
+						type: type,
+						render: function render(_ref3) {
+							var open = _ref3.open;
+							return React.createElement(
+								Button,
+								{ isLarge: true, onClick: open },
+								__('Add from Media Library')
+							);
+						}
+					})
+				)];
+			}
+
+			return [controls, React.createElement(
+				'figure',
+				{ key: type, className: className + ' wp-block-' + type },
+				'video' === type && React.createElement('video', { controls: true, src: this.state.mediaData.url }),
+				'audio' === type && React.createElement('audio', { controls: true, src: this.state.mediaData.url }),
+				isSelected && caption && React.createElement(PlainText, {
+					placeholder: __('Write caption…'),
+					value: mediaCaption,
+					isSelected: isSelected,
+					onChange: setCaption
+				})
+			)];
+		}
+	}]);
+
+	return MediaPlaceholder;
+}(Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (MediaPlaceholder);
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = radio;
+/**
+ * Radio Control field.
+ */
+
+var RadioControl = wp.components.RadioControl;
+
+
+function radio(props, config, attributeKey) {
+	var defaultAttributes = {
+		selected: props.attributes[attributeKey]
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(RadioControl, fieldAttributes);
+}
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = range;
+/**
+ * Range field.
+ */
+
+var RangeControl = wp.components.RangeControl;
+
+
+function range(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(RangeControl, fieldAttributes);
+}
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = richText;
+/**
+ * Text field.
+ */
+
+var RichText = wp.blocks.RichText;
+
+
+function richText(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || '',
+		inlineToolbar: true,
+		isSelected: false,
+		onFocus: function onFocus() {
+			this.isSelected = true;
+		}
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(RichText, fieldAttributes);
+}
+
+/***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = select;
+/**
+ * Select field.
+ */
+
+var SelectControl = wp.components.SelectControl;
+
+
+function select(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(SelectControl, fieldAttributes);
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = text;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__input_field__ = __webpack_require__(0);
+/**
+ * Text field.
+ */
+
+var PlainText = wp.blocks.PlainText;
+
+
+
+function text(props, config, attributeKey) {
+	if ('inspector' === config.placement) {
+		return Object(__WEBPACK_IMPORTED_MODULE_0__input_field__["a" /* default */])(props, config, attributeKey);
+	}
+
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(PlainText, fieldAttributes);
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = textarea;
+/**
+ * Textarea field.
+ */
+
+var _wp$components = wp.components,
+    TextareaControl = _wp$components.TextareaControl,
+    BaseControl = _wp$components.BaseControl;
+
+
+function textarea(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey] || ''
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	delete fieldAttributes.type;
+
+	return React.createElement(
+		BaseControl,
+		{
+			id: fieldAttributes.id
+		},
+		React.createElement(TextareaControl, fieldAttributes)
+	);
+}
+
+/***/ }),
 /* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button__ = __webpack_require__(15);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__button__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button_editable__ = __webpack_require__(16);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__button_editable__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox__ = __webpack_require__(12);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__checkbox__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__code_editor__ = __webpack_require__(20);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__code_editor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__color__ = __webpack_require__(18);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__color__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__date_time__ = __webpack_require__(21);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__date_time__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdown__ = __webpack_require__(19);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__dropdown__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__file_upload__ = __webpack_require__(24);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__file_upload__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__form_toggle__ = __webpack_require__(22);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__form_toggle__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__image__ = __webpack_require__(7);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_9__image__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__input_field__ = __webpack_require__(0);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_10__input_field__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__link__ = __webpack_require__(6);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_11__link__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__media_upload__ = __webpack_require__(9);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_12__media_upload__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__radio__ = __webpack_require__(13);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_13__radio__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__range__ = __webpack_require__(14);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_14__range__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__rich_text__ = __webpack_require__(3);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_15__rich_text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__select__ = __webpack_require__(11);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_16__select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__text__ = __webpack_require__(4);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_17__text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__textarea__ = __webpack_require__(5);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_18__textarea__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__tree_select__ = __webpack_require__(23);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_19__tree_select__["a"]; });
+/* harmony export (immutable) */ __webpack_exports__["a"] = treeSelect;
+/**
+ * tree-select field.
+ */
+
+var TreeSelect = wp.components.TreeSelect;
 
 
+function treeSelect(props, config, attributeKey) {
+	var defaultAttributes = {
+		value: props.attributes[attributeKey]
+	};
 
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
+	fieldAttributes.onChange = function (value) {
+		if (config.onChange) {
+			config.onChange(value, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = value;
+			props.setAttributes(newAttributes);
+		}
+	};
 
+	delete fieldAttributes.type;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return React.createElement(TreeSelect, fieldAttributes);
+}
 
 /***/ })
 /******/ ]);
