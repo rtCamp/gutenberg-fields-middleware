@@ -23,4 +23,4 @@ Gutenberg Fields Middleware supports the following field types and type configur
 - [text](text.md)
 - [textarea](textarea.md)
 - [tree-select](tree-select.md)
-- [video](video.md)
+- [video / audio](media-upload.md)

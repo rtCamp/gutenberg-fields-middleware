@@ -2,7 +2,7 @@ const { Component } = wp.element;
 const { __ } = wp.i18n;
 
 const {
-	RichText,
+	PlainText,
 	MediaUpload,
 	BlockControls,
 } = wp.blocks;
@@ -18,19 +18,19 @@ const {
 const { mediaUpload } = wp.utils;
 
 /**
- * VideoPlaceholder component class.
+ * MediaPlaceholder component class.
  */
-class VideoPlaceholder extends Component {
+class MediaPlaceholder extends Component {
 	constructor() {
 		super( ...arguments );
 
 		this.state = {
-			editing: ! this.props.videoData,
-			videoData: this.props.videoData || '',
+			editing: ! this.props.mediaData,
+			mediaData: this.props.mediaData || '',
 		};
 
 		this.uploadFromFiles = this.uploadFromFiles.bind( this );
-		this.onSelectVideo = this.onSelectVideo.bind( this );
+		this.onSelectMedia = this.onSelectMedia.bind( this );
 		this.switchToEditing = this.switchToEditing.bind( this );
 		this.onSelectUrl = this.onSelectUrl.bind( this );
 		this.onUrlChange = this.onUrlChange.bind( this );
@@ -44,20 +44,20 @@ class VideoPlaceholder extends Component {
 	 * @return {void}
 	 */
 	uploadFromFiles( event ) {
-		mediaUpload( event.target.files, ( [ audio ] ) => this.onSelectVideo( audio ), 'video' );
+		mediaUpload( event.target.files, ( [ media ] ) => this.onSelectMedia( media ), this.props.type );
 	}
 
 	/**
-	 * Callback method when video is selected.
+	 * Callback method when media is selected.
 	 *
 	 * @param {Object} media Media.
 	 *
 	 * @return {void}
 	 */
-	onSelectVideo( media ) {
+	onSelectMedia( media ) {
 		if ( media && media.url ) {
-			this.setState( { videoData: media, editing: false } );
-			this.props.setVideoAttributes( media );
+			this.setState( { mediaData: media, editing: false } );
+			this.props.setMediaAttributes( media );
 		}
 	}
 
@@ -80,11 +80,11 @@ class VideoPlaceholder extends Component {
 	onSelectUrl( event ) {
 		event.preventDefault();
 
-		if ( this.state.videoData ) {
+		if ( this.state.mediaData ) {
 			this.setState( {
 				editing: false,
 			} );
-			this.props.setVideoAttributes( this.state.videoData );
+			this.props.setMediaAttributes( this.state.mediaData );
 		}
 	}
 
@@ -96,14 +96,16 @@ class VideoPlaceholder extends Component {
 	 * @return {void}
 	 */
 	onUrlChange( event ) {
-		this.setState( { videoData: {
+		this.setState( { mediaData: {
 			url: event.target.value,
 		} } );
 	}
 
 	render() {
 		const {
-			videoData,
+			type,
+			caption,
+			mediaData,
 			placeholderText,
 			buttonText,
 			className,
@@ -111,7 +113,7 @@ class VideoPlaceholder extends Component {
 			setCaption,
 		} = this.props;
 
-		const caption = videoData && videoData.videoCaption ? videoData.videoCaption[ 0 ] || '' : '';
+		const mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
 		const controls = (
 			! this.state.editing && isSelected && (
@@ -119,7 +121,7 @@ class VideoPlaceholder extends Component {
 					<Toolbar>
 						<IconButton
 							className="components-icon-button components-toolbar__control"
-							label={ __( 'Edit video' ) }
+							label={ __( 'Edit ' ) + type }
 							onClick={ this.switchToEditing }
 							icon="edit"
 						/>
@@ -129,21 +131,23 @@ class VideoPlaceholder extends Component {
 		);
 
 		if ( this.state.editing ) {
+			const mediaIcon = 'media-' + type;
+
 			return [
 				controls,
 				<Placeholder
 					key="placeholder"
-					icon="media-video"
-					label={ __( 'Video' ) }
-					className={ 'wp-block-video ' + className }
+					icon={ mediaIcon }
+					label={ type }
+					className={ className + ' wp-block-' + type }
 					instructions={ placeholderText } >
 					<form onSubmit={ this.onSelectUrl }>
 						<input
 							type="url"
 							className="components-placeholder__input"
-							placeholder={ __( 'Enter URL of video file here…' ) }
+							placeholder={ __( 'Enter URL of ' ) + type + __( ' file here…' ) }
 							onChange={ this.onUrlChange }
-							value={ this.state.videoData.url || '' } />
+							value={ this.state.mediaData.url || '' } />
 						<Button
 							isLarge
 							type="submit">
@@ -154,13 +158,13 @@ class VideoPlaceholder extends Component {
 						isLarge
 						className="wp-block-video__upload-button"
 						onChange={ this.uploadFromFiles }
-						accept="video/*"
+						accept={ type + '/*' }
 					>
 						{ buttonText }
 					</FormFileUpload>
 					<MediaUpload
-						onSelect={ this.onSelectVideo }
-						type="video"
+						onSelect={ this.onSelectMedia }
+						type={ type }
 						render={ ( { open } ) => (
 							<Button isLarge onClick={ open } >
 								{ __( 'Add from Media Library' ) }
@@ -173,16 +177,19 @@ class VideoPlaceholder extends Component {
 
 		return [
 			controls,
-			<figure key="video" className={ 'wp-block-video ' + className }>
-				<video controls src={ this.state.videoData.url } />
-				{ isSelected && (
-					<RichText
-						tagName="figcaption"
+			<figure key={ type } className={ className + ' wp-block-' + type }>
+				{ 'video' === type && (
+					<video controls src={ this.state.mediaData.url } />
+				) }
+				{ 'audio' === type && (
+					<audio controls src={ this.state.mediaData.url } />
+				) }
+				{ isSelected && caption && (
+					<PlainText
 						placeholder={ __( 'Write caption…' ) }
-						value={ caption }
+						value={ mediaCaption }
 						isSelected={ isSelected }
 						onChange={ setCaption }
-						inlineToolbar
 					/>
 				) }
 			</figure>,
@@ -190,4 +197,4 @@ class VideoPlaceholder extends Component {
 	}
 }
 
-export default VideoPlaceholder;
+export default MediaPlaceholder;

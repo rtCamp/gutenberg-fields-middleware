@@ -589,7 +589,7 @@ image: {
 }
 ```
 
-### video
+### video / audio
 
 #### buttonText:
 
