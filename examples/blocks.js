@@ -329,6 +329,21 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 			},
 		},
+		fileUpload: {
+			type: 'array',
+			field: {
+				type: 'file-upload',
+				multiple: true,
+			},
+		},
+		fileUploadInspector: {
+			type: 'array',
+			field: {
+				type: 'file-upload',
+				placement: 'inspector',
+				multiple: true,
+			},
+		},
 	},
 
 	/**

@@ -150,6 +150,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_date_time__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_form_toggle__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__fields_tree_select__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__fields_file_upload__ = __webpack_require__(24);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -164,6 +165,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -333,6 +335,9 @@ var GutenbergFieldsMiddleWare = function () {
 					break;
 				case 'tree-select':
 					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_18__fields_tree_select__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'file-upload':
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_19__fields_file_upload__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -1633,6 +1638,225 @@ function treeSelect(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return React.createElement(TreeSelect, fieldAttributes);
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = fileUpload;
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/**
+ * File Upload.
+ */
+
+var _wp$components = wp.components,
+    FormFileUpload = _wp$components.FormFileUpload,
+    Button = _wp$components.Button;
+var __ = wp.i18n.__;
+var mediaUpload = wp.utils.mediaUpload;
+
+
+function fileUpload(props, config, attributeKey) {
+	var buttonText = config.buttonText ? config.buttonText : __('Upload');
+
+	var defaultAttributes = {
+		accept: '*',
+		allowedTypes: ['image', 'video', 'audio', 'text', 'message', 'application'],
+		isLarge: true
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	/**
+  * Set media when the file is uploaded.
+  *
+  * @param {Array} files Uploaded Files.
+  * @return {void}
+  */
+	var setMedia = function setMedia(files) {
+		var newAttributes = {};
+
+		if (!_.isEmpty(props.attributes[attributeKey]) && !_.isEmpty(files)) {
+			files = [].concat(_toConsumableArray(props.attributes[attributeKey]), _toConsumableArray(files));
+		}
+
+		if (!_.isEmpty(files)) {
+			files = files.map(function (file) {
+				file.name = file.url ? file.url.substring(file.url.lastIndexOf('/') + 1) : '';
+				return file;
+			});
+		}
+
+		newAttributes[attributeKey] = files;
+
+		props.setAttributes(newAttributes);
+	};
+
+	/**
+  * Update media when files are removed.
+  *
+  * @param {Array} files Updated files.
+  * @return {void}
+  */
+	var updateMedia = function updateMedia(files) {
+		var newAttributes = {};
+		newAttributes[attributeKey] = files;
+
+		props.setAttributes(newAttributes);
+	};
+
+	/**
+  * Get allowed file type with file name.
+  *
+  * @param {String} fileName File url.
+  * @return {String} Allowed file type.
+  */
+	var getAllowedType = function getAllowedType(fileName) {
+		if (fileName && !_.isEmpty(fileName) && _.first(fileName).type) {
+			var fileType = _.first(fileName).type;
+			if (fileType) {
+				var typeParts = fileType.split('/');
+				return _.first(typeParts) && _.contains(fieldAttributes.allowedTypes, _.first(typeParts)) ? _.first(typeParts) : '';
+			}
+		}
+	};
+
+	/**
+  * Remove files.
+  *
+  * @param {Object} event Event Object.
+  * @return {void}
+  */
+	var removeFiles = function removeFiles(event) {
+		if (config.removeFiles) {
+			config.removeFiles(event, props);
+		} else {
+			updateMedia([]);
+		}
+	};
+
+	/**
+  * Remove single file.
+  *
+  * @param {Object} event Event Object.
+  * @return {void}
+  */
+	var removeFile = function removeFile(event) {
+		if (config.removeFile) {
+			config.removeFile(event, props);
+		} else {
+			var key = parseInt(event.currentTarget.dataset.key, 10);
+			props.attributes[attributeKey].splice(key, 1);
+			updateMedia([]); // To force update.
+			updateMedia(props.attributes[attributeKey]);
+			if (_.isEmpty(props.attributes[attributeKey])) {
+				updateMedia([]); // To remove 'remove' button.
+			}
+		}
+	};
+
+	/**
+  * Get dash icon for the given file name.
+  *
+  * @param {String} fileName File name.
+  * @return {String} Dash Icon class.
+  */
+	var getDashIcon = function getDashIcon(fileName) {
+		var fileExtension = fileName.split('.').pop();
+		var dashiconSuffix = 'media-default';
+
+		if ('zip' === fileExtension) {
+			dashiconSuffix = 'media-archive';
+		} else if (_.contains(['pdf', 'epub', 'azw', 'indd'], fileExtension)) {
+			dashiconSuffix = 'book';
+		} else if (_.contains(['jpg', 'png', 'gif', 'jpeg', 'tif', 'ico', 'bmp', 'svg'], fileExtension)) {
+			dashiconSuffix = 'format-image';
+		} else if (_.contains(['mp4', 'avi', 'flv', 'mov', 'mpg', 'rm', 'swf', 'wmv', 'ogv', '3gp', '3g2', 'm4v'], fileExtension)) {
+			dashiconSuffix = 'media-video';
+		} else if (_.contains(['pptx', 'pptm', 'ppt', 'pot', 'potx', 'potm', 'pps', 'ppsx'], fileExtension)) {
+			dashiconSuffix = 'media-interactive';
+		} else if (_.contains(['mp3', 'm4a', 'ogg', 'wav'], fileExtension)) {
+			dashiconSuffix = 'media-audio';
+		} else if (_.contains(['xls', 'xlsx', 'xla', 'xlb', 'xlc', 'xld', 'xlk', 'xll', 'xlm', 'xlt', 'xlv', 'xlw', 'numbers'], fileExtension)) {
+			dashiconSuffix = 'media-spreadsheet';
+		} else if (_.contains(['doc', 'docx', 'docm', 'pages'], fileExtension)) {
+			dashiconSuffix = 'media-document';
+		} else if (_.contains(['txt', 'odt', 'rtf', 'log'], fileExtension)) {
+			dashiconSuffix = 'media-text';
+		}
+
+		return 'dashicons-' + dashiconSuffix;
+	};
+
+	/**
+  * Handles when the file is uploaded.
+  *
+  * @param {Object} event Event object.
+  * @return {void}
+  */
+	fieldAttributes.onChange = function (event) {
+		if (config.onChange) {
+			config.onChange(event, props, setMedia, getAllowedType);
+		} else {
+			mediaUpload(event.target.files, setMedia, getAllowedType(event.target.files));
+		}
+	};
+
+	var fieldWrapperClasses = 'file-upload-field';
+	fieldWrapperClasses += 'inspector' !== config.placement ? ' block-field' : ' inspector-field';
+
+	delete fieldAttributes.buttonText;
+
+	return React.createElement(
+		'div',
+		{ className: fieldWrapperClasses },
+		React.createElement(
+			'div',
+			{ className: 'file-upload-filed-actions' },
+			React.createElement(
+				FormFileUpload,
+				fieldAttributes,
+				buttonText
+			),
+			!_.isEmpty(props.attributes[attributeKey]) && React.createElement(
+				Button,
+				{ isLarge: true, onClick: removeFiles },
+				__('Remove')
+			)
+		),
+		props.attributes[attributeKey] && !_.isEmpty(props.attributes[attributeKey]) && React.createElement(
+			'ul',
+			{ className: 'file-upload-field-files' },
+			props.attributes[attributeKey].map(function (file, key) {
+				if (file.id && file.name) {
+					var dashIcon = getDashIcon(file.name);
+
+					return React.createElement(
+						'li',
+						null,
+						React.createElement('button', { className: 'dashicons dashicons-no-alt middleware-remove-file', 'data-key': key, onClick: removeFile }),
+						React.createElement(
+							'div',
+							{ className: 'middleware-field-media-thumbnail' },
+							React.createElement('span', { className: 'dashicons ' + dashIcon })
+						),
+						React.createElement(
+							'div',
+							{ className: 'middleware-file' },
+							React.createElement(
+								'a',
+								{ target: '_blank', href: file.url },
+								file.name
+							)
+						)
+					);
+				}
+			})
+		)
+	);
 }
 
 /***/ })

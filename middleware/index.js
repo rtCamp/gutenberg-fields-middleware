@@ -27,6 +27,7 @@ import codeEditor from './fields/code-editor';
 import dateTime from './fields/date-time';
 import formToggle from './fields/form-toggle';
 import treeSelect from './fields/tree-select';
+import fileUpload from './fields/file-upload';
 
 /**
  * Gutenberg Middleware Class.
@@ -164,6 +165,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'tree-select':
 				field[ attributeKey ] = treeSelect( props, config, attributeKey );
+				break;
+			case 'file-upload':
+				field[ attributeKey ] = fileUpload( props, config, attributeKey );
 				break;
 		}
 
