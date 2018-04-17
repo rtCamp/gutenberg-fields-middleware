@@ -91,28 +91,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 			default: 'one',
 		},
-		check: {
-			type: 'boolean',
-			field: {
-				type: 'checkbox',
-				heading: __( 'User' ),
-				label: __( 'Is author' ),
-				help: __( 'Is the user a author or not?' ),
-			},
-		},
 		switch: {
 			type: 'string',
 			field: {
 				type: 'switch',
 				label: __( 'Form Toggle' ),
 				placement: 'inspector',
-			},
-		},
-		range: {
-			type: 'string',
-			field: {
-				type: 'range',
-				label: __( 'Range' ),
 			},
 		},
 		button: {
@@ -174,6 +158,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'dropdown',
 				position: 'top left',
+				placement: 'inspector',
 			},
 		},
 		dateTime: {
@@ -217,6 +202,17 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 				placeholder: __( 'Enter number' ),
 			},
+		},
+		check: {
+			type: 'boolean',
+			field: {
+				type: 'checkbox',
+				heading: __( 'User' ),
+				label: __( 'Is author' ),
+				help: __( 'Is the user a author or not?' ),
+				placement: 'inspector',
+			},
+			default: 1,
 		},
 		search: {
 			type: 'string',
@@ -321,7 +317,10 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'range',
 				label: __( 'Columns' ),
 				placement: 'inspector',
+				min: 1,
+				max: 20,
 			},
+			default: 3,
 		},
 		fileUpload: {
 			type: 'array',

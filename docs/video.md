@@ -1,4 +1,4 @@
-# video / audio
+# video
 
 #### buttonText:
 

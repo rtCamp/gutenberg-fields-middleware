@@ -44,6 +44,7 @@ check: {
 		label: 'Is author',
 		help: 'Is the user a author or not?',
 	},
+	default: 1,
 }
 ```
 
