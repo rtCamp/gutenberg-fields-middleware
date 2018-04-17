@@ -92,16 +92,17 @@ register_block_type( 'example-namespace/example-block', array(
 
 Gutenberg Fields Middleware supports the following field types and type configuration.
 
-- [button](docs/button.md)
+- [audio](docs/audio.md)
 - [button-editable](docs/button-editable.md)
+- [button](docs/button.md)
 - [checkbox](docs/checkbox.md)
 - [code-editor](docs/code-editor.md)
 - [color](docs/color.md)
 - [date-time](docs/date-time.md)
 - [dropdown](docs/dropdown.md)
 - [file-upload](docs/file-upload.md)
-- [input types: email / number/ hidden / search / tel etc.](docs/input.md)
 - [image](docs/image.md)
+- [input types: email / number/ hidden / search / tel etc.](docs/input.md)
 - [link](docs/link.md)
 - [radio](docs/radio.md)
 - [range](docs/range.md)
@@ -112,6 +113,7 @@ Gutenberg Fields Middleware supports the following field types and type configur
 - [textarea](docs/textarea.md)
 - [tree-select](docs/tree-select.md)
 - [video](docs/video.md)
+
 
 ## Updating Field props
 
