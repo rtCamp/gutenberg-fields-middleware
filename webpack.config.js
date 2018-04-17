@@ -1,6 +1,7 @@
 const webpack = require( 'webpack' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' ); // CSS loader for styles specific to block editing.
 const glob = require( 'glob' );
+const isProd = 'production' === process.env.NODE_ENV;
 
 // Configuration for the ExtractTextPlugin.
 const extractConfig = {
@@ -22,19 +23,19 @@ const extractConfig = {
 		{
 			loader: 'sass-loader',
 			query: {
-				outputStyle: 'production' === process.env.NODE_ENV ? 'compressed' : 'nested',
+				outputStyle: isProd ? 'compressed' : 'nested',
 			},
 		},
 	],
 };
 
 const editBlocksCSSPlugin = new ExtractTextPlugin( {
-	filename: './build/middleware-editor.css',
+	filename: isProd ? './build/middleware-editor.min.css' : './build/middleware-editor.css',
 } );
 
 // CSS loader for styles specific to blocks in general.
 const blocksCSSPlugin = new ExtractTextPlugin( {
-	filename: './build/style.css',
+	filename: isProd ? './build/style.min.css' : './build/style.css',
 } );
 
 const externals = {
@@ -51,7 +52,7 @@ module.exports = {
 		blocks: glob.sync( './middleware/index.js' ),
 	},
 	output: {
-		filename: 'build/middleware.js',
+		filename: isProd ? 'build/middleware.min.js' : 'build/middleware.js',
 		path: __dirname,
 	},
 	externals,
@@ -93,7 +94,7 @@ module.exports = {
 	],
 };
 
-if ( process.env.NODE_ENV === 'production' ) {
+if ( isProd ) {
 	module.exports.plugins = ( module.exports.plugins || [] ).concat( [
 		new webpack.optimize.UglifyJsPlugin( {
 			sourceMap: true,
