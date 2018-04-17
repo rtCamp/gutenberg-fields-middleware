@@ -125,9 +125,9 @@ registerBlockType( 'gb-m-example/simple-block', {
 
 	attributes: {
 		button: {
-			type: 'string',
+			type: 'object',
 			field: {
-				type: 'button',
+				type: 'button-editable',
 			},
 		},
 		color: {
@@ -151,6 +151,4 @@ registerBlockType( 'gb-m-example/simple-block', {
 	}
 } );
 ```
-
-![color-change](https://user-images.githubusercontent.com/6297436/38424317-46694046-39ce-11e8-8713-398c16a1b30c.gif)
 
