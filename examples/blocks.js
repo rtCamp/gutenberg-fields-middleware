@@ -21,11 +21,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 		},
 		richText: {
-			type: 'string',
+			type: 'array',
 			field: {
 				type: 'rich-text',
 				placeholder: __( 'Enter rich text' ),
 			},
+			source: 'children', // Read more about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			selector: '.rich-text',
 		},
 		image: {
 			type: 'object',
@@ -346,16 +348,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 	 */
 	save( props ) {
 		const attributes = props.attributes;
-		const image = attributes.image ? el( 'img', {
-			src: attributes.image.url,
-		}, null ) : '';
 
-		return el( 'div', null, [
-			image,
-			el( 'a', {
-				href: attributes.url,
-			}, attributes.text ),
-		] );
+		const text = attributes.text ? el( 'p', null, attributes.text ) : '';
+		const richText = attributes.richText ? el( 'div', { className: 'rich-text' }, attributes.richText ) : '';
+		const image = attributes.image ? el( 'img', { src: attributes.image.url }, null ) : '';
+		// Rest of the fields goes here.
+
+		return el( 'div', null, [ text, richText, image ] );
 	},
 
 } );
