@@ -84,7 +84,7 @@ register_block_type( 'example-namespace/example-block', array(
 ) );
 ```
 
-✔️ Alternatively the middleware can also be used just by enqueuing `buid/middleware.min.js` file as dependency. Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' )` as dependency. 
+✔️ Alternatively the middleware can also be used just by enqueuing `build/middleware.min.js` file as dependency. Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' )` as dependency. 
 
 
 
@@ -1154,31 +1154,31 @@ registerBlockType( 'gb-m-example/simple-block', {
 
 	attributes: {
 		button: {
-            type: 'string',
-            field: {
-                type: 'button',
-            },
-        },
-        color: {
-            type: 'string',
-            field: {
-                type: 'color',
-                placement: 'inspector',
-            },
-        },
+			type: 'string',
+			field: {
+				type: 'button',
+			},
+		},
+		color: {
+			type: 'string',
+			field: {
+				type: 'color',
+				placement: 'inspector',
+			},
+		},
 	},
 
 	edit( props ) {
 		props.middleware.fields.button.props.style = {
 			backgroundColor: props.attributes.color,
 		};
-		
+
 		return [
-		    props.middleware.inspectorControls,
-		    props.middleware.fields.button
+			props.middleware.inspectorControls,
+			props.middleware.fields.button
 		];
-    }
-}
+	}
+} );
 ```
 
 ![color-change](https://user-images.githubusercontent.com/6297436/38424317-46694046-39ce-11e8-8713-398c16a1b30c.gif)
