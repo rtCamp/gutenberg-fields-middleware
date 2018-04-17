@@ -131,26 +131,7 @@ module.exports = __webpack_require__(2);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_rich_text__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_text__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_textarea__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_link__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_image__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_media_upload__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_select__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_checkbox__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_radio__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_range__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_button__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_button_editable__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fields_color__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__fields_dropdown__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__fields_code_editor__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_date_time__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_form_toggle__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__fields_tree_select__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__fields_file_upload__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields__ = __webpack_require__(25);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -165,25 +146,6 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -282,67 +244,67 @@ var GutenbergFieldsMiddleWare = function () {
 
 			switch (config.type) {
 				case 'text':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_1__fields_text__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["r" /* text */](props, config, attributeKey);
 					break;
 				case 'rich-text':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_0__fields_rich_text__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["p" /* richText */](props, config, attributeKey);
 					break;
 				case 'link':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_4__fields_link__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["l" /* link */](props, config, attributeKey);
 					break;
 				case 'image':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_image__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["j" /* image */](props, config, attributeKey);
 					break;
 				case 'video':
 				case 'audio':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_media_upload__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["m" /* mediaUpload */](props, config, attributeKey);
 					break;
 				case 'select':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_select__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["q" /* select */](props, config, attributeKey);
 					break;
 				case 'range':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_10__fields_range__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["o" /* range */](props, config, attributeKey);
 					break;
 				case 'radio':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_9__fields_radio__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["n" /* radio */](props, config, attributeKey);
 					break;
 				case 'checkbox':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_8__fields_checkbox__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["c" /* checkbox */](props, config, attributeKey);
 					break;
 				case 'button':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_11__fields_button__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["a" /* button */](props, config, attributeKey);
 					break;
 				case 'button-editable':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_12__fields_button_editable__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["b" /* buttonEditable */](props, config, attributeKey);
 					break;
 				case 'color':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_13__fields_color__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["e" /* color */](props, config, attributeKey);
 					break;
 				case 'dropdown':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_14__fields_dropdown__["a" /* default */])(props, config);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["g" /* dropdown */](props, config);
 					break;
 				case 'code-editor':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_15__fields_code_editor__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["d" /* codeEditor */](props, config, attributeKey);
 					break;
 				case 'date-time':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_16__fields_date_time__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["f" /* dateTime */](props, config, attributeKey);
 					break;
 				case 'textarea':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_2__fields_textarea__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["s" /* textarea */](props, config, attributeKey);
 					break;
 				case 'switch':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_17__fields_form_toggle__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["i" /* formToggle */](props, config, attributeKey);
 					break;
 				case 'tree-select':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_18__fields_tree_select__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["t" /* treeSelect */](props, config, attributeKey);
 					break;
 				case 'file-upload':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_19__fields_file_upload__["a" /* default */])(props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["h" /* fileUpload */](props, config, attributeKey);
 					break;
 			}
 
 			if (_.contains(['email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'], config.type)) {
-				field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_3__fields_input_field__["a" /* default */])(props, config, attributeKey);
+				field[attributeKey] = __WEBPACK_IMPORTED_MODULE_0__fields__["k" /* inputField */](props, config, attributeKey);
 			}
 
 			return field;
@@ -1858,6 +1820,72 @@ function fileUpload(props, config, attributeKey) {
 		)
 	);
 }
+
+/***/ }),
+/* 25 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button__ = __webpack_require__(15);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__button__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button_editable__ = __webpack_require__(16);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__button_editable__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox__ = __webpack_require__(12);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__checkbox__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__code_editor__ = __webpack_require__(20);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__code_editor__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__color__ = __webpack_require__(18);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__color__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__date_time__ = __webpack_require__(21);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__date_time__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdown__ = __webpack_require__(19);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__dropdown__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__file_upload__ = __webpack_require__(24);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__file_upload__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__form_toggle__ = __webpack_require__(22);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__form_toggle__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__image__ = __webpack_require__(7);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_9__image__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__input_field__ = __webpack_require__(0);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_10__input_field__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__link__ = __webpack_require__(6);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_11__link__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__media_upload__ = __webpack_require__(9);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_12__media_upload__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__radio__ = __webpack_require__(13);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_13__radio__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__range__ = __webpack_require__(14);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_14__range__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__rich_text__ = __webpack_require__(3);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_15__rich_text__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__select__ = __webpack_require__(11);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_16__select__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__text__ = __webpack_require__(4);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_17__text__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__textarea__ = __webpack_require__(5);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_18__textarea__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__tree_select__ = __webpack_require__(23);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_19__tree_select__["a"]; });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***/ })
 /******/ ]);

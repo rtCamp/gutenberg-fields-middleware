@@ -8,26 +8,7 @@ const { addFilter } = wp.hooks;
 /**
  * Fields
  */
-import richText from './fields/rich-text';
-import text from './fields/text';
-import textarea from './fields/textarea';
-import inputField from './fields/input-field';
-import link from './fields/link';
-import image from './fields/image';
-import mediaUpload from './fields/media-upload';
-import select from './fields/select';
-import checkbox from './fields/checkbox';
-import radio from './fields/radio';
-import range from './fields/range';
-import button from './fields/button';
-import buttonEditable from './fields/button-editable';
-import color from './fields/color';
-import dropdown from './fields/dropdown';
-import codeEditor from './fields/code-editor';
-import dateTime from './fields/date-time';
-import formToggle from './fields/form-toggle';
-import treeSelect from './fields/tree-select';
-import fileUpload from './fields/file-upload';
+import * as fields from './fields';
 
 /**
  * Gutenberg Middleware Class.
@@ -112,67 +93,67 @@ class GutenbergFieldsMiddleWare {
 
 		switch ( config.type ) {
 			case 'text':
-				field[ attributeKey ] = text( props, config, attributeKey );
+				field[ attributeKey ] = fields.text( props, config, attributeKey );
 				break;
 			case 'rich-text':
-				field[ attributeKey ] = richText( props, config, attributeKey );
+				field[ attributeKey ] = fields.richText( props, config, attributeKey );
 				break;
 			case 'link':
-				field[ attributeKey ] = link( props, config, attributeKey );
+				field[ attributeKey ] = fields.link( props, config, attributeKey );
 				break;
 			case 'image':
-				field[ attributeKey ] = image( props, config, attributeKey );
+				field[ attributeKey ] = fields.image( props, config, attributeKey );
 				break;
 			case 'video':
 			case 'audio':
-				field[ attributeKey ] = mediaUpload( props, config, attributeKey );
+				field[ attributeKey ] = fields.mediaUpload( props, config, attributeKey );
 				break;
 			case 'select':
-				field[ attributeKey ] = select( props, config, attributeKey );
+				field[ attributeKey ] = fields.select( props, config, attributeKey );
 				break;
 			case 'range':
-				field[ attributeKey ] = range( props, config, attributeKey );
+				field[ attributeKey ] = fields.range( props, config, attributeKey );
 				break;
 			case 'radio':
-				field[ attributeKey ] = radio( props, config, attributeKey );
+				field[ attributeKey ] = fields.radio( props, config, attributeKey );
 				break;
 			case 'checkbox':
-				field[ attributeKey ] = checkbox( props, config, attributeKey );
+				field[ attributeKey ] = fields.checkbox( props, config, attributeKey );
 				break;
 			case 'button':
-				field[ attributeKey ] = button( props, config, attributeKey );
+				field[ attributeKey ] = fields.button( props, config, attributeKey );
 				break;
 			case 'button-editable':
-				field[ attributeKey ] = buttonEditable( props, config, attributeKey );
+				field[ attributeKey ] = fields.buttonEditable( props, config, attributeKey );
 				break;
 			case 'color':
-				field[ attributeKey ] = color( props, config, attributeKey );
+				field[ attributeKey ] = fields.color( props, config, attributeKey );
 				break;
 			case 'dropdown':
-				field[ attributeKey ] = dropdown( props, config );
+				field[ attributeKey ] = fields.dropdown( props, config );
 				break;
 			case 'code-editor':
-				field[ attributeKey ] = codeEditor( props, config, attributeKey );
+				field[ attributeKey ] = fields.codeEditor( props, config, attributeKey );
 				break;
 			case 'date-time':
-				field[ attributeKey ] = dateTime( props, config, attributeKey );
+				field[ attributeKey ] = fields.dateTime( props, config, attributeKey );
 				break;
 			case 'textarea':
-				field[ attributeKey ] = textarea( props, config, attributeKey );
+				field[ attributeKey ] = fields.textarea( props, config, attributeKey );
 				break;
 			case 'switch':
-				field[ attributeKey ] = formToggle( props, config, attributeKey );
+				field[ attributeKey ] = fields.formToggle( props, config, attributeKey );
 				break;
 			case 'tree-select':
-				field[ attributeKey ] = treeSelect( props, config, attributeKey );
+				field[ attributeKey ] = fields.treeSelect( props, config, attributeKey );
 				break;
 			case 'file-upload':
-				field[ attributeKey ] = fileUpload( props, config, attributeKey );
+				field[ attributeKey ] = fields.fileUpload( props, config, attributeKey );
 				break;
 		}
 
 		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {
-			field[ attributeKey ] = inputField( props, config, attributeKey );
+			field[ attributeKey ] = fields.inputField( props, config, attributeKey );
 		}
 
 		return field;
