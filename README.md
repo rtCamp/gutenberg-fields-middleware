@@ -99,6 +99,7 @@ Gutenberg Fields Middleware supports the following field types and type configur
 - [color](docs/color.md)
 - [date-time](docs/date-time.md)
 - [dropdown](docs/dropdown.md)
+- [file-upload](docs/file-upload.md)
 - [input types: email / number/ hidden / search / tel etc.](docs/input.md)
 - [image](docs/image.md)
 - [link](docs/link.md)
@@ -111,7 +112,6 @@ Gutenberg Fields Middleware supports the following field types and type configur
 - [textarea](docs/textarea.md)
 - [tree-select](docs/tree-select.md)
 - [video](docs/video.md)
-
 
 ## Updating Field props
 

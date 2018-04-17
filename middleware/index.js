@@ -14,7 +14,7 @@ import textarea from './fields/textarea';
 import inputField from './fields/input-field';
 import link from './fields/link';
 import image from './fields/image';
-import video from './fields/video-upload.js';
+import mediaPlaceholder from './fields/media-upload.js';
 import select from './fields/select';
 import checkbox from './fields/checkbox';
 import radio from './fields/radio';
@@ -27,6 +27,7 @@ import codeEditor from './fields/code-editor';
 import dateTime from './fields/date-time';
 import formToggle from './fields/form-toggle';
 import treeSelect from './fields/tree-select';
+import fileUpload from './fields/file-upload';
 
 /**
  * Gutenberg Middleware Class.
@@ -123,7 +124,8 @@ class GutenbergFieldsMiddleWare {
 				field[ attributeKey ] = image( props, config, attributeKey );
 				break;
 			case 'video':
-				field[ attributeKey ] = video( props, config, attributeKey );
+			case 'audio':
+				field[ attributeKey ] = mediaPlaceholder( props, config, attributeKey );
 				break;
 			case 'select':
 				field[ attributeKey ] = select( props, config, attributeKey );
@@ -163,6 +165,9 @@ class GutenbergFieldsMiddleWare {
 				break;
 			case 'tree-select':
 				field[ attributeKey ] = treeSelect( props, config, attributeKey );
+				break;
+			case 'file-upload':
+				field[ attributeKey ] = fileUpload( props, config, attributeKey );
 				break;
 		}
 

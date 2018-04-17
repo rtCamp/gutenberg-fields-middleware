@@ -48,6 +48,9 @@ function gutenberg_fields_middleware_register_scripts() {
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' ),
 		filemtime( GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR. '/build/middleware.js' )
 	);
+
+	wp_register_style( 'gutenberg-fields-middleware', plugins_url( 'middleware/css/middleware.css', __FILE__ ) );
+	wp_enqueue_style( 'gutenberg-fields-middleware' );
 }
 
 add_action( 'enqueue_block_editor_assets', 'gutenberg_fields_middleware_register_scripts' );

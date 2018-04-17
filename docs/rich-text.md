@@ -30,8 +30,11 @@ text: {
 		type: 'rich-text',
 		placeholder: __( 'Enter text' ),
 	},
+	source: 'children',
+	selector: '.rich-text',
 }
 ```
+Read more about RichText api on Gutenberg handbook [here](https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.) for `source ` and `selector`.
 
 ### Return
 

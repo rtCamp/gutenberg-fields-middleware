@@ -137,7 +137,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields_input_field__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fields_link__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fields_image__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_video_upload_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_media_upload_js__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_select__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_checkbox__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_radio__ = __webpack_require__(13);
@@ -150,6 +150,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__fields_date_time__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fields_form_toggle__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__fields_tree_select__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__fields_file_upload__ = __webpack_require__(24);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -164,6 +165,7 @@ var addFilter = wp.hooks.addFilter;
 /**
  * Fields
  */
+
 
 
 
@@ -292,7 +294,8 @@ var GutenbergFieldsMiddleWare = function () {
 					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_5__fields_image__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'video':
-					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_video_upload_js__["a" /* default */])(props, config, attributeKey);
+				case 'audio':
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_6__fields_media_upload_js__["a" /* default */])(props, config, attributeKey);
 					break;
 				case 'select':
 					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_7__fields_select__["a" /* default */])(props, config, attributeKey);
@@ -332,6 +335,9 @@ var GutenbergFieldsMiddleWare = function () {
 					break;
 				case 'tree-select':
 					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_18__fields_tree_select__["a" /* default */])(props, config, attributeKey);
+					break;
+				case 'file-upload':
+					field[attributeKey] = Object(__WEBPACK_IMPORTED_MODULE_19__fields_file_upload__["a" /* default */])(props, config, attributeKey);
 					break;
 			}
 
@@ -751,25 +757,26 @@ function imagePlaceholder(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = videoPlaceholder;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_video_placeholder__ = __webpack_require__(10);
+/* harmony export (immutable) */ __webpack_exports__["a"] = mediaPlaceholder;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_media_placeholder__ = __webpack_require__(10);
 /**
- * Video field.
+ * Video/Audio field.
  */
 var __ = wp.i18n.__;
 
 
 
-function videoPlaceholder(props, config, attributeKey) {
+function mediaPlaceholder(props, config, attributeKey) {
 	var defaultAttributes = {
-		placeholderText: __('Select a video file from your library, or upload a new one'),
+		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
 		isSelected: props.isSelected
 	};
-
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.setVideoAttributes = function (media) {
+	fieldAttributes.className = props.className;
+
+	fieldAttributes.setMediaAttributes = function (media) {
 		if (media && media.url) {
 			var newAttributes = {};
 			newAttributes[attributeKey] = media;
@@ -778,17 +785,18 @@ function videoPlaceholder(props, config, attributeKey) {
 	};
 
 	fieldAttributes.setCaption = function (caption) {
-		if (props.attributes[attributeKey]) {
-			props.attributes[attributeKey].videoCaption = caption;
-			props.setAttributes(attributeKey, props.attributes[attributeKey]);
+		var attributeValue = _.extend({}, props.attributes[attributeKey]);
+		if (attributeValue) {
+			var newAttributes = {};
+			attributeValue.mediaCaption = caption;
+			newAttributes[attributeKey] = attributeValue;
+			props.setAttributes(newAttributes);
 		}
 	};
 
-	fieldAttributes.videoData = props.attributes[attributeKey];
+	fieldAttributes.mediaData = props.attributes[attributeKey];
 
-	delete fieldAttributes.type;
-
-	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_video_placeholder__["a" /* default */], fieldAttributes);
+	return React.createElement(__WEBPACK_IMPORTED_MODULE_0__components_media_placeholder__["a" /* default */], fieldAttributes);
 }
 
 /***/ }),
@@ -809,7 +817,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Component = wp.element.Component;
 var __ = wp.i18n.__;
 var _wp$blocks = wp.blocks,
-    RichText = _wp$blocks.RichText,
+    PlainText = _wp$blocks.PlainText,
     MediaUpload = _wp$blocks.MediaUpload,
     BlockControls = _wp$blocks.BlockControls;
 var _wp$components = wp.components,
@@ -821,24 +829,24 @@ var _wp$components = wp.components,
 var mediaUpload = wp.utils.mediaUpload;
 
 /**
- * VideoPlaceholder component class.
+ * MediaPlaceholder component class.
  */
 
-var VideoPlaceholder = function (_Component) {
-	_inherits(VideoPlaceholder, _Component);
+var MediaPlaceholder = function (_Component) {
+	_inherits(MediaPlaceholder, _Component);
 
-	function VideoPlaceholder() {
-		_classCallCheck(this, VideoPlaceholder);
+	function MediaPlaceholder() {
+		_classCallCheck(this, MediaPlaceholder);
 
-		var _this = _possibleConstructorReturn(this, (VideoPlaceholder.__proto__ || Object.getPrototypeOf(VideoPlaceholder)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (MediaPlaceholder.__proto__ || Object.getPrototypeOf(MediaPlaceholder)).apply(this, arguments));
 
 		_this.state = {
-			editing: !_this.props.videoData,
-			videoData: _this.props.videoData || ''
+			editing: !_this.props.mediaData,
+			mediaData: _this.props.mediaData || ''
 		};
 
 		_this.uploadFromFiles = _this.uploadFromFiles.bind(_this);
-		_this.onSelectVideo = _this.onSelectVideo.bind(_this);
+		_this.onSelectMedia = _this.onSelectMedia.bind(_this);
 		_this.switchToEditing = _this.switchToEditing.bind(_this);
 		_this.onSelectUrl = _this.onSelectUrl.bind(_this);
 		_this.onUrlChange = _this.onUrlChange.bind(_this);
@@ -854,21 +862,21 @@ var VideoPlaceholder = function (_Component) {
   */
 
 
-	_createClass(VideoPlaceholder, [{
+	_createClass(MediaPlaceholder, [{
 		key: 'uploadFromFiles',
 		value: function uploadFromFiles(event) {
 			var _this2 = this;
 
 			mediaUpload(event.target.files, function (_ref) {
 				var _ref2 = _slicedToArray(_ref, 1),
-				    audio = _ref2[0];
+				    media = _ref2[0];
 
-				return _this2.onSelectVideo(audio);
-			}, 'video');
+				return _this2.onSelectMedia(media);
+			}, this.props.type);
 		}
 
 		/**
-   * Callback method when video is selected.
+   * Callback method when media is selected.
    *
    * @param {Object} media Media.
    *
@@ -876,11 +884,11 @@ var VideoPlaceholder = function (_Component) {
    */
 
 	}, {
-		key: 'onSelectVideo',
-		value: function onSelectVideo(media) {
+		key: 'onSelectMedia',
+		value: function onSelectMedia(media) {
 			if (media && media.url) {
-				this.setState({ videoData: media, editing: false });
-				this.props.setVideoAttributes(media);
+				this.setState({ mediaData: media, editing: false });
+				this.props.setMediaAttributes(media);
 			}
 		}
 
@@ -909,11 +917,11 @@ var VideoPlaceholder = function (_Component) {
 		value: function onSelectUrl(event) {
 			event.preventDefault();
 
-			if (this.state.videoData) {
+			if (this.state.mediaData) {
 				this.setState({
 					editing: false
 				});
-				this.props.setVideoAttributes(this.state.videoData);
+				this.props.setMediaAttributes(this.state.mediaData);
 			}
 		}
 
@@ -928,7 +936,7 @@ var VideoPlaceholder = function (_Component) {
 	}, {
 		key: 'onUrlChange',
 		value: function onUrlChange(event) {
-			this.setState({ videoData: {
+			this.setState({ mediaData: {
 					url: event.target.value
 				} });
 		}
@@ -936,7 +944,9 @@ var VideoPlaceholder = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
-			    videoData = _props.videoData,
+			    type = _props.type,
+			    caption = _props.caption,
+			    mediaData = _props.mediaData,
 			    placeholderText = _props.placeholderText,
 			    buttonText = _props.buttonText,
 			    className = _props.className,
@@ -944,7 +954,7 @@ var VideoPlaceholder = function (_Component) {
 			    setCaption = _props.setCaption;
 
 
-			var caption = videoData && videoData.videoCaption ? videoData.videoCaption[0] || '' : '';
+			var mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
 			var controls = !this.state.editing && isSelected && React.createElement(
 				BlockControls,
@@ -954,7 +964,7 @@ var VideoPlaceholder = function (_Component) {
 					null,
 					React.createElement(IconButton, {
 						className: 'components-icon-button components-toolbar__control',
-						label: __('Edit video'),
+						label: __('Edit ') + type,
 						onClick: this.switchToEditing,
 						icon: 'edit'
 					})
@@ -962,13 +972,15 @@ var VideoPlaceholder = function (_Component) {
 			);
 
 			if (this.state.editing) {
+				var mediaIcon = 'media-' + type;
+
 				return [controls, React.createElement(
 					Placeholder,
 					{
 						key: 'placeholder',
-						icon: 'media-video',
-						label: __('Video'),
-						className: 'wp-block-video ' + className,
+						icon: mediaIcon,
+						label: type,
+						className: className + ' wp-block-' + type,
 						instructions: placeholderText },
 					React.createElement(
 						'form',
@@ -976,9 +988,9 @@ var VideoPlaceholder = function (_Component) {
 						React.createElement('input', {
 							type: 'url',
 							className: 'components-placeholder__input',
-							placeholder: __('Enter URL of video file here…'),
+							placeholder: __('Enter URL of ') + type + __(' file here…'),
 							onChange: this.onUrlChange,
-							value: this.state.videoData.url || '' }),
+							value: this.state.mediaData.url || '' }),
 						React.createElement(
 							Button,
 							{
@@ -993,13 +1005,13 @@ var VideoPlaceholder = function (_Component) {
 							isLarge: true,
 							className: 'wp-block-video__upload-button',
 							onChange: this.uploadFromFiles,
-							accept: 'video/*'
+							accept: type + '/*'
 						},
 						buttonText
 					),
 					React.createElement(MediaUpload, {
-						onSelect: this.onSelectVideo,
-						type: 'video',
+						onSelect: this.onSelectMedia,
+						type: type,
 						render: function render(_ref3) {
 							var open = _ref3.open;
 							return React.createElement(
@@ -1014,24 +1026,23 @@ var VideoPlaceholder = function (_Component) {
 
 			return [controls, React.createElement(
 				'figure',
-				{ key: 'video', className: 'wp-block-video ' + className },
-				React.createElement('video', { controls: true, src: this.state.videoData.url }),
-				isSelected && React.createElement(RichText, {
-					tagName: 'figcaption',
+				{ key: type, className: className + ' wp-block-' + type },
+				'video' === type && React.createElement('video', { controls: true, src: this.state.mediaData.url }),
+				'audio' === type && React.createElement('audio', { controls: true, src: this.state.mediaData.url }),
+				isSelected && caption && React.createElement(PlainText, {
 					placeholder: __('Write caption…'),
-					value: caption,
+					value: mediaCaption,
 					isSelected: isSelected,
-					onChange: setCaption,
-					inlineToolbar: true
+					onChange: setCaption
 				})
 			)];
 		}
 	}]);
 
-	return VideoPlaceholder;
+	return MediaPlaceholder;
 }(Component);
 
-/* harmony default export */ __webpack_exports__["a"] = (VideoPlaceholder);
+/* harmony default export */ __webpack_exports__["a"] = (MediaPlaceholder);
 
 /***/ }),
 /* 11 */
@@ -1627,6 +1638,225 @@ function treeSelect(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return React.createElement(TreeSelect, fieldAttributes);
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = fileUpload;
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/**
+ * File Upload.
+ */
+
+var _wp$components = wp.components,
+    FormFileUpload = _wp$components.FormFileUpload,
+    Button = _wp$components.Button;
+var __ = wp.i18n.__;
+var mediaUpload = wp.utils.mediaUpload;
+
+
+function fileUpload(props, config, attributeKey) {
+	var buttonText = config.buttonText ? config.buttonText : __('Upload');
+
+	var defaultAttributes = {
+		accept: '*',
+		allowedTypes: ['image', 'video', 'audio', 'text', 'message', 'application'],
+		isLarge: true
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	/**
+  * Set media when the file is uploaded.
+  *
+  * @param {Array} files Uploaded Files.
+  * @return {void}
+  */
+	var setMedia = function setMedia(files) {
+		var newAttributes = {};
+
+		if (!_.isEmpty(props.attributes[attributeKey]) && !_.isEmpty(files)) {
+			files = [].concat(_toConsumableArray(props.attributes[attributeKey]), _toConsumableArray(files));
+		}
+
+		if (!_.isEmpty(files)) {
+			files = files.map(function (file) {
+				file.name = file.url ? file.url.substring(file.url.lastIndexOf('/') + 1) : '';
+				return file;
+			});
+		}
+
+		newAttributes[attributeKey] = files;
+
+		props.setAttributes(newAttributes);
+	};
+
+	/**
+  * Update media when files are removed.
+  *
+  * @param {Array} files Updated files.
+  * @return {void}
+  */
+	var updateMedia = function updateMedia(files) {
+		var newAttributes = {};
+		newAttributes[attributeKey] = files;
+
+		props.setAttributes(newAttributes);
+	};
+
+	/**
+  * Get allowed file type with file name.
+  *
+  * @param {String} fileName File url.
+  * @return {String} Allowed file type.
+  */
+	var getAllowedType = function getAllowedType(fileName) {
+		if (fileName && !_.isEmpty(fileName) && _.first(fileName).type) {
+			var fileType = _.first(fileName).type;
+			if (fileType) {
+				var typeParts = fileType.split('/');
+				return _.first(typeParts) && _.contains(fieldAttributes.allowedTypes, _.first(typeParts)) ? _.first(typeParts) : '';
+			}
+		}
+	};
+
+	/**
+  * Remove files.
+  *
+  * @param {Object} event Event Object.
+  * @return {void}
+  */
+	var removeFiles = function removeFiles(event) {
+		if (config.removeFiles) {
+			config.removeFiles(event, props);
+		} else {
+			updateMedia([]);
+		}
+	};
+
+	/**
+  * Remove single file.
+  *
+  * @param {Object} event Event Object.
+  * @return {void}
+  */
+	var removeFile = function removeFile(event) {
+		if (config.removeFile) {
+			config.removeFile(event, props);
+		} else {
+			var key = parseInt(event.currentTarget.dataset.key, 10);
+			props.attributes[attributeKey].splice(key, 1);
+			updateMedia([]); // To force update.
+			updateMedia(props.attributes[attributeKey]);
+			if (_.isEmpty(props.attributes[attributeKey])) {
+				updateMedia([]); // To remove 'remove' button.
+			}
+		}
+	};
+
+	/**
+  * Get dash icon for the given file name.
+  *
+  * @param {String} fileName File name.
+  * @return {String} Dash Icon class.
+  */
+	var getDashIcon = function getDashIcon(fileName) {
+		var fileExtension = fileName.split('.').pop();
+		var dashiconSuffix = 'media-default';
+
+		if ('zip' === fileExtension) {
+			dashiconSuffix = 'media-archive';
+		} else if (_.contains(['pdf', 'epub', 'azw', 'indd'], fileExtension)) {
+			dashiconSuffix = 'book';
+		} else if (_.contains(['jpg', 'png', 'gif', 'jpeg', 'tif', 'ico', 'bmp', 'svg'], fileExtension)) {
+			dashiconSuffix = 'format-image';
+		} else if (_.contains(['mp4', 'avi', 'flv', 'mov', 'mpg', 'rm', 'swf', 'wmv', 'ogv', '3gp', '3g2', 'm4v'], fileExtension)) {
+			dashiconSuffix = 'media-video';
+		} else if (_.contains(['pptx', 'pptm', 'ppt', 'pot', 'potx', 'potm', 'pps', 'ppsx'], fileExtension)) {
+			dashiconSuffix = 'media-interactive';
+		} else if (_.contains(['mp3', 'm4a', 'ogg', 'wav'], fileExtension)) {
+			dashiconSuffix = 'media-audio';
+		} else if (_.contains(['xls', 'xlsx', 'xla', 'xlb', 'xlc', 'xld', 'xlk', 'xll', 'xlm', 'xlt', 'xlv', 'xlw', 'numbers'], fileExtension)) {
+			dashiconSuffix = 'media-spreadsheet';
+		} else if (_.contains(['doc', 'docx', 'docm', 'pages'], fileExtension)) {
+			dashiconSuffix = 'media-document';
+		} else if (_.contains(['txt', 'odt', 'rtf', 'log'], fileExtension)) {
+			dashiconSuffix = 'media-text';
+		}
+
+		return 'dashicons-' + dashiconSuffix;
+	};
+
+	/**
+  * Handles when the file is uploaded.
+  *
+  * @param {Object} event Event object.
+  * @return {void}
+  */
+	fieldAttributes.onChange = function (event) {
+		if (config.onChange) {
+			config.onChange(event, props, setMedia, getAllowedType);
+		} else {
+			mediaUpload(event.target.files, setMedia, getAllowedType(event.target.files));
+		}
+	};
+
+	var fieldWrapperClasses = 'file-upload-field';
+	fieldWrapperClasses += 'inspector' !== config.placement ? ' block-field' : ' inspector-field';
+
+	delete fieldAttributes.buttonText;
+
+	return React.createElement(
+		'div',
+		{ className: fieldWrapperClasses },
+		React.createElement(
+			'div',
+			{ className: 'file-upload-filed-actions' },
+			React.createElement(
+				FormFileUpload,
+				fieldAttributes,
+				buttonText
+			),
+			!_.isEmpty(props.attributes[attributeKey]) && React.createElement(
+				Button,
+				{ isLarge: true, onClick: removeFiles },
+				__('Remove')
+			)
+		),
+		props.attributes[attributeKey] && !_.isEmpty(props.attributes[attributeKey]) && React.createElement(
+			'ul',
+			{ className: 'file-upload-field-files' },
+			props.attributes[attributeKey].map(function (file, key) {
+				if (file.id && file.name) {
+					var dashIcon = getDashIcon(file.name);
+
+					return React.createElement(
+						'li',
+						null,
+						React.createElement('button', { className: 'dashicons dashicons-no-alt middleware-remove-file', 'data-key': key, onClick: removeFile }),
+						React.createElement(
+							'div',
+							{ className: 'middleware-field-media-thumbnail' },
+							React.createElement('span', { className: 'dashicons ' + dashIcon })
+						),
+						React.createElement(
+							'div',
+							{ className: 'middleware-file' },
+							React.createElement(
+								'a',
+								{ target: '_blank', href: file.url },
+								file.name
+							)
+						)
+					);
+				}
+			})
+		)
+	);
 }
 
 /***/ })

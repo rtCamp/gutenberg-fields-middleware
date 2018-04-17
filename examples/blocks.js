@@ -13,14 +13,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 	category: 'common',
 
 	attributes: {
-		url: {
-			type: 'string',
-			field: {
-				type: 'link',
-				placement: 'inspector',
-				label: __( 'Enter Link' ),
-			},
-		},
 		text: {
 			type: 'string',
 			field: {
@@ -29,11 +21,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 		},
 		richText: {
-			type: 'string',
+			type: 'array',
 			field: {
 				type: 'rich-text',
 				placeholder: __( 'Enter rich text' ),
 			},
+			source: 'children', // Read more about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			selector: '.rich-text',
 		},
 		image: {
 			type: 'object',
@@ -67,6 +61,16 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'video',
 				buttonText: __( 'Upload' ),
 				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
+				caption: true,
+			},
+		},
+		audio: {
+			type: 'object',
+			field: {
+				type: 'audio',
+				buttonText: __( 'Upload' ),
+				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
+				caption: true,
 			},
 		},
 		radio: {
@@ -87,28 +91,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 			default: 'one',
 		},
-		check: {
-			type: 'boolean',
-			field: {
-				type: 'checkbox',
-				heading: __( 'User' ),
-				label: __( 'Is author' ),
-				help: __( 'Is the user a author or not?' ),
-			},
-		},
 		switch: {
 			type: 'string',
 			field: {
 				type: 'switch',
 				label: __( 'Form Toggle' ),
 				placement: 'inspector',
-			},
-		},
-		range: {
-			type: 'string',
-			field: {
-				type: 'range',
-				label: __( 'Range' ),
 			},
 		},
 		button: {
@@ -170,6 +158,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'dropdown',
 				position: 'top left',
+				placement: 'inspector',
 			},
 		},
 		dateTime: {
@@ -213,6 +202,17 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 				placeholder: __( 'Enter number' ),
 			},
+		},
+		check: {
+			type: 'boolean',
+			field: {
+				type: 'checkbox',
+				heading: __( 'User' ),
+				label: __( 'Is author' ),
+				help: __( 'Is the user a author or not?' ),
+				placement: 'inspector',
+			},
+			default: 1,
 		},
 		search: {
 			type: 'string',
@@ -317,6 +317,24 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'range',
 				label: __( 'Columns' ),
 				placement: 'inspector',
+				min: 1,
+				max: 20,
+			},
+			default: 3,
+		},
+		fileUpload: {
+			type: 'array',
+			field: {
+				type: 'file-upload',
+				multiple: true,
+			},
+		},
+		fileUploadInspector: {
+			type: 'array',
+			field: {
+				type: 'file-upload',
+				placement: 'inspector',
+				multiple: true,
 			},
 		},
 	},
@@ -329,16 +347,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 	 */
 	save( props ) {
 		const attributes = props.attributes;
-		const image = attributes.image ? el( 'img', {
-			src: attributes.image.url,
-		}, null ) : '';
 
-		return el( 'div', null, [
-			image,
-			el( 'a', {
-				href: attributes.url,
-			}, attributes.text ),
-		] );
+		const text = attributes.text ? el( 'p', null, attributes.text ) : '';
+		const richText = attributes.richText ? el( 'div', { className: 'rich-text' }, attributes.richText ) : '';
+		const image = attributes.image ? el( 'img', { src: attributes.image.url }, null ) : '';
+		// Rest of the fields goes here.
+
+		return el( 'div', null, [ text, richText, image ] );
 	},
 
 } );
