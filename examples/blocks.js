@@ -19,6 +19,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'text',
 				placeholder: __( 'Enter link text' ),
 			},
+			source: 'children', // Read more about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			selector: '.text',
 		},
 		richText: {
 			type: 'array',
@@ -54,6 +56,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 					},
 				],
 			},
+			source: 'children', // Read more about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			selector: '.option',
 		},
 		video: {
 			type: 'object',
@@ -63,6 +67,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
 				caption: true,
 			},
+			selector: '.video',
 		},
 		audio: {
 			type: 'object',
@@ -72,6 +77,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
 				caption: true,
 			},
+			selector: '.audio',
 		},
 		radio: {
 			type: 'string',
@@ -90,6 +96,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 			default: 'one',
+			selector: '.radio',
 		},
 		switch: {
 			type: 'string',
@@ -98,19 +105,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Form Toggle' ),
 				placement: 'inspector',
 			},
-		},
-		button: {
-			type: 'string',
-			field: {
-				type: 'button',
-				isLarge: true,
-			},
+			selector: '.switch',
 		},
 		buttonEditable: {
 			type: 'object',
 			field: {
 				type: 'button-editable',
 			},
+			selector: '.button-editable',
 		},
 		treeSelect: {
 			type: 'string',
@@ -145,6 +147,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 					},
 				],
 			},
+			selector: '.tree-select',
 		},
 		color: {
 			type: 'string',
@@ -152,14 +155,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'color',
 				placement: 'inspector',
 			},
-		},
-		dropdown: {
-			type: 'string',
-			field: {
-				type: 'dropdown',
-				position: 'top left',
-				placement: 'inspector',
-			},
+			selector: '.color',
 		},
 		dateTime: {
 			type: 'string',
@@ -167,6 +163,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'date-time',
 				placement: 'inspector',
 			},
+			selector: '.date-time',
 		},
 		textarea: {
 			type: 'string',
@@ -176,6 +173,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				help: __( 'Textarea help text' ),
 				placement: 'inspector',
 			},
+			selector: '.textarea',
 		},
 		email: {
 			type: 'string',
@@ -184,6 +182,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Email' ),
 				placement: 'inspector',
 			},
+			selector: '.email',
 		},
 		hidden: {
 			type: 'string',
@@ -202,6 +201,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 				placeholder: __( 'Enter number' ),
 			},
+			selector: '.number',
 		},
 		check: {
 			type: 'boolean',
@@ -213,6 +213,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 			},
 			default: 1,
+			selector: '.check',
 		},
 		search: {
 			type: 'string',
@@ -221,6 +222,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Search' ),
 				placement: 'inspector',
 			},
+			selector: '.search',
 		},
 		tel: {
 			type: 'string',
@@ -229,6 +231,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Telephone' ),
 				placement: 'inspector',
 			},
+			selector: '.tel',
 		},
 		time: {
 			type: 'string',
@@ -237,6 +240,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Time' ),
 				placement: 'inspector',
 			},
+			selector: '.time',
 		},
 		date: {
 			type: 'string',
@@ -245,6 +249,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Date' ),
 				placement: 'inspector',
 			},
+			selector: '.date',
 		},
 		datetimeLocal: {
 			type: 'string',
@@ -253,6 +258,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Date Time Local' ),
 				placement: 'inspector',
 			},
+			selector: '.datetime-local',
 		},
 		file: {
 			type: 'string',
@@ -269,6 +275,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Month' ),
 				placement: 'inspector',
 			},
+			selector: '.month',
 		},
 		week: {
 			type: 'string',
@@ -277,6 +284,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Week' ),
 				placement: 'inspector',
 			},
+			selector: '.week',
 		},
 		password: {
 			type: 'string',
@@ -291,36 +299,19 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'code-editor',
 			},
+			selector: '.code-editor',
 		},
-		layoutOption: {
-			type: 'string',
-			field: {
-				type: 'radio',
-				placement: 'inspector',
-				label: __( 'Layout Options' ),
-				options: [
-					{
-						value: 'one',
-						label: __( 'One' ),
-					},
-					{
-						value: 'two',
-						label: __( 'Two' ),
-					},
-				],
-			},
-			default: 'one',
-		},
-		columns: {
+		range: {
 			type: 'string',
 			field: {
 				type: 'range',
-				label: __( 'Columns' ),
+				label: __( 'Select Range' ),
 				placement: 'inspector',
 				min: 1,
 				max: 20,
 			},
 			default: 3,
+			selector: '.range',
 		},
 		fileUpload: {
 			type: 'array',
@@ -328,6 +319,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'file-upload',
 				multiple: true,
 			},
+			selector: '.file-upload',
 		},
 		fileUploadInspector: {
 			type: 'array',
@@ -336,6 +328,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 				multiple: true,
 			},
+			selector: '.file-upload-inspector',
 		},
 	},
 
@@ -348,12 +341,139 @@ registerBlockType( 'gb-m-example/simple-block', {
 	save( props ) {
 		const attributes = props.attributes;
 
-		const text = attributes.text ? el( 'p', null, attributes.text ) : '';
-		const richText = attributes.richText ? el( 'div', { className: 'rich-text' }, attributes.richText ) : '';
-		const image = attributes.image ? el( 'img', { src: attributes.image.url }, null ) : '';
-		// Rest of the fields go here.
+		return (
+			el( 'div', { className: props.className },
+				el( 'div', { className: 'gutenberg-fields-middleware-wrapper' },
 
-		return el( 'div', null, [ text, richText, image ] );
+					// field: text
+					el( 'div', { className: 'text' }, attributes.text || '' ),
+
+					// field: rich-text
+					el( 'div', { className: 'rich-text' }, attributes.richText || '' ),
+
+					// field: image
+					attributes.image &&
+					el( 'img', {
+						className: 'image',
+						src: attributes.image.url,
+						alt: attributes.image.alt,
+						title: attributes.image.title,
+						width: attributes.image.width,
+						height: attributes.image.height,
+					}, null ),
+
+					// field: select
+					el( 'div', { className: 'option' }, attributes.option || '' ),
+
+					// field: video
+					attributes.video &&
+					el( 'video', {
+						className: 'video',
+						width: attributes.video.width,
+						height: attributes.video.height,
+						preload: 'auto',
+						controls: true,
+					},
+					el( 'source', { src: attributes.video.url, type: attributes.video.mime }, null )
+					),
+
+					// field: audio
+					attributes.audio &&
+					el( 'audio', {
+						className: 'audio',
+						controls: true,
+					},
+					el( 'source', { src: attributes.audio.url, type: attributes.audio.mime }, null )
+					),
+
+					// field: radio
+					el( 'div', { className: 'radio' }, attributes.radio || '' ),
+
+					// field: switch
+					el( 'div', { className: 'switch' }, attributes.switch || '' ),
+
+					// field: button-editable
+					attributes.buttonEditable &&
+					el( 'a', {
+						className: 'button button-editable',
+						href: attributes.buttonEditable.link,
+					},
+					attributes.buttonEditable.text
+					),
+
+					// field: tree-select
+					el( 'div', { className: 'tree-select' }, attributes.treeSelect || '' ),
+
+					// field: color
+					el( 'div', {
+						className: 'color',
+						style: { color: attributes.color },
+					}, __( 'Color output' )
+					),
+
+					// field: date-time
+					el( 'time', {
+						className: 'date-time',
+						dateTime: attributes.dateTime,
+					},
+					attributes.dateTime ),
+
+					// field: textarea
+					el( 'div', { className: 'textarea' }, attributes.textarea || '' ),
+
+					// field: email
+					el( 'div', { className: 'email' }, attributes.email || '' ),
+
+					// field: number
+					el( 'div', { className: 'number' }, attributes.number || '' ),
+
+					// field: search
+					el( 'div', { className: 'search' }, attributes.search || '' ),
+
+					// field: checkbox
+					el( 'div', { className: 'check' }, attributes.check || '' ),
+
+					// field: tel
+					el( 'div', { className: 'tel' }, attributes.tel || '' ),
+
+					// field: time
+					el( 'time', { className: 'time' }, attributes.time || '' ),
+
+					// field: date
+					el( 'div', { className: 'date' }, attributes.date || '' ),
+
+					// field: datetime-local
+					el( 'div', { className: 'datetime-local' }, attributes.datetimeLocal || '' ),
+
+					// field: month
+					el( 'div', { className: 'month' }, attributes.month || '' ),
+
+					// field: week
+					el( 'div', { className: 'week' }, attributes.week || '' ),
+
+					// field: code-editor
+					el( 'pre', { className: 'code-editor' }, attributes.codeEditor || '' ),
+
+					// field: range
+					el( 'div', { className: 'range' }, attributes.range || '' ),
+
+					// field: file-upload
+					attributes.fileUpload &&
+					el( 'a', {
+						className: 'file-upload',
+						href: attributes.fileUpload[ 0 ].url,
+					}, attributes.fileUpload[ 0 ].name ),
+
+					// field: file-upload
+					attributes.fileUploadInspector &&
+					el( 'a', {
+						className: 'file-upload-inspector',
+						href: attributes.fileUploadInspector[ 0 ].url,
+					}, attributes.fileUploadInspector[ 0 ].name ),
+
+				)
+			)
+		);
 	},
 
 } );
