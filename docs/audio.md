@@ -37,59 +37,56 @@ This will return complete audio object.
 
 ```javascript
 {
-	"id": 153246,
-	"title": "audio title",
-	"filename": "audio-file.mp4",
-	"url": "http://example.org/wp-content/uploads/2018/04/audio-file.mp4",
-	"link": "http://example.org/audio-file/",
-	"alt": "audio alt",
+	"id": 153375,
+	"title": "Audio Title",
+	"filename": "audio-file-name.mp3",
+	"url": "http://example.org/wp-content/uploads/2018/04/audio-file-name.mp3",
+	"link": "http://example.org/audio-file-name/",
+	"alt": "",
 	"author": "3755",
 	"description": "",
 	"caption": "",
-	"name": "audio-file",
+	"name": "audio-file-name",
 	"status": "inherit",
 	"uploadedTo": 0,
-	"date": "2018-04-12T13:42:46.000Z",
-	"modified": "2018-04-12T13:42:46.000Z",
+	"date": "2018-04-17T07:13:14.000Z",
+	"modified": "2018-04-17T07:13:14.000Z",
 	"menuOrder": 0,
-	"mime": "audio/mp4",
+	"mime": "audio/mpeg",
 	"type": "audio",
-	"subtype": "mp4",
+	"subtype": "mpeg",
 	"icon": "https://example.org/wp-includes/images/media/audio.png",
-	"dateFormatted": "April 12, 2018",
+	"dateFormatted": "April 17, 2018",
 	"nonces": {
-		"update": "e402d7083d",
-		"delete": "8289c9bbf4",
-		"edit": "12dcc0115a"
+		"update": "6d54241ae5",
+		"delete": "f1a208a878",
+		"edit": "f6721af69c"
 	},
-	"editLink": "https://example.org/wp-admin/post.php?post=153246&action=edit",
+	"editLink": "https://example.org/wp-admin/post.php?post=153375&action=edit",
 	"meta": {
-		"artist": false,
-		"album": false,
-		"bitrate": 239869,
-		"bitrate_mode": false
+		"artist": "Artist Name",
+		"album": "Album name",
+		"bitrate": 320055.29661016946,
+		"bitrate_mode": "vbr"
 	},
 	"authorName": "Author Name",
-	"filesizeInBytes": 549177,
-	"filesizeHumanReadable": "536 KB",
+	"filesizeInBytes": 6123133,
+	"filesizeHumanReadable": "6 MB",
 	"context": "",
-	"width": 1280,
-	"height": 720,
-	"fileLength": "0:18",
+	"fileLength": "2:31",
 	"image": {
-		"src": "https://example.org/wp-includes/images/media/audio.png",
-		"width": 48,
-		"height": 64
+		"src": "http://example.org/wp-content/uploads/2018/04/audio-file-name-mp3-image.jpg",
+		"width": 400,
+		"height": 400
 	},
 	"thumb": {
-		"src": "https://example.org/wp-includes/images/media/audio.png",
-		"width": 48,
-		"height": 64
+		"src": "http://example.org/wp-content/uploads/2018/04/audio-file-name-mp3-image-240x184.jpg",
+		"width": 240,
+		"height": 184
 	},
 	"compat": {
 		"item": "",
 		"meta": ""
-	},
-	"mediaCaption": "Audio Caption" // Caption added by user.
+	}
 }
 ```
