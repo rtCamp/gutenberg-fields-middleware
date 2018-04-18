@@ -144,7 +144,7 @@ class ImagePlaceholder extends Component {
 		);
 
 		if ( this.state.editing ) {
-			const mediaIcon = 'media-image';
+			const mediaIcon = 'format-image';
 
 			return (
 				<Placeholder
