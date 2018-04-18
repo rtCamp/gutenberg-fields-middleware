@@ -19,6 +19,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'text',
 				placeholder: __( 'Enter link text' ),
 			},
+			source: 'children', // Read about attributes here https://wordpress.org/gutenberg/handbook/block-api/attributes/
+			selector: '.text',
 		},
 		richText: {
 			type: 'array',
@@ -26,7 +28,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'rich-text',
 				placeholder: __( 'Enter rich text' ),
 			},
-			source: 'children', // Read more about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			source: 'children', // Read about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
 			selector: '.rich-text',
 		},
 		image: {
@@ -54,6 +56,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 					},
 				],
 			},
+			source: 'children', // Read about attributes here https://wordpress.org/gutenberg/handbook/block-api/attributes/
+			selector: '.option',
 		},
 		video: {
 			type: 'object',
@@ -97,13 +101,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'switch',
 				label: __( 'Form Toggle' ),
 				placement: 'inspector',
-			},
-		},
-		button: {
-			type: 'string',
-			field: {
-				type: 'button',
-				isLarge: true,
 			},
 		},
 		buttonEditable: {
@@ -150,14 +147,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'color',
-				placement: 'inspector',
-			},
-		},
-		dropdown: {
-			type: 'string',
-			field: {
-				type: 'dropdown',
-				position: 'top left',
 				placement: 'inspector',
 			},
 		},
@@ -292,30 +281,11 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'code-editor',
 			},
 		},
-		layoutOption: {
-			type: 'string',
-			field: {
-				type: 'radio',
-				placement: 'inspector',
-				label: __( 'Layout Options' ),
-				options: [
-					{
-						value: 'one',
-						label: __( 'One' ),
-					},
-					{
-						value: 'two',
-						label: __( 'Two' ),
-					},
-				],
-			},
-			default: 'one',
-		},
-		columns: {
+		range: {
 			type: 'string',
 			field: {
 				type: 'range',
-				label: __( 'Columns' ),
+				label: __( 'Select Range' ),
 				placement: 'inspector',
 				min: 1,
 				max: 20,
@@ -326,14 +296,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'array',
 			field: {
 				type: 'file-upload',
-				multiple: true,
-			},
-		},
-		fileUploadInspector: {
-			type: 'array',
-			field: {
-				type: 'file-upload',
-				placement: 'inspector',
 				multiple: true,
 			},
 		},
@@ -348,12 +310,122 @@ registerBlockType( 'gb-m-example/simple-block', {
 	save( props ) {
 		const attributes = props.attributes;
 
-		const text = attributes.text ? el( 'p', null, attributes.text ) : '';
-		const richText = el( 'div', { className: 'rich-text' }, attributes.richText || '' );
-		const image = attributes.image ? el( 'img', { src: attributes.image.url }, null ) : '';
-		// Rest of the fields go here.
+		const files = [];
 
-		return el( 'div', null, [ text, richText, image ] );
+		if ( attributes.fileUpload ) {
+			_.each( attributes.fileUpload, function( file ) {
+				files.push(
+					el( 'a', {
+						className: 'file-upload',
+						href: file.url,
+					}, file.name )
+				);
+			} );
+		}
+
+		return (
+			el( 'div', { className: props.className },
+				// field: text
+				el( 'div', { className: 'text' }, attributes.text || '' ),
+
+				// field: rich-text
+				el( 'div', { className: 'rich-text' }, attributes.richText || '' ),
+
+				// field: image
+				attributes.image &&
+				el( 'img', {
+					className: 'image',
+					src: attributes.image.url,
+					alt: attributes.image.alt,
+					title: attributes.image.title,
+					width: attributes.image.width,
+					height: attributes.image.height,
+				}, null ),
+
+				// field: select
+				el( 'div', { className: 'option' }, attributes.option || '' ),
+
+				// field: video
+				attributes.video &&
+				el( 'video', {
+					className: 'video',
+					width: attributes.video.width,
+					height: attributes.video.height,
+					preload: 'auto',
+					controls: true,
+				}, el( 'source', { src: attributes.video.url, type: attributes.video.mime }, null ) ),
+
+				// field: audio
+				attributes.audio &&
+				el( 'audio', {
+					className: 'audio',
+					controls: true,
+				}, el( 'source', { src: attributes.audio.url, type: attributes.audio.mime }, null ) ),
+
+				// field: radio
+				el( 'div', { className: 'radio' }, attributes.radio || '' ),
+
+				// field: switch
+				el( 'div', { className: 'switch' }, attributes.switch || '' ),
+
+				// field: button-editable
+				attributes.buttonEditable &&
+				el( 'a', {
+					href: attributes.buttonEditable.link,
+				}, attributes.buttonEditable.text ),
+
+				// field: tree-select
+				el( 'div', { className: 'tree-select' }, attributes.treeSelect || '' ),
+
+				// field: color
+				el( 'div', { style: { color: attributes.color } }, __( 'Color output' ) ),
+
+				// field: date-time
+				el( 'time', { dateTime: attributes.dateTime }, attributes.dateTime ),
+
+				// field: textarea
+				el( 'div', { className: 'textarea' }, attributes.textarea || '' ),
+
+				// field: email
+				el( 'div', { className: 'email' }, attributes.email || '' ),
+
+				// field: number
+				el( 'div', { className: 'number' }, attributes.number || '' ),
+
+				// field: search
+				el( 'div', { className: 'search' }, attributes.search || '' ),
+
+				// field: checkbox
+				el( 'div', { className: 'check' }, attributes.check || '' ),
+
+				// field: tel
+				el( 'div', { className: 'tel' }, attributes.tel || '' ),
+
+				// field: time
+				el( 'time', { className: 'time' }, attributes.time || '' ),
+
+				// field: date
+				el( 'div', { className: 'date' }, attributes.date || '' ),
+
+				// field: datetime-local
+				el( 'div', { className: 'datetime-local' }, attributes.datetimeLocal || '' ),
+
+				// field: month
+				el( 'div', { className: 'month' }, attributes.month || '' ),
+
+				// field: week
+				el( 'div', { className: 'week' }, attributes.week || '' ),
+
+				// field: code-editor
+				el( 'pre', { className: 'code-editor' }, attributes.codeEditor || '' ),
+
+				// field: range
+				el( 'div', { className: 'range' }, attributes.range || '' ),
+
+				// field: file-upload
+				files,
+			)
+		);
 	},
 
 } );
