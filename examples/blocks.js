@@ -36,8 +36,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'image',
 				buttonText: __( 'Upload' ),
-				imagePlaceholder: true,
-				removeButtonText: __( 'Remove' ),
+				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
+				caption: true,
 			},
 		},
 		option: {

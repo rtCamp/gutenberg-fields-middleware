@@ -1,81 +1,46 @@
 /**
- * Image Field.
+ * Video/Audio field.
  */
-
-const { MediaUpload } = wp.blocks;
-const { Button } = wp.components;
 const { __ } = wp.i18n;
+import ImagePlaceholder from '../../components/image-placeholder';
 
-import imagePlaceholder from './../../components/image-placeholder';
-
-export default function image( props, config, attributeKey ) {
-	const buttonText = config.buttonText ? config.buttonText : __( 'Open Media Library' );
-	const imageObject = props.attributes[ attributeKey ];
-
+export default function mediaUpload( props, config, attributeKey ) {
 	const defaultAttributes = {
-
-		type: 'image',
-
-		value: imageObject || '',
-
-		render( { open } ) {
-			const nodes = [];
-
-			if ( ! imageObject ) {
-				if ( config.imagePlaceholder ) {
-					nodes.push( imagePlaceholder( props, config, attributeKey ) );
-				} else {
-					nodes.push( (
-						<Button className="button button-large button-upload" onClick={ open }>
-							{ buttonText }
-						</Button>
-					) );
-				}
-			} else {
-				nodes.push( (
-					<img className="uploaded-image" src={ imageObject.url } alt={ imageObject.alt } />
-				) );
-
-				if ( !! config.removeButtonText ) {
-					nodes.push( (
-						<Button className="button button-large button-remove" onClick={ () => {
-							const newAttributes = {};
-							newAttributes[ attributeKey ] = '';
-							props.setAttributes( newAttributes );
-						} }>
-							{ config.removeButtonText }
-						</Button>
-					) );
-				}
-			}
-
-			return (
-				<div className={ 'blocks-' + config.type + '-upload' }>
-					{ nodes }
-				</div>
-			);
-		},
+		placeholderText: __( 'Select a image file from your library, or upload a new one' ),
+		buttonText: __( 'Upload' ),
+		isSelected: props.isSelected,
 	};
-
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
-	fieldAttributes.onSelect = ( media ) => {
-		if ( config.onSelect ) {
-			config.onSelect( media, props );
-		} else {
+	fieldAttributes.className = props.className;
+
+	fieldAttributes.removeMediaAttributes = () => {
+		const newAttributes = {};
+		newAttributes[ attributeKey ] = '';
+		props.setAttributes( newAttributes );
+	};
+
+	fieldAttributes.setMediaAttributes = ( media ) => {
+		if ( media && media.url ) {
 			const newAttributes = {};
 			newAttributes[ attributeKey ] = media;
 			props.setAttributes( newAttributes );
 		}
 	};
 
-	delete fieldAttributes.buttonText;
-	delete fieldAttributes.imagePlaceholder;
-	delete fieldAttributes.removeButtonText;
+	fieldAttributes.setCaption = ( caption ) => {
+		const attributeValue = _.extend( {}, props.attributes[ attributeKey ] );
+		if ( attributeValue ) {
+			const newAttributes = {};
+			attributeValue.mediaCaption = caption;
+			newAttributes[ attributeKey ] = attributeValue;
+			props.setAttributes( newAttributes );
+		}
+	};
+
+	fieldAttributes.mediaData = props.attributes[ attributeKey ];
 
 	return (
-		<MediaUpload
-			{ ...fieldAttributes }
-		/>
+		<ImagePlaceholder{ ...fieldAttributes } />
 	);
 }

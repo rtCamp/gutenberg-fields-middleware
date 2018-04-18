@@ -1,0 +1,16 @@
+.wp-middleware-block-image {
+  .components-placeholder {
+	&__fieldset {
+	  min-width: 400px;
+	  form {
+		max-width: none;
+	  }
+	}
+	&__input {
+	  margin-top: .5em;
+	}
+  }
+  .button.button-large {
+	margin-top: .5em;
+  }
+}
