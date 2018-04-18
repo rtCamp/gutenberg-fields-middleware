@@ -47,9 +47,13 @@ class GutenbergFieldsMiddleWare {
 
 		}, this.config );
 
-		this.blockConfigs.edit = withState( {
+		const blockStates = _.extend( {
 			editable: '',
-		} )( ( props ) => {
+		}, this.config.blockStates || {} );
+
+		delete this.blockConfigs.blockStates;
+
+		this.blockConfigs.edit = withState( blockStates )( ( props ) => {
 			this.setupBlockFields( props );
 
 			props.middleware = this;
