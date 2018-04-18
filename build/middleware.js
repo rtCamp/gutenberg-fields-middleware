@@ -3479,9 +3479,9 @@ var MediaPlaceholder = function (_Component) {
 
 			var mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
-			var controls = wp.element.createElement(
+			var controls = this.props.isSelected && wp.element.createElement(
 				Toolbar,
-				{ key: 'controls' },
+				{ key: type },
 				wp.element.createElement(IconButton, {
 					className: 'components-icon-button components-toolbar__control',
 					label: __('Edit ') + type,

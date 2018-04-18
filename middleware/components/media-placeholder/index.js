@@ -131,14 +131,16 @@ class MediaPlaceholder extends Component {
 		const mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
 		const controls = (
-			<Toolbar key="controls">
-				<IconButton
-					className="components-icon-button components-toolbar__control"
-					label={ __( 'Edit ' ) + type }
-					onClick={ this.switchToEditing }
-					icon="edit"
-				/>
-			</Toolbar>
+			this.props.isSelected && (
+				<Toolbar key={ type }>
+					<IconButton
+						className="components-icon-button components-toolbar__control"
+						label={ __( 'Edit ' ) + type }
+						onClick={ this.switchToEditing }
+						icon="edit"
+					/>
+				</Toolbar>
+			)
 		);
 
 		if ( this.state.editing ) {
