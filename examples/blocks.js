@@ -19,7 +19,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'text',
 				placeholder: __( 'Enter link text' ),
 			},
-			source: 'children', // Read more about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			source: 'children', // Read about attributes here https://wordpress.org/gutenberg/handbook/block-api/attributes/
 			selector: '.text',
 		},
 		richText: {
@@ -28,7 +28,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'rich-text',
 				placeholder: __( 'Enter rich text' ),
 			},
-			source: 'children', // Read more about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			source: 'children', // Read about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
 			selector: '.rich-text',
 		},
 		image: {
@@ -56,7 +56,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 					},
 				],
 			},
-			source: 'children', // Read more about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			source: 'children', // Read about attributes here https://wordpress.org/gutenberg/handbook/block-api/attributes/
 			selector: '.option',
 		},
 		video: {
@@ -67,7 +67,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
 				caption: true,
 			},
-			selector: '.video',
 		},
 		audio: {
 			type: 'object',
@@ -77,7 +76,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
 				caption: true,
 			},
-			selector: '.audio',
 		},
 		radio: {
 			type: 'string',
@@ -96,7 +94,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 			default: 'one',
-			selector: '.radio',
 		},
 		switch: {
 			type: 'string',
@@ -105,14 +102,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Form Toggle' ),
 				placement: 'inspector',
 			},
-			selector: '.switch',
 		},
 		buttonEditable: {
 			type: 'object',
 			field: {
 				type: 'button-editable',
 			},
-			selector: '.button-editable',
 		},
 		treeSelect: {
 			type: 'string',
@@ -147,7 +142,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 					},
 				],
 			},
-			selector: '.tree-select',
 		},
 		color: {
 			type: 'string',
@@ -155,7 +149,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'color',
 				placement: 'inspector',
 			},
-			selector: '.color',
 		},
 		dateTime: {
 			type: 'string',
@@ -163,7 +156,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'date-time',
 				placement: 'inspector',
 			},
-			selector: '.date-time',
 		},
 		textarea: {
 			type: 'string',
@@ -173,7 +165,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				help: __( 'Textarea help text' ),
 				placement: 'inspector',
 			},
-			selector: '.textarea',
 		},
 		email: {
 			type: 'string',
@@ -182,7 +173,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Email' ),
 				placement: 'inspector',
 			},
-			selector: '.email',
 		},
 		hidden: {
 			type: 'string',
@@ -201,7 +191,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 				placeholder: __( 'Enter number' ),
 			},
-			selector: '.number',
 		},
 		check: {
 			type: 'boolean',
@@ -213,7 +202,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 			},
 			default: 1,
-			selector: '.check',
 		},
 		search: {
 			type: 'string',
@@ -222,7 +210,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Search' ),
 				placement: 'inspector',
 			},
-			selector: '.search',
 		},
 		tel: {
 			type: 'string',
@@ -231,7 +218,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Telephone' ),
 				placement: 'inspector',
 			},
-			selector: '.tel',
 		},
 		time: {
 			type: 'string',
@@ -240,7 +226,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Time' ),
 				placement: 'inspector',
 			},
-			selector: '.time',
 		},
 		date: {
 			type: 'string',
@@ -249,7 +234,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Date' ),
 				placement: 'inspector',
 			},
-			selector: '.date',
 		},
 		datetimeLocal: {
 			type: 'string',
@@ -258,7 +242,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Date Time Local' ),
 				placement: 'inspector',
 			},
-			selector: '.datetime-local',
 		},
 		file: {
 			type: 'string',
@@ -275,7 +258,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Month' ),
 				placement: 'inspector',
 			},
-			selector: '.month',
 		},
 		week: {
 			type: 'string',
@@ -284,7 +266,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				label: __( 'Week' ),
 				placement: 'inspector',
 			},
-			selector: '.week',
 		},
 		password: {
 			type: 'string',
@@ -299,7 +280,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'code-editor',
 			},
-			selector: '.code-editor',
 		},
 		range: {
 			type: 'string',
@@ -311,7 +291,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				max: 20,
 			},
 			default: 3,
-			selector: '.range',
 		},
 		fileUpload: {
 			type: 'array',
@@ -319,16 +298,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'file-upload',
 				multiple: true,
 			},
-			selector: '.file-upload',
-		},
-		fileUploadInspector: {
-			type: 'array',
-			field: {
-				type: 'file-upload',
-				placement: 'inspector',
-				multiple: true,
-			},
-			selector: '.file-upload-inspector',
 		},
 	},
 
@@ -341,6 +310,18 @@ registerBlockType( 'gb-m-example/simple-block', {
 	save( props ) {
 		const attributes = props.attributes;
 
+		const files = [];
+
+		if ( attributes.fileUpload ) {
+			_.each( attributes.fileUpload, function( file ) {
+				files.push(
+					el( 'a', {
+						className: 'file-upload',
+						href: file.url,
+					}, file.name )
+				);
+			} );
+		}
 
 		return (
 			el( 'div', { className: props.className },
@@ -459,18 +440,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 					el( 'div', { className: 'range' }, attributes.range || '' ),
 
 					// field: file-upload
-					attributes.fileUpload &&
-					el( 'a', {
-						className: 'file-upload',
-						href: attributes.fileUpload[ 0 ].url,
-					}, attributes.fileUpload[ 0 ].name ),
-
-					// field: file-upload
-					attributes.fileUploadInspector &&
-					el( 'a', {
-						className: 'file-upload-inspector',
-						href: attributes.fileUploadInspector[ 0 ].url,
-					}, attributes.fileUploadInspector[ 0 ].name ),
+					files,
 				)
 			)
 		);
