@@ -1172,17 +1172,30 @@ var GutenbergFieldsMiddleWare = function () {
 			this.blockConfigs.edit = withState(blockStates)(function (props) {
 				_this.setupBlockFields(props);
 
+				var wrapperClassName = 'middleware-block ' + props.className;
 				props.middleware = _this;
 
 				if (_this.config.edit) {
 					if (_this.constructor.isClassComponent(_this.config.edit)) {
-						return wp.element.createElement(_this.config.edit, props);
+						return wp.element.createElement(
+							'div',
+							{ className: wrapperClassName },
+							wp.element.createElement(_this.config.edit, props)
+						);
 					}
 
-					return _this.config.edit(props);
+					return wp.element.createElement(
+						'div',
+						{ className: wrapperClassName },
+						_this.config.edit(props)
+					);
 				}
 
-				return _this.edit(props);
+				return wp.element.createElement(
+					'div',
+					{ className: wrapperClassName },
+					_this.edit(props)
+				);
 			});
 
 			this.blockConfigs.save = function (props) {
@@ -3487,7 +3500,7 @@ var MediaPlaceholder = function (_Component) {
 						key: 'placeholder',
 						icon: mediaIcon,
 						label: type,
-						className: className + ' wp-block-' + type,
+						className: 'middleware-field-' + type,
 						instructions: placeholderText },
 					wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop }),
 					wp.element.createElement(

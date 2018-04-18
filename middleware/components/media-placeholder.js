@@ -153,7 +153,7 @@ class MediaPlaceholder extends Component {
 					key="placeholder"
 					icon={ mediaIcon }
 					label={ type }
-					className={ className + ' wp-block-' + type }
+					className={ 'middleware-field-' + type }
 					instructions={ placeholderText } >
 					<DropZone onFilesDrop={ this.onFilesDrop } />
 					<form onSubmit={ this.onSelectUrl }>

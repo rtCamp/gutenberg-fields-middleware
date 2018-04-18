@@ -56,17 +56,18 @@ class GutenbergFieldsMiddleWare {
 		this.blockConfigs.edit = withState( blockStates )( ( props ) => {
 			this.setupBlockFields( props );
 
+			const wrapperClassName = 'middleware-block ' + props.className;
 			props.middleware = this;
 
 			if ( this.config.edit ) {
 				if ( this.constructor.isClassComponent( this.config.edit ) ) {
-					return ( <this.config.edit { ...props } /> );
+					return ( <div className={ wrapperClassName }><this.config.edit { ...props } /></div> );
 				}
 
-				return this.config.edit( props );
+				return ( <div className={ wrapperClassName }>{ this.config.edit( props ) }</div> );
 			}
 
-			return this.edit( props );
+			return ( <div className={ wrapperClassName }>{ this.edit( props ) }</div> );
 		} );
 
 		this.blockConfigs.save = ( props ) => {
