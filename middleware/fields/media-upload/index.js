@@ -8,7 +8,7 @@ export default function mediaUpload( props, config, attributeKey ) {
 	const defaultAttributes = {
 		placeholderText: __( 'Select a ' ) + config.type + __( ' file from your library, or upload a new one' ),
 		buttonText: __( 'Upload' ),
-		isSelected: props.isSelected,
+		isSelected: props.isSelected && attributeKey === props.editable,
 	};
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
@@ -18,6 +18,12 @@ export default function mediaUpload( props, config, attributeKey ) {
 		const newAttributes = {};
 		newAttributes[ attributeKey ] = '';
 		props.setAttributes( newAttributes );
+	};
+
+	fieldAttributes.setEditableState = () => {
+		props.setState( {
+			editable: attributeKey,
+		} );
 	};
 
 	fieldAttributes.setMediaAttributes = ( media ) => {

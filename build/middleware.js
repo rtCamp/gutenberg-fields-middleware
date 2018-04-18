@@ -3252,7 +3252,7 @@ function mediaUpload(props, config, attributeKey) {
 	var defaultAttributes = {
 		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
-		isSelected: props.isSelected
+		isSelected: props.isSelected && attributeKey === props.editable
 	};
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
@@ -3262,6 +3262,12 @@ function mediaUpload(props, config, attributeKey) {
 		var newAttributes = {};
 		newAttributes[attributeKey] = '';
 		props.setAttributes(newAttributes);
+	};
+
+	fieldAttributes.setEditableState = function () {
+		props.setState({
+			editable: attributeKey
+		});
 	};
 
 	fieldAttributes.setMediaAttributes = function (media) {
@@ -3546,16 +3552,20 @@ var MediaPlaceholder = function (_Component) {
 			}
 
 			return [controls, wp.element.createElement(
-				'figure',
-				{ key: type, className: className + ' wp-block-' + type },
-				'video' === type && wp.element.createElement('video', { controls: true, src: this.state.mediaData.url }),
-				'audio' === type && wp.element.createElement('audio', { controls: true, src: this.state.mediaData.url }),
-				isSelected && caption && wp.element.createElement(PlainText, {
-					placeholder: __('Write caption…'),
-					value: mediaCaption,
-					isSelected: isSelected,
-					onChange: setCaption
-				})
+				'div',
+				{ key: type, onClick: this.props.setEditableState },
+				wp.element.createElement(
+					'figure',
+					{ key: type, className: className + ' wp-block-' + type },
+					'video' === type && wp.element.createElement('video', { controls: true, src: this.state.mediaData.url }),
+					'audio' === type && wp.element.createElement('audio', { controls: true, src: this.state.mediaData.url }),
+					isSelected && caption && wp.element.createElement(PlainText, {
+						placeholder: __('Write caption…'),
+						value: mediaCaption,
+						isSelected: isSelected,
+						onChange: setCaption
+					})
+				)
 			)];
 		}
 	}]);

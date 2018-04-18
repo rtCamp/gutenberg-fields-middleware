@@ -192,22 +192,24 @@ class MediaPlaceholder extends Component {
 
 		return [
 			controls,
-			<figure key={ type } className={ className + ' wp-block-' + type }>
-				{ 'video' === type && (
-					<video controls src={ this.state.mediaData.url } />
-				) }
-				{ 'audio' === type && (
-					<audio controls src={ this.state.mediaData.url } />
-				) }
-				{ isSelected && caption && (
-					<PlainText
-						placeholder={ __( 'Write caption…' ) }
-						value={ mediaCaption }
-						isSelected={ isSelected }
-						onChange={ setCaption }
-					/>
-				) }
-			</figure>,
+			<div key={ type } onClick={ this.props.setEditableState }>
+				<figure key={ type } className={ className + ' wp-block-' + type } >
+					{ 'video' === type && (
+						<video controls src={ this.state.mediaData.url } />
+					) }
+					{ 'audio' === type && (
+						<audio controls src={ this.state.mediaData.url } />
+					) }
+					{ isSelected && caption && (
+						<PlainText
+							placeholder={ __( 'Write caption…' ) }
+							value={ mediaCaption }
+							isSelected={ isSelected }
+							onChange={ setCaption }
+						/>
+					) }
+				</figure>
+			</div>,
 		];
 	}
 }
