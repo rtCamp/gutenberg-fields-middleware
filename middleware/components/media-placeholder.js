@@ -13,6 +13,7 @@ const {
 	Button,
 	Toolbar,
 	IconButton,
+	DropZone,
 } = wp.components;
 
 const { mediaUpload } = wp.utils;
@@ -34,6 +35,7 @@ class MediaPlaceholder extends Component {
 		this.switchToEditing = this.switchToEditing.bind( this );
 		this.onSelectUrl = this.onSelectUrl.bind( this );
 		this.onUrlChange = this.onUrlChange.bind( this );
+		this.onFilesDrop = this.onFilesDrop.bind( this );
 	}
 
 	/**
@@ -45,6 +47,17 @@ class MediaPlaceholder extends Component {
 	 */
 	uploadFromFiles( event ) {
 		mediaUpload( event.target.files, ( [ media ] ) => this.onSelectMedia( media ), this.props.type );
+	}
+
+	/**
+	 * Dropping a file into the DropZone.
+	 *
+	 * @param {Array} files dropped file.
+	 *
+	 * @return {void}
+	 */
+	onFilesDrop( files ) {
+		mediaUpload( files, ( [ media ] ) => this.onSelectMedia( media ), this.props.type );
 	}
 
 	/**
@@ -142,6 +155,7 @@ class MediaPlaceholder extends Component {
 					label={ type }
 					className={ className + ' wp-block-' + type }
 					instructions={ placeholderText } >
+					<DropZone onFilesDrop={ this.onFilesDrop } />
 					<form onSubmit={ this.onSelectUrl }>
 						<input
 							type="url"

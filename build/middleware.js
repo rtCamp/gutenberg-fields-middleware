@@ -3292,7 +3292,8 @@ var _wp$components = wp.components,
     FormFileUpload = _wp$components.FormFileUpload,
     Button = _wp$components.Button,
     Toolbar = _wp$components.Toolbar,
-    IconButton = _wp$components.IconButton;
+    IconButton = _wp$components.IconButton,
+    DropZone = _wp$components.DropZone;
 var mediaUpload = wp.utils.mediaUpload;
 
 /**
@@ -3317,6 +3318,7 @@ var MediaPlaceholder = function (_Component) {
 		_this.switchToEditing = _this.switchToEditing.bind(_this);
 		_this.onSelectUrl = _this.onSelectUrl.bind(_this);
 		_this.onUrlChange = _this.onUrlChange.bind(_this);
+		_this.onFilesDrop = _this.onFilesDrop.bind(_this);
 		return _this;
 	}
 
@@ -3339,6 +3341,27 @@ var MediaPlaceholder = function (_Component) {
 				    media = _ref2[0];
 
 				return _this2.onSelectMedia(media);
+			}, this.props.type);
+		}
+
+		/**
+   * Dropping a file into the DropZone.
+   *
+   * @param {Array} files dropped file.
+   *
+   * @return {void}
+   */
+
+	}, {
+		key: 'onFilesDrop',
+		value: function onFilesDrop(files) {
+			var _this3 = this;
+
+			mediaUpload(files, function (_ref3) {
+				var _ref4 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray___default()(_ref3, 1),
+				    media = _ref4[0];
+
+				return _this3.onSelectMedia(media);
 			}, this.props.type);
 		}
 
@@ -3450,6 +3473,7 @@ var MediaPlaceholder = function (_Component) {
 						label: type,
 						className: className + ' wp-block-' + type,
 						instructions: placeholderText },
+					wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop }),
 					wp.element.createElement(
 						'form',
 						{ onSubmit: this.onSelectUrl },
@@ -3480,8 +3504,8 @@ var MediaPlaceholder = function (_Component) {
 					wp.element.createElement(MediaUpload, {
 						onSelect: this.onSelectMedia,
 						type: type,
-						render: function render(_ref3) {
-							var open = _ref3.open;
+						render: function render(_ref5) {
+							var open = _ref5.open;
 							return wp.element.createElement(
 								Button,
 								{ isLarge: true, onClick: open },
