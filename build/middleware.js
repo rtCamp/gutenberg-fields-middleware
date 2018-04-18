@@ -3423,7 +3423,10 @@ var MediaPlaceholder = function (_Component) {
 	}, {
 		key: 'switchToEditing',
 		value: function switchToEditing() {
-			this.setState({ editing: true });
+			this.setState({
+				editing: true,
+				mediaData: {}
+			});
 			this.props.removeMediaAttributes();
 		}
 
