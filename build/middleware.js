@@ -3423,10 +3423,7 @@ var MediaPlaceholder = function (_Component) {
 	}, {
 		key: 'switchToEditing',
 		value: function switchToEditing() {
-			this.setState({
-				editing: true,
-				mediaData: {}
-			});
+			this.setState({ editing: true });
 			this.props.removeMediaAttributes();
 		}
 
@@ -3443,7 +3440,7 @@ var MediaPlaceholder = function (_Component) {
 		value: function onSelectUrl(event) {
 			event.preventDefault();
 
-			if (this.state.mediaData) {
+			if (this.state.mediaData && this.state.mediaData.url) {
 				this.setState({
 					editing: false
 				});
