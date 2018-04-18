@@ -28,8 +28,11 @@ class GutenbergFieldsMiddleWare {
 		this.inspectorControlFields = {};
 		this.inspectorControls = '';
 		this.config = _.extend( {}, config );
+		this.innerFields = {};
 
 		this.setupBlockFields = this.setupBlockFields.bind( this );
+		this.setupField = this.setupField.bind( this );
+		this.getInnerFields = this.getInnerFields.bind( this );
 	}
 
 	/**
@@ -93,6 +96,7 @@ class GutenbergFieldsMiddleWare {
 	 * @param {Object} props        Properties.
 	 * @param {Object} config       Field configuration provided.
 	 * @param {String} attributeKey Attribute Key.
+	 * @param {Object} innerFields  Inner Fields.
 	 *
 	 * @return {Object} Field.
 	 */
@@ -101,61 +105,61 @@ class GutenbergFieldsMiddleWare {
 
 		switch ( config.type ) {
 			case 'text':
-				field[ attributeKey ] = fields.text( props, config, attributeKey );
+				field[ attributeKey ] = fields.text( props, config, attributeKey, this );
 				break;
 			case 'rich-text':
-				field[ attributeKey ] = fields.richText( props, config, attributeKey );
+				field[ attributeKey ] = fields.richText( props, config, attributeKey, this );
 				break;
 			case 'link':
-				field[ attributeKey ] = fields.link( props, config, attributeKey );
+				field[ attributeKey ] = fields.link( props, config, attributeKey, this );
 				break;
 			case 'image':
-				field[ attributeKey ] = fields.image( props, config, attributeKey );
+				field[ attributeKey ] = fields.image( props, config, attributeKey, this );
 				break;
 			case 'video':
 			case 'audio':
-				field[ attributeKey ] = fields.mediaUpload( props, config, attributeKey );
+				field[ attributeKey ] = fields.mediaUpload( props, config, attributeKey, this );
 				break;
 			case 'select':
-				field[ attributeKey ] = fields.select( props, config, attributeKey );
+				field[ attributeKey ] = fields.select( props, config, attributeKey, this );
 				break;
 			case 'range':
-				field[ attributeKey ] = fields.range( props, config, attributeKey );
+				field[ attributeKey ] = fields.range( props, config, attributeKey, this );
 				break;
 			case 'radio':
-				field[ attributeKey ] = fields.radio( props, config, attributeKey );
+				field[ attributeKey ] = fields.radio( props, config, attributeKey, this );
 				break;
 			case 'checkbox':
-				field[ attributeKey ] = fields.checkbox( props, config, attributeKey );
+				field[ attributeKey ] = fields.checkbox( props, config, attributeKey, this );
 				break;
 			case 'button-editable':
-				field[ attributeKey ] = fields.buttonEditable( props, config, attributeKey );
+				field[ attributeKey ] = fields.buttonEditable( props, config, attributeKey, this );
 				break;
 			case 'color':
-				field[ attributeKey ] = fields.color( props, config, attributeKey );
+				field[ attributeKey ] = fields.color( props, config, attributeKey, this );
 				break;
 			case 'code-editor':
-				field[ attributeKey ] = fields.codeEditor( props, config, attributeKey );
+				field[ attributeKey ] = fields.codeEditor( props, config, attributeKey, this );
 				break;
 			case 'date-time':
-				field[ attributeKey ] = fields.dateTime( props, config, attributeKey );
+				field[ attributeKey ] = fields.dateTime( props, config, attributeKey, this );
 				break;
 			case 'textarea':
-				field[ attributeKey ] = fields.textarea( props, config, attributeKey );
+				field[ attributeKey ] = fields.textarea( props, config, attributeKey, this );
 				break;
 			case 'switch':
-				field[ attributeKey ] = fields.formToggle( props, config, attributeKey );
+				field[ attributeKey ] = fields.formToggle( props, config, attributeKey, this );
 				break;
 			case 'tree-select':
-				field[ attributeKey ] = fields.treeSelect( props, config, attributeKey );
+				field[ attributeKey ] = fields.treeSelect( props, config, attributeKey, this );
 				break;
 			case 'file-upload':
-				field[ attributeKey ] = fields.fileUpload( props, config, attributeKey );
+				field[ attributeKey ] = fields.fileUpload( props, config, attributeKey, this );
 				break;
 		}
 
 		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {
-			field[ attributeKey ] = fields.inputField( props, config, attributeKey );
+			field[ attributeKey ] = fields.inputField( props, config, attributeKey, this.fields );
 		}
 
 		return field;
@@ -169,22 +173,18 @@ class GutenbergFieldsMiddleWare {
 	 * @return {void}
 	 */
 	setupBlockFields( props ) {
+		// Setup inner fields first.
+		_.each( this.blockConfigs.attributes, ( attribute ) => {
+			if ( attribute.field && attribute.field.innerFields ) {
+				_.each( attribute.field.innerFields, ( innerFieldAttributeKey ) => {
+					_.extend( this.innerFields, this.setupField( props, this.blockConfigs.attributes[ innerFieldAttributeKey ], innerFieldAttributeKey, false ) );
+				} );
+			}
+		} );
+
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
-
-			if ( attribute.field ) {
-				const config = _.extend( {
-					onFocus() {
-						props.setState( {
-							editable: attributeKey,
-						} );
-					},
-				}, attribute.field );
-
-				if ( 'inspector' === config.placement ) {
-					_.extend( this.inspectorControlFields, this.getField( props, config, attributeKey ) );
-				} else {
-					_.extend( this.fields, this.getField( props, config, attributeKey ) );
-				}
+			if ( attribute.field && ! this.innerFields[ attributeKey ] ) {
+				this.setupField( props, attribute, attributeKey );
 			}
 		} );
 
@@ -195,6 +195,54 @@ class GutenbergFieldsMiddleWare {
 				} ) }
 			</InspectorControls>
 		) : null;
+	}
+
+	/**
+	 * Setup a single Field.
+	 *
+	 * @param {Object} props Properties.
+	 * @param {Object} attribute Attribute.
+	 * @param {String} attributeKey Attribute key.
+	 * @param {Boolean} extend Whether to extend the field with field objects.
+	 * @return {Object|void} Field.
+	 */
+	setupField( props, attribute, attributeKey, extend = true ) {
+		const config = _.extend( {
+			onFocus() {
+				props.setState( {
+					editable: attributeKey,
+				} );
+			},
+		}, attribute.field );
+
+		const field = this.getField( props, config, attributeKey );
+
+		if ( 'inspector' === config.placement ) {
+			_.extend( this.inspectorControlFields, field );
+		} else if ( extend ) {
+			_.extend( this.fields, field );
+		}
+
+		return field;
+	}
+
+	/**
+	 * Get inner fields using the attribute key.
+	 *
+	 * @param {String} attributeKey Attribute key.
+	 * @return {Object} Inner fields.
+	 */
+	getInnerFields( attributeKey ) {
+		const innerFields = {};
+		const config = this.blockConfigs.attributes[ attributeKey ].field;
+
+		if ( config && ! _.isEmpty( config.innerFields ) ) {
+			_.each( config.innerFields, ( innerFieldAttributeKey, innerFieldKeyName ) => {
+				innerFields[ innerFieldKeyName ] = this.innerFields[ innerFieldAttributeKey ];
+			} );
+		}
+
+		return innerFields;
 	}
 
 	/**

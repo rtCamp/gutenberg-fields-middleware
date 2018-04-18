@@ -1,5 +1,5 @@
 const { Component } = wp.element;
-const { RichText, UrlInput } = wp.blocks;
+const { RichText } = wp.blocks;
 const { Dashicon, IconButton } = wp.components;
 const { __ } = wp.i18n;
 
@@ -7,7 +7,7 @@ class ButtonEditable extends Component {
 	constructor() {
 		super( ...arguments );
 		this.state = {
-			displayForm: false,
+			displayForm: true,
 		};
 
 		this.onFocus = this.onFocus.bind( this );
@@ -28,16 +28,22 @@ class ButtonEditable extends Component {
 	}
 
 	render() {
-		const form = this.state.displayForm && this.props.isSelected && (
+		const link = this.props.linkField;
+		this.props.style = _.extend( {
+			backgroundColor: this.props.backgroundColor,
+			color: this.props.textColor,
+		}, this.props.style );
+
+		const buttonClass = this.props.buttonClass ? ' ' + this.props.buttonClass : '';
+		this.props.className = this.props.className + buttonClass;
+
+		const form = link && this.props.isSelected && this.state.displayForm && (
 			<form
 				key="form-link"
 				className="blocks-button__inline-link"
 				onSubmit={ this.onSubmit }>
 				<Dashicon icon="admin-links" />
-				<UrlInput
-					value={ this.props.inputValue }
-					onChange={ this.props.onInputChange }
-				/>
+				{ link }
 				<IconButton icon="editor-break" label={ __( 'Apply' ) } type="submit" />
 			</form>
 		);

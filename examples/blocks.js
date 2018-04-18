@@ -104,9 +104,61 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 		},
 		buttonEditable: {
-			type: 'object',
+			type: 'array',
 			field: {
 				type: 'button-editable',
+				innerFields: {
+					link: 'buttonEditableLink',
+					backgroundColor: 'buttonBackgroundColor',
+					color: 'buttonColor',
+					class: 'buttonClasses',
+				},
+			},
+			source: 'children',
+			selector: '.button-link',
+		},
+		buttonBackgroundColor: {
+			type: 'string',
+			field: {
+				type: 'color',
+				label: __( 'Button Background Color' ),
+				placement: 'inspector',
+			},
+		},
+		buttonColor: {
+			type: 'string',
+			field: {
+				type: 'color',
+				label: __( 'Button Color' ),
+				placement: 'inspector',
+			},
+		},
+		buttonClasses: {
+			type: 'string',
+			field: {
+				type: 'select',
+				label: __( 'Button Type' ),
+				options: [
+					{
+						value: 'button-large',
+						label: __( 'Large' ),
+					},
+					{
+						value: 'button-medium',
+						label: __( 'Medium' ),
+					},
+					{
+						value: 'button-small',
+						label: __( 'Small' ),
+					},
+				],
+				placement: 'inspector',
+			},
+		},
+		buttonEditableLink: {
+			type: 'string',
+			field: {
+				type: 'link',
 			},
 		},
 		treeSelect: {
@@ -372,10 +424,10 @@ registerBlockType( 'gb-m-example/simple-block', {
 				el( 'div', { className: 'switch' }, attributes.switch || '' ),
 
 				// field: button-editable
-				attributes.buttonEditable &&
 				el( 'a', {
-					href: attributes.buttonEditable.link,
-				}, attributes.buttonEditable.text ),
+					className: 'button-link',
+					href: '',
+				}, attributes.buttonEditable ),
 
 				// field: tree-select
 				el( 'div', { className: 'tree-select' }, attributes.treeSelect || '' ),

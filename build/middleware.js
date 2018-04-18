@@ -1195,8 +1195,11 @@ var GutenbergFieldsMiddleWare = function () {
 		this.inspectorControlFields = {};
 		this.inspectorControls = '';
 		this.config = _.extend({}, config);
+		this.innerFields = {};
 
 		this.setupBlockFields = this.setupBlockFields.bind(this);
+		this.setupField = this.setupField.bind(this);
+		this.getInnerFields = this.getInnerFields.bind(this);
 	}
 
 	/**
@@ -1278,6 +1281,7 @@ var GutenbergFieldsMiddleWare = function () {
    * @param {Object} props        Properties.
    * @param {Object} config       Field configuration provided.
    * @param {String} attributeKey Attribute Key.
+   * @param {Object} innerFields  Inner Fields.
    *
    * @return {Object} Field.
    */
@@ -1289,61 +1293,61 @@ var GutenbergFieldsMiddleWare = function () {
 
 			switch (config.type) {
 				case 'text':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["p" /* text */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["p" /* text */](props, config, attributeKey, this);
 					break;
 				case 'rich-text':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["n" /* richText */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["n" /* richText */](props, config, attributeKey, this);
 					break;
 				case 'link':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["j" /* link */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["j" /* link */](props, config, attributeKey, this);
 					break;
 				case 'image':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["h" /* image */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["h" /* image */](props, config, attributeKey, this);
 					break;
 				case 'video':
 				case 'audio':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["k" /* mediaUpload */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["k" /* mediaUpload */](props, config, attributeKey, this);
 					break;
 				case 'select':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["o" /* select */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["o" /* select */](props, config, attributeKey, this);
 					break;
 				case 'range':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["m" /* range */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["m" /* range */](props, config, attributeKey, this);
 					break;
 				case 'radio':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["l" /* radio */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["l" /* radio */](props, config, attributeKey, this);
 					break;
 				case 'checkbox':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["b" /* checkbox */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["b" /* checkbox */](props, config, attributeKey, this);
 					break;
 				case 'button-editable':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["a" /* buttonEditable */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["a" /* buttonEditable */](props, config, attributeKey, this);
 					break;
 				case 'color':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["d" /* color */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["d" /* color */](props, config, attributeKey, this);
 					break;
 				case 'code-editor':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["c" /* codeEditor */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["c" /* codeEditor */](props, config, attributeKey, this);
 					break;
 				case 'date-time':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["e" /* dateTime */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["e" /* dateTime */](props, config, attributeKey, this);
 					break;
 				case 'textarea':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["q" /* textarea */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["q" /* textarea */](props, config, attributeKey, this);
 					break;
 				case 'switch':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["g" /* formToggle */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["g" /* formToggle */](props, config, attributeKey, this);
 					break;
 				case 'tree-select':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["r" /* treeSelect */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["r" /* treeSelect */](props, config, attributeKey, this);
 					break;
 				case 'file-upload':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["f" /* fileUpload */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["f" /* fileUpload */](props, config, attributeKey, this);
 					break;
 			}
 
 			if (_.contains(['email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'], config.type)) {
-				field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["i" /* inputField */](props, config, attributeKey);
+				field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["i" /* inputField */](props, config, attributeKey, this.fields);
 			}
 
 			return field;
@@ -1362,22 +1366,18 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function setupBlockFields(props) {
 			var _this2 = this;
 
+			// Setup inner fields first.
+			_.each(this.blockConfigs.attributes, function (attribute) {
+				if (attribute.field && attribute.field.innerFields) {
+					_.each(attribute.field.innerFields, function (innerFieldAttributeKey) {
+						_.extend(_this2.innerFields, _this2.setupField(props, _this2.blockConfigs.attributes[innerFieldAttributeKey], innerFieldAttributeKey, false));
+					});
+				}
+			});
+
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
-
-				if (attribute.field) {
-					var config = _.extend({
-						onFocus: function onFocus() {
-							props.setState({
-								editable: attributeKey
-							});
-						}
-					}, attribute.field);
-
-					if ('inspector' === config.placement) {
-						_.extend(_this2.inspectorControlFields, _this2.getField(props, config, attributeKey));
-					} else {
-						_.extend(_this2.fields, _this2.getField(props, config, attributeKey));
-					}
+				if (attribute.field && !_this2.innerFields[attributeKey]) {
+					_this2.setupField(props, attribute, attributeKey);
 				}
 			});
 
@@ -1388,6 +1388,64 @@ var GutenbergFieldsMiddleWare = function () {
 					return _this2.inspectorControlFields[key];
 				})
 			) : null;
+		}
+
+		/**
+   * Setup a single Field.
+   *
+   * @param {Object} props Properties.
+   * @param {Object} attribute Attribute.
+   * @param {String} attributeKey Attribute key.
+   * @param {Boolean} extend Whether to extend the field with field objects.
+   * @return {Object|void} Field.
+   */
+
+	}, {
+		key: 'setupField',
+		value: function setupField(props, attribute, attributeKey) {
+			var extend = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+
+			var config = _.extend({
+				onFocus: function onFocus() {
+					props.setState({
+						editable: attributeKey
+					});
+				}
+			}, attribute.field);
+
+			var field = this.getField(props, config, attributeKey);
+
+			if ('inspector' === config.placement) {
+				_.extend(this.inspectorControlFields, field);
+			} else if (extend) {
+				_.extend(this.fields, field);
+			}
+
+			return field;
+		}
+
+		/**
+   * Get inner fields using the attribute key.
+   *
+   * @param {String} attributeKey Attribute key.
+   * @return {Object} Inner fields.
+   */
+
+	}, {
+		key: 'getInnerFields',
+		value: function getInnerFields(attributeKey) {
+			var _this3 = this;
+
+			var innerFields = {};
+			var config = this.blockConfigs.attributes[attributeKey].field;
+
+			if (config && !_.isEmpty(config.innerFields)) {
+				_.each(config.innerFields, function (innerFieldAttributeKey, innerFieldKeyName) {
+					innerFields[innerFieldKeyName] = _this3.innerFields[innerFieldAttributeKey];
+				});
+			}
+
+			return innerFields;
 		}
 
 		/**
@@ -1410,13 +1468,13 @@ var GutenbergFieldsMiddleWare = function () {
    * @return {Object} Edit elements.
    */
 		value: function edit(props) {
-			var _this3 = this;
+			var _this4 = this;
 
 			return [this.inspectorControls, wp.element.createElement(
 				'div',
 				{ key: props.className },
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
-					return _this3.fields[key];
+					return _this4.fields[key];
 				})
 			)];
 		}
@@ -1650,46 +1708,40 @@ var __ = wp.i18n.__;
 
 
 
-function buttonEditable(props, config, attributeKey) {
+function buttonEditable(props, config, attributeKey, middleware) {
 	var defaultAttributes = {
 		placeholder: __('Add text…'),
 		tagName: 'span',
-		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : '',
+		value: props.attributes[attributeKey] ? props.attributes[attributeKey] : '',
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true,
-		inlineToolbar: true
+		inlineToolbar: true,
+		formattingControls: ['bold', 'italic', 'strikethrough']
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
+	var innerFields = middleware.getInnerFields(attributeKey);
+	var backgroundColorAttributeKey = config.innerFields ? config.innerFields.backgroundColor : '';
+	var textColorAttributeKey = config.innerFields ? config.innerFields.color : '';
+	var buttonClassAttributeKey = config.innerFields ? config.innerFields.class : '';
 
 	fieldAttributes.onChange = function (value) {
 		if (config.onChange) {
 			config.onChange(value, props);
 		} else {
 			var newAttributes = {};
-			var buttonValue = _.extend({}, props.attributes[attributeKey] || {});
-			buttonValue.text = value;
-			newAttributes[attributeKey] = buttonValue;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	fieldAttributes.onInputChange = function (value) {
-		if (config.onInputChange) {
-			config.onInputChange(value, props);
-		} else {
-			var newAttributes = {};
-			var buttonValue = _.extend({}, props.attributes[attributeKey] || {});
-			buttonValue.link = value;
-			newAttributes[attributeKey] = buttonValue;
+			newAttributes[attributeKey] = value;
 			props.setAttributes(newAttributes);
 		}
 	};
 
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_button_editable__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
-		inputValue: props.attributes[attributeKey] ? props.attributes[attributeKey].link : '',
 		buttonValue: fieldAttributes.value,
-		isSelected: props.isSelected && attributeKey === props.editable
+		isSelected: props.isSelected && attributeKey === props.editable,
+		linkField: innerFields.link,
+		backgroundColor: backgroundColorAttributeKey ? props.attributes[backgroundColorAttributeKey] : null,
+		textColor: textColorAttributeKey ? props.attributes[textColorAttributeKey] : null,
+		buttonClass: buttonClassAttributeKey ? props.attributes[buttonClassAttributeKey] : null
 	}));
 }
 
@@ -1782,9 +1834,7 @@ module.exports = !$assign || __webpack_require__(11)(function () {
 
 
 var Component = wp.element.Component;
-var _wp$blocks = wp.blocks,
-    RichText = _wp$blocks.RichText,
-    UrlInput = _wp$blocks.UrlInput;
+var RichText = wp.blocks.RichText;
 var _wp$components = wp.components,
     Dashicon = _wp$components.Dashicon,
     IconButton = _wp$components.IconButton;
@@ -1799,7 +1849,7 @@ var ButtonEditable = function (_Component) {
 		var _this = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default()(this, (ButtonEditable.__proto__ || __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default()(ButtonEditable)).apply(this, arguments));
 
 		_this.state = {
-			displayForm: false
+			displayForm: true
 		};
 
 		_this.onFocus = _this.onFocus.bind(_this);
@@ -1808,14 +1858,14 @@ var ButtonEditable = function (_Component) {
 	}
 
 	__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(ButtonEditable, [{
-		key: "onFocus",
+		key: 'onFocus',
 		value: function onFocus() {
 			this.setState({
 				displayForm: true
 			});
 		}
 	}, {
-		key: "onSubmit",
+		key: 'onSubmit',
 		value: function onSubmit(event) {
 			event.preventDefault();
 			this.setState({
@@ -1823,28 +1873,34 @@ var ButtonEditable = function (_Component) {
 			});
 		}
 	}, {
-		key: "render",
+		key: 'render',
 		value: function render() {
-			var form = this.state.displayForm && this.props.isSelected && wp.element.createElement(
-				"form",
+			var link = this.props.linkField;
+			this.props.style = _.extend({
+				backgroundColor: this.props.backgroundColor,
+				color: this.props.textColor
+			}, this.props.style);
+
+			var buttonClass = this.props.buttonClass ? ' ' + this.props.buttonClass : '';
+			this.props.className = this.props.className + buttonClass;
+
+			var form = link && this.props.isSelected && this.state.displayForm && wp.element.createElement(
+				'form',
 				{
-					key: "form-link",
-					className: "blocks-button__inline-link",
+					key: 'form-link',
+					className: 'blocks-button__inline-link',
 					onSubmit: this.onSubmit },
-				wp.element.createElement(Dashicon, { icon: "admin-links" }),
-				wp.element.createElement(UrlInput, {
-					value: this.props.inputValue,
-					onChange: this.props.onInputChange
-				}),
-				wp.element.createElement(IconButton, { icon: "editor-break", label: __('Apply'), type: "submit" })
+				wp.element.createElement(Dashicon, { icon: 'admin-links' }),
+				link,
+				wp.element.createElement(IconButton, { icon: 'editor-break', label: __('Apply'), type: 'submit' })
 			);
 
 			return wp.element.createElement(
-				"div",
-				{ className: "button-editable" },
+				'div',
+				{ className: 'button-editable' },
 				wp.element.createElement(
-					"span",
-					{ className: "wp-block-button", key: "button" },
+					'span',
+					{ className: 'wp-block-button', key: 'button' },
 					wp.element.createElement(RichText, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 						onFocus: this.onFocus,
 						onClick: this.onFocus // Hack.
