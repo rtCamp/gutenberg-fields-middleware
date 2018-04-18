@@ -217,16 +217,15 @@ class GutenbergFieldsMiddleWare {
 			},
 		}, attribute.field );
 
-		if ( ! this.fields[ attributeKey ] && ! this.inspectorControlFields[ attributeKey ] ) {
-			const field = this.getField( props, config, attributeKey );
-			if ( 'inspector' === config.placement ) {
-				_.extend( this.inspectorControlFields, field );
-			} else {
-				_.extend( this.fields, field );
-			}
+		const field = this.getField( props, config, attributeKey );
 
-			return field;
+		if ( 'inspector' === config.placement ) {
+			_.extend( this.inspectorControlFields, field );
+		} else {
+			_.extend( this.fields, field );
 		}
+
+		return field;
 	}
 
 	getInnerFields( config ) {

@@ -1356,16 +1356,15 @@ var GutenbergFieldsMiddleWare = function () {
 				}
 			}, attribute.field);
 
-			if (!this.fields[attributeKey] && !this.inspectorControlFields[attributeKey]) {
-				var field = this.getField(props, config, attributeKey);
-				if ('inspector' === config.placement) {
-					_.extend(this.inspectorControlFields, field);
-				} else {
-					_.extend(this.fields, field);
-				}
+			var field = this.getField(props, config, attributeKey);
 
-				return field;
+			if ('inspector' === config.placement) {
+				_.extend(this.inspectorControlFields, field);
+			} else {
+				_.extend(this.fields, field);
 			}
+
+			return field;
 		}
 	}, {
 		key: 'getInnerFields',
