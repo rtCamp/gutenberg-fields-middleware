@@ -399,8 +399,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 				// field: video
 				el( 'video', {
 					className: 'video',
-					width: attributes.video ? attributes.video.width : '',
-					height: attributes.video ? attributes.video.height : '',
+					width: attributes.video ? attributes.video.width : null,
+					height: attributes.video ? attributes.video.height : null,
 					preload: 'auto',
 					controls: true,
 				}, el( 'source', {
