@@ -76,7 +76,7 @@ ul.file-upload-field-files,
 .file-upload-field .components-icon-button svg {
   position: relative;
   top: 3px; }
-.block-rich-text__inline-toolbar {
+.middleware-block .block-rich-text__inline-toolbar {
   height: 0; }
-  .block-rich-text__inline-toolbar .blocks-format-toolbar {
+  .middleware-block .block-rich-text__inline-toolbar .blocks-format-toolbar {
     height: 38px; }
