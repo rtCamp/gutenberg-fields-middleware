@@ -34,6 +34,9 @@ class ButtonEditable extends Component {
 			color: this.props.textColor,
 		}, this.props.style );
 
+		const buttonClass = this.props.buttonClass ? ' ' + this.props.buttonClass : '';
+		this.props.className = this.props.className + buttonClass;
+
 		const form = link && this.props.isSelected && this.state.displayForm && (
 			<form
 				key="form-link"

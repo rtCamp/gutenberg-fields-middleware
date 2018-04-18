@@ -111,6 +111,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 					link: 'buttonEditableLink',
 					backgroundColor: 'buttonBackgroundColor',
 					color: 'buttonColor',
+					class: 'buttonClasses',
 				},
 			},
 			source: 'children',
@@ -129,6 +130,28 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'color',
 				label: __( 'Button Color' ),
+				placement: 'inspector',
+			},
+		},
+		buttonClasses: {
+			type: 'string',
+			field: {
+				type: 'select',
+				label: __( 'Button Type' ),
+				options: [
+					{
+						value: 'button-large',
+						label: __( 'Large' ),
+					},
+					{
+						value: 'button-medium',
+						label: __( 'Medium' ),
+					},
+					{
+						value: 'button-small',
+						label: __( 'Small' ),
+					},
+				],
 				placement: 'inspector',
 			},
 		},

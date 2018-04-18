@@ -1666,6 +1666,7 @@ function buttonEditable(props, config, attributeKey, middleware) {
 	var innerFields = middleware.getInnerFields(attributeKey);
 	var backgroundColorAttributeKey = config.innerFields ? config.innerFields.backgroundColor : '';
 	var textColorAttributeKey = config.innerFields ? config.innerFields.color : '';
+	var buttonClassAttributeKey = config.innerFields ? config.innerFields.class : '';
 
 	fieldAttributes.onChange = function (value) {
 		if (config.onChange) {
@@ -1682,7 +1683,8 @@ function buttonEditable(props, config, attributeKey, middleware) {
 		isSelected: props.isSelected && attributeKey === props.editable,
 		linkField: innerFields.link,
 		backgroundColor: backgroundColorAttributeKey ? props.attributes[backgroundColorAttributeKey] : null,
-		textColor: textColorAttributeKey ? props.attributes[textColorAttributeKey] : null
+		textColor: textColorAttributeKey ? props.attributes[textColorAttributeKey] : null,
+		buttonClass: buttonClassAttributeKey ? props.attributes[buttonClassAttributeKey] : null
 	}));
 }
 
@@ -1799,14 +1801,14 @@ var ButtonEditable = function (_Component) {
 	}
 
 	__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(ButtonEditable, [{
-		key: "onFocus",
+		key: 'onFocus',
 		value: function onFocus() {
 			this.setState({
 				displayForm: true
 			});
 		}
 	}, {
-		key: "onSubmit",
+		key: 'onSubmit',
 		value: function onSubmit(event) {
 			event.preventDefault();
 			this.setState({
@@ -1814,7 +1816,7 @@ var ButtonEditable = function (_Component) {
 			});
 		}
 	}, {
-		key: "render",
+		key: 'render',
 		value: function render() {
 			var link = this.props.linkField;
 			this.props.style = _.extend({
@@ -1822,23 +1824,26 @@ var ButtonEditable = function (_Component) {
 				color: this.props.textColor
 			}, this.props.style);
 
+			var buttonClass = this.props.buttonClass ? ' ' + this.props.buttonClass : '';
+			this.props.className = this.props.className + buttonClass;
+
 			var form = link && this.props.isSelected && this.state.displayForm && wp.element.createElement(
-				"form",
+				'form',
 				{
-					key: "form-link",
-					className: "blocks-button__inline-link",
+					key: 'form-link',
+					className: 'blocks-button__inline-link',
 					onSubmit: this.onSubmit },
-				wp.element.createElement(Dashicon, { icon: "admin-links" }),
+				wp.element.createElement(Dashicon, { icon: 'admin-links' }),
 				link,
-				wp.element.createElement(IconButton, { icon: "editor-break", label: __('Apply'), type: "submit" })
+				wp.element.createElement(IconButton, { icon: 'editor-break', label: __('Apply'), type: 'submit' })
 			);
 
 			return wp.element.createElement(
-				"div",
-				{ className: "button-editable" },
+				'div',
+				{ className: 'button-editable' },
 				wp.element.createElement(
-					"span",
-					{ className: "wp-block-button", key: "button" },
+					'span',
+					{ className: 'wp-block-button', key: 'button' },
 					wp.element.createElement(RichText, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 						onFocus: this.onFocus,
 						onClick: this.onFocus // Hack.

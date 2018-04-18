@@ -20,6 +20,7 @@ export default function buttonEditable( props, config, attributeKey, middleware 
 	const innerFields = middleware.getInnerFields( attributeKey );
 	const backgroundColorAttributeKey = config.innerFields ? config.innerFields.backgroundColor : '';
 	const textColorAttributeKey = config.innerFields ? config.innerFields.color : '';
+	const buttonClassAttributeKey = config.innerFields ? config.innerFields.class : '';
 
 	fieldAttributes.onChange = ( value ) => {
 		if ( config.onChange ) {
@@ -39,6 +40,7 @@ export default function buttonEditable( props, config, attributeKey, middleware 
 			linkField={ innerFields.link }
 			backgroundColor={ backgroundColorAttributeKey ? props.attributes[ backgroundColorAttributeKey ] : null }
 			textColor={ textColorAttributeKey ? props.attributes[ textColorAttributeKey ] : null }
+			buttonClass={ buttonClassAttributeKey ? props.attributes[ buttonClassAttributeKey ] : null }
 		/>
 	);
 }
