@@ -48,7 +48,7 @@ class GutenbergFieldsMiddleWare {
 		}, this.config );
 
 		this.blockConfigs.edit = withState( {
-			editable: 'content',
+			editable: '',
 		} )( ( props ) => {
 			this.setupBlockFields( props );
 
@@ -165,11 +165,20 @@ class GutenbergFieldsMiddleWare {
 	 */
 	setupBlockFields( props ) {
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
+
 			if ( attribute.field ) {
-				if ( 'inspector' === attribute.field.placement ) {
-					_.extend( this.inspectorControlFields, this.getField( props, attribute.field, attributeKey ) );
+				const config = _.extend( {
+					onFocus() {
+						props.setState( {
+							editable: attributeKey,
+						} );
+					},
+				}, attribute.field );
+
+				if ( 'inspector' === config.placement ) {
+					_.extend( this.inspectorControlFields, this.getField( props, config, attributeKey ) );
 				} else {
-					_.extend( this.fields, this.getField( props, attribute.field, attributeKey ) );
+					_.extend( this.fields, this.getField( props, config, attributeKey ) );
 				}
 			}
 		} );

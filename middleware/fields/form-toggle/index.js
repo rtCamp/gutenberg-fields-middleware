@@ -8,11 +8,6 @@ export default function formToggle( props, config, attributeKey ) {
 	const defaultAttributes = {
 		checked: 'on' === props.attributes[ attributeKey ],
 		value: props.attributes[ attributeKey ] || 'off',
-		onFocus() {
-			props.setState( {
-				editable: attributeKey,
-			} );
-		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

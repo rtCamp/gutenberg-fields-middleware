@@ -7,11 +7,6 @@ const { CodeEditor } = wp.components;
 export default function codeEditor( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
-		onFocus() {
-			props.setState( {
-				editable: attributeKey,
-			} );
-		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

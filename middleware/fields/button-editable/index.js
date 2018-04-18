@@ -13,11 +13,6 @@ export default function buttonEditable( props, config, attributeKey ) {
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true,
 		inlineToolbar: true,
-		onFocus() {
-			props.setState( {
-				editable: attributeKey,
-			} );
-		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

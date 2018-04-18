@@ -15,12 +15,6 @@ export default function fileUpload( props, config, attributeKey ) {
 		accept: '*',
 		allowedTypes: [ 'image', 'video', 'audio', 'text', 'message', 'application' ],
 		isLarge: true,
-
-		onFocus() {
-			props.setState( {
-				editable: attributeKey,
-			} );
-		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

@@ -10,12 +10,6 @@ export default function inputField( props, config, attributeKey ) {
 		value: props.attributes[ attributeKey ],
 
 		className: 'components-text-control__input',
-
-		onFocus() {
-			props.setState( {
-				editable: attributeKey,
-			} );
-		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

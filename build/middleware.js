@@ -75,7 +75,7 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store = __webpack_require__(23)('wks');
+var store = __webpack_require__(24)('wks');
 var uid = __webpack_require__(16);
 var Symbol = __webpack_require__(2).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
@@ -106,7 +106,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 var global = __webpack_require__(2);
 var core = __webpack_require__(0);
-var ctx = __webpack_require__(25);
+var ctx = __webpack_require__(26);
 var hide = __webpack_require__(9);
 var PROTOTYPE = 'prototype';
 
@@ -173,7 +173,7 @@ module.exports = $export;
 
 var anObject = __webpack_require__(6);
 var IE8_DOM_DEFINE = __webpack_require__(41);
-var toPrimitive = __webpack_require__(26);
+var toPrimitive = __webpack_require__(27);
 var dP = Object.defineProperty;
 
 exports.f = __webpack_require__(7) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
@@ -226,7 +226,7 @@ module.exports = !__webpack_require__(11)(function () {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = __webpack_require__(38);
-var defined = __webpack_require__(19);
+var defined = __webpack_require__(20);
 module.exports = function (it) {
   return IObject(defined(it));
 };
@@ -280,7 +280,7 @@ module.exports = {};
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(19);
+var defined = __webpack_require__(20);
 module.exports = function (it) {
   return Object(defined(it));
 };
@@ -292,7 +292,7 @@ module.exports = function (it) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 var $keys = __webpack_require__(37);
-var enumBugKeys = __webpack_require__(24);
+var enumBugKeys = __webpack_require__(25);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
@@ -326,13 +326,42 @@ module.exports = function (key) {
 
 /***/ }),
 /* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _assign = __webpack_require__(68);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _assign2.default || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -356,7 +385,7 @@ __webpack_require__(47)(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -367,7 +396,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -378,7 +407,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 // 7.1.4 ToInteger
@@ -390,10 +419,10 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(23)('keys');
+var shared = __webpack_require__(24)('keys');
 var uid = __webpack_require__(16);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
@@ -401,7 +430,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
@@ -413,7 +442,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -423,7 +452,7 @@ module.exports = (
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
@@ -449,7 +478,7 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
@@ -467,7 +496,7 @@ module.exports = function (it, S) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -482,7 +511,7 @@ exports.default = function (instance, Constructor) {
 };
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -515,35 +544,6 @@ exports.default = function () {
 }();
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _assign = __webpack_require__(68);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _assign2.default || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-/***/ }),
 /* 30 */
 /***/ (function(module, exports) {
 
@@ -564,8 +564,8 @@ module.exports = true;
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = __webpack_require__(6);
 var dPs = __webpack_require__(79);
-var enumBugKeys = __webpack_require__(24);
-var IE_PROTO = __webpack_require__(22)('IE_PROTO');
+var enumBugKeys = __webpack_require__(25);
+var IE_PROTO = __webpack_require__(23)('IE_PROTO');
 var Empty = function () { /* empty */ };
 var PROTOTYPE = 'prototype';
 
@@ -671,7 +671,7 @@ module.exports = function (name) {
 var has = __webpack_require__(5);
 var toIObject = __webpack_require__(8);
 var arrayIndexOf = __webpack_require__(60)(false);
-var IE_PROTO = __webpack_require__(22)('IE_PROTO');
+var IE_PROTO = __webpack_require__(23)('IE_PROTO');
 
 module.exports = function (object, names) {
   var O = toIObject(object);
@@ -692,7 +692,7 @@ module.exports = function (object, names) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(20);
+var cof = __webpack_require__(21);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -704,7 +704,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
-var toInteger = __webpack_require__(21);
+var toInteger = __webpack_require__(22);
 var min = Math.min;
 module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
@@ -762,7 +762,7 @@ module.exports = { "default": __webpack_require__(73), __esModule: true };
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = __webpack_require__(5);
 var toObject = __webpack_require__(13);
-var IE_PROTO = __webpack_require__(22)('IE_PROTO');
+var IE_PROTO = __webpack_require__(23)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function (O) {
@@ -914,7 +914,7 @@ module.exports = __webpack_require__(9);
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys = __webpack_require__(37);
-var hiddenKeys = __webpack_require__(24).concat('length', 'prototype');
+var hiddenKeys = __webpack_require__(25).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
@@ -925,10 +925,10 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(17);
+var pIE = __webpack_require__(18);
 var createDesc = __webpack_require__(15);
 var toIObject = __webpack_require__(8);
-var toPrimitive = __webpack_require__(26);
+var toPrimitive = __webpack_require__(27);
 var has = __webpack_require__(5);
 var IE8_DOM_DEFINE = __webpack_require__(41);
 var gOPD = Object.getOwnPropertyDescriptor;
@@ -1001,7 +1001,7 @@ module.exports = __webpack_require__(0).getIteratorMethod = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(20);
+var cof = __webpack_require__(21);
 var TAG = __webpack_require__(1)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
@@ -1031,7 +1031,7 @@ module.exports = function (it) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = inputField;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 
 /**
@@ -1048,13 +1048,7 @@ function inputField(props, config, attributeKey) {
 
 		value: props.attributes[attributeKey],
 
-		className: 'components-text-control__input',
-
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		className: 'components-text-control__input'
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -1102,9 +1096,9 @@ module.exports = __webpack_require__(56);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fields__ = __webpack_require__(66);
 
@@ -1170,7 +1164,7 @@ var GutenbergFieldsMiddleWare = function () {
 			}, this.config);
 
 			this.blockConfigs.edit = withState({
-				editable: 'content'
+				editable: ''
 			})(function (props) {
 				_this.setupBlockFields(props);
 
@@ -1295,11 +1289,20 @@ var GutenbergFieldsMiddleWare = function () {
 			var _this2 = this;
 
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
+
 				if (attribute.field) {
-					if ('inspector' === attribute.field.placement) {
-						_.extend(_this2.inspectorControlFields, _this2.getField(props, attribute.field, attributeKey));
+					var config = _.extend({
+						onFocus: function onFocus() {
+							props.setState({
+								editable: attributeKey
+							});
+						}
+					}, attribute.field);
+
+					if ('inspector' === config.placement) {
+						_.extend(_this2.inspectorControlFields, _this2.getField(props, config, attributeKey));
 					} else {
-						_.extend(_this2.fields, _this2.getField(props, attribute.field, attributeKey));
+						_.extend(_this2.fields, _this2.getField(props, config, attributeKey));
 					}
 				}
 			});
@@ -1450,7 +1453,7 @@ module.exports = function (IS_INCLUDES) {
 /* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(21);
+var toInteger = __webpack_require__(22);
 var max = Math.max;
 var min = Math.min;
 module.exports = function (index, length) {
@@ -1528,13 +1531,13 @@ $export($export.S + $export.F * !__webpack_require__(7), 'Object', { definePrope
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_12__range__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__rich_text__ = __webpack_require__(130);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_13__rich_text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__select__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__select__ = __webpack_require__(132);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_14__select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__text__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__text__ = __webpack_require__(133);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_15__text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__textarea__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__textarea__ = __webpack_require__(134);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_16__textarea__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__tree_select__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__tree_select__ = __webpack_require__(135);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_17__tree_select__["a"]; });
 
 
@@ -1561,7 +1564,7 @@ $export($export.S + $export.F * !__webpack_require__(7), 'Object', { definePrope
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buttonEditable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_button_editable__ = __webpack_require__(72);
 
@@ -1580,12 +1583,7 @@ function buttonEditable(props, config, attributeKey) {
 		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : '',
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true,
-		inlineToolbar: true,
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		inlineToolbar: true
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -1654,7 +1652,7 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(71) });
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(14);
 var gOPS = __webpack_require__(30);
-var pIE = __webpack_require__(17);
+var pIE = __webpack_require__(18);
 var toObject = __webpack_require__(13);
 var IObject = __webpack_require__(38);
 var $assign = Object.assign;
@@ -1691,13 +1689,13 @@ module.exports = !$assign || __webpack_require__(11)(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
@@ -1821,7 +1819,7 @@ module.exports = { "default": __webpack_require__(76), __esModule: true };
 /* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(18);
+__webpack_require__(19);
 __webpack_require__(34);
 module.exports = __webpack_require__(35).f('iterator');
 
@@ -1830,8 +1828,8 @@ module.exports = __webpack_require__(35).f('iterator');
 /* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(21);
-var defined = __webpack_require__(19);
+var toInteger = __webpack_require__(22);
+var defined = __webpack_require__(20);
 // true  -> String#at
 // false -> String#codePointAt
 module.exports = function (TO_STRING) {
@@ -1984,7 +1982,7 @@ var $export = __webpack_require__(3);
 var redefine = __webpack_require__(48);
 var META = __webpack_require__(87).KEY;
 var $fails = __webpack_require__(11);
-var shared = __webpack_require__(23);
+var shared = __webpack_require__(24);
 var setToStringTag = __webpack_require__(33);
 var uid = __webpack_require__(16);
 var wks = __webpack_require__(1);
@@ -1995,7 +1993,7 @@ var isArray = __webpack_require__(89);
 var anObject = __webpack_require__(6);
 var isObject = __webpack_require__(10);
 var toIObject = __webpack_require__(8);
-var toPrimitive = __webpack_require__(26);
+var toPrimitive = __webpack_require__(27);
 var createDesc = __webpack_require__(15);
 var _create = __webpack_require__(32);
 var gOPNExt = __webpack_require__(90);
@@ -2125,7 +2123,7 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(49).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(17).f = $propertyIsEnumerable;
+  __webpack_require__(18).f = $propertyIsEnumerable;
   __webpack_require__(30).f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(31)) {
@@ -2277,7 +2275,7 @@ var meta = module.exports = {
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(14);
 var gOPS = __webpack_require__(30);
-var pIE = __webpack_require__(17);
+var pIE = __webpack_require__(18);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -2296,7 +2294,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(20);
+var cof = __webpack_require__(21);
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
@@ -2386,7 +2384,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function (test, buggy, set) {
       try {
-        set = __webpack_require__(25)(Function.call, __webpack_require__(50).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(26)(Function.call, __webpack_require__(50).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch (e) { buggy = true; }
@@ -2443,12 +2441,7 @@ var CheckboxControl = wp.components.CheckboxControl;
 function checkbox(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: '1',
-		checked: props.attributes[attributeKey],
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		checked: props.attributes[attributeKey]
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2483,12 +2476,7 @@ var CodeEditor = wp.components.CodeEditor;
 
 function codeEditor(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || '',
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2526,12 +2514,7 @@ var __ = wp.i18n.__;
 function color(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || '',
-		label: __('Color'),
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		label: __('Color')
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2588,13 +2571,7 @@ function dateTime(props, config, attributeKey) {
 
 		is12Hour: is12HourTime,
 
-		label: __('Date'),
-
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		label: __('Date')
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2659,13 +2636,7 @@ function fileUpload(props, config, attributeKey) {
 	var defaultAttributes = {
 		accept: '*',
 		allowedTypes: ['image', 'video', 'audio', 'text', 'message', 'application'],
-		isLarge: true,
-
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		isLarge: true
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2896,7 +2867,7 @@ module.exports = { "default": __webpack_require__(108), __esModule: true };
 /* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(18);
+__webpack_require__(19);
 __webpack_require__(109);
 module.exports = __webpack_require__(0).Array.from;
 
@@ -2907,7 +2878,7 @@ module.exports = __webpack_require__(0).Array.from;
 
 "use strict";
 
-var ctx = __webpack_require__(25);
+var ctx = __webpack_require__(26);
 var $export = __webpack_require__(3);
 var toObject = __webpack_require__(13);
 var call = __webpack_require__(110);
@@ -3044,12 +3015,7 @@ var _wp$components = wp.components,
 function formToggle(props, config, attributeKey) {
 	var defaultAttributes = {
 		checked: 'on' === props.attributes[attributeKey],
-		value: props.attributes[attributeKey] || 'off',
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		value: props.attributes[attributeKey] || 'off'
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3106,11 +3072,6 @@ function image(props, config, attributeKey) {
 
 		value: imageObject || '',
 
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		},
 		render: function render(_ref) {
 			var open = _ref.open;
 
@@ -3222,12 +3183,7 @@ var BaseControl = wp.components.BaseControl;
 
 function link(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey],
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		value: props.attributes[attributeKey]
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3279,12 +3235,7 @@ function mediaUpload(props, config, attributeKey) {
 	var defaultAttributes = {
 		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
-		isSelected: props.isSelected && attributeKey === props.editable,
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		isSelected: props.isSelected && attributeKey === props.editable
 	};
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
@@ -3328,9 +3279,9 @@ function mediaUpload(props, config, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
@@ -3665,7 +3616,7 @@ module.exports = { "default": __webpack_require__(123), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(34);
-__webpack_require__(18);
+__webpack_require__(19);
 module.exports = __webpack_require__(124);
 
 
@@ -3696,7 +3647,7 @@ module.exports = { "default": __webpack_require__(126), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(34);
-__webpack_require__(18);
+__webpack_require__(19);
 module.exports = __webpack_require__(127);
 
 
@@ -3728,12 +3679,7 @@ var RadioControl = wp.components.RadioControl;
 
 function radio(props, config, attributeKey) {
 	var defaultAttributes = {
-		selected: props.attributes[attributeKey],
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		selected: props.attributes[attributeKey]
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3768,12 +3714,7 @@ var RangeControl = wp.components.RangeControl;
 
 function range(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || '',
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3799,12 +3740,15 @@ function range(props, config, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = richText;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 
 /**
  * Text field.
  */
+
 
 var RichText = wp.blocks.RichText;
 
@@ -3812,12 +3756,7 @@ var RichText = wp.blocks.RichText;
 function richText(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || '',
-		inlineToolbar: true,
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		inlineToolbar: true
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3841,6 +3780,12 @@ function richText(props, config, attributeKey) {
 
 /***/ }),
 /* 131 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3854,12 +3799,7 @@ var SelectControl = wp.components.SelectControl;
 
 function select(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || '',
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3880,7 +3820,7 @@ function select(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3900,12 +3840,7 @@ function text(props, config, attributeKey) {
 	}
 
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || '',
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3926,7 +3861,7 @@ function text(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3942,12 +3877,7 @@ var _wp$components = wp.components,
 
 function textarea(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || '',
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		value: props.attributes[attributeKey] || ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3974,7 +3904,7 @@ function textarea(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3988,12 +3918,7 @@ var TreeSelect = wp.components.TreeSelect;
 
 function treeSelect(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey],
-		onFocus: function onFocus() {
-			props.setState({
-				editable: attributeKey
-			});
-		}
+		value: props.attributes[attributeKey]
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);

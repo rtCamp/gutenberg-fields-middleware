@@ -2,17 +2,13 @@
  * Text field.
  */
 
+import './editor.scss';
 const { RichText } = wp.blocks;
 
 export default function richText( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
 		inlineToolbar: true,
-		onFocus() {
-			props.setState( {
-				editable: attributeKey,
-			} );
-		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
