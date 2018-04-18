@@ -1542,19 +1542,19 @@ $export($export.S + $export.F * !__webpack_require__(7), 'Object', { definePrope
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_9__link__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__media_upload__ = __webpack_require__(119);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_10__media_upload__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__radio__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__radio__ = __webpack_require__(129);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_11__radio__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__range__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__range__ = __webpack_require__(130);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_12__range__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__rich_text__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__rich_text__ = __webpack_require__(131);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_13__rich_text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__select__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__select__ = __webpack_require__(133);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_14__select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__text__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__text__ = __webpack_require__(134);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_15__text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__textarea__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__textarea__ = __webpack_require__(135);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_16__textarea__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__tree_select__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__tree_select__ = __webpack_require__(136);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_17__tree_select__["a"]; });
 
 
@@ -3252,7 +3252,7 @@ function mediaUpload(props, config, attributeKey) {
 	var defaultAttributes = {
 		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
-		isSelected: props.isSelected && attributeKey === props.editable
+		isSelected: props.isSelected
 	};
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
@@ -3262,12 +3262,6 @@ function mediaUpload(props, config, attributeKey) {
 		var newAttributes = {};
 		newAttributes[attributeKey] = '';
 		props.setAttributes(newAttributes);
-	};
-
-	fieldAttributes.setEditableState = function () {
-		props.setState({
-			editable: attributeKey
-		});
 	};
 
 	fieldAttributes.setMediaAttributes = function (media) {
@@ -3310,6 +3304,10 @@ function mediaUpload(props, config, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editor_scss__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__editor_scss__);
+
+
 
 
 
@@ -3320,8 +3318,7 @@ var Component = wp.element.Component;
 var __ = wp.i18n.__;
 var _wp$blocks = wp.blocks,
     PlainText = _wp$blocks.PlainText,
-    MediaUpload = _wp$blocks.MediaUpload,
-    BlockControls = _wp$blocks.BlockControls;
+    MediaUpload = _wp$blocks.MediaUpload;
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
     FormFileUpload = _wp$components.FormFileUpload,
@@ -3482,31 +3479,27 @@ var MediaPlaceholder = function (_Component) {
 
 			var mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
-			var controls = !this.state.editing && isSelected && wp.element.createElement(
-				BlockControls,
+			var controls = wp.element.createElement(
+				Toolbar,
 				{ key: 'controls' },
-				wp.element.createElement(
-					Toolbar,
-					null,
-					wp.element.createElement(IconButton, {
-						className: 'components-icon-button components-toolbar__control',
-						label: __('Edit ') + type,
-						onClick: this.switchToEditing,
-						icon: 'edit'
-					})
-				)
+				wp.element.createElement(IconButton, {
+					className: 'components-icon-button components-toolbar__control',
+					label: __('Edit ') + type,
+					onClick: this.switchToEditing,
+					icon: 'edit'
+				})
 			);
 
 			if (this.state.editing) {
 				var mediaIcon = 'media-' + type;
 
-				return [controls, wp.element.createElement(
+				return wp.element.createElement(
 					Placeholder,
 					{
 						key: 'placeholder',
 						icon: mediaIcon,
 						label: type,
-						className: 'wp-block-' + type + ' middleware-field-' + type,
+						className: className + ' wp-block-' + type,
 						instructions: placeholderText },
 					wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop }),
 					wp.element.createElement(
@@ -3548,12 +3541,13 @@ var MediaPlaceholder = function (_Component) {
 							);
 						}
 					})
-				)];
+				);
 			}
 
-			return [controls, wp.element.createElement(
+			return wp.element.createElement(
 				'div',
-				{ key: type, onClick: this.props.setEditableState },
+				{ className: 'middleware-media-field' },
+				controls,
 				wp.element.createElement(
 					'figure',
 					{ key: type, className: className + ' wp-block-' + type },
@@ -3566,7 +3560,7 @@ var MediaPlaceholder = function (_Component) {
 						onChange: setCaption
 					})
 				)
-			)];
+			);
 		}
 	}]);
 
@@ -3693,6 +3687,12 @@ module.exports = __webpack_require__(0).getIterator = function (it) {
 
 /***/ }),
 /* 128 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3727,7 +3727,7 @@ function radio(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3762,14 +3762,14 @@ function range(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = richText;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 
 /**
@@ -3806,13 +3806,13 @@ function richText(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3847,7 +3847,7 @@ function select(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3888,7 +3888,7 @@ function text(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3931,7 +3931,7 @@ function textarea(props, config, attributeKey) {
 }
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

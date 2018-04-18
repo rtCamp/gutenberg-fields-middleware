@@ -76,6 +76,18 @@ ul.file-upload-field-files,
 .file-upload-field .components-icon-button svg {
   position: relative;
   top: 3px; }
+.middleware-media-field {
+  position: relative; }
+  .middleware-media-field .components-toolbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    display: none; }
+  .middleware-media-field:hover .components-toolbar {
+    display: inline-block; }
+  .middleware-media-field textarea {
+    text-align: center; }
 .middleware-block .block-rich-text__inline-toolbar {
   height: 0; }
   .middleware-block .block-rich-text__inline-toolbar .blocks-format-toolbar {
