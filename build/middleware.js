@@ -1048,7 +1048,13 @@ function inputField(props, config, attributeKey) {
 
 		value: props.attributes[attributeKey],
 
-		className: 'components-text-control__input'
+		className: 'components-text-control__input',
+
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -1110,6 +1116,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var InspectorControls = wp.blocks.InspectorControls;
 var addFilter = wp.hooks.addFilter;
+var withState = wp.components.withState;
 
 /**
  * Fields
@@ -1162,7 +1169,9 @@ var GutenbergFieldsMiddleWare = function () {
 
 			}, this.config);
 
-			this.blockConfigs.edit = function (props) {
+			this.blockConfigs.edit = withState({
+				editable: 'content'
+			})(function (props) {
 				_this.setupBlockFields(props);
 
 				props.middleware = _this;
@@ -1176,7 +1185,7 @@ var GutenbergFieldsMiddleWare = function () {
 				}
 
 				return _this.edit(props);
-			};
+			});
 
 			this.blockConfigs.save = function (props) {
 				props.middleware = _this;
@@ -1570,7 +1579,13 @@ function buttonEditable(props, config, attributeKey) {
 		tagName: 'span',
 		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : '',
 		className: 'wp-block-button__link',
-		keepPlaceholderOnFocus: true
+		keepPlaceholderOnFocus: true,
+		inlineToolbar: true,
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -1602,7 +1617,7 @@ function buttonEditable(props, config, attributeKey) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_button_editable__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 		inputValue: props.attributes[attributeKey] ? props.attributes[attributeKey].link : '',
 		buttonValue: fieldAttributes.value,
-		isSelected: props.isSelected
+		isSelected: props.isSelected && attributeKey === props.editable
 	}));
 }
 
@@ -2428,7 +2443,12 @@ var CheckboxControl = wp.components.CheckboxControl;
 function checkbox(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: '1',
-		checked: props.attributes[attributeKey]
+		checked: props.attributes[attributeKey],
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2463,7 +2483,12 @@ var CodeEditor = wp.components.CodeEditor;
 
 function codeEditor(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
+		value: props.attributes[attributeKey] || '',
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2501,8 +2526,12 @@ var __ = wp.i18n.__;
 function color(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || '',
-
-		label: __('Color')
+		label: __('Color'),
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2559,7 +2588,13 @@ function dateTime(props, config, attributeKey) {
 
 		is12Hour: is12HourTime,
 
-		label: __('Date')
+		label: __('Date'),
+
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2624,7 +2659,13 @@ function fileUpload(props, config, attributeKey) {
 	var defaultAttributes = {
 		accept: '*',
 		allowedTypes: ['image', 'video', 'audio', 'text', 'message', 'application'],
-		isLarge: true
+		isLarge: true,
+
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3003,7 +3044,12 @@ var _wp$components = wp.components,
 function formToggle(props, config, attributeKey) {
 	var defaultAttributes = {
 		checked: 'on' === props.attributes[attributeKey],
-		value: props.attributes[attributeKey] || 'off'
+		value: props.attributes[attributeKey] || 'off',
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3060,6 +3106,11 @@ function image(props, config, attributeKey) {
 
 		value: imageObject || '',
 
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		},
 		render: function render(_ref) {
 			var open = _ref.open;
 
@@ -3171,7 +3222,12 @@ var BaseControl = wp.components.BaseControl;
 
 function link(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey]
+		value: props.attributes[attributeKey],
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3223,7 +3279,12 @@ function mediaUpload(props, config, attributeKey) {
 	var defaultAttributes = {
 		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
-		isSelected: props.isSelected
+		isSelected: props.isSelected && attributeKey === props.editable,
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
@@ -3667,7 +3728,12 @@ var RadioControl = wp.components.RadioControl;
 
 function radio(props, config, attributeKey) {
 	var defaultAttributes = {
-		selected: props.attributes[attributeKey]
+		selected: props.attributes[attributeKey],
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3702,7 +3768,12 @@ var RangeControl = wp.components.RangeControl;
 
 function range(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
+		value: props.attributes[attributeKey] || '',
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3728,6 +3799,9 @@ function range(props, config, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = richText;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+
 /**
  * Text field.
  */
@@ -3739,9 +3813,10 @@ function richText(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || '',
 		inlineToolbar: true,
-		isSelected: false,
 		onFocus: function onFocus() {
-			this.isSelected = true;
+			props.setState({
+				editable: attributeKey
+			});
 		}
 	};
 
@@ -3759,7 +3834,9 @@ function richText(props, config, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(RichText, fieldAttributes);
+	return wp.element.createElement(RichText, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		isSelected: props.isSelected && attributeKey === props.editable
+	}));
 }
 
 /***/ }),
@@ -3777,7 +3854,12 @@ var SelectControl = wp.components.SelectControl;
 
 function select(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
+		value: props.attributes[attributeKey] || '',
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3818,7 +3900,12 @@ function text(props, config, attributeKey) {
 	}
 
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
+		value: props.attributes[attributeKey] || '',
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3855,7 +3942,12 @@ var _wp$components = wp.components,
 
 function textarea(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
+		value: props.attributes[attributeKey] || '',
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3896,7 +3988,12 @@ var TreeSelect = wp.components.TreeSelect;
 
 function treeSelect(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey]
+		value: props.attributes[attributeKey],
+		onFocus: function onFocus() {
+			props.setState({
+				editable: attributeKey
+			});
+		}
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);

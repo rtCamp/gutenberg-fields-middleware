@@ -8,9 +8,10 @@ export default function richText( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
 		inlineToolbar: true,
-		isSelected: false,
 		onFocus() {
-			this.isSelected = true;
+			props.setState( {
+				editable: attributeKey,
+			} );
 		},
 	};
 
@@ -31,6 +32,7 @@ export default function richText( props, config, attributeKey ) {
 	return (
 		<RichText
 			{ ...fieldAttributes }
+			isSelected={ props.isSelected && attributeKey === props.editable }
 		/>
 	);
 }

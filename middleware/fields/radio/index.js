@@ -7,6 +7,11 @@ const { RadioControl } = wp.components;
 export default function radio( props, config, attributeKey ) {
 	const defaultAttributes = {
 		selected: props.attributes[ attributeKey ],
+		onFocus() {
+			props.setState( {
+				editable: attributeKey,
+			} );
+		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

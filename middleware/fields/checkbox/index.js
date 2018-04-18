@@ -8,6 +8,11 @@ export default function checkbox( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: '1',
 		checked: props.attributes[ attributeKey ],
+		onFocus() {
+			props.setState( {
+				editable: attributeKey,
+			} );
+		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

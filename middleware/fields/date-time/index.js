@@ -23,6 +23,12 @@ export default function dateTime( props, config, attributeKey ) {
 		is12Hour: is12HourTime,
 
 		label: __( 'Date' ),
+
+		onFocus() {
+			props.setState( {
+				editable: attributeKey,
+			} );
+		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

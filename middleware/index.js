@@ -4,6 +4,7 @@
 
 const { InspectorControls } = wp.blocks;
 const { addFilter } = wp.hooks;
+const { withState } = wp.components;
 
 /**
  * Fields
@@ -46,7 +47,9 @@ class GutenbergFieldsMiddleWare {
 
 		}, this.config );
 
-		this.blockConfigs.edit = ( props ) => {
+		this.blockConfigs.edit = withState( {
+			editable: 'content',
+		} )( ( props ) => {
 			this.setupBlockFields( props );
 
 			props.middleware = this;
@@ -60,7 +63,7 @@ class GutenbergFieldsMiddleWare {
 			}
 
 			return this.edit( props );
-		};
+		} );
 
 		this.blockConfigs.save = ( props ) => {
 			props.middleware = this;

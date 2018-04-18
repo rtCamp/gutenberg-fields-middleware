@@ -18,6 +18,12 @@ export default function image( props, config, attributeKey ) {
 
 		value: imageObject || '',
 
+		onFocus() {
+			props.setState( {
+				editable: attributeKey,
+			} );
+		},
+
 		render( { open } ) {
 			const nodes = [];
 

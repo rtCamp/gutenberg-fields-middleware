@@ -9,8 +9,12 @@ const { __ } = wp.i18n;
 export default function color( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
-
 		label: __( 'Color' ),
+		onFocus() {
+			props.setState( {
+				editable: attributeKey,
+			} );
+		},
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
