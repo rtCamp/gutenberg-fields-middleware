@@ -3252,7 +3252,7 @@ function mediaUpload(props, config, attributeKey) {
 	var defaultAttributes = {
 		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
-		isSelected: props.isSelected && attributeKey === props.editable
+		isSelected: props.isSelected
 	};
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
@@ -3500,7 +3500,7 @@ var MediaPlaceholder = function (_Component) {
 						key: 'placeholder',
 						icon: mediaIcon,
 						label: type,
-						className: 'middleware-field-' + type,
+						className: 'wp-block-' + type + ' middleware-field-' + type,
 						instructions: placeholderText },
 					wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop }),
 					wp.element.createElement(
