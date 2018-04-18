@@ -46,5 +46,10 @@
 			"<rootDir>/test/unit/setup-blocks.js",
 			"<rootDir>/test/unit/setup-wp-aliases.js"
 		]
-	}
+	},
+	"browserslist": [
+		"> 1%",
+		"ie 11",
+		"last 2 versions"
+	]
 }
