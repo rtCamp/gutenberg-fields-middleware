@@ -1,0 +1,20 @@
+.middleware-media-field {
+  position: relative;
+  .components-toolbar {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	display: none;
+  }
+
+  &:hover {
+	.components-toolbar {
+	  display: inline-block;
+	}
+  }
+
+  textarea {
+	text-align: center;
+  }
+}

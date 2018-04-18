@@ -1,10 +1,11 @@
+import './editor.scss';
+
 const { Component } = wp.element;
 const { __ } = wp.i18n;
 
 const {
 	PlainText,
 	MediaUpload,
-	BlockControls,
 } = wp.blocks;
 
 const {
@@ -130,25 +131,22 @@ class MediaPlaceholder extends Component {
 		const mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
 		const controls = (
-			! this.state.editing && isSelected && (
-				<BlockControls key="controls">
-					<Toolbar>
-						<IconButton
-							className="components-icon-button components-toolbar__control"
-							label={ __( 'Edit ' ) + type }
-							onClick={ this.switchToEditing }
-							icon="edit"
-						/>
-					</Toolbar>
-				</BlockControls>
+			this.props.isSelected && (
+				<Toolbar key={ type }>
+					<IconButton
+						className="components-icon-button components-toolbar__control"
+						label={ __( 'Edit ' ) + type }
+						onClick={ this.switchToEditing }
+						icon="edit"
+					/>
+				</Toolbar>
 			)
 		);
 
 		if ( this.state.editing ) {
 			const mediaIcon = 'media-' + type;
 
-			return [
-				controls,
+			return (
 				<Placeholder
 					key="placeholder"
 					icon={ mediaIcon }
@@ -186,29 +184,33 @@ class MediaPlaceholder extends Component {
 							</Button>
 						) }
 					/>
-				</Placeholder>,
-			];
+				</Placeholder>
+			);
 		}
 
-		return [
-			controls,
-			<figure key={ type } className={ className + ' wp-block-' + type }>
-				{ 'video' === type && (
-					<video controls src={ this.state.mediaData.url } />
-				) }
-				{ 'audio' === type && (
-					<audio controls src={ this.state.mediaData.url } />
-				) }
-				{ isSelected && caption && (
-					<PlainText
-						placeholder={ __( 'Write caption…' ) }
-						value={ mediaCaption }
-						isSelected={ isSelected }
-						onChange={ setCaption }
-					/>
-				) }
-			</figure>,
-		];
+		return (
+			<div className="middleware-media-field">
+				{ controls }
+				{
+					<figure key={ type } className={ className + ' wp-block-' + type }>
+						{ 'video' === type && (
+							<video controls src={ this.state.mediaData.url } />
+						) }
+						{ 'audio' === type && (
+							<audio controls src={ this.state.mediaData.url } />
+						) }
+						{ isSelected && caption && (
+							<PlainText
+								placeholder={ __( 'Write caption…' ) }
+								value={ mediaCaption }
+								isSelected={ isSelected }
+								onChange={ setCaption }
+							/>
+						) }
+					</figure>
+				}
+			</div>
+		);
 	}
 }
 

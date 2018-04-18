@@ -12,6 +12,7 @@ export default function buttonEditable( props, config, attributeKey ) {
 		value: props.attributes[ attributeKey ] ? props.attributes[ attributeKey ].text : '',
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true,
+		inlineToolbar: true,
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -45,7 +46,7 @@ export default function buttonEditable( props, config, attributeKey ) {
 			{ ...fieldAttributes }
 			inputValue={ props.attributes[ attributeKey ] ? props.attributes[ attributeKey ].link : '' }
 			buttonValue={ fieldAttributes.value }
-			isSelected={ props.isSelected }
+			isSelected={ props.isSelected && attributeKey === props.editable }
 		/>
 	);
 }
