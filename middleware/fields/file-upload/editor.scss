@@ -10,8 +10,6 @@
 ul.file-upload-field-files,
 .edit-post-visual-editor ul.file-upload-field-files {
 	display: flex;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
 	flex-flow: row wrap;
 	list-style: none;
 	margin: 0 -8px;
