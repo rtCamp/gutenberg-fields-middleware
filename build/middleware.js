@@ -1310,17 +1310,16 @@ var GutenbergFieldsMiddleWare = function () {
 			var _this2 = this;
 
 			// Setup inner fields first.
-			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
+			_.each(this.blockConfigs.attributes, function (attribute) {
 				if (attribute.field && attribute.field.innerFields) {
-					_.each(attribute.field.innerFields, function (innerFieldAttributeKey, innerFieldKey) {
-						_this2.innerFields[attributeKey] = {};
-						_this2.innerFields[attributeKey][innerFieldKey] = _this2.setupField(props, _this2.blockConfigs.attributes[innerFieldAttributeKey], innerFieldAttributeKey);
+					_.each(attribute.field.innerFields, function (innerFieldAttributeKey) {
+						_.extend(_this2.innerFields, _this2.setupField(props, _this2.blockConfigs.attributes[innerFieldAttributeKey], innerFieldAttributeKey, false));
 					});
 				}
 			});
 
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
-				if (attribute.field) {
+				if (attribute.field && !_this2.innerFields[attributeKey]) {
 					_this2.setupField(props, attribute, attributeKey);
 				}
 			});
@@ -1332,8 +1331,6 @@ var GutenbergFieldsMiddleWare = function () {
 					return _this2.inspectorControlFields[key];
 				})
 			) : null;
-
-			delete this.fields.buttonEditableLink;
 		}
 
 		/**
@@ -1342,12 +1339,15 @@ var GutenbergFieldsMiddleWare = function () {
    * @param {Object} props Properties.
    * @param {Object} attribute Attribute.
    * @param {String} attributeKey Attribute key.
+   * @param {Boolean} extend Whether to extend the field with field objects.
    * @return {Object|void} Field.
    */
 
 	}, {
 		key: 'setupField',
 		value: function setupField(props, attribute, attributeKey) {
+			var extend = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+
 			var config = _.extend({
 				onFocus: function onFocus() {
 					props.setState({
@@ -1360,27 +1360,31 @@ var GutenbergFieldsMiddleWare = function () {
 
 			if ('inspector' === config.placement) {
 				_.extend(this.inspectorControlFields, field);
-			} else {
+			} else if (extend) {
 				_.extend(this.fields, field);
 			}
 
 			return field;
 		}
+
+		/**
+   * Get inner fields using the attribute key.
+   *
+   * @param {String} attributeKey Attribute key.
+   * @return {Object} Inner fields.
+   */
+
 	}, {
 		key: 'getInnerFields',
-		value: function getInnerFields(config) {
+		value: function getInnerFields(attributeKey) {
 			var _this3 = this;
 
 			var innerFields = {};
+			var config = this.blockConfigs.attributes[attributeKey].field;
 
 			if (config && !_.isEmpty(config.innerFields)) {
 				_.each(config.innerFields, function (innerFieldAttributeKey, innerFieldKeyName) {
-					innerFields[innerFieldKeyName] = '';
-					if (_this3.fields[innerFieldAttributeKey]) {
-						innerFields[innerFieldKeyName] = _this3.fields[innerFieldAttributeKey];
-					} else if (_this3.inspectorControlFields[innerFieldAttributeKey]) {
-						innerFields[innerFieldKeyName] = _this3.fields[innerFieldAttributeKey];
-					}
+					innerFields[innerFieldKeyName] = _this3.innerFields[innerFieldAttributeKey];
 				});
 			}
 
@@ -1659,7 +1663,7 @@ function buttonEditable(props, config, attributeKey, middleware) {
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
-	var innerFields = middleware.getInnerFields(config);
+	var innerFields = middleware.getInnerFields(attributeKey);
 
 	fieldAttributes.onChange = function (value) {
 		if (config.onChange) {
@@ -1809,7 +1813,7 @@ var ButtonEditable = function (_Component) {
 		key: "render",
 		value: function render() {
 			var link = this.props.linkField;
-			var form = this.props.isSelected && this.state.displayForm && wp.element.createElement(
+			var form = link && this.props.isSelected && this.state.displayForm && wp.element.createElement(
 				"form",
 				{
 					key: "form-link",

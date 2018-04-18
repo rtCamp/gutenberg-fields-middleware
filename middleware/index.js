@@ -174,17 +174,16 @@ class GutenbergFieldsMiddleWare {
 	 */
 	setupBlockFields( props ) {
 		// Setup inner fields first.
-		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
+		_.each( this.blockConfigs.attributes, ( attribute ) => {
 			if ( attribute.field && attribute.field.innerFields ) {
-				_.each( attribute.field.innerFields, ( innerFieldAttributeKey, innerFieldKey ) => {
-					this.innerFields[ attributeKey ] = {};
-					this.innerFields[ attributeKey ][ innerFieldKey ] = this.setupField( props, this.blockConfigs.attributes[ innerFieldAttributeKey ], innerFieldAttributeKey );
+				_.each( attribute.field.innerFields, ( innerFieldAttributeKey ) => {
+					_.extend( this.innerFields, this.setupField( props, this.blockConfigs.attributes[ innerFieldAttributeKey ], innerFieldAttributeKey, false ) );
 				} );
 			}
 		} );
 
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
-			if ( attribute.field ) {
+			if ( attribute.field && ! this.innerFields[ attributeKey ] ) {
 				this.setupField( props, attribute, attributeKey );
 			}
 		} );
@@ -196,8 +195,6 @@ class GutenbergFieldsMiddleWare {
 				} ) }
 			</InspectorControls>
 		) : null;
-
-		delete this.fields.buttonEditableLink;
 	}
 
 	/**
@@ -206,9 +203,10 @@ class GutenbergFieldsMiddleWare {
 	 * @param {Object} props Properties.
 	 * @param {Object} attribute Attribute.
 	 * @param {String} attributeKey Attribute key.
+	 * @param {Boolean} extend Whether to extend the field with field objects.
 	 * @return {Object|void} Field.
 	 */
-	setupField( props, attribute, attributeKey ) {
+	setupField( props, attribute, attributeKey, extend = true ) {
 		const config = _.extend( {
 			onFocus() {
 				props.setState( {
@@ -221,24 +219,26 @@ class GutenbergFieldsMiddleWare {
 
 		if ( 'inspector' === config.placement ) {
 			_.extend( this.inspectorControlFields, field );
-		} else {
+		} else if ( extend ) {
 			_.extend( this.fields, field );
 		}
 
 		return field;
 	}
 
-	getInnerFields( config ) {
+	/**
+	 * Get inner fields using the attribute key.
+	 *
+	 * @param {String} attributeKey Attribute key.
+	 * @return {Object} Inner fields.
+	 */
+	getInnerFields( attributeKey ) {
 		const innerFields = {};
+		const config = this.blockConfigs.attributes[ attributeKey ].field;
 
 		if ( config && ! _.isEmpty( config.innerFields ) ) {
 			_.each( config.innerFields, ( innerFieldAttributeKey, innerFieldKeyName ) => {
-				innerFields[ innerFieldKeyName ] = '';
-				if ( this.fields[ innerFieldAttributeKey ] ) {
-					innerFields[ innerFieldKeyName ] = this.fields[ innerFieldAttributeKey ];
-				} else if ( this.inspectorControlFields[ innerFieldAttributeKey ] ) {
-					innerFields[ innerFieldKeyName ] = this.fields[ innerFieldAttributeKey ];
-				}
+				innerFields[ innerFieldKeyName ] = this.innerFields[ innerFieldAttributeKey ];
 			} );
 		}
 

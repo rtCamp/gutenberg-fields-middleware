@@ -17,7 +17,7 @@ export default function buttonEditable( props, config, attributeKey, middleware 
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
-	const innerFields = middleware.getInnerFields( config );
+	const innerFields = middleware.getInnerFields( attributeKey );
 
 	fieldAttributes.onChange = ( value ) => {
 		if ( config.onChange ) {
