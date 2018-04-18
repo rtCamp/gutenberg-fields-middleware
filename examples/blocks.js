@@ -325,123 +325,105 @@ registerBlockType( 'gb-m-example/simple-block', {
 
 		return (
 			el( 'div', { className: props.className },
-				el( 'div', { className: 'gutenberg-fields-middleware-wrapper' },
+				// field: text
+				el( 'div', { className: 'text' }, attributes.text || '' ),
 
-					// field: text
-					el( 'div', { className: 'text' }, attributes.text || '' ),
+				// field: rich-text
+				el( 'div', { className: 'rich-text' }, attributes.richText || '' ),
 
-					// field: rich-text
-					el( 'div', { className: 'rich-text' }, attributes.richText || '' ),
+				// field: image
+				attributes.image &&
+				el( 'img', {
+					className: 'image',
+					src: attributes.image.url,
+					alt: attributes.image.alt,
+					title: attributes.image.title,
+					width: attributes.image.width,
+					height: attributes.image.height,
+				}, null ),
 
-					// field: image
-					attributes.image &&
-					el( 'img', {
-						className: 'image',
-						src: attributes.image.url,
-						alt: attributes.image.alt,
-						title: attributes.image.title,
-						width: attributes.image.width,
-						height: attributes.image.height,
-					}, null ),
+				// field: select
+				el( 'div', { className: 'option' }, attributes.option || '' ),
 
-					// field: select
-					el( 'div', { className: 'option' }, attributes.option || '' ),
+				// field: video
+				attributes.video &&
+				el( 'video', {
+					className: 'video',
+					width: attributes.video.width,
+					height: attributes.video.height,
+					preload: 'auto',
+					controls: true,
+				}, el( 'source', { src: attributes.video.url, type: attributes.video.mime }, null ) ),
 
-					// field: video
-					attributes.video &&
-					el( 'video', {
-						className: 'video',
-						width: attributes.video.width,
-						height: attributes.video.height,
-						preload: 'auto',
-						controls: true,
-					},
-					el( 'source', { src: attributes.video.url, type: attributes.video.mime }, null )
-					),
+				// field: audio
+				attributes.audio &&
+				el( 'audio', {
+					className: 'audio',
+					controls: true,
+				}, el( 'source', { src: attributes.audio.url, type: attributes.audio.mime }, null ) ),
 
-					// field: audio
-					attributes.audio &&
-					el( 'audio', {
-						className: 'audio',
-						controls: true,
-					},
-					el( 'source', { src: attributes.audio.url, type: attributes.audio.mime }, null )
-					),
+				// field: radio
+				el( 'div', { className: 'radio' }, attributes.radio || '' ),
 
-					// field: radio
-					el( 'div', { className: 'radio' }, attributes.radio || '' ),
+				// field: switch
+				el( 'div', { className: 'switch' }, attributes.switch || '' ),
 
-					// field: switch
-					el( 'div', { className: 'switch' }, attributes.switch || '' ),
+				// field: button-editable
+				attributes.buttonEditable &&
+				el( 'a', {
+					href: attributes.buttonEditable.link,
+				}, attributes.buttonEditable.text ),
 
-					// field: button-editable
-					attributes.buttonEditable &&
-					el( 'a', {
-						className: 'button button-editable',
-						href: attributes.buttonEditable.link,
-					},
-					attributes.buttonEditable.text
-					),
+				// field: tree-select
+				el( 'div', { className: 'tree-select' }, attributes.treeSelect || '' ),
 
-					// field: tree-select
-					el( 'div', { className: 'tree-select' }, attributes.treeSelect || '' ),
+				// field: color
+				el( 'div', { style: { color: attributes.color } }, __( 'Color output' ) ),
 
-					// field: color
-					el( 'div', {
-						className: 'color',
-						style: { color: attributes.color },
-					}, __( 'Color output' )
-					),
+				// field: date-time
+				el( 'time', { dateTime: attributes.dateTime }, attributes.dateTime ),
 
-					// field: date-time
-					el( 'time', {
-						className: 'date-time',
-						dateTime: attributes.dateTime,
-					},
-					attributes.dateTime ),
+				// field: textarea
+				el( 'div', { className: 'textarea' }, attributes.textarea || '' ),
 
-					// field: textarea
-					el( 'div', { className: 'textarea' }, attributes.textarea || '' ),
+				// field: email
+				el( 'div', { className: 'email' }, attributes.email || '' ),
 
-					// field: email
-					el( 'div', { className: 'email' }, attributes.email || '' ),
+				// field: number
+				el( 'div', { className: 'number' }, attributes.number || '' ),
 
-					// field: number
-					el( 'div', { className: 'number' }, attributes.number || '' ),
+				// field: search
+				el( 'div', { className: 'search' }, attributes.search || '' ),
 
-					// field: search
-					el( 'div', { className: 'search' }, attributes.search || '' ),
+				// field: checkbox
+				el( 'div', { className: 'check' }, attributes.check || '' ),
 
-					// field: checkbox
-					el( 'div', { className: 'check' }, attributes.check || '' ),
+				// field: tel
+				el( 'div', { className: 'tel' }, attributes.tel || '' ),
 
-					// field: tel
-					el( 'div', { className: 'tel' }, attributes.tel || '' ),
+				// field: time
+				el( 'time', { className: 'time' }, attributes.time || '' ),
 
-					// field: time
-					el( 'time', { className: 'time' }, attributes.time || '' ),
+				// field: date
+				el( 'div', { className: 'date' }, attributes.date || '' ),
 
-					// field: date
-					el( 'div', { className: 'date' }, attributes.date || '' ),
+				// field: datetime-local
+				el( 'div', { className: 'datetime-local' }, attributes.datetimeLocal || '' ),
 
-					// field: datetime-local
-					el( 'div', { className: 'datetime-local' }, attributes.datetimeLocal || '' ),
+				// field: month
+				el( 'div', { className: 'month' }, attributes.month || '' ),
 
-					// field: month
-					el( 'div', { className: 'month' }, attributes.month || '' ),
+				// field: week
+				el( 'div', { className: 'week' }, attributes.week || '' ),
 
-					// field: week
-					el( 'div', { className: 'week' }, attributes.week || '' ),
+				// field: code-editor
+				el( 'pre', { className: 'code-editor' }, attributes.codeEditor || '' ),
 
-					// field: code-editor
-					el( 'pre', { className: 'code-editor' }, attributes.codeEditor || '' ),
+				// field: range
+				el( 'div', { className: 'range' }, attributes.range || '' ),
 
-					// field: range
-					el( 'div', { className: 'range' }, attributes.range || '' ),
-
-					// field: file-upload
-					files,
-				)
+				// field: file-upload
+				files,
 			)
 		);
 	},
