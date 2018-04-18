@@ -5,11 +5,11 @@
 const { __ } = wp.i18n;
 import ButtonEditable from './../../components/button-editable';
 
-export default function buttonEditable( props, config, attributeKey ) {
+export default function buttonEditable( props, config, attributeKey, innerFields ) {
 	const defaultAttributes = {
 		placeholder: __( 'Add text…' ),
 		tagName: 'span',
-		value: props.attributes[ attributeKey ] ? props.attributes[ attributeKey ].text : '',
+		value: props.attributes[ attributeKey ] ? props.attributes[ attributeKey ] : '',
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true,
 		inlineToolbar: true,
@@ -22,21 +22,7 @@ export default function buttonEditable( props, config, attributeKey ) {
 			config.onChange( value, props );
 		} else {
 			const newAttributes = {};
-			const buttonValue = _.extend( {}, props.attributes[ attributeKey ] || {} );
-			buttonValue.text = value;
-			newAttributes[ attributeKey ] = buttonValue;
-			props.setAttributes( newAttributes );
-		}
-	};
-
-	fieldAttributes.onInputChange = ( value ) => {
-		if ( config.onInputChange ) {
-			config.onInputChange( value, props );
-		} else {
-			const newAttributes = {};
-			const buttonValue = _.extend( {}, props.attributes[ attributeKey ] || {} );
-			buttonValue.link = value;
-			newAttributes[ attributeKey ] = buttonValue;
+			newAttributes[ attributeKey ] = value;
 			props.setAttributes( newAttributes );
 		}
 	};
@@ -44,9 +30,9 @@ export default function buttonEditable( props, config, attributeKey ) {
 	return (
 		<ButtonEditable
 			{ ...fieldAttributes }
-			inputValue={ props.attributes[ attributeKey ] ? props.attributes[ attributeKey ].link : '' }
 			buttonValue={ fieldAttributes.value }
 			isSelected={ props.isSelected && attributeKey === props.editable }
+			linkAttributeKey={ config.link }
 		/>
 	);
 }

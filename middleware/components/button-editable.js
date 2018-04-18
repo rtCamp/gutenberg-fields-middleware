@@ -3,6 +3,8 @@ const { RichText, UrlInput } = wp.blocks;
 const { Dashicon, IconButton } = wp.components;
 const { __ } = wp.i18n;
 
+import link from './../fields/link';
+
 class ButtonEditable extends Component {
 	constructor() {
 		super( ...arguments );
@@ -51,7 +53,6 @@ class ButtonEditable extends Component {
 						{ ...this.props }
 					/>
 				</span>
-				{ form }
 			</div>
 		);
 	}

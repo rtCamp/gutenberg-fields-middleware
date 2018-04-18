@@ -104,9 +104,20 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 		},
 		buttonEditable: {
-			type: 'object',
+			type: 'array',
 			field: {
 				type: 'button-editable',
+				innerFields: {
+					link: 'buttonEditableLink',
+				},
+			},
+			source: 'children',
+			selector: '.button-link',
+		},
+		buttonEditableLink: {
+			type: 'string',
+			field: {
+				type: 'link',
 			},
 		},
 		treeSelect: {
@@ -372,10 +383,10 @@ registerBlockType( 'gb-m-example/simple-block', {
 				el( 'div', { className: 'switch' }, attributes.switch || '' ),
 
 				// field: button-editable
-				attributes.buttonEditable &&
 				el( 'a', {
-					href: attributes.buttonEditable.link,
-				}, attributes.buttonEditable.text ),
+					className: 'button-link',
+					href: '',
+				}, attributes.buttonEditable ),
 
 				// field: tree-select
 				el( 'div', { className: 'tree-select' }, attributes.treeSelect || '' ),

@@ -1138,8 +1138,10 @@ var GutenbergFieldsMiddleWare = function () {
 		this.inspectorControlFields = {};
 		this.inspectorControls = '';
 		this.config = _.extend({}, config);
+		this.innerFields = {};
 
 		this.setupBlockFields = this.setupBlockFields.bind(this);
+		this.setupField = this.setupField.bind(this);
 	}
 
 	/**
@@ -1221,72 +1223,73 @@ var GutenbergFieldsMiddleWare = function () {
    * @param {Object} props        Properties.
    * @param {Object} config       Field configuration provided.
    * @param {String} attributeKey Attribute Key.
+   * @param {Object} innerFields  Inner Fields.
    *
    * @return {Object} Field.
    */
 
 	}, {
 		key: 'getField',
-		value: function getField(props, config, attributeKey) {
+		value: function getField(props, config, attributeKey, innerFields) {
 			var field = {};
 
 			switch (config.type) {
 				case 'text':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["p" /* text */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["p" /* text */](props, config, attributeKey, innerFields);
 					break;
 				case 'rich-text':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["n" /* richText */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["n" /* richText */](props, config, attributeKey, innerFields);
 					break;
 				case 'link':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["j" /* link */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["j" /* link */](props, config, attributeKey, innerFields);
 					break;
 				case 'image':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["h" /* image */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["h" /* image */](props, config, attributeKey, innerFields);
 					break;
 				case 'video':
 				case 'audio':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["k" /* mediaUpload */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["k" /* mediaUpload */](props, config, attributeKey, innerFields);
 					break;
 				case 'select':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["o" /* select */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["o" /* select */](props, config, attributeKey, innerFields);
 					break;
 				case 'range':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["m" /* range */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["m" /* range */](props, config, attributeKey, innerFields);
 					break;
 				case 'radio':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["l" /* radio */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["l" /* radio */](props, config, attributeKey, innerFields);
 					break;
 				case 'checkbox':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["b" /* checkbox */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["b" /* checkbox */](props, config, attributeKey, innerFields);
 					break;
 				case 'button-editable':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["a" /* buttonEditable */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["a" /* buttonEditable */](props, config, attributeKey, innerFields);
 					break;
 				case 'color':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["d" /* color */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["d" /* color */](props, config, attributeKey, innerFields);
 					break;
 				case 'code-editor':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["c" /* codeEditor */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["c" /* codeEditor */](props, config, attributeKey, innerFields);
 					break;
 				case 'date-time':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["e" /* dateTime */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["e" /* dateTime */](props, config, attributeKey, innerFields);
 					break;
 				case 'textarea':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["q" /* textarea */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["q" /* textarea */](props, config, attributeKey, innerFields);
 					break;
 				case 'switch':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["g" /* formToggle */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["g" /* formToggle */](props, config, attributeKey, innerFields);
 					break;
 				case 'tree-select':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["r" /* treeSelect */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["r" /* treeSelect */](props, config, attributeKey, innerFields);
 					break;
 				case 'file-upload':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["f" /* fileUpload */](props, config, attributeKey);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["f" /* fileUpload */](props, config, attributeKey, innerFields);
 					break;
 			}
 
 			if (_.contains(['email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'], config.type)) {
-				field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["i" /* inputField */](props, config, attributeKey);
+				field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["i" /* inputField */](props, config, attributeKey, innerFields);
 			}
 
 			return field;
@@ -1305,22 +1308,22 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function setupBlockFields(props) {
 			var _this2 = this;
 
+			// Take out inner fields first.
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
-
-				if (attribute.field) {
-					var config = _.extend({
-						onFocus: function onFocus() {
-							props.setState({
-								editable: attributeKey
-							});
+				if (attribute.field && attribute.field.innerFields) {
+					_.each(attribute.field.innerFields, function (innerFieldAttributeKey, innerFieldKey) {
+						_this2.innerFields[innerFieldAttributeKey] = _this2.setupField(props, _this2.blockConfigs.attributes[innerFieldAttributeKey], innerFieldAttributeKey);
+						if (_this2.innerFields[innerFieldAttributeKey]) {
+							_this2.innerFields[innerFieldAttributeKey].parentField = attributeKey;
+							_this2.innerFields[innerFieldAttributeKey].linkName = innerFieldKey;
 						}
-					}, attribute.field);
+					});
+				}
+			});
 
-					if ('inspector' === config.placement) {
-						_.extend(_this2.inspectorControlFields, _this2.getField(props, config, attributeKey));
-					} else {
-						_.extend(_this2.fields, _this2.getField(props, config, attributeKey));
-					}
+			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
+				if (attribute.field) {
+					_this2.setupField(props, attribute, attributeKey);
 				}
 			});
 
@@ -1331,6 +1334,38 @@ var GutenbergFieldsMiddleWare = function () {
 					return _this2.inspectorControlFields[key];
 				})
 			) : null;
+		}
+
+		/**
+   * Setup a single Field.
+   *
+   * @param {Object} props Properties.
+   * @param {Object} attribute Attribute.
+   * @param {String} attributeKey Attribute key.
+   * @return {Object|void} Field.
+   */
+
+	}, {
+		key: 'setupField',
+		value: function setupField(props, attribute, attributeKey) {
+			var config = _.extend({
+				onFocus: function onFocus() {
+					props.setState({
+						editable: attributeKey
+					});
+				}
+			}, attribute.field);
+
+			if (!this.fields[attributeKey] && !this.inspectorControlFields[attributeKey]) {
+				var field = this.getField(props, config, attributeKey, this.innerFields);
+				if ('inspector' === config.placement) {
+					_.extend(this.inspectorControlFields, field);
+				} else {
+					_.extend(this.fields, field);
+				}
+
+				return field;
+			}
 		}
 
 		/**
@@ -1593,11 +1628,11 @@ var __ = wp.i18n.__;
 
 
 
-function buttonEditable(props, config, attributeKey) {
+function buttonEditable(props, config, attributeKey, innerFields) {
 	var defaultAttributes = {
 		placeholder: __('Add text…'),
 		tagName: 'span',
-		value: props.attributes[attributeKey] ? props.attributes[attributeKey].text : '',
+		value: props.attributes[attributeKey] ? props.attributes[attributeKey] : '',
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true,
 		inlineToolbar: true
@@ -1610,29 +1645,15 @@ function buttonEditable(props, config, attributeKey) {
 			config.onChange(value, props);
 		} else {
 			var newAttributes = {};
-			var buttonValue = _.extend({}, props.attributes[attributeKey] || {});
-			buttonValue.text = value;
-			newAttributes[attributeKey] = buttonValue;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	fieldAttributes.onInputChange = function (value) {
-		if (config.onInputChange) {
-			config.onInputChange(value, props);
-		} else {
-			var newAttributes = {};
-			var buttonValue = _.extend({}, props.attributes[attributeKey] || {});
-			buttonValue.link = value;
-			newAttributes[attributeKey] = buttonValue;
+			newAttributes[attributeKey] = value;
 			props.setAttributes(newAttributes);
 		}
 	};
 
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_button_editable__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
-		inputValue: props.attributes[attributeKey] ? props.attributes[attributeKey].link : '',
 		buttonValue: fieldAttributes.value,
-		isSelected: props.isSelected && attributeKey === props.editable
+		isSelected: props.isSelected && attributeKey === props.editable,
+		linkAttributeKey: config.link
 	}));
 }
 
@@ -1718,6 +1739,7 @@ module.exports = !$assign || __webpack_require__(11)(function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_link__ = __webpack_require__(118);
 
 
 
@@ -1732,6 +1754,9 @@ var _wp$components = wp.components,
     Dashicon = _wp$components.Dashicon,
     IconButton = _wp$components.IconButton;
 var __ = wp.i18n.__;
+
+
+
 
 var ButtonEditable = function (_Component) {
 	__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default()(ButtonEditable, _Component);
@@ -1792,8 +1817,7 @@ var ButtonEditable = function (_Component) {
 						onFocus: this.onFocus,
 						onClick: this.onFocus // Hack.
 					}, this.props))
-				),
-				form
+				)
 			);
 		}
 	}]);
@@ -3423,10 +3447,7 @@ var MediaPlaceholder = function (_Component) {
 	}, {
 		key: 'switchToEditing',
 		value: function switchToEditing() {
-			this.setState({
-				editing: true,
-				mediaData: {}
-			});
+			this.setState({ editing: true });
 			this.props.removeMediaAttributes();
 		}
 
