@@ -5,7 +5,7 @@
 const { __ } = wp.i18n;
 import ButtonEditable from './../../components/button-editable';
 
-export default function buttonEditable( props, config, attributeKey, innerFields ) {
+export default function buttonEditable( props, config, attributeKey, middleware ) {
 	const defaultAttributes = {
 		placeholder: __( 'Add text…' ),
 		tagName: 'span',
@@ -16,6 +16,7 @@ export default function buttonEditable( props, config, attributeKey, innerFields
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
+	const innerFields = middleware.getInnerFields( config );
 
 	fieldAttributes.onChange = ( value ) => {
 		if ( config.onChange ) {
@@ -32,7 +33,7 @@ export default function buttonEditable( props, config, attributeKey, innerFields
 			{ ...fieldAttributes }
 			buttonValue={ fieldAttributes.value }
 			isSelected={ props.isSelected && attributeKey === props.editable }
-			linkAttributeKey={ config.link }
+			linkField={ innerFields.link }
 		/>
 	);
 }

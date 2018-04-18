@@ -1,9 +1,7 @@
 const { Component } = wp.element;
-const { RichText, UrlInput } = wp.blocks;
+const { RichText } = wp.blocks;
 const { Dashicon, IconButton } = wp.components;
 const { __ } = wp.i18n;
-
-import link from './../fields/link';
 
 class ButtonEditable extends Component {
 	constructor() {
@@ -30,16 +28,14 @@ class ButtonEditable extends Component {
 	}
 
 	render() {
-		const form = this.state.displayForm && this.props.isSelected && (
+		const link = this.props.linkField;
+		const form = (
 			<form
 				key="form-link"
 				className="blocks-button__inline-link"
 				onSubmit={ this.onSubmit }>
 				<Dashicon icon="admin-links" />
-				<UrlInput
-					value={ this.props.inputValue }
-					onChange={ this.props.onInputChange }
-				/>
+				{ link }
 				<IconButton icon="editor-break" label={ __( 'Apply' ) } type="submit" />
 			</form>
 		);
@@ -53,6 +49,7 @@ class ButtonEditable extends Component {
 						{ ...this.props }
 					/>
 				</span>
+				{ form }
 			</div>
 		);
 	}

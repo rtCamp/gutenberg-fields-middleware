@@ -1142,6 +1142,7 @@ var GutenbergFieldsMiddleWare = function () {
 
 		this.setupBlockFields = this.setupBlockFields.bind(this);
 		this.setupField = this.setupField.bind(this);
+		this.getInnerFields = this.getInnerFields.bind(this);
 	}
 
 	/**
@@ -1230,66 +1231,66 @@ var GutenbergFieldsMiddleWare = function () {
 
 	}, {
 		key: 'getField',
-		value: function getField(props, config, attributeKey, innerFields) {
+		value: function getField(props, config, attributeKey) {
 			var field = {};
 
 			switch (config.type) {
 				case 'text':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["p" /* text */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["p" /* text */](props, config, attributeKey, this);
 					break;
 				case 'rich-text':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["n" /* richText */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["n" /* richText */](props, config, attributeKey, this);
 					break;
 				case 'link':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["j" /* link */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["j" /* link */](props, config, attributeKey, this);
 					break;
 				case 'image':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["h" /* image */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["h" /* image */](props, config, attributeKey, this);
 					break;
 				case 'video':
 				case 'audio':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["k" /* mediaUpload */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["k" /* mediaUpload */](props, config, attributeKey, this);
 					break;
 				case 'select':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["o" /* select */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["o" /* select */](props, config, attributeKey, this);
 					break;
 				case 'range':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["m" /* range */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["m" /* range */](props, config, attributeKey, this);
 					break;
 				case 'radio':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["l" /* radio */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["l" /* radio */](props, config, attributeKey, this);
 					break;
 				case 'checkbox':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["b" /* checkbox */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["b" /* checkbox */](props, config, attributeKey, this);
 					break;
 				case 'button-editable':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["a" /* buttonEditable */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["a" /* buttonEditable */](props, config, attributeKey, this);
 					break;
 				case 'color':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["d" /* color */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["d" /* color */](props, config, attributeKey, this);
 					break;
 				case 'code-editor':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["c" /* codeEditor */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["c" /* codeEditor */](props, config, attributeKey, this);
 					break;
 				case 'date-time':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["e" /* dateTime */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["e" /* dateTime */](props, config, attributeKey, this);
 					break;
 				case 'textarea':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["q" /* textarea */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["q" /* textarea */](props, config, attributeKey, this);
 					break;
 				case 'switch':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["g" /* formToggle */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["g" /* formToggle */](props, config, attributeKey, this);
 					break;
 				case 'tree-select':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["r" /* treeSelect */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["r" /* treeSelect */](props, config, attributeKey, this);
 					break;
 				case 'file-upload':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["f" /* fileUpload */](props, config, attributeKey, innerFields);
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["f" /* fileUpload */](props, config, attributeKey, this);
 					break;
 			}
 
 			if (_.contains(['email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'], config.type)) {
-				field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["i" /* inputField */](props, config, attributeKey, innerFields);
+				field[attributeKey] = __WEBPACK_IMPORTED_MODULE_3__fields__["i" /* inputField */](props, config, attributeKey, this.fields);
 			}
 
 			return field;
@@ -1308,15 +1309,12 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function setupBlockFields(props) {
 			var _this2 = this;
 
-			// Take out inner fields first.
+			// Setup inner fields first.
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
 				if (attribute.field && attribute.field.innerFields) {
 					_.each(attribute.field.innerFields, function (innerFieldAttributeKey, innerFieldKey) {
-						_this2.innerFields[innerFieldAttributeKey] = _this2.setupField(props, _this2.blockConfigs.attributes[innerFieldAttributeKey], innerFieldAttributeKey);
-						if (_this2.innerFields[innerFieldAttributeKey]) {
-							_this2.innerFields[innerFieldAttributeKey].parentField = attributeKey;
-							_this2.innerFields[innerFieldAttributeKey].linkName = innerFieldKey;
-						}
+						_this2.innerFields[attributeKey] = {};
+						_this2.innerFields[attributeKey][innerFieldKey] = _this2.setupField(props, _this2.blockConfigs.attributes[innerFieldAttributeKey], innerFieldAttributeKey);
 					});
 				}
 			});
@@ -1334,6 +1332,8 @@ var GutenbergFieldsMiddleWare = function () {
 					return _this2.inspectorControlFields[key];
 				})
 			) : null;
+
+			delete this.fields.buttonEditableLink;
 		}
 
 		/**
@@ -1357,7 +1357,7 @@ var GutenbergFieldsMiddleWare = function () {
 			}, attribute.field);
 
 			if (!this.fields[attributeKey] && !this.inspectorControlFields[attributeKey]) {
-				var field = this.getField(props, config, attributeKey, this.innerFields);
+				var field = this.getField(props, config, attributeKey);
 				if ('inspector' === config.placement) {
 					_.extend(this.inspectorControlFields, field);
 				} else {
@@ -1366,6 +1366,26 @@ var GutenbergFieldsMiddleWare = function () {
 
 				return field;
 			}
+		}
+	}, {
+		key: 'getInnerFields',
+		value: function getInnerFields(config) {
+			var _this3 = this;
+
+			var innerFields = {};
+
+			if (config && !_.isEmpty(config.innerFields)) {
+				_.each(config.innerFields, function (innerFieldAttributeKey, innerFieldKeyName) {
+					innerFields[innerFieldKeyName] = '';
+					if (_this3.fields[innerFieldAttributeKey]) {
+						innerFields[innerFieldKeyName] = _this3.fields[innerFieldAttributeKey];
+					} else if (_this3.inspectorControlFields[innerFieldAttributeKey]) {
+						innerFields[innerFieldKeyName] = _this3.fields[innerFieldAttributeKey];
+					}
+				});
+			}
+
+			return innerFields;
 		}
 
 		/**
@@ -1388,13 +1408,13 @@ var GutenbergFieldsMiddleWare = function () {
    * @return {Object} Edit elements.
    */
 		value: function edit(props) {
-			var _this3 = this;
+			var _this4 = this;
 
 			return [this.inspectorControls, wp.element.createElement(
 				'div',
 				{ key: props.className },
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
-					return _this3.fields[key];
+					return _this4.fields[key];
 				})
 			)];
 		}
@@ -1628,7 +1648,7 @@ var __ = wp.i18n.__;
 
 
 
-function buttonEditable(props, config, attributeKey, innerFields) {
+function buttonEditable(props, config, attributeKey, middleware) {
 	var defaultAttributes = {
 		placeholder: __('Add text…'),
 		tagName: 'span',
@@ -1639,6 +1659,7 @@ function buttonEditable(props, config, attributeKey, innerFields) {
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
+	var innerFields = middleware.getInnerFields(config);
 
 	fieldAttributes.onChange = function (value) {
 		if (config.onChange) {
@@ -1653,7 +1674,7 @@ function buttonEditable(props, config, attributeKey, innerFields) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_button_editable__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 		buttonValue: fieldAttributes.value,
 		isSelected: props.isSelected && attributeKey === props.editable,
-		linkAttributeKey: config.link
+		linkField: innerFields.link
 	}));
 }
 
@@ -1739,7 +1760,6 @@ module.exports = !$assign || __webpack_require__(11)(function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_link__ = __webpack_require__(118);
 
 
 
@@ -1747,16 +1767,11 @@ module.exports = !$assign || __webpack_require__(11)(function () {
 
 
 var Component = wp.element.Component;
-var _wp$blocks = wp.blocks,
-    RichText = _wp$blocks.RichText,
-    UrlInput = _wp$blocks.UrlInput;
+var RichText = wp.blocks.RichText;
 var _wp$components = wp.components,
     Dashicon = _wp$components.Dashicon,
     IconButton = _wp$components.IconButton;
 var __ = wp.i18n.__;
-
-
-
 
 var ButtonEditable = function (_Component) {
 	__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default()(ButtonEditable, _Component);
@@ -1793,17 +1808,15 @@ var ButtonEditable = function (_Component) {
 	}, {
 		key: "render",
 		value: function render() {
-			var form = this.state.displayForm && this.props.isSelected && wp.element.createElement(
+			var link = this.props.linkField;
+			var form = wp.element.createElement(
 				"form",
 				{
 					key: "form-link",
 					className: "blocks-button__inline-link",
 					onSubmit: this.onSubmit },
 				wp.element.createElement(Dashicon, { icon: "admin-links" }),
-				wp.element.createElement(UrlInput, {
-					value: this.props.inputValue,
-					onChange: this.props.onInputChange
-				}),
+				link,
 				wp.element.createElement(IconButton, { icon: "editor-break", label: __('Apply'), type: "submit" })
 			);
 
@@ -1817,7 +1830,8 @@ var ButtonEditable = function (_Component) {
 						onFocus: this.onFocus,
 						onClick: this.onFocus // Hack.
 					}, this.props))
-				)
+				),
+				form
 			);
 		}
 	}]);
