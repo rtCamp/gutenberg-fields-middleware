@@ -13,6 +13,7 @@ export default function buttonEditable( props, config, attributeKey, middleware 
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true,
 		inlineToolbar: true,
+		formattingControls: [ 'bold', 'italic', 'strikethrough' ],
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );

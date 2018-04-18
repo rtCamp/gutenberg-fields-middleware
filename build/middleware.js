@@ -1654,7 +1654,8 @@ function buttonEditable(props, config, attributeKey, middleware) {
 		value: props.attributes[attributeKey] ? props.attributes[attributeKey] : '',
 		className: 'wp-block-button__link',
 		keepPlaceholderOnFocus: true,
-		inlineToolbar: true
+		inlineToolbar: true,
+		formattingControls: ['bold', 'italic', 'strikethrough']
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -1781,7 +1782,7 @@ var ButtonEditable = function (_Component) {
 		var _this = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default()(this, (ButtonEditable.__proto__ || __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default()(ButtonEditable)).apply(this, arguments));
 
 		_this.state = {
-			displayForm: false
+			displayForm: true
 		};
 
 		_this.onFocus = _this.onFocus.bind(_this);
@@ -1808,7 +1809,7 @@ var ButtonEditable = function (_Component) {
 		key: "render",
 		value: function render() {
 			var link = this.props.linkField;
-			var form = wp.element.createElement(
+			var form = this.props.isSelected && this.state.displayForm && wp.element.createElement(
 				"form",
 				{
 					key: "form-link",

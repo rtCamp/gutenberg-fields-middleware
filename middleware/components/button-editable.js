@@ -7,7 +7,7 @@ class ButtonEditable extends Component {
 	constructor() {
 		super( ...arguments );
 		this.state = {
-			displayForm: false,
+			displayForm: true,
 		};
 
 		this.onFocus = this.onFocus.bind( this );
@@ -29,7 +29,7 @@ class ButtonEditable extends Component {
 
 	render() {
 		const link = this.props.linkField;
-		const form = (
+		const form = this.props.isSelected && this.state.displayForm && (
 			<form
 				key="form-link"
 				className="blocks-button__inline-link"
