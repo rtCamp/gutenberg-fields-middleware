@@ -95,7 +95,7 @@ class MediaPlaceholder extends Component {
 	onSelectUrl( event ) {
 		event.preventDefault();
 
-		if ( this.state.mediaData ) {
+		if ( this.state.mediaData && this.state.mediaData.url ) {
 			this.setState( {
 				editing: false,
 			} );
