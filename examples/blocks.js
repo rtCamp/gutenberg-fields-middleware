@@ -332,35 +332,38 @@ registerBlockType( 'gb-m-example/simple-block', {
 				el( 'div', { className: 'rich-text' }, attributes.richText || '' ),
 
 				// field: image
-				attributes.image &&
 				el( 'img', {
 					className: 'image',
-					src: attributes.image.url,
-					alt: attributes.image.alt,
-					title: attributes.image.title,
-					width: attributes.image.width,
-					height: attributes.image.height,
+					src: attributes.image ? attributes.image.url : null,
+					alt: attributes.image ? attributes.image.alt : null,
+					title: attributes.image ? attributes.image.title : null,
+					width: attributes.image ? attributes.image.width : null,
+					height: attributes.image ? attributes.image.height : null,
 				}, null ),
 
 				// field: select
 				el( 'div', { className: 'option' }, attributes.option || '' ),
 
 				// field: video
-				attributes.video &&
 				el( 'video', {
 					className: 'video',
-					width: attributes.video.width,
-					height: attributes.video.height,
+					width: attributes.video ? attributes.video.width : '',
+					height: attributes.video ? attributes.video.height : '',
 					preload: 'auto',
 					controls: true,
-				}, el( 'source', { src: attributes.video.url, type: attributes.video.mime }, null ) ),
+				}, el( 'source', {
+					src: attributes.video ? attributes.video.url : null,
+					type: attributes.video ? attributes.video.mime : null,
+				}, null ) ),
 
 				// field: audio
-				attributes.audio &&
 				el( 'audio', {
 					className: 'audio',
 					controls: true,
-				}, el( 'source', { src: attributes.audio.url, type: attributes.audio.mime }, null ) ),
+				}, el( 'source', {
+					src: attributes.audio ? attributes.audio.url : null,
+					type: attributes.audio ? attributes.audio.mime : null,
+				}, null ) ),
 
 				// field: radio
 				el( 'div', { className: 'radio' }, attributes.radio || '' ),

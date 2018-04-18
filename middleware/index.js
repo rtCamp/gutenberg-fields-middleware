@@ -4,6 +4,7 @@
 
 const { InspectorControls } = wp.blocks;
 const { addFilter } = wp.hooks;
+const { withState } = wp.components;
 
 /**
  * Fields
@@ -46,21 +47,28 @@ class GutenbergFieldsMiddleWare {
 
 		}, this.config );
 
-		this.blockConfigs.edit = ( props ) => {
+		const blockStates = _.extend( {
+			editable: '',
+		}, this.config.blockStates || {} );
+
+		delete this.blockConfigs.blockStates;
+
+		this.blockConfigs.edit = withState( blockStates )( ( props ) => {
 			this.setupBlockFields( props );
 
+			const wrapperClassName = 'middleware-block ' + props.className;
 			props.middleware = this;
 
 			if ( this.config.edit ) {
 				if ( this.constructor.isClassComponent( this.config.edit ) ) {
-					return ( <this.config.edit { ...props } /> );
+					return ( <div className={ wrapperClassName }><this.config.edit { ...props } /></div> );
 				}
 
-				return this.config.edit( props );
+				return ( <div className={ wrapperClassName }>{ this.config.edit( props ) }</div> );
 			}
 
-			return this.edit( props );
-		};
+			return ( <div className={ wrapperClassName }>{ this.edit( props ) }</div> );
+		} );
 
 		this.blockConfigs.save = ( props ) => {
 			props.middleware = this;
@@ -162,11 +170,20 @@ class GutenbergFieldsMiddleWare {
 	 */
 	setupBlockFields( props ) {
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
+
 			if ( attribute.field ) {
-				if ( 'inspector' === attribute.field.placement ) {
-					_.extend( this.inspectorControlFields, this.getField( props, attribute.field, attributeKey ) );
+				const config = _.extend( {
+					onFocus() {
+						props.setState( {
+							editable: attributeKey,
+						} );
+					},
+				}, attribute.field );
+
+				if ( 'inspector' === config.placement ) {
+					_.extend( this.inspectorControlFields, this.getField( props, config, attributeKey ) );
 				} else {
-					_.extend( this.fields, this.getField( props, attribute.field, attributeKey ) );
+					_.extend( this.fields, this.getField( props, config, attributeKey ) );
 				}
 			}
 		} );
