@@ -29,6 +29,11 @@ class ButtonEditable extends Component {
 
 	render() {
 		const link = this.props.linkField;
+		this.props.style = _.extend( {
+			backgroundColor: this.props.backgroundColor,
+			color: this.props.textColor,
+		}, this.props.style );
+
 		const form = link && this.props.isSelected && this.state.displayForm && (
 			<form
 				key="form-link"

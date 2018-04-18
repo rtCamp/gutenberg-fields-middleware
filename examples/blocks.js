@@ -109,10 +109,28 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'button-editable',
 				innerFields: {
 					link: 'buttonEditableLink',
+					backgroundColor: 'buttonBackgroundColor',
+					color: 'buttonColor',
 				},
 			},
 			source: 'children',
 			selector: '.button-link',
+		},
+		buttonBackgroundColor: {
+			type: 'string',
+			field: {
+				type: 'color',
+				label: __( 'Button Background Color' ),
+				placement: 'inspector',
+			},
+		},
+		buttonColor: {
+			type: 'string',
+			field: {
+				type: 'color',
+				label: __( 'Button Color' ),
+				placement: 'inspector',
+			},
 		},
 		buttonEditableLink: {
 			type: 'string',

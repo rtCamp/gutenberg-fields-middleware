@@ -1664,6 +1664,8 @@ function buttonEditable(props, config, attributeKey, middleware) {
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 	var innerFields = middleware.getInnerFields(attributeKey);
+	var backgroundColorAttributeKey = config.innerFields ? config.innerFields.backgroundColor : '';
+	var textColorAttributeKey = config.innerFields ? config.innerFields.color : '';
 
 	fieldAttributes.onChange = function (value) {
 		if (config.onChange) {
@@ -1678,7 +1680,9 @@ function buttonEditable(props, config, attributeKey, middleware) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_button_editable__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 		buttonValue: fieldAttributes.value,
 		isSelected: props.isSelected && attributeKey === props.editable,
-		linkField: innerFields.link
+		linkField: innerFields.link,
+		backgroundColor: backgroundColorAttributeKey ? props.attributes[backgroundColorAttributeKey] : null,
+		textColor: textColorAttributeKey ? props.attributes[textColorAttributeKey] : null
 	}));
 }
 
@@ -1813,6 +1817,11 @@ var ButtonEditable = function (_Component) {
 		key: "render",
 		value: function render() {
 			var link = this.props.linkField;
+			this.props.style = _.extend({
+				backgroundColor: this.props.backgroundColor,
+				color: this.props.textColor
+			}, this.props.style);
+
 			var form = link && this.props.isSelected && this.state.displayForm && wp.element.createElement(
 				"form",
 				{
