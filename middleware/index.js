@@ -2,7 +2,7 @@
  * Gutenberg Fields Middleware.
  */
 
-const { InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.blocks;
+const { InspectorControls, BlockControls } = wp.blocks;
 const { addFilter } = wp.hooks;
 const { withState } = wp.components;
 
@@ -27,9 +27,10 @@ class GutenbergFieldsMiddleWare {
 		this.fields = {};
 		this.inspectorControlFields = {};
 		this.inspectorControls = null;
+		this.blockControlFields = {};
+		this.blockControls = null;
 		this.config = _.extend( {}, config );
 		this.innerFields = {};
-		this.blockControls = null;
 
 		this.setupBlockFields = this.setupBlockFields.bind( this );
 		this.setupField = this.setupField.bind( this );
@@ -58,21 +59,8 @@ class GutenbergFieldsMiddleWare {
 
 		delete this.blockConfigs.blockStates;
 
-		const blockAlignmentControls = [ 'left', 'center', 'right', 'wide', 'full' ];
-
 		this.blockConfigs.edit = withState( blockStates )( ( props ) => {
 			this.setupBlockFields( props );
-
-			this.blockControls = this.config.attributes.align && (
-				<BlockControls>
-					<BlockAlignmentToolbar
-						value={ props.align }
-						onChange={ ( nextAlign ) => props.setAttributes( { align: nextAlign } ) }
-						controls={ this.config.attributes.align.controls || blockAlignmentControls }
-						wideControlsEnabled={ this.config.attributes.align.wideControlsEnabled || false }
-					/>
-				</BlockControls>
-			);
 
 			const wrapperClassName = 'middleware-block ' + props.className;
 			props.middleware = this;
@@ -91,7 +79,7 @@ class GutenbergFieldsMiddleWare {
 		if ( this.config.attributes.align && ! this.config.attributes.getEditWrapperProps ) {
 			this.blockConfigs.getEditWrapperProps = ( attributes ) => {
 				const { align } = attributes;
-				if ( _.contains( blockAlignmentControls, attributes.align ) ) {
+				if ( _.contains( [ 'left', 'center', 'right', 'wide', 'full' ], attributes.align ) ) {
 					return { 'data-align': align };
 				}
 			};
@@ -180,6 +168,9 @@ class GutenbergFieldsMiddleWare {
 			case 'file-upload':
 				field[ attributeKey ] = fields.fileUpload( props, config, attributeKey, this );
 				break;
+			case 'block-alignment-toolbar':
+				field[ attributeKey ] = fields.blockAlignmentToolbar( props, config, attributeKey, this );
+				break;
 		}
 
 		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {
@@ -219,6 +210,14 @@ class GutenbergFieldsMiddleWare {
 				} ) }
 			</InspectorControls>
 		) : null;
+
+		this.blockControls = (
+			<BlockControls>
+				{ Object.keys( this.inspectorControlFields ).map( ( key ) => {
+					return this.blockControlFields[ key ];
+				} ) }
+			</BlockControls>
+		);
 	}
 
 	/**
@@ -243,6 +242,8 @@ class GutenbergFieldsMiddleWare {
 
 		if ( 'inspector' === config.placement ) {
 			_.extend( this.inspectorControlFields, field );
+		} else if ( 'block-controls' === config.placement ) {
+			_.extend( this.blockControlFields, field );
 		} else if ( extend ) {
 			_.extend( this.fields, field );
 		}

@@ -15,6 +15,11 @@ registerBlockType( 'gb-m-example/simple-block', {
 	attributes: {
 		align: {
 			type: 'string',
+			field: {
+				type: 'block-alignment-toolbar',
+				placement: 'block-controls',
+				controls: [ 'wide', 'full' ],
+			},
 		},
 		text: {
 			type: 'string',
