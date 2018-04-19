@@ -1208,6 +1208,7 @@ var GutenbergFieldsMiddleWare = function () {
 		this.setupField = this.setupField.bind(this);
 		this.getInnerFields = this.getInnerFields.bind(this);
 		this.updateAlignment = this.updateAlignment.bind(this);
+		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind(this);
 	}
 
 	/**
@@ -1266,15 +1267,18 @@ var GutenbergFieldsMiddleWare = function () {
 				);
 			});
 
-			if (this.config.attributes.align && !this.config.attributes.getEditWrapperProps) {
-				this.blockConfigs.getEditWrapperProps = function (attributes) {
-					var align = attributes.align;
+			this.blockConfigs.getEditWrapperProps = function (attributes) {
+				var newAttributes = {};
+				var getEditWrapperProps = _this.config.getEditWrapperProps ? _this.config.getEditWrapperProps(attributes) : {};
+				var attributeKey = _this.getBlockAlignmentToolbarAttributeKey();
+				var align = attributes[attributeKey];
 
-					if (_.contains(['left', 'center', 'right', 'wide', 'full'], attributes.align)) {
-						return { 'data-align': align };
-					}
-				};
-			}
+				if (_.contains(['left', 'center', 'right', 'wide', 'full'], align)) {
+					newAttributes = { 'data-align': align };
+				}
+
+				return _.extend(newAttributes, getEditWrapperProps);
+			};
 
 			this.blockConfigs.save = function (props) {
 				props.middleware = _this;
@@ -1410,13 +1414,13 @@ var GutenbergFieldsMiddleWare = function () {
 				})
 			) : null;
 
-			this.blockControls = wp.element.createElement(
+			this.blockControls = props.isSelected ? wp.element.createElement(
 				BlockControls,
-				null,
-				__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
+				{ key: 'block-controls' },
+				__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
 					return _this2.blockControlFields[key];
 				})
-			);
+			) : null;
 		}
 
 		/**
@@ -1492,6 +1496,28 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function updateAlignment(props, nextAlign) {
 			var extraUpdatedAttributes = ['wide', 'full'].indexOf(nextAlign) !== -1 ? { width: undefined, height: undefined } : {};
 			props.setAttributes(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, extraUpdatedAttributes, { align: nextAlign }));
+		}
+
+		/**
+   * Get block alignment toolbar attribute key set.
+   *
+   * @return {string} Attribute key.
+   */
+
+	}, {
+		key: 'getBlockAlignmentToolbarAttributeKey',
+		value: function getBlockAlignmentToolbarAttributeKey() {
+			var blockAlignmentToolbarAttributeKey = '';
+
+			if (!_.isEmpty(this.blockConfigs.attributes)) {
+				_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
+					if (attribute.field && 'block-alignment-toolbar' === attribute.field.type) {
+						blockAlignmentToolbarAttributeKey = attributeKey;
+					}
+				});
+			}
+
+			return blockAlignmentToolbarAttributeKey;
 		}
 
 		/**
@@ -1806,6 +1832,7 @@ $export($export.S + $export.F * !__webpack_require__(6), 'Object', { definePrope
  */
 
 var BlockAlignmentToolbar = wp.blocks.BlockAlignmentToolbar;
+var BaseControl = wp.components.BaseControl;
 
 
 function blockAlignmentToolbar(props, config, attributeKey) {
@@ -1825,10 +1852,25 @@ function blockAlignmentToolbar(props, config, attributeKey) {
 		}
 	};
 
+	var help = fieldAttributes.help;
+	var label = fieldAttributes.label;
+
 	delete fieldAttributes.type;
 	delete fieldAttributes.placement;
+	delete fieldAttributes.help;
+	delete fieldAttributes.label;
 
-	return wp.element.createElement(BlockAlignmentToolbar, fieldAttributes);
+	var toolbarComponent = wp.element.createElement(BlockAlignmentToolbar, fieldAttributes);
+
+	if ('inspector' === config.placement) {
+		return wp.element.createElement(
+			BaseControl,
+			{ label: label, help: help },
+			toolbarComponent
+		);
+	}
+
+	return toolbarComponent;
 }
 
 /***/ }),

@@ -18,7 +18,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'block-alignment-toolbar',
 				placement: 'block-controls',
-				controls: [ 'wide', 'full' ],
 			},
 		},
 		text: {

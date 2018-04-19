@@ -36,6 +36,7 @@ class GutenbergFieldsMiddleWare {
 		this.setupField = this.setupField.bind( this );
 		this.getInnerFields = this.getInnerFields.bind( this );
 		this.updateAlignment = this.updateAlignment.bind( this );
+		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind( this );
 	}
 
 	/**
@@ -76,14 +77,18 @@ class GutenbergFieldsMiddleWare {
 			return ( <div className={ wrapperClassName }>{ this.edit( props ) }</div> );
 		} );
 
-		if ( this.config.attributes.align && ! this.config.attributes.getEditWrapperProps ) {
-			this.blockConfigs.getEditWrapperProps = ( attributes ) => {
-				const { align } = attributes;
-				if ( _.contains( [ 'left', 'center', 'right', 'wide', 'full' ], attributes.align ) ) {
-					return { 'data-align': align };
-				}
-			};
-		}
+		this.blockConfigs.getEditWrapperProps = ( attributes ) => {
+			let newAttributes = {};
+			const getEditWrapperProps = this.config.getEditWrapperProps ? this.config.getEditWrapperProps( attributes ) : {};
+			const attributeKey = this.getBlockAlignmentToolbarAttributeKey();
+			const align = attributes[ attributeKey ];
+
+			if ( _.contains( [ 'left', 'center', 'right', 'wide', 'full' ], align ) ) {
+				newAttributes = { 'data-align': align };
+			}
+
+			return _.extend( newAttributes, getEditWrapperProps );
+		};
 
 		this.blockConfigs.save = ( props ) => {
 			props.middleware = this;
@@ -211,13 +216,13 @@ class GutenbergFieldsMiddleWare {
 			</InspectorControls>
 		) : null;
 
-		this.blockControls = (
-			<BlockControls>
-				{ Object.keys( this.inspectorControlFields ).map( ( key ) => {
+		this.blockControls = props.isSelected ? (
+			<BlockControls key="block-controls">
+				{ Object.keys( this.blockControlFields ).map( ( key ) => {
 					return this.blockControlFields[ key ];
 				} ) }
 			</BlockControls>
-		);
+		) : null;
 	}
 
 	/**
@@ -286,6 +291,25 @@ class GutenbergFieldsMiddleWare {
 			{ width: undefined, height: undefined } :
 			{};
 		props.setAttributes( { ...extraUpdatedAttributes, align: nextAlign } );
+	}
+
+	/**
+	 * Get block alignment toolbar attribute key set.
+	 *
+	 * @return {string} Attribute key.
+	 */
+	getBlockAlignmentToolbarAttributeKey() {
+		let blockAlignmentToolbarAttributeKey = '';
+
+		if ( ! _.isEmpty( this.blockConfigs.attributes ) ) {
+			_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
+				if ( attribute.field && 'block-alignment-toolbar' === attribute.field.type ) {
+					blockAlignmentToolbarAttributeKey = attributeKey;
+				}
+			} );
+		}
+
+		return blockAlignmentToolbarAttributeKey;
 	}
 
 	/**

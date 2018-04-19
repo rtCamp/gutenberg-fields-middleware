@@ -3,6 +3,7 @@
  */
 
 const { BlockAlignmentToolbar } = wp.blocks;
+const { BaseControl } = wp.components;
 
 export default function blockAlignmentToolbar( props, config, attributeKey ) {
 	const defaultAttributes = {
@@ -21,12 +22,27 @@ export default function blockAlignmentToolbar( props, config, attributeKey ) {
 		}
 	};
 
+	const help = fieldAttributes.help;
+	const label = fieldAttributes.label;
+
 	delete fieldAttributes.type;
 	delete fieldAttributes.placement;
+	delete fieldAttributes.help;
+	delete fieldAttributes.label;
 
-	return (
+	const toolbarComponent = (
 		<BlockAlignmentToolbar
 			{ ...fieldAttributes }
 		/>
 	);
+
+	if ( 'inspector' === config.placement ) {
+		return (
+			<BaseControl label={ label } help={ help } >
+				{ toolbarComponent }
+			</BaseControl>
+		);
+	}
+
+	return toolbarComponent;
 }
