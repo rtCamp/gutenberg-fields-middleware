@@ -95,7 +95,7 @@ class ImagePlaceholder extends Component {
 	onSelectUrl( event ) {
 		event.preventDefault();
 
-		if ( this.state.mediaData && this.state.mediaData.url) {
+		if ( this.state.mediaData && this.state.mediaData.url ) {
 			this.setState( {
 				editing: false,
 			} );
@@ -111,7 +111,6 @@ class ImagePlaceholder extends Component {
 	 * @return {void}
 	 */
 	onUrlChange( event ) {
-
 		this.setState( { mediaData: {
 			url: event.target.value,
 		} } );

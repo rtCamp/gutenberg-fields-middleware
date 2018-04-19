@@ -2,24 +2,20 @@
  * Checkbox field.
  */
 
-const { CheckboxControl } = wp.components;
+import CheckboxControl from '../../components/checkbox-control';
 
 export default function checkbox( props, config, attributeKey ) {
-	const defaultAttributes = {
-		value: '1',
-		checked: props.attributes[ attributeKey ],
-	};
 
-	const fieldAttributes = _.extend( defaultAttributes, config );
+	const fieldAttributes = _.extend( {}, config );
 
-	fieldAttributes.onChange = ( checked ) => {
-		if ( config.onChange ) {
-			config.onChange( checked, props );
-		} else {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = checked ? defaultAttributes.value : false;
-			props.setAttributes( newAttributes );
-		}
+	fieldAttributes.onChange = () => {
+		const { options } = config;
+		const newAttributes = {};
+
+		newAttributes[ attributeKey ] = {};
+		options.map( ( option, index ) =>
+			newAttributes[ attributeKey ][ index ] = option.value,
+		);
 	};
 
 	delete fieldAttributes.type;

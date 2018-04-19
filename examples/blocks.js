@@ -245,15 +245,22 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 		},
 		check: {
-			type: 'boolean',
+			type: 'object',
 			field: {
 				type: 'checkbox',
 				heading: __( 'User' ),
-				label: __( 'Is author' ),
-				help: __( 'Is the user a author or not?' ),
-				placement: 'inspector',
+				help: __( 'Select user role' ),
+				options: [
+					{
+						value: 1,
+						label: __( 'Is Administrator' ),
+					},
+					{
+						value: 0,
+						label: __( 'Is Author' ),
+					},
+				],
 			},
-			default: 1,
 		},
 		search: {
 			type: 'string',
