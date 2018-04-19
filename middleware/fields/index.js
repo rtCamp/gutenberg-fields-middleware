@@ -7,6 +7,7 @@ export { default as color } from './color';
 export { default as dateTime } from './date-time';
 export { default as fileUpload } from './file-upload';
 export { default as formToggle } from './form-toggle';
+export { default as iconsToolbar } from './icons-toolbar';
 export { default as image } from './image';
 export { default as inputField } from './input-field';
 export { default as link } from './link';

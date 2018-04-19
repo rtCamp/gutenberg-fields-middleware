@@ -27,6 +27,25 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'block-controls',
 			},
 		},
+		view: {
+			type: 'string',
+			field: {
+				type: 'icons-toolbar',
+				placement: 'block-controls',
+				controls: [
+					{
+						icon: 'list-view',
+						title: __( 'List View' ),
+						value: 'list',
+					},
+					{
+						icon: 'grid-view',
+						title: __( 'Grid View' ),
+						value: 'grid',
+					},
+				],
+			},
+		},
 		text: {
 			type: 'string',
 			field: {
