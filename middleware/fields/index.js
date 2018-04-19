@@ -1,5 +1,5 @@
 export { default as alignmentToolbar } from './alignment-toolbar';
-export { default as backgroundImage } from './background-image';
+export { default as mediaIcon } from './media-icon';
 export { default as blockAlignmentToolbar } from './block-alignment-toolbar';
 export { default as buttonEditable } from './button-editable';
 export { default as checkbox } from './checkbox';

@@ -49,7 +49,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 		backgroundImage: {
 			type: 'object',
 			field: {
-				type: 'background-image',
+				type: 'media-icon',
+				mediaType: 'image',
 				placement: 'block-controls',
 			},
 		},

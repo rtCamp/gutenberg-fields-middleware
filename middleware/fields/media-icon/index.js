@@ -1,30 +1,42 @@
 /**
- * background-image field.
+ * media-icon field.
  */
 
 const { MediaUpload } = wp.blocks;
-const { BaseControl, Toolbar, IconButton } = wp.components;
+const { BaseControl, Toolbar, IconButton, Button } = wp.components;
 const { __ } = wp.i18n;
 
-export default function backgroundImage( props, config, attributeKey ) {
+export default function mediaIcon( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ],
-		type: 'image',
+		mediaType: 'image',
 		iconLabel: __( 'Edit image' ),
+		icon: 'edit',
+		button: false,
+		buttonText: __( 'Upload' ),
+		buttonClass: '',
 	};
 
-	defaultAttributes.render = ( { open } ) => {
+	const fieldAttributes = _.extend( defaultAttributes, config );
+
+	fieldAttributes.render = ( { open } ) => {
+		if ( defaultAttributes.button ) {
+			return (
+				<Button onClick={ open } className={ fieldAttributes.buttonClass } >
+					{ fieldAttributes.buttonText }
+				</Button>
+			);
+		}
+
 		return (
 			<IconButton
 				className="components-toolbar__control"
-				label={ defaultAttributes.iconLabel }
-				icon="edit"
+				label={ fieldAttributes.iconLabel }
+				icon={ fieldAttributes.icon }
 				onClick={ open }
 			/>
 		);
 	};
-
-	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	fieldAttributes.onSelect = ( media ) => {
 		if ( config.onSelect ) {
@@ -39,7 +51,7 @@ export default function backgroundImage( props, config, attributeKey ) {
 	const help = fieldAttributes.help;
 	const label = fieldAttributes.label;
 
-	delete fieldAttributes.type;
+	fieldAttributes.type = fieldAttributes.mediaType;
 	delete fieldAttributes.placement;
 	delete fieldAttributes.help;
 	delete fieldAttributes.label;
@@ -52,7 +64,7 @@ export default function backgroundImage( props, config, attributeKey ) {
 		</Toolbar>
 	);
 
-	if ( 'inspector' === config.placement ) {
+	if ( 'block-controls' !== config.placement ) {
 		return (
 			<BaseControl label={ label } help={ help } >
 				{ toolbarComponent }

@@ -182,8 +182,8 @@ class GutenbergFieldsMiddleWare {
 			case 'icons-toolbar':
 				field[ attributeKey ] = fields.iconsToolbar( props, config, attributeKey, this );
 				break;
-			case 'background-image':
-				field[ attributeKey ] = fields.backgroundImage( props, config, attributeKey, this );
+			case 'media-icon':
+				field[ attributeKey ] = fields.mediaIcon( props, config, attributeKey, this );
 				break;
 		}
 
