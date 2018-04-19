@@ -46,6 +46,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 		},
+		backgroundImage: {
+			type: 'object',
+			field: {
+				type: 'background-image',
+				placement: 'block-controls',
+			},
+		},
 		text: {
 			type: 'string',
 			field: {

@@ -182,6 +182,9 @@ class GutenbergFieldsMiddleWare {
 			case 'icons-toolbar':
 				field[ attributeKey ] = fields.iconsToolbar( props, config, attributeKey, this );
 				break;
+			case 'background-image':
+				field[ attributeKey ] = fields.backgroundImage( props, config, attributeKey, this );
+				break;
 		}
 
 		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {
