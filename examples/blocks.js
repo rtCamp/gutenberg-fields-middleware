@@ -20,6 +20,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'block-controls',
 			},
 		},
+		alignment: {
+			type: 'string',
+			field: {
+				type: 'alignment-toolbar',
+				placement: 'block-controls',
+			},
+		},
 		text: {
 			type: 'string',
 			field: {
