@@ -2,7 +2,7 @@
  * Gutenberg Fields Middleware.
  */
 
-const { InspectorControls } = wp.blocks;
+const { InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.blocks;
 const { addFilter } = wp.hooks;
 const { withState } = wp.components;
 
@@ -26,13 +26,15 @@ class GutenbergFieldsMiddleWare {
 		this.blockConfigs = {};
 		this.fields = {};
 		this.inspectorControlFields = {};
-		this.inspectorControls = '';
+		this.inspectorControls = null;
 		this.config = _.extend( {}, config );
 		this.innerFields = {};
+		this.blockControls = null;
 
 		this.setupBlockFields = this.setupBlockFields.bind( this );
 		this.setupField = this.setupField.bind( this );
 		this.getInnerFields = this.getInnerFields.bind( this );
+		this.updateAlignment = this.updateAlignment.bind( this );
 	}
 
 	/**
@@ -59,6 +61,15 @@ class GutenbergFieldsMiddleWare {
 		this.blockConfigs.edit = withState( blockStates )( ( props ) => {
 			this.setupBlockFields( props );
 
+			this.blockControls = this.config.attributes.align && (
+				<BlockControls>
+					<BlockAlignmentToolbar
+						value={ props.align }
+						onChange={ ( nextAlign ) => props.setAttributes( { align: nextAlign } ) }
+					/>
+				</BlockControls>
+			);
+
 			const wrapperClassName = 'middleware-block ' + props.className;
 			props.middleware = this;
 
@@ -72,6 +83,15 @@ class GutenbergFieldsMiddleWare {
 
 			return ( <div className={ wrapperClassName }>{ this.edit( props ) }</div> );
 		} );
+
+		if ( this.config.attributes.align && ! this.config.attributes.getEditWrapperProps ) {
+			this.blockConfigs.getEditWrapperProps = ( attributes ) => {
+				const { align } = attributes;
+				if ( _.contains( [ 'left', 'center', 'right', 'wide', 'full' ], attributes.align ) ) {
+					return { 'data-align': align };
+				}
+			};
+		}
 
 		this.blockConfigs.save = ( props ) => {
 			props.middleware = this;
@@ -256,6 +276,13 @@ class GutenbergFieldsMiddleWare {
 		return typeof component === 'function' && component.prototype && !! component.prototype.isReactComponent;
 	}
 
+	updateAlignment( props, nextAlign ) {
+		const extraUpdatedAttributes = [ 'wide', 'full' ].indexOf( nextAlign ) !== -1 ?
+			{ width: undefined, height: undefined } :
+			{};
+		props.setAttributes( { ...extraUpdatedAttributes, align: nextAlign } );
+	}
+
 	/**
 	 * Fallback edit method.
 	 *
@@ -265,6 +292,7 @@ class GutenbergFieldsMiddleWare {
 	 */
 	edit( props ) {
 		return [
+			this.blockControls,
 			this.inspectorControls,
 			(
 				<div key={ props.className } >

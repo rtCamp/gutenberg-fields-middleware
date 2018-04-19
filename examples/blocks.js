@@ -13,6 +13,9 @@ registerBlockType( 'gb-m-example/simple-block', {
 	category: 'common',
 
 	attributes: {
+		align: {
+			type: 'string',
+		},
 		text: {
 			type: 'string',
 			field: {
