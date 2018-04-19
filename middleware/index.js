@@ -58,6 +58,8 @@ class GutenbergFieldsMiddleWare {
 
 		delete this.blockConfigs.blockStates;
 
+		const blockAlignmentControls = [ 'left', 'center', 'right', 'wide', 'full' ];
+
 		this.blockConfigs.edit = withState( blockStates )( ( props ) => {
 			this.setupBlockFields( props );
 
@@ -66,6 +68,8 @@ class GutenbergFieldsMiddleWare {
 					<BlockAlignmentToolbar
 						value={ props.align }
 						onChange={ ( nextAlign ) => props.setAttributes( { align: nextAlign } ) }
+						controls={ this.config.attributes.align.controls || blockAlignmentControls }
+						wideControlsEnabled={ this.config.attributes.align.wideControlsEnabled || false }
 					/>
 				</BlockControls>
 			);
@@ -87,7 +91,7 @@ class GutenbergFieldsMiddleWare {
 		if ( this.config.attributes.align && ! this.config.attributes.getEditWrapperProps ) {
 			this.blockConfigs.getEditWrapperProps = ( attributes ) => {
 				const { align } = attributes;
-				if ( _.contains( [ 'left', 'center', 'right', 'wide', 'full' ], attributes.align ) ) {
+				if ( _.contains( blockAlignmentControls, attributes.align ) ) {
 					return { 'data-align': align };
 				}
 			};

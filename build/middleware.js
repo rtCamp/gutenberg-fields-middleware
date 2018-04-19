@@ -1237,6 +1237,8 @@ var GutenbergFieldsMiddleWare = function () {
 
 			delete this.blockConfigs.blockStates;
 
+			var blockAlignmentControls = ['left', 'center', 'right', 'wide', 'full'];
+
 			this.blockConfigs.edit = withState(blockStates)(function (props) {
 				_this.setupBlockFields(props);
 
@@ -1247,7 +1249,9 @@ var GutenbergFieldsMiddleWare = function () {
 						value: props.align,
 						onChange: function onChange(nextAlign) {
 							return props.setAttributes({ align: nextAlign });
-						}
+						},
+						controls: _this.config.attributes.align.controls || blockAlignmentControls,
+						wideControlsEnabled: _this.config.attributes.align.wideControlsEnabled || false
 					})
 				);
 
@@ -1281,7 +1285,7 @@ var GutenbergFieldsMiddleWare = function () {
 				this.blockConfigs.getEditWrapperProps = function (attributes) {
 					var align = attributes.align;
 
-					if (_.contains(['left', 'center', 'right', 'wide', 'full'], attributes.align)) {
+					if (_.contains(blockAlignmentControls, attributes.align)) {
 						return { 'data-align': align };
 					}
 				};
