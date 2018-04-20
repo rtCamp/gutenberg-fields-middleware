@@ -2575,6 +2575,11 @@ function checkbox(props, config, attributeKey) {
 		fieldAttributes.options = props.attributes[attributeKey];
 	}
 
+	/**
+ * Set Attributes value form config setting for first time.
+ *
+ * @return {void}
+ */
 	fieldAttributes.setAtt = function () {
 		if (!props.attributes[attributeKey]) {
 			var newAttributes = {};
@@ -2583,6 +2588,14 @@ function checkbox(props, config, attributeKey) {
 		}
 	};
 
+	/**
+ * Set Attribute on change.
+ *
+ * @param {int}  index Index of object.
+ * @param {bool} value True when checkbox is checked. Else false.
+ *
+ * @return {void}
+ */
 	fieldAttributes.onChange = function () {
 		var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 		var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -2637,6 +2650,16 @@ var CheckboxControl = function (_Component) {
 		_this.props.setAtt();
 		return _this;
 	}
+
+	/**
+ * Handles when Checkbox checked.
+ *
+ * @param {int}  index Index of object.
+ * @param {bool} value True when checkbox is checked. Else false.
+ *
+ * @return {void}
+ */
+
 
 	__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(CheckboxControl, [{
 		key: "onChange",

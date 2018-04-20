@@ -11,6 +11,11 @@ export default function checkbox( props, config, attributeKey ) {
 		fieldAttributes.options = props.attributes[ attributeKey ];
 	}
 
+	/**
+	* Set Attributes value form config setting for first time.
+	*
+	* @return {void}
+	*/
 	fieldAttributes.setAtt = () => {
 		if ( ! props.attributes[ attributeKey ] ) {
 			const newAttributes = {};
@@ -19,6 +24,14 @@ export default function checkbox( props, config, attributeKey ) {
 		}
 	};
 
+	/**
+	* Set Attribute on change.
+	*
+	* @param {int}  index Index of object.
+	* @param {bool} value True when checkbox is checked. Else false.
+	*
+	* @return {void}
+	*/
 	fieldAttributes.onChange = ( index = null, value = null ) => {
 		const options = props.attributes[ attributeKey ];
 		options[ index ].value = ! value;

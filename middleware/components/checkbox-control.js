@@ -11,6 +11,14 @@ class CheckboxControl extends Component {
 		this.props.setAtt();
 	}
 
+	/**
+	* Handles when Checkbox checked.
+	*
+	* @param {int}  index Index of object.
+	* @param {bool} value True when checkbox is checked. Else false.
+	*
+	* @return {void}
+	*/
 	onChange( index, value ) {
 		const options = this.props.options;
 		options[ index ].value = ! value;
