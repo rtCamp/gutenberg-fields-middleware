@@ -10,7 +10,6 @@ global._ = require( 'underscore' );
 
 [
 	'element',
-	'i18n',
 	'components',
 	'utils',
 	'blocks',
@@ -29,4 +28,8 @@ global._ = require( 'underscore' );
 
 Object.defineProperty( global.wp, 'hooks', {
 	get: () => require( '@wordpress/hooks' ),
+} );
+
+Object.defineProperty( global.wp, 'i18n', {
+	get: () => require( '@wordpress/i18n' ),
 } );

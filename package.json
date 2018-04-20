@@ -6,6 +6,7 @@
 	"devDependencies": {
 		"@wordpress/babel-preset-default": "1.1.1",
 		"@wordpress/hooks": "1.1.4",
+		"@wordpress/i18n": "^1.1.0",
 		"@wordpress/jest-preset-default": "^1.0.5",
 		"autoprefixer": "^8.3.0",
 		"babel-core": "^6.26.0",
@@ -40,7 +41,7 @@
 		"preset": "@wordpress/jest-preset-default",
 		"verbose": true,
 		"moduleNameMapper": {
-			"@wordpress\\/(blocks|components|date|editor|element|i18n|data|utils|edit-post|viewport|plugins|core-data)": "<rootDir>/../gutenberg/$1/index.js"
+			"@wordpress\\/(blocks|components|date|editor|element|data|utils|edit-post|viewport|plugins|core-data)": "<rootDir>/../gutenberg/$1/index.js"
 		},
 		"setupFiles": [
 			"<rootDir>/test/unit/setup-blocks.js",
