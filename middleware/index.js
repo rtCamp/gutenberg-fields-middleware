@@ -2,7 +2,7 @@
  * Gutenberg Fields Middleware.
  */
 
-const { InspectorControls } = wp.blocks;
+const { InspectorControls, BlockControls } = wp.blocks;
 const { addFilter } = wp.hooks;
 const { withState } = wp.components;
 
@@ -26,13 +26,17 @@ class GutenbergFieldsMiddleWare {
 		this.blockConfigs = {};
 		this.fields = {};
 		this.inspectorControlFields = {};
-		this.inspectorControls = '';
+		this.inspectorControls = null;
+		this.blockControlFields = {};
+		this.blockControls = null;
 		this.config = _.extend( {}, config );
 		this.innerFields = {};
 
 		this.setupBlockFields = this.setupBlockFields.bind( this );
 		this.setupField = this.setupField.bind( this );
 		this.getInnerFields = this.getInnerFields.bind( this );
+		this.updateAlignment = this.updateAlignment.bind( this );
+		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind( this );
 	}
 
 	/**
@@ -72,6 +76,19 @@ class GutenbergFieldsMiddleWare {
 
 			return ( <div className={ wrapperClassName }>{ this.edit( props ) }</div> );
 		} );
+
+		this.blockConfigs.getEditWrapperProps = ( attributes ) => {
+			let newAttributes = {};
+			const getEditWrapperProps = this.config.getEditWrapperProps ? this.config.getEditWrapperProps( attributes ) : {};
+			const attributeKey = this.getBlockAlignmentToolbarAttributeKey();
+			const align = attributes[ attributeKey ];
+
+			if ( _.contains( [ 'left', 'center', 'right', 'wide', 'full' ], align ) ) {
+				newAttributes = { 'data-align': align };
+			}
+
+			return _.extend( newAttributes, getEditWrapperProps );
+		};
 
 		this.blockConfigs.save = ( props ) => {
 			props.middleware = this;
@@ -156,6 +173,18 @@ class GutenbergFieldsMiddleWare {
 			case 'file-upload':
 				field[ attributeKey ] = fields.fileUpload( props, config, attributeKey, this );
 				break;
+			case 'block-alignment-toolbar':
+				field[ attributeKey ] = fields.blockAlignmentToolbar( props, config, attributeKey, this );
+				break;
+			case 'alignment-toolbar':
+				field[ attributeKey ] = fields.alignmentToolbar( props, config, attributeKey, this );
+				break;
+			case 'icons-toolbar':
+				field[ attributeKey ] = fields.iconsToolbar( props, config, attributeKey, this );
+				break;
+			case 'media-icon':
+				field[ attributeKey ] = fields.mediaIcon( props, config, attributeKey, this );
+				break;
 		}
 
 		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {
@@ -195,6 +224,14 @@ class GutenbergFieldsMiddleWare {
 				} ) }
 			</InspectorControls>
 		) : null;
+
+		this.blockControls = props.isSelected ? (
+			<BlockControls key="block-controls">
+				{ Object.keys( this.blockControlFields ).map( ( key ) => {
+					return this.blockControlFields[ key ];
+				} ) }
+			</BlockControls>
+		) : null;
 	}
 
 	/**
@@ -219,6 +256,8 @@ class GutenbergFieldsMiddleWare {
 
 		if ( 'inspector' === config.placement ) {
 			_.extend( this.inspectorControlFields, field );
+		} else if ( 'block-controls' === config.placement ) {
+			_.extend( this.blockControlFields, field );
 		} else if ( extend ) {
 			_.extend( this.fields, field );
 		}
@@ -256,6 +295,32 @@ class GutenbergFieldsMiddleWare {
 		return typeof component === 'function' && component.prototype && !! component.prototype.isReactComponent;
 	}
 
+	updateAlignment( props, nextAlign ) {
+		const extraUpdatedAttributes = [ 'wide', 'full' ].indexOf( nextAlign ) !== -1 ?
+			{ width: undefined, height: undefined } :
+			{};
+		props.setAttributes( { ...extraUpdatedAttributes, align: nextAlign } );
+	}
+
+	/**
+	 * Get block alignment toolbar attribute key set.
+	 *
+	 * @return {string} Attribute key.
+	 */
+	getBlockAlignmentToolbarAttributeKey() {
+		let blockAlignmentToolbarAttributeKey = '';
+
+		if ( ! _.isEmpty( this.blockConfigs.attributes ) ) {
+			_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
+				if ( attribute.field && 'block-alignment-toolbar' === attribute.field.type ) {
+					blockAlignmentToolbarAttributeKey = attributeKey;
+				}
+			} );
+		}
+
+		return blockAlignmentToolbarAttributeKey;
+	}
+
 	/**
 	 * Fallback edit method.
 	 *
@@ -265,6 +330,7 @@ class GutenbergFieldsMiddleWare {
 	 */
 	edit( props ) {
 		return [
+			this.blockControls,
 			this.inspectorControls,
 			(
 				<div key={ props.className } >
