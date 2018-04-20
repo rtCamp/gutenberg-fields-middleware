@@ -2,6 +2,7 @@
  * media-icon field.
  */
 
+import { getDashIconSuffixByType } from './../../utils/media';
 const { MediaUpload } = wp.blocks;
 const { BaseControl, Toolbar, IconButton, Button } = wp.components;
 const { __ } = wp.i18n;
@@ -10,14 +11,16 @@ export default function mediaIcon( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ],
 		mediaType: 'image',
-		iconLabel: __( 'Edit image' ),
-		icon: 'edit',
 		button: false,
 		buttonText: __( 'Upload' ),
 		buttonClass: '',
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
+
+	fieldAttributes.icon = config.icon ? config.icon : getDashIconSuffixByType( fieldAttributes.mediaType );
+	fieldAttributes.iconLabel = config.iconLabel ? config.iconLabel : __( 'Add ' ) + fieldAttributes.mediaType;
+	fieldAttributes.iconLabelAdded = config.iconLabelAdded ? config.iconLabelAdded : __( 'Edit ' ) + fieldAttributes.mediaType;
 
 	fieldAttributes.render = ( { open } ) => {
 		if ( defaultAttributes.button ) {
@@ -31,7 +34,7 @@ export default function mediaIcon( props, config, attributeKey ) {
 		return (
 			<IconButton
 				className="components-toolbar__control"
-				label={ fieldAttributes.iconLabel }
+				label={ props.attributes[ attributeKey ] ? fieldAttributes.iconLabelAdded : fieldAttributes.iconLabel }
 				icon={ fieldAttributes.icon }
 				onClick={ open }
 			/>

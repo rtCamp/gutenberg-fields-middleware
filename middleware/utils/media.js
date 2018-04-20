@@ -23,3 +23,17 @@ export function getDashIconSuffix( extenstion ) {
 
 	return suffix;
 }
+
+export function getDashIconSuffixByType( type ) {
+	let suffix = '';
+
+	if ( 'image' === type ) {
+		suffix = 'format-image';
+	} else if ( _.contains( [ 'video', 'audio', 'interactive', 'spreadsheet', 'document', 'text' ], type ) ) {
+		suffix = 'media-' + type;
+	} else {
+		suffix = getDashIconSuffix( type );
+	}
+
+	return suffix;
+}
