@@ -3,6 +3,7 @@
  */
 
 import './editor.scss';
+import { getDashIconSuffix } from './../../utils/media';
 
 const { FormFileUpload, Button } = wp.components;
 const { __ } = wp.i18n;
@@ -115,29 +116,8 @@ export default function fileUpload( props, config, attributeKey ) {
 	 */
 	const getDashIcon = ( fileName ) => {
 		const fileExtension = fileName.split( '.' ).pop();
-		let dashiconSuffix = 'media-default';
 
-		if ( 'zip' === fileExtension ) {
-			dashiconSuffix = 'media-archive';
-		} else if ( _.contains( [ 'pdf', 'epub', 'azw', 'indd' ], fileExtension ) ) {
-			dashiconSuffix = 'book';
-		} else if ( _.contains( [ 'jpg', 'png', 'gif', 'jpeg', 'tif', 'ico', 'bmp', 'svg' ], fileExtension ) ) {
-			dashiconSuffix = 'format-image';
-		} else if ( _.contains( [ 'mp4', 'avi', 'flv', 'mov', 'mpg', 'rm', 'swf', 'wmv', 'ogv', '3gp', '3g2', 'm4v' ], fileExtension ) ) {
-			dashiconSuffix = 'media-video';
-		} else if ( _.contains( [ 'pptx', 'pptm', 'ppt', 'pot', 'potx', 'potm', 'pps', 'ppsx' ], fileExtension ) ) {
-			dashiconSuffix = 'media-interactive';
-		} else if ( _.contains( [ 'mp3', 'm4a', 'ogg', 'wav' ], fileExtension ) ) {
-			dashiconSuffix = 'media-audio';
-		} else if ( _.contains( [ 'xls', 'xlsx', 'xla', 'xlb', 'xlc', 'xld', 'xlk', 'xll', 'xlm', 'xlt', 'xlv', 'xlw', 'numbers' ], fileExtension ) ) {
-			dashiconSuffix = 'media-spreadsheet';
-		} else if ( _.contains( [ 'doc', 'docx', 'docm', 'pages' ], fileExtension ) ) {
-			dashiconSuffix = 'media-document';
-		} else if ( _.contains( [ 'txt', 'odt', 'rtf', 'log' ], fileExtension ) ) {
-			dashiconSuffix = 'media-text';
-		}
-
-		return 'dashicons-' + dashiconSuffix;
+		return 'dashicons-' + getDashIconSuffix( fileExtension );
 	};
 
 	/**

@@ -13,6 +13,47 @@ registerBlockType( 'gb-m-example/simple-block', {
 	category: 'common',
 
 	attributes: {
+		align: {
+			type: 'string',
+			field: {
+				type: 'block-alignment-toolbar',
+				placement: 'block-controls',
+			},
+		},
+		alignment: {
+			type: 'string',
+			field: {
+				type: 'alignment-toolbar',
+				placement: 'block-controls',
+			},
+		},
+		view: {
+			type: 'string',
+			field: {
+				type: 'icons-toolbar',
+				placement: 'block-controls',
+				controls: [
+					{
+						icon: 'list-view',
+						title: __( 'List View' ),
+						value: 'list',
+					},
+					{
+						icon: 'grid-view',
+						title: __( 'Grid View' ),
+						value: 'grid',
+					},
+				],
+			},
+		},
+		backgroundImage: {
+			type: 'object',
+			field: {
+				type: 'media-icon',
+				mediaType: 'image',
+				placement: 'block-controls',
+			},
+		},
 		text: {
 			type: 'string',
 			field: {
