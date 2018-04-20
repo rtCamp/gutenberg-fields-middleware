@@ -2905,7 +2905,7 @@ function checkbox(props, config, attributeKey) {
  *
  * @return {void}
  */
-	fieldAttributes.setAtt = function () {
+	fieldAttributes.setAttributes = function () {
 		if (!props.attributes[attributeKey]) {
 			var newAttributes = {};
 			newAttributes[attributeKey] = config.options;
@@ -2921,7 +2921,7 @@ function checkbox(props, config, attributeKey) {
  *
  * @return {void}
  */
-	fieldAttributes.onChange = function () {
+	fieldAttributes.onClick = function () {
 		var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 		var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
@@ -2968,35 +2968,11 @@ var CheckboxControl = function (_Component) {
 
 		var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (CheckboxControl.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(CheckboxControl)).apply(this, arguments));
 
-		_this.state = {
-			options: _this.props.options
-		};
-		_this.onChange = _this.onChange.bind(_this);
-		_this.props.setAtt();
+		_this.props.setAttributes();
 		return _this;
 	}
 
-	/**
- * Handles when Checkbox checked.
- *
- * @param {int}  index Index of object.
- * @param {bool} value True when checkbox is checked. Else false.
- *
- * @return {void}
- */
-
-
 	__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(CheckboxControl, [{
-		key: "onChange",
-		value: function onChange(index, value) {
-			var options = this.props.options;
-			options[index].value = !value;
-			this.setState({
-				options: options
-			});
-			this.props.onChange(index, value);
-		}
-	}, {
 		key: "render",
 		value: function render() {
 			var _this2 = this;
@@ -3025,7 +3001,7 @@ var CheckboxControl = function (_Component) {
 							type: "checkbox",
 							value: option.value,
 							onClick: function onClick() {
-								return _this2.onChange(index, option.value);
+								return _this2.props.onClick(index, option.value);
 							},
 							checked: option.value,
 							"aria-describedby": !!help ? id + '__help' : undefined

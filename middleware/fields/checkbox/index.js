@@ -16,7 +16,7 @@ export default function checkbox( props, config, attributeKey ) {
 	*
 	* @return {void}
 	*/
-	fieldAttributes.setAtt = () => {
+	fieldAttributes.setAttributes = () => {
 		if ( ! props.attributes[ attributeKey ] ) {
 			const newAttributes = {};
 			newAttributes[ attributeKey ] = config.options;
@@ -32,7 +32,7 @@ export default function checkbox( props, config, attributeKey ) {
 	*
 	* @return {void}
 	*/
-	fieldAttributes.onChange = ( index = null, value = null ) => {
+	fieldAttributes.onClick = ( index = null, value = null ) => {
 		const options = props.attributes[ attributeKey ];
 		options[ index ].value = ! value;
 		props.setAttributes( options );

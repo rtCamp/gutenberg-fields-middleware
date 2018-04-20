@@ -4,28 +4,8 @@ const { BaseControl, withInstanceId } = wp.components;
 class CheckboxControl extends Component {
 	constructor() {
 		super( ...arguments );
-		this.state = {
-			options: this.props.options,
-		};
-		this.onChange = this.onChange.bind( this );
-		this.props.setAtt();
-	}
 
-	/**
-	* Handles when Checkbox checked.
-	*
-	* @param {int}  index Index of object.
-	* @param {bool} value True when checkbox is checked. Else false.
-	*
-	* @return {void}
-	*/
-	onChange( index, value ) {
-		const options = this.props.options;
-		options[ index ].value = ! value;
-		this.setState( {
-			options,
-		} );
-		this.props.onChange( index, value );
+		this.props.setAttributes();
 	}
 
 	render() {
@@ -47,7 +27,7 @@ class CheckboxControl extends Component {
 							name={ id }
 							type="checkbox"
 							value={ option.value }
-							onClick={ () => this.onChange( index, option.value ) }
+							onClick={ () => this.props.onClick( index, option.value ) }
 							checked={ option.value }
 							aria-describedby={ !! help ? id + '__help' : undefined }
 						/>
