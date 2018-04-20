@@ -2569,18 +2569,27 @@ $export($export.S, 'Object', { create: __webpack_require__(35) });
 
 
 function checkbox(props, config, attributeKey) {
-
 	var fieldAttributes = _.extend({}, config);
 
+	if (props.attributes[attributeKey]) {
+		fieldAttributes.options = props.attributes[attributeKey];
+	}
+
+	fieldAttributes.setAtt = function () {
+		if (!props.attributes[attributeKey]) {
+			var newAttributes = {};
+			newAttributes[attributeKey] = config.options;
+			props.setAttributes(newAttributes);
+		}
+	};
+
 	fieldAttributes.onChange = function () {
-		var options = config.options;
+		var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+		var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-		var newAttributes = {};
-
-		newAttributes[attributeKey] = {};
-		options.map(function (option, index) {
-			return newAttributes[attributeKey][index] = option.value;
-		});
+		var options = props.attributes[attributeKey];
+		options[index].value = !value;
+		props.setAttributes(options);
 	};
 
 	delete fieldAttributes.type;
@@ -2609,7 +2618,9 @@ function checkbox(props, config, attributeKey) {
 
 
 var Component = wp.element.Component;
-var BaseControl = wp.components.BaseControl;
+var _wp$components = wp.components,
+    BaseControl = _wp$components.BaseControl,
+    withInstanceId = _wp$components.withInstanceId;
 
 var CheckboxControl = function (_Component) {
 	__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(CheckboxControl, _Component);
@@ -2620,40 +2631,60 @@ var CheckboxControl = function (_Component) {
 		var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (CheckboxControl.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(CheckboxControl)).apply(this, arguments));
 
 		_this.state = {
-			editing: !(_this.props.mediaData && _this.props.mediaData.url),
-			mediaData: _this.props.mediaData || ''
+			options: _this.props.options
 		};
+		_this.onChange = _this.onChange.bind(_this);
+		_this.props.setAtt();
 		return _this;
 	}
 
 	__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(CheckboxControl, [{
+		key: "onChange",
+		value: function onChange(index, value) {
+			var options = this.props.options;
+			options[index].value = !value;
+			this.setState({
+				options: options
+			});
+			this.props.onChange(index, value);
+		}
+	}, {
 		key: "render",
 		value: function render() {
+			var _this2 = this;
+
 			var _props = this.props,
 			    heading = _props.heading,
 			    help = _props.help,
-			    options = _props.options,
-			    onChange = _props.onChange;
+			    _props$instanceId = _props.instanceId,
+			    instanceId = _props$instanceId === undefined ? 0 : _props$instanceId,
+			    _props$options = _props.options,
+			    options = _props$options === undefined ? [] : _props$options;
 
+			var id = "checkbox-control-" + instanceId;
 
 			return wp.element.createElement(
 				BaseControl,
-				{ label: heading, help: help },
+				{ label: heading, id: id, help: help },
 				options.map(function (option, index) {
 					return wp.element.createElement(
 						"div",
-						null,
+						{ key: id + "-" + index },
 						wp.element.createElement("input", {
 							className: "components-checkbox-control__input",
+							id: id + "-" + index,
+							name: id,
 							type: "checkbox",
 							value: option.value,
-							onChange: onChange,
-							checked: option.value
-							// aria-describedby={ !! help ? id + '__help' : undefined }
+							onClick: function onClick() {
+								return _this2.onChange(index, option.value);
+							},
+							checked: option.value,
+							"aria-describedby": !!help ? id + '__help' : undefined
 						}),
 						wp.element.createElement(
 							"label",
-							null,
+							{ htmlFor: id + "-" + index },
 							option.label
 						)
 					);
@@ -2665,7 +2696,7 @@ var CheckboxControl = function (_Component) {
 	return CheckboxControl;
 }(Component);
 
-/* harmony default export */ __webpack_exports__["a"] = (CheckboxControl);
+/* harmony default export */ __webpack_exports__["a"] = (withInstanceId(CheckboxControl));
 
 /***/ }),
 /* 104 */

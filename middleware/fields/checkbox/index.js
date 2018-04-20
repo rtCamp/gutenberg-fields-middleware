@@ -5,17 +5,24 @@
 import CheckboxControl from '../../components/checkbox-control';
 
 export default function checkbox( props, config, attributeKey ) {
-
 	const fieldAttributes = _.extend( {}, config );
 
-	fieldAttributes.onChange = () => {
-		const { options } = config;
-		const newAttributes = {};
+	if ( props.attributes[ attributeKey ] ) {
+		fieldAttributes.options = props.attributes[ attributeKey ];
+	}
 
-		newAttributes[ attributeKey ] = {};
-		options.map( ( option, index ) =>
-			newAttributes[ attributeKey ][ index ] = option.value,
-		);
+	fieldAttributes.setAtt = () => {
+		if ( ! props.attributes[ attributeKey ] ) {
+			const newAttributes = {};
+			newAttributes[ attributeKey ] = config.options;
+			props.setAttributes( newAttributes );
+		}
+	};
+
+	fieldAttributes.onChange = ( index = null, value = null ) => {
+		const options = props.attributes[ attributeKey ];
+		options[ index ].value = ! value;
+		props.setAttributes( options );
 	};
 
 	delete fieldAttributes.type;
