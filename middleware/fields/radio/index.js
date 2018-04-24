@@ -1,12 +1,12 @@
 /**
  * Radio Control field.
  */
-
+import React from 'react';
 const { RadioControl } = wp.components;
 
 export default function radio( props, config, attributeKey ) {
 	const defaultAttributes = {
-		selected: props.attributes[ attributeKey ],
+		selected: props.attributes ? props.attributes[ attributeKey ] || '' : '',
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
