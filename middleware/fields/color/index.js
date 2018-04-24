@@ -10,6 +10,7 @@ export default function color( props, config, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
 		label: __( 'Color' ),
+		initialOpen: false,
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -27,7 +28,7 @@ export default function color( props, config, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<PanelColor title={ fieldAttributes.label } colorValue={ fieldAttributes.value } >
+		<PanelColor title={ fieldAttributes.label } colorValue={ fieldAttributes.value } initialOpen={ fieldAttributes.initialOpen }>
 			<ColorPalette
 				{ ...fieldAttributes }
 			/>
