@@ -81,9 +81,9 @@ ul.file-upload-field-files,
   font-weight: 500;
   text-decoration: none; }
 
-.file-upload-field .components-icon-button svg {
-  position: relative;
-  top: 3px; }
+.file-upload-field .dashicons-upload {
+  vertical-align: middle;
+  margin-bottom: 3px; }
 .middleware-media-field {
   position: relative; }
   .middleware-media-field .middleware-media-toolbar {

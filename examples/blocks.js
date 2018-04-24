@@ -423,7 +423,10 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'array',
 			field: {
 				type: 'file-upload',
+				fileType: 'video',
 				multiple: true,
+				placement: 'inspector',
+				label: 'Upload File',
 			},
 		},
 	},

@@ -13,7 +13,7 @@ export function getDashIconSuffix( extension ) {
 		suffix = 'book';
 	} else if ( _.contains( [ 'jpg', 'png', 'gif', 'jpeg', 'tif', 'ico', 'bmp', 'svg' ], extension ) ) {
 		suffix = 'format-image';
-	} else if ( _.contains( [ 'mp4', 'avi', 'flv', 'mov', 'mpg', 'rm', 'swf', 'wmv', 'ogv', '3gp', '3g2', 'm4v' ], extension ) ) {
+	} else if ( _.contains( [ 'mp4', 'avi', 'flv', 'mov', 'mpg', 'rm', 'swf', 'wmv', 'ogv', '3gp', '3g2', 'm4v', 'mpeg' ], extension ) ) {
 		suffix = 'media-video';
 	} else if ( _.contains( [ 'pptx', 'pptm', 'ppt', 'pot', 'potx', 'potm', 'pps', 'ppsx' ], extension ) ) {
 		suffix = 'media-interactive';
