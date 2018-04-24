@@ -824,32 +824,44 @@ module.exports = function (KEY, exec) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getDashIconSuffix;
 /* harmony export (immutable) */ __webpack_exports__["b"] = getDashIconSuffixByType;
-function getDashIconSuffix(extenstion) {
+/**
+ * Get dashicon css class suffix using extension.
+ *
+ * @param {string} extension File extension.
+ * @return {string} Dashicon suffix.
+ */
+function getDashIconSuffix(extension) {
 	var suffix = 'media-default';
 
-	if ('zip' === extenstion) {
+	if ('zip' === extension) {
 		suffix = 'media-archive';
-	} else if (_.contains(['pdf', 'epub', 'azw', 'indd'], extenstion)) {
+	} else if (_.contains(['pdf', 'epub', 'azw', 'indd'], extension)) {
 		suffix = 'book';
-	} else if (_.contains(['jpg', 'png', 'gif', 'jpeg', 'tif', 'ico', 'bmp', 'svg'], extenstion)) {
+	} else if (_.contains(['jpg', 'png', 'gif', 'jpeg', 'tif', 'ico', 'bmp', 'svg'], extension)) {
 		suffix = 'format-image';
-	} else if (_.contains(['mp4', 'avi', 'flv', 'mov', 'mpg', 'rm', 'swf', 'wmv', 'ogv', '3gp', '3g2', 'm4v'], extenstion)) {
+	} else if (_.contains(['mp4', 'avi', 'flv', 'mov', 'mpg', 'rm', 'swf', 'wmv', 'ogv', '3gp', '3g2', 'm4v'], extension)) {
 		suffix = 'media-video';
-	} else if (_.contains(['pptx', 'pptm', 'ppt', 'pot', 'potx', 'potm', 'pps', 'ppsx'], extenstion)) {
+	} else if (_.contains(['pptx', 'pptm', 'ppt', 'pot', 'potx', 'potm', 'pps', 'ppsx'], extension)) {
 		suffix = 'media-interactive';
-	} else if (_.contains(['mp3', 'm4a', 'ogg', 'wav'], extenstion)) {
+	} else if (_.contains(['mp3', 'm4a', 'ogg', 'wav'], extension)) {
 		suffix = 'media-audio';
-	} else if (_.contains(['xls', 'xlsx', 'xla', 'xlb', 'xlc', 'xld', 'xlk', 'xll', 'xlm', 'xlt', 'xlv', 'xlw', 'numbers'], extenstion)) {
+	} else if (_.contains(['xls', 'xlsx', 'xla', 'xlb', 'xlc', 'xld', 'xlk', 'xll', 'xlm', 'xlt', 'xlv', 'xlw', 'numbers'], extension)) {
 		suffix = 'media-spreadsheet';
-	} else if (_.contains(['doc', 'docx', 'docm', 'pages'], extenstion)) {
+	} else if (_.contains(['doc', 'docx', 'docm', 'pages'], extension)) {
 		suffix = 'media-document';
-	} else if (_.contains(['txt', 'odt', 'rtf', 'log'], extenstion)) {
+	} else if (_.contains(['txt', 'odt', 'rtf', 'log'], extension)) {
 		suffix = 'media-text';
 	}
 
 	return suffix;
 }
 
+/**
+ * Get dashicon suffix by file type.
+ *
+ * @param {string} type File type.
+ * @return {string} Dashicon suffix.
+ */
 function getDashIconSuffixByType(type) {
 	var suffix = '';
 
@@ -1249,7 +1261,7 @@ var GutenbergFieldsMiddleWare = function () {
 		this.blockControlFields = {};
 		this.blockControls = null;
 		this.config = _.extend({}, config);
-		this.innerFields = {};
+		this.helperFields = {};
 
 		this.setupBlockFields = this.setupBlockFields.bind(this);
 		this.setupField = this.setupField.bind(this);
@@ -1350,7 +1362,7 @@ var GutenbergFieldsMiddleWare = function () {
    * @param {Object} props        Properties.
    * @param {Object} config       Field configuration provided.
    * @param {String} attributeKey Attribute Key.
-   * @param {Object} innerFields  Inner Fields.
+   * @param {Object} helperFields  Inner Fields.
    *
    * @return {Object} Field.
    */
@@ -1449,15 +1461,15 @@ var GutenbergFieldsMiddleWare = function () {
 
 			// Setup inner fields first.
 			_.each(this.blockConfigs.attributes, function (attribute) {
-				if (attribute.field && attribute.field.innerFields) {
-					_.each(attribute.field.innerFields, function (innerFieldAttributeKey) {
-						_.extend(_this2.innerFields, _this2.setupField(props, _this2.blockConfigs.attributes[innerFieldAttributeKey], innerFieldAttributeKey, false));
+				if (attribute.field && attribute.field.helperFields) {
+					_.each(attribute.field.helperFields, function (innerFieldAttributeKey) {
+						_.extend(_this2.helperFields, _this2.setupField(props, _this2.blockConfigs.attributes[innerFieldAttributeKey], innerFieldAttributeKey, false));
 					});
 				}
 			});
 
 			_.each(this.blockConfigs.attributes, function (attribute, attributeKey) {
-				if (attribute.field && !_this2.innerFields[attributeKey]) {
+				if (attribute.field && !_this2.helperFields[attributeKey]) {
 					_this2.setupField(props, attribute, attributeKey);
 				}
 			});
@@ -1527,16 +1539,16 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function getInnerFields(attributeKey) {
 			var _this3 = this;
 
-			var innerFields = {};
+			var helperFields = {};
 			var config = this.blockConfigs.attributes[attributeKey].field;
 
-			if (config && !_.isEmpty(config.innerFields)) {
-				_.each(config.innerFields, function (innerFieldAttributeKey, innerFieldKeyName) {
-					innerFields[innerFieldKeyName] = _this3.innerFields[innerFieldAttributeKey];
+			if (config && !_.isEmpty(config.helperFields)) {
+				_.each(config.helperFields, function (innerFieldAttributeKey, innerFieldKeyName) {
+					helperFields[innerFieldKeyName] = _this3.helperFields[innerFieldAttributeKey];
 				});
 			}
 
-			return innerFields;
+			return helperFields;
 		}
 
 		/**
@@ -2110,10 +2122,10 @@ function buttonEditable(props, config, attributeKey, middleware) {
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
-	var innerFields = middleware.getInnerFields(attributeKey);
-	var backgroundColorAttributeKey = config.innerFields ? config.innerFields.backgroundColor : '';
-	var textColorAttributeKey = config.innerFields ? config.innerFields.color : '';
-	var buttonClassAttributeKey = config.innerFields ? config.innerFields.class : '';
+	var helperFields = middleware.getInnerFields(attributeKey);
+	var backgroundColorAttributeKey = config.helperFields ? config.helperFields.backgroundColor : '';
+	var textColorAttributeKey = config.helperFields ? config.helperFields.color : '';
+	var buttonClassAttributeKey = config.helperFields ? config.helperFields.class : '';
 
 	fieldAttributes.onChange = function (value) {
 		if (config.onChange) {
@@ -2128,7 +2140,7 @@ function buttonEditable(props, config, attributeKey, middleware) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_button_editable__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 		buttonValue: fieldAttributes.value,
 		isSelected: props.isSelected && attributeKey === props.editable,
-		linkField: innerFields.link,
+		linkField: helperFields.link,
 		backgroundColor: backgroundColorAttributeKey ? props.attributes[backgroundColorAttributeKey] : null,
 		textColor: textColorAttributeKey ? props.attributes[textColorAttributeKey] : null,
 		buttonClass: buttonClassAttributeKey ? props.attributes[buttonClassAttributeKey] : null

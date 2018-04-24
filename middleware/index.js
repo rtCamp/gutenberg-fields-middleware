@@ -30,7 +30,7 @@ class GutenbergFieldsMiddleWare {
 		this.blockControlFields = {};
 		this.blockControls = null;
 		this.config = _.extend( {}, config );
-		this.innerFields = {};
+		this.helperFields = {};
 
 		this.setupBlockFields = this.setupBlockFields.bind( this );
 		this.setupField = this.setupField.bind( this );
@@ -113,7 +113,7 @@ class GutenbergFieldsMiddleWare {
 	 * @param {Object} props        Properties.
 	 * @param {Object} config       Field configuration provided.
 	 * @param {String} attributeKey Attribute Key.
-	 * @param {Object} innerFields  Inner Fields.
+	 * @param {Object} helperFields  Inner Fields.
 	 *
 	 * @return {Object} Field.
 	 */
@@ -204,15 +204,15 @@ class GutenbergFieldsMiddleWare {
 	setupBlockFields( props ) {
 		// Setup inner fields first.
 		_.each( this.blockConfigs.attributes, ( attribute ) => {
-			if ( attribute.field && attribute.field.innerFields ) {
-				_.each( attribute.field.innerFields, ( innerFieldAttributeKey ) => {
-					_.extend( this.innerFields, this.setupField( props, this.blockConfigs.attributes[ innerFieldAttributeKey ], innerFieldAttributeKey, false ) );
+			if ( attribute.field && attribute.field.helperFields ) {
+				_.each( attribute.field.helperFields, ( innerFieldAttributeKey ) => {
+					_.extend( this.helperFields, this.setupField( props, this.blockConfigs.attributes[ innerFieldAttributeKey ], innerFieldAttributeKey, false ) );
 				} );
 			}
 		} );
 
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
-			if ( attribute.field && ! this.innerFields[ attributeKey ] ) {
+			if ( attribute.field && ! this.helperFields[ attributeKey ] ) {
 				this.setupField( props, attribute, attributeKey );
 			}
 		} );
@@ -272,16 +272,16 @@ class GutenbergFieldsMiddleWare {
 	 * @return {Object} Inner fields.
 	 */
 	getInnerFields( attributeKey ) {
-		const innerFields = {};
+		const helperFields = {};
 		const config = this.blockConfigs.attributes[ attributeKey ].field;
 
-		if ( config && ! _.isEmpty( config.innerFields ) ) {
-			_.each( config.innerFields, ( innerFieldAttributeKey, innerFieldKeyName ) => {
-				innerFields[ innerFieldKeyName ] = this.innerFields[ innerFieldAttributeKey ];
+		if ( config && ! _.isEmpty( config.helperFields ) ) {
+			_.each( config.helperFields, ( innerFieldAttributeKey, innerFieldKeyName ) => {
+				helperFields[ innerFieldKeyName ] = this.helperFields[ innerFieldAttributeKey ];
 			} );
 		}
 
-		return innerFields;
+		return helperFields;
 	}
 
 	/**

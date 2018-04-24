@@ -149,7 +149,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'array',
 			field: {
 				type: 'button-editable',
-				innerFields: {
+				helperFields: {
 					link: 'buttonEditableLink',
 					backgroundColor: 'buttonBackgroundColor',
 					color: 'buttonColor',
