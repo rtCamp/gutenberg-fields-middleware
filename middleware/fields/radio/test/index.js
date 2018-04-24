@@ -14,6 +14,7 @@ describe( 'RadioControl', () => {
 		type: 'radio',
 		label: 'User type',
 		help: 'The type of the current user',
+		default: 'one',
 		options: [
 			{
 				value: 'one',
@@ -28,6 +29,7 @@ describe( 'RadioControl', () => {
 
 	const wrapper = render( radio( '', config, 'radio' ) );
 	const radioEl = wrapper.find( '.components-radio-control__option > input[type=\'radio\']' );
+	const defaultRadio = wrapper.find( '.components-radio-control__option > input[type=\'radio\'][value=\'one\']' );
 
 	beforeEach( () => {
 		onChange.mockClear();
@@ -37,8 +39,11 @@ describe( 'RadioControl', () => {
 		expect( wrapper ).toMatchSnapshot();
 	} );
 
-	test( 'should render two radio button options', () => {
+	test( 'should render two radio options', () => {
 		expect( radioEl ).toHaveLength( 2 );
 	} );
 
+	test( 'should have default selected', () => {
+		expect( defaultRadio ).toHaveLength( 1 );
+	} );
 } );
