@@ -3854,7 +3854,7 @@ var ImagePlaceholder = function (_Component) {
 				{ className: 'middleware-media-field' },
 				wp.element.createElement(
 					Toolbar,
-					{ key: 'image', className: this.props.isSelected ? 'middleware-media-toolbar middleware-is-selected' : 'middleware-media-toolbar' },
+					{ key: 'image', className: 'middleware-media-toolbar' },
 					wp.element.createElement(IconButton, {
 						className: 'components-icon-button components-toolbar__control',
 						label: __('Edit image'),
@@ -4237,17 +4237,6 @@ var MediaPlaceholder = function (_Component) {
 
 			var mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
-			var controls = this.props.isSelected && wp.element.createElement(
-				Toolbar,
-				{ key: type },
-				wp.element.createElement(IconButton, {
-					className: 'components-icon-button components-toolbar__control',
-					label: __('Edit ') + type,
-					onClick: this.switchToEditing,
-					icon: 'edit'
-				})
-			);
-
 			if (this.state.editing) {
 				var mediaIcon = 'media-' + type;
 
@@ -4305,7 +4294,16 @@ var MediaPlaceholder = function (_Component) {
 			return wp.element.createElement(
 				'div',
 				{ className: 'middleware-media-field' },
-				controls,
+				wp.element.createElement(
+					Toolbar,
+					{ key: type, className: 'middleware-media-toolbar' },
+					wp.element.createElement(IconButton, {
+						className: 'components-icon-button components-toolbar__control',
+						label: __('Edit ') + type,
+						onClick: this.switchToEditing,
+						icon: 'edit'
+					})
+				),
 				wp.element.createElement(
 					'figure',
 					{ key: type, className: className + ' wp-block-' + type },

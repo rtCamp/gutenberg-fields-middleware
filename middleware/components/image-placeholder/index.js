@@ -170,7 +170,7 @@ class ImagePlaceholder extends Component {
 
 		return (
 			<div className="middleware-media-field">
-				<Toolbar key="image" className={ this.props.isSelected ? 'middleware-media-toolbar middleware-is-selected' : 'middleware-media-toolbar' }>
+				<Toolbar key="image" className="middleware-media-toolbar">
 					<IconButton
 						className="components-icon-button components-toolbar__control"
 						label={ __( 'Edit image' ) }

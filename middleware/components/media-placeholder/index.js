@@ -130,19 +130,6 @@ class MediaPlaceholder extends Component {
 
 		const mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
-		const controls = (
-			this.props.isSelected && (
-				<Toolbar key={ type }>
-					<IconButton
-						className="components-icon-button components-toolbar__control"
-						label={ __( 'Edit ' ) + type }
-						onClick={ this.switchToEditing }
-						icon="edit"
-					/>
-				</Toolbar>
-			)
-		);
-
 		if ( this.state.editing ) {
 			const mediaIcon = 'media-' + type;
 
@@ -190,7 +177,14 @@ class MediaPlaceholder extends Component {
 
 		return (
 			<div className="middleware-media-field">
-				{ controls }
+				<Toolbar key={ type } className="middleware-media-toolbar">
+					<IconButton
+						className="components-icon-button components-toolbar__control"
+						label={ __( 'Edit ' ) + type }
+						onClick={ this.switchToEditing }
+						icon="edit"
+					/>
+				</Toolbar>
 				{
 					<figure key={ type } className={ className + ' wp-block-' + type }>
 						{ 'video' === type && (
