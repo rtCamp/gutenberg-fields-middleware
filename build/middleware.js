@@ -4334,12 +4334,9 @@ var MediaPlaceholder = function (_Component) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = radio;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /**
  * Radio Control field.
  */
-
 var RadioControl = wp.components.RadioControl;
 
 
@@ -4603,13 +4600,6 @@ function treeSelect(props, config, attributeKey) {
 
 	return wp.element.createElement(TreeSelect, fieldAttributes);
 }
-
-/***/ }),
-/* 143 */,
-/* 144 */
-/***/ (function(module, exports) {
-
-module.exports = React;
 
 /***/ })
 /******/ ]);
