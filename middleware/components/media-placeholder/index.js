@@ -1,4 +1,5 @@
 import './editor.scss';
+import { getDashIconSuffixByType } from './../../utils/media';
 
 const { Component } = wp.element;
 const { __ } = wp.i18n;
@@ -125,14 +126,15 @@ class MediaPlaceholder extends Component {
 		} = this.props;
 
 		if ( this.state.editing ) {
-			const mediaIcon = 'media-' + type;
+			const mediaIcon = getDashIconSuffixByType( type );
+			const placeholderClassName = 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type;
 
 			return (
 				<Placeholder
 					key="placeholder"
 					icon={ mediaIcon }
 					label={ type }
-					className={ 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type }
+					className={ placeholderClassName }
 					instructions={ placeholderText } >
 					<DropZone onFilesDrop={ this.onFilesDrop } />
 					<form onSubmit={ this.onSelectUrl }>

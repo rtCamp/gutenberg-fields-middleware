@@ -3617,6 +3617,8 @@ function mediaUpload(props, config, attributeKey, middleware) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editor_scss__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__editor_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_media__ = __webpack_require__(43);
+
 
 
 
@@ -3784,7 +3786,8 @@ var MediaPlaceholder = function (_Component) {
 
 
 			if (this.state.editing) {
-				var mediaIcon = 'media-' + type;
+				var mediaIcon = Object(__WEBPACK_IMPORTED_MODULE_7__utils_media__["b" /* getDashIconSuffixByType */])(type);
+				var placeholderClassName = 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type;
 
 				return wp.element.createElement(
 					Placeholder,
@@ -3792,7 +3795,7 @@ var MediaPlaceholder = function (_Component) {
 						key: 'placeholder',
 						icon: mediaIcon,
 						label: type,
-						className: 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type,
+						className: placeholderClassName,
 						instructions: placeholderText },
 					wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop }),
 					wp.element.createElement(
