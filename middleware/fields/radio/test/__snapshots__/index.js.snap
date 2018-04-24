@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioControl should render a radio Control 1`] = `
+<div
+  class="components-base-control components-radio-control"
+>
+  <div
+    class="components-base-control__field"
+  >
+    <label
+      class="components-base-control__label"
+      for="inspector-radio-control-0"
+    >
+      User type
+    </label>
+    <div
+      class="components-radio-control__option"
+    >
+      <input
+        aria-describedby="inspector-radio-control-0__help"
+        checked=""
+        class="components-radio-control__input"
+        id="inspector-radio-control-0-0"
+        name="inspector-radio-control-0"
+        type="radio"
+        value="a"
+      />
+      <label
+        for="inspector-radio-control-0-0"
+      >
+        Author
+      </label>
+    </div>
+    <div
+      class="components-radio-control__option"
+    >
+      <input
+        aria-describedby="inspector-radio-control-0__help"
+        class="components-radio-control__input"
+        id="inspector-radio-control-0-1"
+        name="inspector-radio-control-0"
+        type="radio"
+        value="e"
+      />
+      <label
+        for="inspector-radio-control-0-1"
+      >
+        Editor
+      </label>
+    </div>
+  </div>
+  <p
+    class="components-base-control__help"
+    id="inspector-radio-control-0__help"
+  >
+    The type of the current user
+  </p>
+</div>
+`;
