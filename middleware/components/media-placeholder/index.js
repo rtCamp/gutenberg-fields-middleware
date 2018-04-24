@@ -4,7 +4,6 @@ const { Component } = wp.element;
 const { __ } = wp.i18n;
 
 const {
-	PlainText,
 	MediaUpload,
 } = wp.blocks;
 
@@ -119,16 +118,11 @@ class MediaPlaceholder extends Component {
 	render() {
 		const {
 			type,
-			caption,
-			mediaData,
 			placeholderText,
 			buttonText,
 			className,
 			isSelected,
-			setCaption,
 		} = this.props;
-
-		const mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
 		if ( this.state.editing ) {
 			const mediaIcon = 'media-' + type;
@@ -193,13 +187,8 @@ class MediaPlaceholder extends Component {
 						{ 'audio' === type && (
 							<audio controls src={ this.state.mediaData.url } />
 						) }
-						{ isSelected && caption && (
-							<PlainText
-								placeholder={ __( 'Write caption…' ) }
-								value={ mediaCaption }
-								isSelected={ isSelected }
-								onChange={ setCaption }
-							/>
+						{ isSelected && (
+							this.props.captionField
 						) }
 					</figure>
 				}

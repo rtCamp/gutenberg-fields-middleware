@@ -3586,9 +3586,9 @@ function mediaUpload(props, config, attributeKey, middleware) {
 		isSelected: props.isSelected
 	};
 	var fieldAttributes = _.extend(defaultAttributes, config);
+	var helperFields = middleware.getHelperFields(attributeKey);
 
 	fieldAttributes.className = props.className;
-	var helperFields = middleware.getHelperFields(attributeKey);
 
 	fieldAttributes.removeMediaAttributes = function () {
 		var newAttributes = {};
@@ -3604,10 +3604,9 @@ function mediaUpload(props, config, attributeKey, middleware) {
 		}
 	};
 
-	fieldAttributes.mediaData = props.attributes[attributeKey];
-
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_image_placeholder__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
-		captionField: helperFields.caption
+		captionField: helperFields.caption,
+		mediaData: props.attributes[attributeKey]
 	}));
 }
 
@@ -3998,7 +3997,10 @@ function link(props, config, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = mediaUpload;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_media_placeholder__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__ = __webpack_require__(133);
+
 /**
  * Video/Audio field.
  */
@@ -4006,13 +4008,14 @@ var __ = wp.i18n.__;
 
 
 
-function mediaUpload(props, config, attributeKey) {
+function mediaUpload(props, config, attributeKey, middleware) {
 	var defaultAttributes = {
 		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
 		isSelected: props.isSelected
 	};
 	var fieldAttributes = _.extend(defaultAttributes, config);
+	var helperFields = middleware.getHelperFields(attributeKey);
 
 	fieldAttributes.className = props.className;
 
@@ -4030,19 +4033,10 @@ function mediaUpload(props, config, attributeKey) {
 		}
 	};
 
-	fieldAttributes.setCaption = function (caption) {
-		var attributeValue = _.extend({}, props.attributes[attributeKey]);
-		if (attributeValue) {
-			var newAttributes = {};
-			attributeValue.mediaCaption = caption;
-			newAttributes[attributeKey] = attributeValue;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	fieldAttributes.mediaData = props.attributes[attributeKey];
-
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__components_media_placeholder__["a" /* default */], fieldAttributes);
+	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		mediaData: props.attributes[attributeKey],
+		captionField: helperFields.caption
+	}));
 }
 
 /***/ }),
@@ -4074,9 +4068,7 @@ function mediaUpload(props, config, attributeKey) {
 
 var Component = wp.element.Component;
 var __ = wp.i18n.__;
-var _wp$blocks = wp.blocks,
-    PlainText = _wp$blocks.PlainText,
-    MediaUpload = _wp$blocks.MediaUpload;
+var MediaUpload = wp.blocks.MediaUpload;
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
     FormFileUpload = _wp$components.FormFileUpload,
@@ -4226,16 +4218,11 @@ var MediaPlaceholder = function (_Component) {
 		value: function render() {
 			var _props = this.props,
 			    type = _props.type,
-			    caption = _props.caption,
-			    mediaData = _props.mediaData,
 			    placeholderText = _props.placeholderText,
 			    buttonText = _props.buttonText,
 			    className = _props.className,
-			    isSelected = _props.isSelected,
-			    setCaption = _props.setCaption;
+			    isSelected = _props.isSelected;
 
-
-			var mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
 
 			if (this.state.editing) {
 				var mediaIcon = 'media-' + type;
@@ -4309,12 +4296,7 @@ var MediaPlaceholder = function (_Component) {
 					{ key: type, className: className + ' wp-block-' + type },
 					'video' === type && wp.element.createElement('video', { controls: true, src: this.state.mediaData.url }),
 					'audio' === type && wp.element.createElement('audio', { controls: true, src: this.state.mediaData.url }),
-					isSelected && caption && wp.element.createElement(PlainText, {
-						placeholder: __('Write caption…'),
-						value: mediaCaption,
-						isSelected: isSelected,
-						onChange: setCaption
-					})
+					isSelected && this.props.captionField
 				)
 			);
 		}

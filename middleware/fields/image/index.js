@@ -11,9 +11,9 @@ export default function mediaUpload( props, config, attributeKey, middleware ) {
 		isSelected: props.isSelected,
 	};
 	const fieldAttributes = _.extend( defaultAttributes, config );
+	const helperFields = middleware.getHelperFields( attributeKey );
 
 	fieldAttributes.className = props.className;
-	const helperFields = middleware.getHelperFields( attributeKey );
 
 	fieldAttributes.removeMediaAttributes = () => {
 		const newAttributes = {};
@@ -29,12 +29,11 @@ export default function mediaUpload( props, config, attributeKey, middleware ) {
 		}
 	};
 
-	fieldAttributes.mediaData = props.attributes[ attributeKey ];
-
 	return (
 		<ImagePlaceholder
 			{ ...fieldAttributes }
 			captionField={ helperFields.caption }
+			mediaData={ props.attributes[ attributeKey ] }
 		/>
 	);
 }
