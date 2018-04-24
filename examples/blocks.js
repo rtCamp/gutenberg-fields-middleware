@@ -381,7 +381,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'range',
 				label: __( 'Select Range' ),
 				placement: 'inspector',
-				min: 1,
+				min: 0,
 				max: 20,
 			},
 			default: 3,

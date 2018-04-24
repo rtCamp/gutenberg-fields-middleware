@@ -4378,7 +4378,7 @@ var RangeControl = wp.components.RangeControl;
 
 function range(props, config, attributeKey) {
 	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
+		value: props.attributes[attributeKey]
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
