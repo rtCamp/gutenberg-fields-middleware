@@ -55,6 +55,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'block-controls',
 			},
 		},
+		blockLink: {
+			type: 'string',
+			field: {
+				type: 'url-input-button',
+				placement: 'block-controls',
+			},
+		},
 		text: {
 			type: 'string',
 			field: {

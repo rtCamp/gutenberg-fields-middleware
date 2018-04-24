@@ -182,6 +182,9 @@ class GutenbergFieldsMiddleWare {
 			case 'media-icon':
 				field[ attributeKey ] = fields.mediaIcon( props, config, attributeKey, this );
 				break;
+			case 'url-input-button':
+				field[ attributeKey ] = fields.urlInputButton( props, config, attributeKey, this );
+				break;
 		}
 
 		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {

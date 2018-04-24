@@ -1377,6 +1377,9 @@ var GutenbergFieldsMiddleWare = function () {
 				case 'media-icon':
 					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_4__fields__["m" /* mediaIcon */](props, config, attributeKey, this);
 					break;
+				case 'url-input-button':
+					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_4__fields__["v" /* urlInputButton */](props, config, attributeKey, this);
+					break;
 			}
 
 			if (_.contains(['email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'], config.type)) {
@@ -1829,6 +1832,9 @@ $export($export.S + $export.F * !__webpack_require__(6), 'Object', { definePrope
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_19__textarea__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__tree_select__ = __webpack_require__(141);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_20__tree_select__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__url_input_button__ = __webpack_require__(142);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_21__url_input_button__["a"]; });
+
 
 
 
@@ -4330,6 +4336,63 @@ function treeSelect(props, config, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(TreeSelect, fieldAttributes);
+}
+
+/***/ }),
+/* 142 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = urlInputButton;
+/**
+ * url-input-button field.
+ */
+
+var UrlInputButton = wp.blocks.UrlInputButton;
+var _wp$components = wp.components,
+    BaseControl = _wp$components.BaseControl,
+    Toolbar = _wp$components.Toolbar;
+
+
+function urlInputButton(props, config, attributeKey) {
+	var defaultAttributes = {
+		url: props.attributes[attributeKey]
+	};
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
+
+	fieldAttributes.onChange = function (media) {
+		if (config.onChange) {
+			config.onChange(media, props);
+		} else {
+			var newAttributes = {};
+			newAttributes[attributeKey] = media;
+			props.setAttributes(newAttributes);
+		}
+	};
+
+	var help = fieldAttributes.help;
+	var label = fieldAttributes.label;
+
+	delete fieldAttributes.placement;
+	delete fieldAttributes.help;
+	delete fieldAttributes.label;
+
+	var toolbarComponent = wp.element.createElement(
+		Toolbar,
+		null,
+		wp.element.createElement(UrlInputButton, fieldAttributes)
+	);
+
+	if ('block-controls' !== config.placement) {
+		return wp.element.createElement(
+			BaseControl,
+			{ label: label, help: help },
+			toolbarComponent
+		);
+	}
+
+	return toolbarComponent;
 }
 
 /***/ })

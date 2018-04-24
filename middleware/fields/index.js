@@ -19,3 +19,4 @@ export { default as select } from './select';
 export { default as text } from './text';
 export { default as textarea } from './textarea';
 export { default as treeSelect } from './tree-select';
+export { default as urlInputButton } from './url-input-button';
