@@ -23,6 +23,8 @@ export default function dateTime( props, config, attributeKey ) {
 		is12Hour: is12HourTime,
 
 		label: __( 'Date' ),
+
+		initialOpen: false,
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -47,7 +49,7 @@ export default function dateTime( props, config, attributeKey ) {
 	delete fieldAttributes.label;
 
 	return (
-		<PanelBody initialOpen={ false } title={ [
+		<PanelBody initialOpen={ fieldAttributes.initialOpen } title={ [
 			label + ': ',
 			<span key="label">{ getFormattedDate() }</span>,
 		]

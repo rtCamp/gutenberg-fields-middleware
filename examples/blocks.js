@@ -198,6 +198,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'color',
 				label: __( 'Button Background Color' ),
 				placement: 'inspector',
+				initialOpen: true,
 			},
 		},
 		buttonColor: {
@@ -206,6 +207,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'color',
 				label: __( 'Button Color' ),
 				placement: 'inspector',
+				initialOpen: false,
 			},
 		},
 		buttonClasses: {
@@ -275,6 +277,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'color',
 				placement: 'inspector',
+				initialOpen: true,
 			},
 		},
 		dateTime: {
@@ -282,6 +285,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'date-time',
 				placement: 'inspector',
+				initialOpen: false,
 			},
 		},
 		textarea: {
