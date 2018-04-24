@@ -284,6 +284,19 @@ class GutenbergFieldsMiddleWare {
 	}
 
 	/**
+	 * Get helper fields value.
+	 *
+	 * @param {Object} props Properties.
+	 * @param {Object} config Field configuration passed as attributeKey.field.
+	 * @param {String} attributeKeyName Attribute key name as attributeKey.field.helperField.keyName.
+	 * @return {mixed|null} Helper field value.
+	 */
+	getHelperFieldValue( props, config, attributeKeyName ) {
+		const attributeKey = config.helperFields ? config.helperFields[ attributeKeyName ] : '';
+		return attributeKey ? props.attributes[ attributeKey ] : null;
+	}
+
+	/**
 	 * Check if it is a react component.
 	 *
 	 * @param {*} component Component or function.

@@ -79,8 +79,19 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'image',
 				buttonText: __( 'Upload' ),
 				placeholderText: __( 'Select a image file from your library, or upload a new one' ),
-				caption: true,
+				helperFields: {
+					caption: 'imageCaption',
+				},
 			},
+		},
+		imageCaption: {
+			type: 'array',
+			field: {
+				type: 'rich-text',
+				placeholder: __( 'Enter caption' ),
+			},
+			source: 'children', // Read about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			selector: '.rich-text',
 		},
 		option: {
 			type: 'string',

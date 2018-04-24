@@ -1551,6 +1551,22 @@ var GutenbergFieldsMiddleWare = function () {
 		}
 
 		/**
+   * Get helper fields value.
+   *
+   * @param {Object} props Properties.
+   * @param {Object} config Field configuration passed as attributeKey.field.
+   * @param {String} attributeKeyName Attribute key name as attributeKey.field.helperField.keyName.
+   * @return {mixed|null} Helper field value.
+   */
+
+	}, {
+		key: 'getHelperFieldValue',
+		value: function getHelperFieldValue(props, config, attributeKeyName) {
+			var attributeKey = config.helperFields ? config.helperFields[attributeKeyName] : '';
+			return attributeKey ? props.attributes[attributeKey] : null;
+		}
+
+		/**
    * Check if it is a react component.
    *
    * @param {*} component Component or function.
@@ -2122,9 +2138,6 @@ function buttonEditable(props, config, attributeKey, middleware) {
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 	var helperFields = middleware.getHelperFields(attributeKey);
-	var backgroundColorAttributeKey = config.helperFields ? config.helperFields.backgroundColor : '';
-	var textColorAttributeKey = config.helperFields ? config.helperFields.color : '';
-	var buttonClassAttributeKey = config.helperFields ? config.helperFields.class : '';
 
 	fieldAttributes.onChange = function (value) {
 		if (config.onChange) {
@@ -2140,9 +2153,9 @@ function buttonEditable(props, config, attributeKey, middleware) {
 		buttonValue: fieldAttributes.value,
 		isSelected: props.isSelected && attributeKey === props.editable,
 		linkField: helperFields.link,
-		backgroundColor: backgroundColorAttributeKey ? props.attributes[backgroundColorAttributeKey] : null,
-		textColor: textColorAttributeKey ? props.attributes[textColorAttributeKey] : null,
-		buttonClass: buttonClassAttributeKey ? props.attributes[buttonClassAttributeKey] : null
+		backgroundColor: middleware.getHelperFieldValue(props, config, 'backgroundColor'),
+		textColor: middleware.getHelperFieldValue(props, config, 'color'),
+		buttonClass: middleware.getHelperFieldValue(props, config, 'class')
 	}));
 }
 
