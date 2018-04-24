@@ -18,17 +18,16 @@ exports[`RadioControl should render a radio Control 1`] = `
     >
       <input
         aria-describedby="inspector-radio-control-0__help"
-        checked=""
         class="components-radio-control__input"
         id="inspector-radio-control-0-0"
         name="inspector-radio-control-0"
         type="radio"
-        value="a"
+        value="one"
       />
       <label
         for="inspector-radio-control-0-0"
       >
-        Author
+        one
       </label>
     </div>
     <div
@@ -40,12 +39,12 @@ exports[`RadioControl should render a radio Control 1`] = `
         id="inspector-radio-control-0-1"
         name="inspector-radio-control-0"
         type="radio"
-        value="e"
+        value="two"
       />
       <label
         for="inspector-radio-control-0-1"
       >
-        Editor
+        two
       </label>
     </div>
   </div>

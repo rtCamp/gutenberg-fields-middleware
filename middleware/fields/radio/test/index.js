@@ -1,25 +1,28 @@
 import React from 'react';
 import { render } from 'enzyme';
 const { RadioControl } = wp.components;
+import { radio } from '../../';
 
 describe( 'RadioControl', () => {
 	const onChange = jest.fn();
-	const wrapper = render(
-		<RadioControl
-			label="User type"
-			help="The type of the current user"
-			selected={ 'a' }
-			options={ [
-				{
-					label: 'Author',
-					value: 'a',
-				},
-				{
-					label: 'Editor',
-					value: 'e',
-				},
-			] }
-			onChange={ onChange } /> );
+	const attributeKey = 'radio';
+	const config = {
+		type: 'radio',
+		label: 'User type',
+		help: 'The type of the current user',
+		options: [
+			{
+				value: 'one',
+				label: 'one',
+			},
+			{
+				value: 'two',
+				label: 'two',
+			},
+		],
+	};
+
+	const wrapper = render( radio( '', config, attributeKey ) );
 
 	beforeEach( () => {
 		onChange.mockClear();
