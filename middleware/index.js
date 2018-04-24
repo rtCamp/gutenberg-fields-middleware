@@ -129,11 +129,9 @@ class GutenbergFieldsMiddleWare {
 			case 'link':
 				field[ attributeKey ] = fields.link( props, config, attributeKey, this );
 				break;
-			case 'image':
-				field[ attributeKey ] = fields.image( props, config, attributeKey, this );
-				break;
 			case 'video':
 			case 'audio':
+			case 'image':
 				field[ attributeKey ] = fields.mediaUpload( props, config, attributeKey, this );
 				break;
 			case 'select':
@@ -281,6 +279,19 @@ class GutenbergFieldsMiddleWare {
 		}
 
 		return helperFields;
+	}
+
+	/**
+	 * Get helper fields value.
+	 *
+	 * @param {Object} props Properties.
+	 * @param {Object} config Field configuration passed as attributeKey.field.
+	 * @param {String} attributeKeyName Attribute key name as attributeKey.field.helperField.keyName.
+	 * @return {mixed|null} Helper field value.
+	 */
+	getHelperFieldValue( props, config, attributeKeyName ) {
+		const attributeKey = config.helperFields ? config.helperFields[ attributeKeyName ] : '';
+		return attributeKey ? props.attributes[ attributeKey ] : null;
 	}
 
 	/**

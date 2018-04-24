@@ -1,16 +1,17 @@
 /**
- * Video/Audio field.
+ * image/video/audio field.
  */
 const { __ } = wp.i18n;
 import MediaPlaceholder from './../../components/media-placeholder';
 
-export default function mediaUpload( props, config, attributeKey ) {
+export default function mediaUpload( props, config, attributeKey, middleware ) {
 	const defaultAttributes = {
 		placeholderText: __( 'Select a ' ) + config.type + __( ' file from your library, or upload a new one' ),
 		buttonText: __( 'Upload' ),
 		isSelected: props.isSelected,
 	};
 	const fieldAttributes = _.extend( defaultAttributes, config );
+	const helperFields = middleware.getHelperFields( attributeKey );
 
 	fieldAttributes.className = props.className;
 
@@ -28,19 +29,11 @@ export default function mediaUpload( props, config, attributeKey ) {
 		}
 	};
 
-	fieldAttributes.setCaption = ( caption ) => {
-		const attributeValue = _.extend( {}, props.attributes[ attributeKey ] );
-		if ( attributeValue ) {
-			const newAttributes = {};
-			attributeValue.mediaCaption = caption;
-			newAttributes[ attributeKey ] = attributeValue;
-			props.setAttributes( newAttributes );
-		}
-	};
-
-	fieldAttributes.mediaData = props.attributes[ attributeKey ];
-
 	return (
-		<MediaPlaceholder { ...fieldAttributes } />
+		<MediaPlaceholder
+			{ ...fieldAttributes }
+			mediaData={ props.attributes[ attributeKey ] }
+			captionField={ helperFields.caption }
+		/>
 	);
 }

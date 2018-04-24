@@ -1,10 +1,10 @@
 import './editor.scss';
+import { getDashIconSuffixByType } from './../../utils/media';
 
 const { Component } = wp.element;
 const { __ } = wp.i18n;
 
 const {
-	PlainText,
 	MediaUpload,
 } = wp.blocks;
 
@@ -119,39 +119,22 @@ class MediaPlaceholder extends Component {
 	render() {
 		const {
 			type,
-			caption,
-			mediaData,
 			placeholderText,
 			buttonText,
 			className,
 			isSelected,
-			setCaption,
 		} = this.props;
 
-		const mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
-
-		const controls = (
-			this.props.isSelected && (
-				<Toolbar key={ type }>
-					<IconButton
-						className="components-icon-button components-toolbar__control"
-						label={ __( 'Edit ' ) + type }
-						onClick={ this.switchToEditing }
-						icon="edit"
-					/>
-				</Toolbar>
-			)
-		);
-
 		if ( this.state.editing ) {
-			const mediaIcon = 'media-' + type;
+			const mediaIcon = getDashIconSuffixByType( type );
+			const placeholderClassName = 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type;
 
 			return (
 				<Placeholder
 					key="placeholder"
 					icon={ mediaIcon }
 					label={ type }
-					className={ className + ' wp-block-' + type }
+					className={ placeholderClassName }
 					instructions={ placeholderText } >
 					<DropZone onFilesDrop={ this.onFilesDrop } />
 					<form onSubmit={ this.onSelectUrl }>
@@ -190,7 +173,14 @@ class MediaPlaceholder extends Component {
 
 		return (
 			<div className="middleware-media-field">
-				{ controls }
+				<Toolbar key={ type } className="middleware-media-toolbar">
+					<IconButton
+						className="components-icon-button components-toolbar__control"
+						label={ __( 'Edit ' ) + type }
+						onClick={ this.switchToEditing }
+						icon="edit"
+					/>
+				</Toolbar>
 				{
 					<figure key={ type } className={ className + ' wp-block-' + type }>
 						{ 'video' === type && (
@@ -199,13 +189,16 @@ class MediaPlaceholder extends Component {
 						{ 'audio' === type && (
 							<audio controls src={ this.state.mediaData.url } />
 						) }
-						{ isSelected && caption && (
-							<PlainText
-								placeholder={ __( 'Write caption…' ) }
-								value={ mediaCaption }
-								isSelected={ isSelected }
-								onChange={ setCaption }
-							/>
+						{ 'image' === type && (
+							<figure key="image" className={ 'wp-middleware-block-image ' + className }>
+								<img src={ this.state.mediaData.url } alt={ this.state.mediaData.title || '' } />
+								{ isSelected && (
+									this.props.captionField
+								) }
+							</figure>
+						) }
+						{ isSelected && 'image' !== type && (
+							this.props.captionField
 						) }
 					</figure>
 				}
