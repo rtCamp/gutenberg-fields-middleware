@@ -9,7 +9,6 @@ import { render } from 'enzyme';
 import { radio } from '../../';
 
 describe( 'RadioControl', () => {
-	const onChange = jest.fn();
 	const config = {
 		type: 'radio',
 		label: 'User type',
@@ -30,10 +29,6 @@ describe( 'RadioControl', () => {
 	const wrapper = render( radio( '', config, 'radio' ) );
 	const radioEl = wrapper.find( '.components-radio-control__option > input[type=\'radio\']' );
 	const defaultRadio = wrapper.find( '.components-radio-control__option > input[type=\'radio\'][value=\'one\']' );
-
-	beforeEach( () => {
-		onChange.mockClear();
-	} );
 
 	test( 'should render a radio Control', () => {
 		expect( wrapper ).toMatchSnapshot();
