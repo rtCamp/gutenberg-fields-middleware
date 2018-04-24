@@ -84,19 +84,6 @@ ul.file-upload-field-files,
 .file-upload-field .components-icon-button svg {
   position: relative;
   top: 3px; }
-.wp-middleware-block-image .components-placeholder__fieldset {
-  min-width: 400px; }
-  .wp-middleware-block-image .components-placeholder__fieldset form {
-    max-width: none; }
-
-.wp-middleware-block-image .components-placeholder__input {
-  margin-top: .5em; }
-
-.wp-middleware-block-image .button.button-large {
-  margin-top: .5em; }
-
-.wp-middleware-block-image .blocks-rich-text {
-  text-align: center; }
 .middleware-media-field {
   position: relative; }
   .middleware-media-field .middleware-media-toolbar {
@@ -106,6 +93,16 @@ ul.file-upload-field-files,
     z-index: 2;
     display: none; }
   .middleware-media-field textarea {
+    text-align: center; }
+  .middleware-media-field .components-placeholder__fieldset {
+    min-width: 400px; }
+    .middleware-media-field .components-placeholder__fieldset form {
+      max-width: none; }
+  .middleware-media-field .components-placeholder__input {
+    margin-top: .5em; }
+  .middleware-media-field .button.button-large {
+    margin-top: .5em; }
+  .middleware-media-field .blocks-rich-text {
     text-align: center; }
 
 .is-selected .middleware-media-field:hover .middleware-media-toolbar {

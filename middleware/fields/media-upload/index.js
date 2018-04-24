@@ -1,5 +1,5 @@
 /**
- * Video/Audio field.
+ * image/video/audio field.
  */
 const { __ } = wp.i18n;
 import MediaPlaceholder from './../../components/media-placeholder';

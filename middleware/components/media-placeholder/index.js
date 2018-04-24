@@ -132,7 +132,7 @@ class MediaPlaceholder extends Component {
 					key="placeholder"
 					icon={ mediaIcon }
 					label={ type }
-					className={ className + ' wp-block-' + type }
+					className={ 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type }
 					instructions={ placeholderText } >
 					<DropZone onFilesDrop={ this.onFilesDrop } />
 					<form onSubmit={ this.onSelectUrl }>
@@ -187,7 +187,15 @@ class MediaPlaceholder extends Component {
 						{ 'audio' === type && (
 							<audio controls src={ this.state.mediaData.url } />
 						) }
-						{ isSelected && (
+						{ 'image' === type && (
+							<figure key="image" className={ 'wp-middleware-block-image ' + className }>
+								<img src={ this.state.mediaData.url } alt={ this.state.mediaData.title || '' } />
+								{ isSelected && (
+									this.props.captionField
+								) }
+							</figure>
+						) }
+						{ isSelected && 'image' !== type && (
 							this.props.captionField
 						) }
 					</figure>
