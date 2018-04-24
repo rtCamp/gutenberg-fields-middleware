@@ -1,11 +1,15 @@
-import React from 'react';
+/**
+ * External dependencies.
+ */
 import { render } from 'enzyme';
-const { RadioControl } = wp.components;
+
+/**
+ * Internal dependencies.
+ */
 import { radio } from '../../';
 
 describe( 'RadioControl', () => {
 	const onChange = jest.fn();
-	const attributeKey = 'radio';
 	const config = {
 		type: 'radio',
 		label: 'User type',
@@ -22,7 +26,8 @@ describe( 'RadioControl', () => {
 		],
 	};
 
-	const wrapper = render( radio( '', config, attributeKey ) );
+	const wrapper = render( radio( '', config, 'radio' ) );
+	const radioEl = wrapper.find( '.components-radio-control__option > input[type=\'radio\']' );
 
 	beforeEach( () => {
 		onChange.mockClear();
@@ -31,4 +36,9 @@ describe( 'RadioControl', () => {
 	test( 'should render a radio Control', () => {
 		expect( wrapper ).toMatchSnapshot();
 	} );
+
+	test( 'should render two radio button options', () => {
+		expect( radioEl ).toHaveLength( 2 );
+	} );
+
 } );
