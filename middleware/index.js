@@ -34,7 +34,7 @@ class GutenbergFieldsMiddleWare {
 
 		this.setupBlockFields = this.setupBlockFields.bind( this );
 		this.setupField = this.setupField.bind( this );
-		this.getInnerFields = this.getInnerFields.bind( this );
+		this.getHelperFields = this.getHelperFields.bind( this );
 		this.updateAlignment = this.updateAlignment.bind( this );
 		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind( this );
 	}
@@ -113,7 +113,6 @@ class GutenbergFieldsMiddleWare {
 	 * @param {Object} props        Properties.
 	 * @param {Object} config       Field configuration provided.
 	 * @param {String} attributeKey Attribute Key.
-	 * @param {Object} helperFields  Inner Fields.
 	 *
 	 * @return {Object} Field.
 	 */
@@ -202,11 +201,11 @@ class GutenbergFieldsMiddleWare {
 	 * @return {void}
 	 */
 	setupBlockFields( props ) {
-		// Setup inner fields first.
+		// Setup helper fields first.
 		_.each( this.blockConfigs.attributes, ( attribute ) => {
 			if ( attribute.field && attribute.field.helperFields ) {
-				_.each( attribute.field.helperFields, ( innerFieldAttributeKey ) => {
-					_.extend( this.helperFields, this.setupField( props, this.blockConfigs.attributes[ innerFieldAttributeKey ], innerFieldAttributeKey, false ) );
+				_.each( attribute.field.helperFields, ( helperFieldAttributeKey ) => {
+					_.extend( this.helperFields, this.setupField( props, this.blockConfigs.attributes[ helperFieldAttributeKey ], helperFieldAttributeKey, false ) );
 				} );
 			}
 		} );
@@ -266,18 +265,18 @@ class GutenbergFieldsMiddleWare {
 	}
 
 	/**
-	 * Get inner fields using the attribute key.
+	 * Get helper fields using the attribute key.
 	 *
 	 * @param {String} attributeKey Attribute key.
-	 * @return {Object} Inner fields.
+	 * @return {Object} Helper fields.
 	 */
-	getInnerFields( attributeKey ) {
+	getHelperFields( attributeKey ) {
 		const helperFields = {};
 		const config = this.blockConfigs.attributes[ attributeKey ].field;
 
 		if ( config && ! _.isEmpty( config.helperFields ) ) {
-			_.each( config.helperFields, ( innerFieldAttributeKey, innerFieldKeyName ) => {
-				helperFields[ innerFieldKeyName ] = this.helperFields[ innerFieldAttributeKey ];
+			_.each( config.helperFields, ( helperFieldAttributeKey, helperFieldKeyName ) => {
+				helperFields[ helperFieldKeyName ] = this.helperFields[ helperFieldAttributeKey ];
 			} );
 		}
 

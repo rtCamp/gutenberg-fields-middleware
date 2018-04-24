@@ -17,7 +17,7 @@ export default function buttonEditable( props, config, attributeKey, middleware 
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
-	const helperFields = middleware.getInnerFields( attributeKey );
+	const helperFields = middleware.getHelperFields( attributeKey );
 	const backgroundColorAttributeKey = config.helperFields ? config.helperFields.backgroundColor : '';
 	const textColorAttributeKey = config.helperFields ? config.helperFields.color : '';
 	const buttonClassAttributeKey = config.helperFields ? config.helperFields.class : '';

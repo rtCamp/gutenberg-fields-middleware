@@ -1265,7 +1265,7 @@ var GutenbergFieldsMiddleWare = function () {
 
 		this.setupBlockFields = this.setupBlockFields.bind(this);
 		this.setupField = this.setupField.bind(this);
-		this.getInnerFields = this.getInnerFields.bind(this);
+		this.getHelperFields = this.getHelperFields.bind(this);
 		this.updateAlignment = this.updateAlignment.bind(this);
 		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind(this);
 	}
@@ -1362,7 +1362,6 @@ var GutenbergFieldsMiddleWare = function () {
    * @param {Object} props        Properties.
    * @param {Object} config       Field configuration provided.
    * @param {String} attributeKey Attribute Key.
-   * @param {Object} helperFields  Inner Fields.
    *
    * @return {Object} Field.
    */
@@ -1459,11 +1458,11 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function setupBlockFields(props) {
 			var _this2 = this;
 
-			// Setup inner fields first.
+			// Setup helper fields first.
 			_.each(this.blockConfigs.attributes, function (attribute) {
 				if (attribute.field && attribute.field.helperFields) {
-					_.each(attribute.field.helperFields, function (innerFieldAttributeKey) {
-						_.extend(_this2.helperFields, _this2.setupField(props, _this2.blockConfigs.attributes[innerFieldAttributeKey], innerFieldAttributeKey, false));
+					_.each(attribute.field.helperFields, function (helperFieldAttributeKey) {
+						_.extend(_this2.helperFields, _this2.setupField(props, _this2.blockConfigs.attributes[helperFieldAttributeKey], helperFieldAttributeKey, false));
 					});
 				}
 			});
@@ -1528,23 +1527,23 @@ var GutenbergFieldsMiddleWare = function () {
 		}
 
 		/**
-   * Get inner fields using the attribute key.
+   * Get helper fields using the attribute key.
    *
    * @param {String} attributeKey Attribute key.
-   * @return {Object} Inner fields.
+   * @return {Object} Helper fields.
    */
 
 	}, {
-		key: 'getInnerFields',
-		value: function getInnerFields(attributeKey) {
+		key: 'getHelperFields',
+		value: function getHelperFields(attributeKey) {
 			var _this3 = this;
 
 			var helperFields = {};
 			var config = this.blockConfigs.attributes[attributeKey].field;
 
 			if (config && !_.isEmpty(config.helperFields)) {
-				_.each(config.helperFields, function (innerFieldAttributeKey, innerFieldKeyName) {
-					helperFields[innerFieldKeyName] = _this3.helperFields[innerFieldAttributeKey];
+				_.each(config.helperFields, function (helperFieldAttributeKey, helperFieldKeyName) {
+					helperFields[helperFieldKeyName] = _this3.helperFields[helperFieldAttributeKey];
 				});
 			}
 
@@ -2122,7 +2121,7 @@ function buttonEditable(props, config, attributeKey, middleware) {
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
-	var helperFields = middleware.getInnerFields(attributeKey);
+	var helperFields = middleware.getHelperFields(attributeKey);
 	var backgroundColorAttributeKey = config.helperFields ? config.helperFields.backgroundColor : '';
 	var textColorAttributeKey = config.helperFields ? config.helperFields.color : '';
 	var buttonClassAttributeKey = config.helperFields ? config.helperFields.class : '';
