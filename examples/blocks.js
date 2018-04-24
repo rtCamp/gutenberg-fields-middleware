@@ -88,7 +88,16 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placeholderText: __( 'Select a image file from your library, or upload a new one' ),
 				helperFields: {
 					caption: 'imageCaption',
+					sizes: 'imageSizes',
 				},
+			},
+		},
+		imageSizes: {
+			type: 'string',
+			field: {
+				type: 'select',
+				label: __( 'Choose Image Size' ),
+				placement: 'inspector',
 			},
 		},
 		imageCaption: {

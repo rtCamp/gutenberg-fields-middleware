@@ -1377,9 +1377,6 @@ var GutenbergFieldsMiddleWare = function () {
 				case 'media-icon':
 					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_4__fields__["m" /* mediaIcon */](props, config, attributeKey, this);
 					break;
-				case 'url-input-button':
-					field[attributeKey] = __WEBPACK_IMPORTED_MODULE_4__fields__["v" /* urlInputButton */](props, config, attributeKey, this);
-					break;
 			}
 
 			if (_.contains(['email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week'], config.type)) {
@@ -1833,7 +1830,7 @@ $export($export.S + $export.F * !__webpack_require__(6), 'Object', { definePrope
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__tree_select__ = __webpack_require__(141);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_20__tree_select__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__url_input_button__ = __webpack_require__(142);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_21__url_input_button__["a"]; });
+/* unused harmony reexport urlInputButton */
 
 
 
@@ -3627,11 +3624,13 @@ function link(props, config, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select__ = __webpack_require__(138);
 
 /**
  * image/video/audio field.
  */
 var __ = wp.i18n.__;
+
 
 
 
@@ -3643,6 +3642,7 @@ function mediaUpload(props, config, attributeKey, middleware) {
 	};
 	var fieldAttributes = _.extend(defaultAttributes, config);
 	var helperFields = middleware.getHelperFields(attributeKey);
+	var sizesAttributeKey = config.helperFields ? config.helperFields.sizes : '';
 
 	fieldAttributes.className = props.className;
 
@@ -3660,9 +3660,28 @@ function mediaUpload(props, config, attributeKey, middleware) {
 		}
 	};
 
+	var pushSizesField = function pushSizesField(sizes) {
+		if (sizesAttributeKey && !_.isEmpty(sizes)) {
+			var sizesOptions = _.keys(sizes).map(function (size) {
+				return {
+					value: size,
+					label: size
+				};
+			});
+
+			if (!middleware.inspectorControlFields[sizesAttributeKey].props.options) {
+				var newAttributes = {};
+				middleware.inspectorControlFields[sizesAttributeKey].props.options = sizesOptions;
+				newAttributes[sizesAttributeKey] = '';
+				props.setAttributes(newAttributes);
+			}
+		}
+	};
+
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 		mediaData: props.attributes[attributeKey],
-		captionField: helperFields.caption
+		captionField: helperFields.caption,
+		pushSizesField: pushSizesField
 	}));
 }
 
@@ -3695,9 +3714,14 @@ function mediaUpload(props, config, attributeKey, middleware) {
 
 
 
-var Component = wp.element.Component;
+var _wp$element = wp.element,
+    Component = _wp$element.Component,
+    compose = _wp$element.compose;
 var __ = wp.i18n.__;
-var MediaUpload = wp.blocks.MediaUpload;
+var withSelect = wp.data.withSelect;
+var _wp$blocks = wp.blocks,
+    MediaUpload = _wp$blocks.MediaUpload,
+    withEditorSettings = _wp$blocks.withEditorSettings;
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
     FormFileUpload = _wp$components.FormFileUpload,
@@ -3853,6 +3877,10 @@ var MediaPlaceholder = function (_Component) {
 			    isSelected = _props.isSelected;
 
 
+			if (this.props.imageSizes) {
+				this.props.pushSizesField(this.props.imageSizes);
+			}
+
 			if (this.state.editing) {
 				var mediaIcon = Object(__WEBPACK_IMPORTED_MODULE_7__utils_media__["b" /* getDashIconSuffixByType */])(type);
 				var placeholderClassName = 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type;
@@ -3941,7 +3969,17 @@ var MediaPlaceholder = function (_Component) {
 	return MediaPlaceholder;
 }(Component);
 
-/* harmony default export */ __webpack_exports__["a"] = (MediaPlaceholder);
+/* harmony default export */ __webpack_exports__["a"] = (compose([withEditorSettings(), withSelect(function (select, props) {
+	var _select = select('core'),
+	    getMedia = _select.getMedia;
+
+	var id = props.mediaData ? props.mediaData.id : null;
+	var image = id ? getMedia(id) : null;
+
+	return {
+		imageSizes: image && image.media_details && image.media_details.sizes ? image.media_details.sizes : null
+	};
+})])(MediaPlaceholder));
 
 /***/ }),
 /* 126 */
@@ -4343,7 +4381,7 @@ function treeSelect(props, config, attributeKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = urlInputButton;
+/* unused harmony export default */
 /**
  * url-input-button field.
  */

@@ -1,11 +1,13 @@
 import './editor.scss';
 import { getDashIconSuffixByType } from './../../utils/media';
 
-const { Component } = wp.element;
+const { Component, compose } = wp.element;
 const { __ } = wp.i18n;
+const { withSelect } = wp.data;
 
 const {
 	MediaUpload,
+	withEditorSettings,
 } = wp.blocks;
 
 const {
@@ -125,6 +127,10 @@ class MediaPlaceholder extends Component {
 			isSelected,
 		} = this.props;
 
+		if ( this.props.imageSizes ) {
+			this.props.pushSizesField( this.props.imageSizes );
+		}
+
 		if ( this.state.editing ) {
 			const mediaIcon = getDashIconSuffixByType( type );
 			const placeholderClassName = 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type;
@@ -207,4 +213,15 @@ class MediaPlaceholder extends Component {
 	}
 }
 
-export default MediaPlaceholder;
+export default compose( [
+	withEditorSettings(),
+	withSelect( ( select, props ) => {
+		const { getMedia } = select( 'core' );
+		const id = props.mediaData ? props.mediaData.id : null;
+		const image = id ? getMedia( id ) : null;
+
+		return {
+			imageSizes: image && image.media_details && image.media_details.sizes ? image.media_details.sizes : null,
+		};
+	} ),
+] )( MediaPlaceholder );
