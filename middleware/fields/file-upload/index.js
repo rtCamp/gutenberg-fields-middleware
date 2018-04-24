@@ -16,22 +16,19 @@ export default function fileUpload( props, config, attributeKey ) {
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
-	/**
-	 * Set media when the file is uploaded.
-	 *
-	 * @param {Array} files Uploaded Files.
-	 * @return {void}
-	 */
-	const setMedia = ( files ) => {
-		const newAttributes = {};
+	fieldAttributes.onSelect = ( files ) => {
+		if ( config.onSelect ) {
+			config.onSelect( files, props );
+		} else {
+			const newAttributes = {};
 
-		if ( ! _.isEmpty( props.attributes[ attributeKey ] ) && ! _.isEmpty( files ) && _.isArray( files ) ) {
-			files = [ ...props.attributes[ attributeKey ], ...files ];
+			if ( ! _.isEmpty( props.attributes[ attributeKey ] ) && ! _.isEmpty( files ) && _.isArray( files ) ) {
+				files = [ ...props.attributes[ attributeKey ], ...files ];
+			}
+
+			newAttributes[ attributeKey ] = files;
+			props.setAttributes( newAttributes );
 		}
-
-		newAttributes[ attributeKey ] = files;
-
-		props.setAttributes( newAttributes );
 	};
 
 	/**
@@ -70,7 +67,6 @@ export default function fileUpload( props, config, attributeKey ) {
 		<FileUpload
 			config={ config }
 			fieldAttributes={ fieldAttributes }
-			setMedia={ setMedia }
 			value={ props.attributes[ attributeKey ] }
 			removeFile={ removeFile }
 		/>

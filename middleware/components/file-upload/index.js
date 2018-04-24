@@ -7,36 +7,45 @@ import './editor.scss';
 
 class FileUpload extends Component {
 	render() {
+		const {
+			config,
+			value,
+			fieldAttributes,
+			removeFile,
+		} = this.props;
+
 		let fieldWrapperClasses = 'file-upload-field';
-		fieldWrapperClasses += 'inspector' !== this.props.config.placement ? ' block-field' : ' inspector-field';
+		fieldWrapperClasses += 'inspector' !== config.placement ? ' block-field' : ' inspector-field';
+
+		const mediaUploadProps = _.extend( {
+			render( { open } ) {
+				if ( _.isEmpty( value ) ) {
+					return (
+						<Button isLarge={ fieldAttributes.isLarge } onClick={ open } >
+							<Dashicon icon="upload" />
+							{ fieldAttributes.buttonText }
+						</Button>
+					);
+				}
+				return null;
+			},
+		}, fieldAttributes );
 
 		return (
 			<div className={ fieldWrapperClasses } >
 				<div className="file-upload-filed-actions">
 					<MediaUpload
-						{ ...this.props.fieldAttributes }
-						onSelect={ this.props.setMedia }
-						render={ ( { open } ) => {
-							if ( _.isEmpty( this.props.value ) ) {
-								return (
-									<Button isLarge={ this.props.fieldAttributes.isLarge } onClick={ open } >
-										<Dashicon icon="upload" />
-										{ this.props.fieldAttributes.buttonText }
-									</Button>
-								);
-							}
-							return null;
-						} }
+						{ ...mediaUploadProps }
 					/>
 				</div>
 
-				{ ! _.isEmpty( this.props.value ) && (
+				{ ! _.isEmpty( value ) && (
 					<ul className="file-upload-field-files" >
-						{ _.isArray( this.props.value ) && this.props.value.map( ( file, key ) => {
-							return <FileThumb file={ file } key={ key } dataKey={ key } removeFile={ this.props.removeFile } />;
+						{ _.isArray( value ) && value.map( ( file, key ) => {
+							return <FileThumb file={ file } key={ key } dataKey={ key } removeFile={ removeFile } />;
 						} ) }
-						{ ! _.isArray( this.props.value ) && (
-							<FileThumb file={ this.props.value } key={ 0 } removeFile={ this.props.removeFile } />
+						{ ! _.isArray( value ) && (
+							<FileThumb file={ value } key={ 0 } removeFile={ removeFile } />
 						) }
 					</ul>
 				) }
