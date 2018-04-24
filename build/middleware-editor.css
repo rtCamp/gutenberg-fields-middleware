@@ -107,6 +107,15 @@ ul.file-upload-field-files,
 
 .is-selected .middleware-media-field:hover .middleware-media-toolbar {
   display: inline-block; }
+
+.wp-block-image .components-placeholder__fieldset {
+  max-width: 400px; }
+  .wp-block-image .components-placeholder__fieldset form {
+    max-width: none; }
+  .wp-block-image .components-placeholder__fieldset .button.button-large {
+    margin-top: 0.5em; }
+  .wp-block-image .components-placeholder__fieldset .components-placeholder__input {
+    margin-top: 0.5em; }
 .middleware-block .block-rich-text__inline-toolbar {
   height: 0; }
   .middleware-block .block-rich-text__inline-toolbar .blocks-format-toolbar {

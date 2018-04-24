@@ -42,3 +42,21 @@
 	}
   }
 }
+
+.wp-block-image {
+  .components-placeholder__fieldset {
+	max-width: 400px;
+
+	form {
+	  max-width: none;
+	}
+
+	.button.button-large {
+	  margin-top: 0.5em;
+	}
+
+	.components-placeholder__input {
+	  margin-top: 0.5em;
+	}
+  }
+}
