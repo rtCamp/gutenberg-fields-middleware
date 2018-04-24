@@ -79,8 +79,59 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'image',
 				buttonText: __( 'Upload' ),
 				placeholderText: __( 'Select a image file from your library, or upload a new one' ),
-				caption: true,
+				helperFields: {
+					caption: 'imageCaption',
+				},
 			},
+		},
+		imageCaption: {
+			type: 'array',
+			field: {
+				type: 'rich-text',
+				placeholder: __( 'Enter caption' ),
+			},
+			source: 'children', // Read about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			selector: '.image-caption',
+		},
+		video: {
+			type: 'object',
+			field: {
+				type: 'video',
+				buttonText: __( 'Upload' ),
+				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
+				helperFields: {
+					caption: 'videoCaption',
+				},
+			},
+		},
+		videoCaption: {
+			type: 'array',
+			field: {
+				type: 'rich-text',
+				placeholder: __( 'Enter caption' ),
+			},
+			source: 'children', // Read about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			selector: '.video-caption',
+		},
+		audio: {
+			type: 'object',
+			field: {
+				type: 'audio',
+				buttonText: __( 'Upload' ),
+				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
+				helperFields: {
+					caption: 'audioCaption',
+				},
+			},
+		},
+		audioCaption: {
+			type: 'array',
+			field: {
+				type: 'rich-text',
+				placeholder: __( 'Enter caption' ),
+			},
+			source: 'children', // Read about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
+			selector: '.audio-caption',
 		},
 		option: {
 			type: 'string',
@@ -100,24 +151,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 			source: 'children', // Read about attributes here https://wordpress.org/gutenberg/handbook/block-api/attributes/
 			selector: '.option',
-		},
-		video: {
-			type: 'object',
-			field: {
-				type: 'video',
-				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
-				caption: true,
-			},
-		},
-		audio: {
-			type: 'object',
-			field: {
-				type: 'audio',
-				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
-				caption: true,
-			},
 		},
 		radio: {
 			type: 'string',
@@ -149,7 +182,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'array',
 			field: {
 				type: 'button-editable',
-				innerFields: {
+				helperFields: {
 					link: 'buttonEditableLink',
 					backgroundColor: 'buttonBackgroundColor',
 					color: 'buttonColor',
@@ -381,7 +414,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'range',
 				label: __( 'Select Range' ),
 				placement: 'inspector',
-				min: 1,
+				min: 0,
 				max: 20,
 			},
 			default: 3,
@@ -435,8 +468,8 @@ registerBlockType( 'gb-m-example/simple-block', {
 					height: attributes.image ? attributes.image.height : null,
 				}, null ),
 
-				// field: select
-				el( 'div', { className: 'option' }, attributes.option || '' ),
+				// field: imageCaption
+				el( 'div', { className: 'image-caption' }, attributes.imageCaption || '' ),
 
 				// field: video
 				el( 'video', {
@@ -450,6 +483,9 @@ registerBlockType( 'gb-m-example/simple-block', {
 					type: attributes.video ? attributes.video.mime : null,
 				}, null ) ),
 
+				// field: videoCaption
+				el( 'div', { className: 'video-caption' }, attributes.videoCaption || '' ),
+
 				// field: audio
 				el( 'audio', {
 					className: 'audio',
@@ -458,6 +494,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 					src: attributes.audio ? attributes.audio.url : null,
 					type: attributes.audio ? attributes.audio.mime : null,
 				}, null ) ),
+
+				// field: audioCaption
+				el( 'div', { className: 'audio-caption' }, attributes.audioCaption || '' ),
+
+				// field: select
+				el( 'div', { className: 'option' }, attributes.option || '' ),
 
 				// field: radio
 				el( 'div', { className: 'radio' }, attributes.radio || '' ),

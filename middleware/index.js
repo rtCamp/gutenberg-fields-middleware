@@ -30,11 +30,11 @@ class GutenbergFieldsMiddleWare {
 		this.blockControlFields = {};
 		this.blockControls = null;
 		this.config = _.extend( {}, config );
-		this.innerFields = {};
+		this.helperFields = {};
 
 		this.setupBlockFields = this.setupBlockFields.bind( this );
 		this.setupField = this.setupField.bind( this );
-		this.getInnerFields = this.getInnerFields.bind( this );
+		this.getHelperFields = this.getHelperFields.bind( this );
 		this.updateAlignment = this.updateAlignment.bind( this );
 		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind( this );
 	}
@@ -113,7 +113,6 @@ class GutenbergFieldsMiddleWare {
 	 * @param {Object} props        Properties.
 	 * @param {Object} config       Field configuration provided.
 	 * @param {String} attributeKey Attribute Key.
-	 * @param {Object} innerFields  Inner Fields.
 	 *
 	 * @return {Object} Field.
 	 */
@@ -130,11 +129,9 @@ class GutenbergFieldsMiddleWare {
 			case 'link':
 				field[ attributeKey ] = fields.link( props, config, attributeKey, this );
 				break;
-			case 'image':
-				field[ attributeKey ] = fields.image( props, config, attributeKey, this );
-				break;
 			case 'video':
 			case 'audio':
+			case 'image':
 				field[ attributeKey ] = fields.mediaUpload( props, config, attributeKey, this );
 				break;
 			case 'select':
@@ -202,17 +199,17 @@ class GutenbergFieldsMiddleWare {
 	 * @return {void}
 	 */
 	setupBlockFields( props ) {
-		// Setup inner fields first.
+		// Setup helper fields first.
 		_.each( this.blockConfigs.attributes, ( attribute ) => {
-			if ( attribute.field && attribute.field.innerFields ) {
-				_.each( attribute.field.innerFields, ( innerFieldAttributeKey ) => {
-					_.extend( this.innerFields, this.setupField( props, this.blockConfigs.attributes[ innerFieldAttributeKey ], innerFieldAttributeKey, false ) );
+			if ( attribute.field && attribute.field.helperFields ) {
+				_.each( attribute.field.helperFields, ( helperFieldAttributeKey ) => {
+					_.extend( this.helperFields, this.setupField( props, this.blockConfigs.attributes[ helperFieldAttributeKey ], helperFieldAttributeKey, false ) );
 				} );
 			}
 		} );
 
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
-			if ( attribute.field && ! this.innerFields[ attributeKey ] ) {
+			if ( attribute.field && ! this.helperFields[ attributeKey ] ) {
 				this.setupField( props, attribute, attributeKey );
 			}
 		} );
@@ -266,22 +263,35 @@ class GutenbergFieldsMiddleWare {
 	}
 
 	/**
-	 * Get inner fields using the attribute key.
+	 * Get helper fields using the attribute key.
 	 *
 	 * @param {String} attributeKey Attribute key.
-	 * @return {Object} Inner fields.
+	 * @return {Object} Helper fields.
 	 */
-	getInnerFields( attributeKey ) {
-		const innerFields = {};
+	getHelperFields( attributeKey ) {
+		const helperFields = {};
 		const config = this.blockConfigs.attributes[ attributeKey ].field;
 
-		if ( config && ! _.isEmpty( config.innerFields ) ) {
-			_.each( config.innerFields, ( innerFieldAttributeKey, innerFieldKeyName ) => {
-				innerFields[ innerFieldKeyName ] = this.innerFields[ innerFieldAttributeKey ];
+		if ( config && ! _.isEmpty( config.helperFields ) ) {
+			_.each( config.helperFields, ( helperFieldAttributeKey, helperFieldKeyName ) => {
+				helperFields[ helperFieldKeyName ] = this.helperFields[ helperFieldAttributeKey ];
 			} );
 		}
 
-		return innerFields;
+		return helperFields;
+	}
+
+	/**
+	 * Get helper fields value.
+	 *
+	 * @param {Object} props Properties.
+	 * @param {Object} config Field configuration passed as attributeKey.field.
+	 * @param {String} attributeKeyName Attribute key name as attributeKey.field.helperField.keyName.
+	 * @return {mixed|null} Helper field value.
+	 */
+	getHelperFieldValue( props, config, attributeKeyName ) {
+		const attributeKey = config.helperFields ? config.helperFields[ attributeKeyName ] : '';
+		return attributeKey ? props.attributes[ attributeKey ] : null;
 	}
 
 	/**
