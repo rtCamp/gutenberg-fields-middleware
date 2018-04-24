@@ -4,7 +4,7 @@
 const { __ } = wp.i18n;
 import ImagePlaceholder from '../../components/image-placeholder';
 
-export default function mediaUpload( props, config, attributeKey ) {
+export default function mediaUpload( props, config, attributeKey, middleware ) {
 	const defaultAttributes = {
 		placeholderText: __( 'Select a image file from your library, or upload a new one' ),
 		buttonText: __( 'Upload' ),
@@ -13,6 +13,7 @@ export default function mediaUpload( props, config, attributeKey ) {
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	fieldAttributes.className = props.className;
+	const helperFields = middleware.getHelperFields( attributeKey );
 
 	fieldAttributes.removeMediaAttributes = () => {
 		const newAttributes = {};
@@ -28,19 +29,12 @@ export default function mediaUpload( props, config, attributeKey ) {
 		}
 	};
 
-	fieldAttributes.setCaption = ( caption ) => {
-		const attributeValue = _.extend( {}, props.attributes[ attributeKey ] );
-		if ( attributeValue ) {
-			const newAttributes = {};
-			attributeValue.mediaCaption = caption;
-			newAttributes[ attributeKey ] = attributeValue;
-			props.setAttributes( newAttributes );
-		}
-	};
-
 	fieldAttributes.mediaData = props.attributes[ attributeKey ];
 
 	return (
-		<ImagePlaceholder{ ...fieldAttributes } />
+		<ImagePlaceholder
+			{ ...fieldAttributes }
+			captionField={ helperFields.caption }
+		/>
 	);
 }

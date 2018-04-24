@@ -4,7 +4,6 @@ const { Component } = wp.element;
 const { __ } = wp.i18n;
 
 const {
-	PlainText,
 	MediaUpload,
 } = wp.blocks;
 
@@ -95,7 +94,7 @@ class ImagePlaceholder extends Component {
 	onSelectUrl( event ) {
 		event.preventDefault();
 
-		if ( this.state.mediaData && this.state.mediaData.url) {
+		if ( this.state.mediaData && this.state.mediaData.url ) {
 			this.setState( {
 				editing: false,
 			} );
@@ -111,7 +110,6 @@ class ImagePlaceholder extends Component {
 	 * @return {void}
 	 */
 	onUrlChange( event ) {
-
 		this.setState( { mediaData: {
 			url: event.target.value,
 		} } );
@@ -119,29 +117,11 @@ class ImagePlaceholder extends Component {
 
 	render() {
 		const {
-			caption,
-			mediaData,
 			placeholderText,
 			buttonText,
 			className,
 			isSelected,
-			setCaption,
 		} = this.props;
-
-		const mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
-
-		const controls = (
-			this.props.isSelected && (
-				<Toolbar key="image">
-					<IconButton
-						className="components-icon-button components-toolbar__control"
-						label={ __( 'Edit image' ) }
-						onClick={ this.switchToEditing }
-						icon="edit"
-					/>
-				</Toolbar>
-			)
-		);
 
 		if ( this.state.editing ) {
 			const mediaIcon = 'format-image';
@@ -190,17 +170,19 @@ class ImagePlaceholder extends Component {
 
 		return (
 			<div className="middleware-media-field">
-				{ controls }
+				<Toolbar key="image" className={ this.props.isSelected ? 'middleware-media-toolbar middleware-is-selected' : 'middleware-media-toolbar' }>
+					<IconButton
+						className="components-icon-button components-toolbar__control"
+						label={ __( 'Edit image' ) }
+						onClick={ this.switchToEditing }
+						icon="edit"
+					/>
+				</Toolbar>
 				{
 					<figure key="image" className={ 'wp-middleware-block-image ' + className }>
 						<img src={ this.state.mediaData.url } alt={ this.state.mediaData.title || '' } />
-						{ isSelected && caption && (
-							<PlainText
-								placeholder={ __( 'Write caption…' ) }
-								value={ mediaCaption }
-								isSelected={ isSelected }
-								onChange={ setCaption }
-							/>
+						{ isSelected && (
+							this.props.captionField
 						) }
 					</figure>
 				}

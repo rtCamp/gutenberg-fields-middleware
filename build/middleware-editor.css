@@ -94,15 +94,18 @@ ul.file-upload-field-files,
 
 .wp-middleware-block-image .button.button-large {
   margin-top: .5em; }
+
+.wp-middleware-block-image .blocks-rich-text {
+  text-align: center; }
 .middleware-media-field {
   position: relative; }
-  .middleware-media-field .components-toolbar {
+  .middleware-media-field .middleware-media-toolbar {
     position: absolute;
     left: 0;
     top: 0;
     z-index: 2;
     display: none; }
-  .middleware-media-field:hover .components-toolbar {
+  .middleware-media-field:hover .middleware-media-toolbar.middleware-is-selected {
     display: inline-block; }
   .middleware-media-field textarea {
     text-align: center; }

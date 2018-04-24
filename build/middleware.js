@@ -3568,7 +3568,10 @@ function iconsToolbar(props, config, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = mediaUpload;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_image_placeholder__ = __webpack_require__(123);
+
 /**
  * Video/Audio field.
  */
@@ -3576,7 +3579,7 @@ var __ = wp.i18n.__;
 
 
 
-function mediaUpload(props, config, attributeKey) {
+function mediaUpload(props, config, attributeKey, middleware) {
 	var defaultAttributes = {
 		placeholderText: __('Select a image file from your library, or upload a new one'),
 		buttonText: __('Upload'),
@@ -3585,6 +3588,7 @@ function mediaUpload(props, config, attributeKey) {
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	fieldAttributes.className = props.className;
+	var helperFields = middleware.getHelperFields(attributeKey);
 
 	fieldAttributes.removeMediaAttributes = function () {
 		var newAttributes = {};
@@ -3600,19 +3604,11 @@ function mediaUpload(props, config, attributeKey) {
 		}
 	};
 
-	fieldAttributes.setCaption = function (caption) {
-		var attributeValue = _.extend({}, props.attributes[attributeKey]);
-		if (attributeValue) {
-			var newAttributes = {};
-			attributeValue.mediaCaption = caption;
-			newAttributes[attributeKey] = attributeValue;
-			props.setAttributes(newAttributes);
-		}
-	};
-
 	fieldAttributes.mediaData = props.attributes[attributeKey];
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__components_image_placeholder__["a" /* default */], fieldAttributes);
+	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_image_placeholder__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		captionField: helperFields.caption
+	}));
 }
 
 /***/ }),
@@ -3644,9 +3640,7 @@ function mediaUpload(props, config, attributeKey) {
 
 var Component = wp.element.Component;
 var __ = wp.i18n.__;
-var _wp$blocks = wp.blocks,
-    PlainText = _wp$blocks.PlainText,
-    MediaUpload = _wp$blocks.MediaUpload;
+var MediaUpload = wp.blocks.MediaUpload;
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
     FormFileUpload = _wp$components.FormFileUpload,
@@ -3787,7 +3781,6 @@ var ImagePlaceholder = function (_Component) {
 	}, {
 		key: 'onUrlChange',
 		value: function onUrlChange(event) {
-
 			this.setState({ mediaData: {
 					url: event.target.value
 				} });
@@ -3796,27 +3789,11 @@ var ImagePlaceholder = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
-			    caption = _props.caption,
-			    mediaData = _props.mediaData,
 			    placeholderText = _props.placeholderText,
 			    buttonText = _props.buttonText,
 			    className = _props.className,
-			    isSelected = _props.isSelected,
-			    setCaption = _props.setCaption;
+			    isSelected = _props.isSelected;
 
-
-			var mediaCaption = mediaData && mediaData.mediaCaption ? mediaData.mediaCaption || '' : '';
-
-			var controls = this.props.isSelected && wp.element.createElement(
-				Toolbar,
-				{ key: 'image' },
-				wp.element.createElement(IconButton, {
-					className: 'components-icon-button components-toolbar__control',
-					label: __('Edit image'),
-					onClick: this.switchToEditing,
-					icon: 'edit'
-				})
-			);
 
 			if (this.state.editing) {
 				var mediaIcon = 'format-image';
@@ -3875,17 +3852,21 @@ var ImagePlaceholder = function (_Component) {
 			return wp.element.createElement(
 				'div',
 				{ className: 'middleware-media-field' },
-				controls,
+				wp.element.createElement(
+					Toolbar,
+					{ key: 'image', className: this.props.isSelected ? 'middleware-media-toolbar middleware-is-selected' : 'middleware-media-toolbar' },
+					wp.element.createElement(IconButton, {
+						className: 'components-icon-button components-toolbar__control',
+						label: __('Edit image'),
+						onClick: this.switchToEditing,
+						icon: 'edit'
+					})
+				),
 				wp.element.createElement(
 					'figure',
 					{ key: 'image', className: 'wp-middleware-block-image ' + className },
 					wp.element.createElement('img', { src: this.state.mediaData.url, alt: this.state.mediaData.title || '' }),
-					isSelected && caption && wp.element.createElement(PlainText, {
-						placeholder: __('Write caption…'),
-						value: mediaCaption,
-						isSelected: isSelected,
-						onChange: setCaption
-					})
+					isSelected && this.props.captionField
 				)
 			);
 		}

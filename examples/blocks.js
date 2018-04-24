@@ -91,7 +91,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placeholder: __( 'Enter caption' ),
 			},
 			source: 'children', // Read about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
-			selector: '.rich-text',
+			selector: '.image-caption',
 		},
 		option: {
 			type: 'string',
@@ -445,6 +445,9 @@ registerBlockType( 'gb-m-example/simple-block', {
 					width: attributes.image ? attributes.image.width : null,
 					height: attributes.image ? attributes.image.height : null,
 				}, null ),
+
+				// field: imageCaption
+				el( 'div', { className: 'image-caption' }, attributes.imageCaption || '' ),
 
 				// field: select
 				el( 'div', { className: 'option' }, attributes.option || '' ),
