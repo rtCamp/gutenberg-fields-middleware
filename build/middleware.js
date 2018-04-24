@@ -2931,7 +2931,8 @@ var __ = wp.i18n.__;
 function color(props, config, attributeKey) {
 	var defaultAttributes = {
 		value: props.attributes[attributeKey] || '',
-		label: __('Color')
+		label: __('Color'),
+		initialOpen: false
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -2950,7 +2951,7 @@ function color(props, config, attributeKey) {
 
 	return wp.element.createElement(
 		PanelColor,
-		{ title: fieldAttributes.label, colorValue: fieldAttributes.value },
+		{ title: fieldAttributes.label, colorValue: fieldAttributes.value, initialOpen: fieldAttributes.initialOpen },
 		wp.element.createElement(ColorPalette, fieldAttributes)
 	);
 }
@@ -2988,7 +2989,9 @@ function dateTime(props, config, attributeKey) {
 
 		is12Hour: is12HourTime,
 
-		label: __('Date')
+		label: __('Date'),
+
+		initialOpen: false
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
@@ -3014,7 +3017,7 @@ function dateTime(props, config, attributeKey) {
 
 	return wp.element.createElement(
 		PanelBody,
-		{ initialOpen: false, title: [label + ': ', wp.element.createElement(
+		{ initialOpen: fieldAttributes.initialOpen, title: [label + ': ', wp.element.createElement(
 				'span',
 				{ key: 'label' },
 				getFormattedDate()
