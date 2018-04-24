@@ -7,6 +7,8 @@ global.wp = {
 };
 
 global._ = require( 'underscore' );
+global.React = require( 'react' );
+global.ReactDOM = require( 'react-dom' );
 
 [
 	'element',
@@ -32,4 +34,12 @@ Object.defineProperty( global.wp, 'hooks', {
 
 Object.defineProperty( global.wp, 'i18n', {
 	get: () => require( '@wordpress/i18n' ),
+} );
+
+Object.defineProperty( global.wp, 'React', {
+	get: () => require( 'react' ),
+} );
+
+Object.defineProperty( global.wp, 'ReactDOM', {
+	get: () => require( 'react-dom' ),
 } );

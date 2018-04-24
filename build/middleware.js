@@ -4006,13 +4006,12 @@ module.exports = __webpack_require__(0).getIterator = function (it) {
 /**
  * Radio Control field.
  */
-
 var RadioControl = wp.components.RadioControl;
 
 
 function radio(props, config, attributeKey) {
 	var defaultAttributes = {
-		selected: props.attributes[attributeKey]
+		selected: props.attributes ? props.attributes[attributeKey] || '' : ''
 	};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);

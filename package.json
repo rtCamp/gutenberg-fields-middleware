@@ -26,10 +26,12 @@
 		"lodash": "^4.17.5",
 		"node-sass": "^4.8.3",
 		"postcss-loader": "^2.1.4",
-		"react-test-renderer": "^16.3.1",
+		"react": "16.3.0",
+		"react-dom": "16.3.0",
+		"react-test-renderer": "^16.3.2",
 		"sass-loader": "^7.0.1",
 		"style-loader": "^0.20.1",
-		"underscore": "^1.8.3",
+		"underscore": "^1.9.0",
 		"webpack": "^3.10.0"
 	},
 	"scripts": {
