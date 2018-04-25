@@ -2942,6 +2942,8 @@ function color(props, config, attributeKey, middleware) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = dateTime;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_scss__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__editor_scss__);
 /**
  * Date time field.
  */
@@ -2955,55 +2957,52 @@ var _wp$date = wp.date,
 var __ = wp.i18n.__;
 
 
-function dateTime(props, config, attributeKey) {
+
+
+function dateTime(props, config, attributeKey, middleware) {
 	var is12HourTime = /a(?!\\)/i.test(settings.formats.time.toLowerCase() // Test only the lower case a
 	.replace(/\\\\/g, '') // Replace "//" with empty strings
 	.split('').reverse().join('') // Reverse the string and test for "a" not followed by a slash
 	);
 
-	var defaultAttributes = {
-
+	var defaultAttributes = _.extend(middleware.getDefaultConfig(props, config, attributeKey), {
 		locale: settings.l10n.locale,
-
 		currentDate: props.attributes[attributeKey],
-
 		is12Hour: is12HourTime,
-
 		label: __('Date'),
+		initialOpen: false,
+		panel: true
+	});
 
-		initialOpen: false
-	};
+	delete defaultAttributes.value;
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	var label = fieldAttributes.label;
 
 	var getFormattedDate = function getFormattedDate() {
 		return props.attributes[attributeKey] ? dateI18n(settings.formats.datetime, props.attributes[attributeKey]) : '';
 	};
 
 	delete fieldAttributes.type;
-	delete fieldAttributes.label;
 
-	return wp.element.createElement(
-		PanelBody,
-		{ initialOpen: fieldAttributes.initialOpen, title: [label + ': ', wp.element.createElement(
-				'span',
-				{ key: 'label' },
-				getFormattedDate()
-			)] },
-		wp.element.createElement(DateTimePicker, fieldAttributes)
-	);
+	var dateTimeEl = wp.element.createElement(DateTimePicker, fieldAttributes);
+
+	if (fieldAttributes.panel) {
+		return wp.element.createElement(
+			PanelBody,
+			{ initialOpen: fieldAttributes.initialOpen, title: [fieldAttributes.label + ': ', wp.element.createElement(
+					'span',
+					{ key: 'label' },
+					getFormattedDate()
+				)] },
+			dateTimeEl
+		);
+	}
+
+	return middleware.createField(fieldAttributes, wp.element.createElement(
+		'div',
+		{ className: 'middleware-date-time-no-panel' },
+		dateTimeEl
+	));
 }
 
 /***/ }),
@@ -4387,6 +4386,12 @@ function urlInputButton(props, config, attributeKey) {
 /***/ }),
 /* 144 */,
 /* 145 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 146 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

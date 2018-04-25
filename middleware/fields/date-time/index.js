@@ -6,7 +6,9 @@ const { DateTimePicker, PanelBody } = wp.components;
 const { dateI18n, settings } = wp.date;
 const { __ } = wp.i18n;
 
-export default function dateTime( props, config, attributeKey ) {
+import './editor.scss';
+
+export default function dateTime( props, config, attributeKey, middleware ) {
 	const is12HourTime = /a(?!\\)/i.test(
 		settings.formats.time
 			.toLowerCase() // Test only the lower case a
@@ -14,49 +16,46 @@ export default function dateTime( props, config, attributeKey ) {
 			.split( '' ).reverse().join( '' ) // Reverse the string and test for "a" not followed by a slash
 	);
 
-	const defaultAttributes = {
-
+	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
 		locale: settings.l10n.locale,
-
 		currentDate: props.attributes[ attributeKey ],
-
 		is12Hour: is12HourTime,
-
 		label: __( 'Date' ),
-
 		initialOpen: false,
-	};
+		panel: true,
+	} );
+
+	delete defaultAttributes.value;
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
-
-	fieldAttributes.onChange = ( value ) => {
-		if ( config.onChange ) {
-			config.onChange( value, props );
-		} else {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = value;
-			props.setAttributes( newAttributes );
-		}
-	};
-
-	const label = fieldAttributes.label;
 
 	const getFormattedDate = () => {
 		return props.attributes[ attributeKey ] ? dateI18n( settings.formats.datetime, props.attributes[ attributeKey ] ) : '';
 	};
 
 	delete fieldAttributes.type;
-	delete fieldAttributes.label;
 
-	return (
-		<PanelBody initialOpen={ fieldAttributes.initialOpen } title={ [
-			label + ': ',
-			<span key="label">{ getFormattedDate() }</span>,
-		]
-		}>
-			<DateTimePicker
-				{ ...fieldAttributes }
-			/>
-		</PanelBody>
+	const dateTimeEl = (
+		<DateTimePicker
+			{ ...fieldAttributes }
+		/>
 	);
+
+	if ( fieldAttributes.panel ) {
+		return (
+			<PanelBody initialOpen={ fieldAttributes.initialOpen } title={ [
+				fieldAttributes.label + ': ',
+				<span key="label">{ getFormattedDate() }</span>,
+			]
+			}>
+				{ dateTimeEl }
+			</PanelBody>
+		);
+	}
+
+	return middleware.createField( fieldAttributes, (
+		<div className="middleware-date-time-no-panel">
+			{ dateTimeEl }
+		</div>
+	) );
 }

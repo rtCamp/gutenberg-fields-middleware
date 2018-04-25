@@ -2,6 +2,14 @@
   margin-bottom: 20px; }
   .middleware-button-editable .blocks-url-input {
     z-index: 1; }
+.middleware-date-time-no-panel {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.components-base-control .middleware-date-time-no-panel {
+  margin-top: 0;
+  margin-bottom: 0; }
 .file-upload-filed-actions {
   display: -webkit-box;
   display: -ms-flexbox;
