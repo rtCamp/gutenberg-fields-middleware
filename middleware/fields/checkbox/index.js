@@ -4,11 +4,11 @@
 
 const { CheckboxControl } = wp.components;
 
-export default function checkbox( props, config, attributeKey ) {
-	const defaultAttributes = {
+export default function checkbox( props, config, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
 		value: '1',
 		checked: props.attributes[ attributeKey ],
-	};
+	} );
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
@@ -24,6 +24,7 @@ export default function checkbox( props, config, attributeKey ) {
 
 	delete fieldAttributes.type;
 
+	// Checkbox already has base control.
 	return (
 		<CheckboxControl
 			{ ...fieldAttributes }

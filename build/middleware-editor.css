@@ -1,3 +1,7 @@
+.middleware-button-editable {
+  margin-bottom: 20px; }
+  .middleware-button-editable .blocks-url-input {
+    z-index: 1; }
 .file-upload-filed-actions {
   display: -webkit-box;
   display: -ms-flexbox;

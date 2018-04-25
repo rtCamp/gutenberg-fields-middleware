@@ -5,9 +5,7 @@
 const { DropdownMenu } = wp.components;
 
 export default function dropDownMenu( props, config, attributeKey, middleware ) {
-	const defaultAttributes = {};
-
-	const fieldAttributes = _.extend( defaultAttributes, config );
+	const fieldAttributes = _.extend( {}, config );
 
 	if ( ! _.isEmpty( config.controls ) ) {
 		config.controls = config.controls.map( ( control ) => {

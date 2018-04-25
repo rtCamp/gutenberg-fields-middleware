@@ -247,13 +247,7 @@ class GutenbergFieldsMiddleWare {
 	 * @return {Object|void} Field.
 	 */
 	setupField( props, attribute, attributeKey, extend = true ) {
-		const config = _.extend( {
-			onFocus() {
-				props.setState( {
-					editable: attributeKey,
-				} );
-			},
-		}, attribute.field );
+		const config = attribute.field;
 
 		const field = this.getField( props, config, attributeKey );
 
@@ -266,6 +260,26 @@ class GutenbergFieldsMiddleWare {
 		}
 
 		return field;
+	}
+
+	getDefaultConfig( props, config, attributeKey ) {
+		return {
+			value: props.attributes[ attributeKey ],
+			onChange( value ) {
+				if ( config.onChange ) {
+					config.onChange( value, props );
+				} else {
+					const newAttributes = {};
+					newAttributes[ attributeKey ] = value;
+					props.setAttributes( newAttributes );
+				}
+			},
+			onFocus() {
+				props.setState( {
+					editable: attributeKey,
+				} );
+			},
+		};
 	}
 
 	/**
@@ -337,6 +351,14 @@ class GutenbergFieldsMiddleWare {
 		return blockAlignmentToolbarAttributeKey;
 	}
 
+	/**
+	 * Create middleware field according to the placement.
+	 *
+	 * @param {Object} config  Configuration passed in field.
+	 * @param {Object} element React element or component.
+	 *
+	 * @return {Object} element.
+	 */
 	createField( config, element ) {
 		if ( 'inspector' === config.placement || config.label || config.help ) {
 			return (

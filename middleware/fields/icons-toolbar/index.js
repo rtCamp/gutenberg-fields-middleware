@@ -5,9 +5,7 @@
 const { Toolbar } = wp.components;
 
 export default function iconsToolbar( props, config, attributeKey, middleware ) {
-	const defaultAttributes = {};
-
-	const fieldAttributes = _.extend( defaultAttributes, config );
+	const fieldAttributes = _.extend( {}, config );
 
 	if ( ! _.isEmpty( config.controls ) ) {
 		config.controls = config.controls.map( ( control ) => {
@@ -24,8 +22,8 @@ export default function iconsToolbar( props, config, attributeKey, middleware ) 
 	}
 
 	delete fieldAttributes.type;
-	const toolbarConfig = _.extend( {}, config );
 
+	const toolbarConfig = _.extend( {}, config );
 	toolbarConfig.placement = 'block-controls' === config.placement ? '' : config.placement; // To avoid one more Toolbar wrapper.
 
 	return middleware.createField( toolbarConfig, (

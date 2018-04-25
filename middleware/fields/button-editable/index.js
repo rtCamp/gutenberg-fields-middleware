@@ -6,7 +6,7 @@ const { __ } = wp.i18n;
 import ButtonEditable from './../../components/button-editable';
 
 export default function buttonEditable( props, config, attributeKey, middleware ) {
-	const defaultAttributes = {
+	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
 		placeholder: __( 'Add text…' ),
 		tagName: 'span',
 		value: props.attributes[ attributeKey ] ? props.attributes[ attributeKey ] : '',
@@ -14,22 +14,12 @@ export default function buttonEditable( props, config, attributeKey, middleware 
 		keepPlaceholderOnFocus: true,
 		inlineToolbar: true,
 		formattingControls: [ 'bold', 'italic', 'strikethrough' ],
-	};
+	} );
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 	const helperFields = middleware.getHelperFields( attributeKey );
 
-	fieldAttributes.onChange = ( value ) => {
-		if ( config.onChange ) {
-			config.onChange( value, props );
-		} else {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = value;
-			props.setAttributes( newAttributes );
-		}
-	};
-
-	return (
+	return middleware.createField( config, (
 		<ButtonEditable
 			{ ...fieldAttributes }
 			buttonValue={ fieldAttributes.value }
@@ -39,5 +29,5 @@ export default function buttonEditable( props, config, attributeKey, middleware 
 			textColor={ middleware.getHelperFieldValue( props, config, 'color' ) }
 			buttonClass={ middleware.getHelperFieldValue( props, config, 'class' ) }
 		/>
-	);
+	) );
 }
