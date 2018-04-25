@@ -6,7 +6,7 @@ const { RangeControl } = wp.components;
 
 export default function range( props, config, attributeKey ) {
 	const defaultAttributes = {
-		value: props.attributes[ attributeKey ],
+		value: props.attributes ? props.attributes[ attributeKey ] || '' : '',
 	};
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
@@ -15,7 +15,7 @@ export default function range( props, config, attributeKey ) {
 		if ( config.onChange ) {
 			config.onChange( value, props );
 		} else {
-			const newAttributes = {};
+			const newAttributes = {  };
 			newAttributes[ attributeKey ] = value;
 			props.setAttributes( newAttributes );
 		}
