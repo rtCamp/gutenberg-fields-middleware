@@ -4,8 +4,8 @@
 
 const { TextControl } = wp.components;
 
-export default function inputField( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
+export default function inputField( props, config, defaultConfig, attributeKey ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		className: 'middleware-input-field middleware-input-field-' + config.type,
 	} );
 

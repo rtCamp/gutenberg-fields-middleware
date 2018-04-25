@@ -8,7 +8,7 @@ const { __ } = wp.i18n;
 
 import './editor.scss';
 
-export default function dateTime( props, config, attributeKey, middleware ) {
+export default function dateTime( props, config, defaultConfig, attributeKey, middleware ) {
 	const is12HourTime = /a(?!\\)/i.test(
 		settings.formats.time
 			.toLowerCase() // Test only the lower case a
@@ -16,7 +16,7 @@ export default function dateTime( props, config, attributeKey, middleware ) {
 			.split( '' ).reverse().join( '' ) // Reverse the string and test for "a" not followed by a slash
 	);
 
-	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
+	const defaultAttributes = _.extend( defaultConfig, {
 		locale: settings.l10n.locale,
 		currentDate: props.attributes[ attributeKey ],
 		is12Hour: is12HourTime,

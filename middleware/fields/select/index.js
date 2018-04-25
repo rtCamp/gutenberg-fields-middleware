@@ -4,7 +4,7 @@
 
 const { SelectControl } = wp.components;
 
-export default function select( props, config, attributeKey ) {
+export default function select( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ] || '',
 	};

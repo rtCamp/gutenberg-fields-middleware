@@ -4,8 +4,8 @@
 
 const { Toolbar } = wp.components;
 
-export default function iconsToolbar( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( {}, middleware.getDefaultConfig( props, config, attributeKey ) );
+export default function iconsToolbar( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( {}, defaultConfig );
 	delete defaultAttributes.value;
 	delete defaultAttributes.onChange;
 

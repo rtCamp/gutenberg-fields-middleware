@@ -6,8 +6,8 @@ const { TextareaControl } = wp.components;
 
 import './editor.scss';
 
-export default function textarea( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
+export default function textarea( props, config, defaultConfig ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		className: 'middleware-input-field middleware-input-field-' + config.type,
 	} );
 

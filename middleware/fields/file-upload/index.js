@@ -6,8 +6,8 @@ import FileUpload from './../../components/file-upload';
 
 const { __ } = wp.i18n;
 
-export default function fileUpload( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
+export default function fileUpload( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		fileType: 'application',
 		isLarge: true,
 		buttonText: __( 'Upload' ),

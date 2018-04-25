@@ -4,8 +4,8 @@
 
 const { CodeEditor } = wp.components;
 
-export default function codeEditor( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
+export default function codeEditor( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		value: props.attributes[ attributeKey ] || '',
 	} );
 

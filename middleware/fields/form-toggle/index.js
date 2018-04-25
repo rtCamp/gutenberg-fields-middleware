@@ -4,8 +4,8 @@
 
 const { FormToggle, BaseControl } = wp.components;
 
-export default function formToggle( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
+export default function formToggle( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		checked: 'on' === props.attributes[ attributeKey ],
 		value: props.attributes[ attributeKey ] || 'off',
 		onChange( event ) {

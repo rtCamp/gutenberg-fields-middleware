@@ -6,8 +6,8 @@ const { UrlInput } = wp.blocks;
 
 import './editor.scss';
 
-export default function link( props, config, attributeKey, middleware ) {
-	const fieldAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), config );
+export default function link( props, config, defaultConfig, attributeKey, middleware ) {
+	const fieldAttributes = _.extend( defaultConfig, config );
 
 	delete fieldAttributes.type;
 

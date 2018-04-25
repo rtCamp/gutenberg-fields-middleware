@@ -4,7 +4,7 @@
 
 const { TreeSelect } = wp.components;
 
-export default function treeSelect( props, config, attributeKey ) {
+export default function treeSelect( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ],
 	};

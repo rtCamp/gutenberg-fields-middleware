@@ -5,8 +5,8 @@
 const { __ } = wp.i18n;
 import ButtonEditable from './../../components/button-editable';
 
-export default function buttonEditable( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
+export default function buttonEditable( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		placeholder: __( 'Add text…' ),
 		tagName: 'span',
 		value: props.attributes[ attributeKey ] ? props.attributes[ attributeKey ] : '',

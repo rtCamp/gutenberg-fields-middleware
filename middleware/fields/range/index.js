@@ -4,7 +4,7 @@
 
 const { RangeControl } = wp.components;
 
-export default function range( props, config, attributeKey ) {
+export default function range( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = {
 		value: props.attributes[ attributeKey ],
 	};

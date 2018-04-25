@@ -4,8 +4,8 @@
 
 const { BlockAlignmentToolbar } = wp.blocks;
 
-export default function blockAlignmentToolbar( props, config, attributeKey, middleware ) {
-	const fieldAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), config );
+export default function blockAlignmentToolbar( props, config, defaultConfig, attributeKey, middleware ) {
+	const fieldAttributes = _.extend( defaultConfig, config );
 
 	delete fieldAttributes.type;
 

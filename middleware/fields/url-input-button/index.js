@@ -5,7 +5,7 @@
 const { UrlInputButton } = wp.blocks;
 const { BaseControl, Toolbar } = wp.components;
 
-export default function urlInputButton( props, config, attributeKey ) {
+export default function urlInputButton( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = {
 		url: props.attributes[ attributeKey ],
 	};

@@ -7,8 +7,8 @@ const { MediaUpload } = wp.blocks;
 const { IconButton, Button } = wp.components;
 const { __ } = wp.i18n;
 
-export default function mediaIcon( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
+export default function mediaIcon( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		mediaType: 'image',
 		button: false,
 		buttonText: __( 'Upload' ),

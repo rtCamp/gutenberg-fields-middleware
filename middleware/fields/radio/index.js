@@ -3,22 +3,14 @@
  */
 const { RadioControl } = wp.components;
 
-export default function radio( props, config, attributeKey ) {
-	const defaultAttributes = {
+export default function radio( props, config, defaultConfig, attributeKey ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		selected: props.attributes ? props.attributes[ attributeKey ] || '' : '',
-	};
+	} );
+
+	delete defaultAttributes.value;
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
-
-	fieldAttributes.onChange = ( value ) => {
-		if ( config.onChange ) {
-			config.onChange( value, props );
-		} else {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = value;
-			props.setAttributes( newAttributes );
-		}
-	};
 
 	delete fieldAttributes.type;
 

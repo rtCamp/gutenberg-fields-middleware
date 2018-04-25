@@ -6,8 +6,8 @@ const { ColorPalette } = wp.blocks;
 const { PanelColor } = wp.components;
 const { __ } = wp.i18n;
 
-export default function color( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
+export default function color( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		value: props.attributes[ attributeKey ] || '',
 		label: __( 'Color' ),
 		initialOpen: false,

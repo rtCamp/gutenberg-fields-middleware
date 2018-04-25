@@ -5,7 +5,7 @@
 const { PlainText } = wp.blocks;
 import inputField from './../input-field';
 
-export default function text( props, config, attributeKey ) {
+export default function text( props, config, defaultConfig, attributeKey ) {
 	if ( 'inspector' === config.placement ) {
 		return inputField( props, config, attributeKey );
 	}

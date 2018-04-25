@@ -4,8 +4,8 @@
 
 const { DropdownMenu } = wp.components;
 
-export default function dropDownMenu( props, config, attributeKey, middleware ) {
-	const defaultAttributes = _.extend( {}, middleware.getDefaultConfig( props, config, attributeKey ) );
+export default function dropDownMenu( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( {}, defaultConfig );
 	delete defaultAttributes.value;
 	delete defaultAttributes.onChange;
 
