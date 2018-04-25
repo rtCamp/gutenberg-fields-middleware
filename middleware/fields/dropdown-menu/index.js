@@ -2,7 +2,7 @@
  * icons-toolbar field.
  */
 
-const { Toolbar, DropdownMenu } = wp.components;
+const { DropdownMenu } = wp.components;
 
 export default function dropDownMenu( props, config, attributeKey, middleware ) {
 	const defaultAttributes = {};
@@ -26,8 +26,6 @@ export default function dropDownMenu( props, config, attributeKey, middleware ) 
 	delete fieldAttributes.type;
 
 	return middleware.createField( config, (
-		<Toolbar>
-			<DropdownMenu { ...fieldAttributes } />
-		</Toolbar>
+		<DropdownMenu { ...fieldAttributes } />
 	) );
 }

@@ -47,19 +47,11 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 		},
-		backgroundImage: {
-			type: 'object',
-			field: {
-				type: 'media-icon',
-				mediaType: 'image',
-				placement: 'block-controls',
-			},
-		},
 		dropdownMenu: {
 			type: 'string',
 			field: {
 				type: 'dropdown-menu',
-				// placement: 'block-controls',
+				placement: 'block-controls',
 				controls: [
 					{
 						icon: 'list-view',
@@ -72,6 +64,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 						value: 'grid',
 					},
 				],
+			},
+		},
+		backgroundImage: {
+			type: 'object',
+			field: {
+				type: 'media-icon',
+				mediaType: 'image',
+				placement: 'block-controls',
 			},
 		},
 		blockLink: {

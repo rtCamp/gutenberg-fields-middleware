@@ -1176,7 +1176,8 @@ var _wp$blocks = wp.blocks,
 var addFilter = wp.hooks.addFilter;
 var _wp$components = wp.components,
     withState = _wp$components.withState,
-    BaseControl = _wp$components.BaseControl;
+    BaseControl = _wp$components.BaseControl,
+    Toolbar = _wp$components.Toolbar;
 
 /**
  * Fields
@@ -1554,10 +1555,16 @@ var GutenbergFieldsMiddleWare = function () {
 	}, {
 		key: 'createField',
 		value: function createField(config, element) {
-			if ('inspector' === config.placement) {
+			if ('inspector' === config.placement || config.label || config.help) {
 				return wp.element.createElement(
 					BaseControl,
 					{ label: config.label, help: config.help },
+					element
+				);
+			} else if ('block-controls' === config.placement) {
+				return wp.element.createElement(
+					Toolbar,
+					null,
 					element
 				);
 			}
@@ -3564,8 +3571,11 @@ function iconsToolbar(props, config, attributeKey, middleware) {
 	}
 
 	delete fieldAttributes.type;
+	var toolbarConfig = _.extend({}, config);
 
-	return middleware.createField(config, wp.element.createElement(Toolbar, fieldAttributes));
+	toolbarConfig.placement = 'block-controls' === config.placement ? '' : config.placement; // To avoid one more Toolbar wrapper.
+
+	return middleware.createField(toolbarConfig, wp.element.createElement(Toolbar, fieldAttributes));
 }
 
 /***/ }),
@@ -4406,9 +4416,7 @@ function urlInputButton(props, config, attributeKey) {
  * icons-toolbar field.
  */
 
-var _wp$components = wp.components,
-    Toolbar = _wp$components.Toolbar,
-    DropdownMenu = _wp$components.DropdownMenu;
+var DropdownMenu = wp.components.DropdownMenu;
 
 
 function dropDownMenu(props, config, attributeKey, middleware) {
@@ -4432,11 +4440,7 @@ function dropDownMenu(props, config, attributeKey, middleware) {
 
 	delete fieldAttributes.type;
 
-	return middleware.createField(config, wp.element.createElement(
-		Toolbar,
-		null,
-		wp.element.createElement(DropdownMenu, fieldAttributes)
-	));
+	return middleware.createField(config, wp.element.createElement(DropdownMenu, fieldAttributes));
 }
 
 /***/ })

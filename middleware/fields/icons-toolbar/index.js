@@ -24,8 +24,11 @@ export default function iconsToolbar( props, config, attributeKey, middleware ) 
 	}
 
 	delete fieldAttributes.type;
+	const toolbarConfig = _.extend( {}, config );
 
-	return middleware.createField( config, (
+	toolbarConfig.placement = 'block-controls' === config.placement ? '' : config.placement; // To avoid one more Toolbar wrapper.
+
+	return middleware.createField( toolbarConfig, (
 		<Toolbar
 			{ ...fieldAttributes }
 		/>
