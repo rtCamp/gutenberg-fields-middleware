@@ -1911,21 +1911,20 @@ function alignmentToolbar(props, config, attributeKey, middleware) {
 
 var MediaUpload = wp.blocks.MediaUpload;
 var _wp$components = wp.components,
-    BaseControl = _wp$components.BaseControl,
-    Toolbar = _wp$components.Toolbar,
     IconButton = _wp$components.IconButton,
     Button = _wp$components.Button;
 var __ = wp.i18n.__;
 
 
-function mediaIcon(props, config, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey],
+function mediaIcon(props, config, attributeKey, middleware) {
+	var defaultAttributes = _.extend(middleware.getDefaultConfig(props, config, attributeKey), {
 		mediaType: 'image',
 		button: false,
 		buttonText: __('Upload'),
 		buttonClass: ''
-	};
+	});
+
+	delete defaultAttributes.onChange;
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
@@ -1953,38 +1952,14 @@ function mediaIcon(props, config, attributeKey) {
 	};
 
 	fieldAttributes.onSelect = function (media) {
-		if (config.onSelect) {
-			config.onSelect(media, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = media;
-			props.setAttributes(newAttributes);
-		}
+		var newAttributes = {};
+		newAttributes[attributeKey] = media;
+		props.setAttributes(newAttributes);
 	};
 
-	var help = fieldAttributes.help;
-	var label = fieldAttributes.label;
-
 	fieldAttributes.type = fieldAttributes.mediaType;
-	delete fieldAttributes.placement;
-	delete fieldAttributes.help;
-	delete fieldAttributes.label;
 
-	var toolbarComponent = wp.element.createElement(
-		Toolbar,
-		null,
-		wp.element.createElement(MediaUpload, fieldAttributes)
-	);
-
-	if ('block-controls' !== config.placement) {
-		return wp.element.createElement(
-			BaseControl,
-			{ label: label, help: help },
-			toolbarComponent
-		);
-	}
-
-	return toolbarComponent;
+	return middleware.createField(fieldAttributes, wp.element.createElement(MediaUpload, fieldAttributes));
 }
 
 /***/ }),
@@ -3568,11 +3543,15 @@ var __ = wp.i18n.__;
 
 
 function mediaUpload(props, config, attributeKey, middleware) {
-	var defaultAttributes = {
+	var defaultAttributes = _.extend(middleware.getDefaultConfig(props, config, attributeKey), {
 		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
 		isSelected: props.isSelected
-	};
+	});
+
+	delete defaultAttributes.onChange;
+	delete defaultAttributes.value;
+
 	var fieldAttributes = _.extend(defaultAttributes, config);
 	var helperFields = middleware.getHelperFields(attributeKey);
 
@@ -3592,10 +3571,10 @@ function mediaUpload(props, config, attributeKey, middleware) {
 		}
 	};
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+	return middleware.createField(config, wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 		mediaData: props.attributes[attributeKey],
 		captionField: helperFields.caption
-	}));
+	})));
 }
 
 /***/ }),
