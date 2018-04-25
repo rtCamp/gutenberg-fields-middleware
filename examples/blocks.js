@@ -55,6 +55,25 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'block-controls',
 			},
 		},
+		dropdownMenu: {
+			type: 'string',
+			field: {
+				type: 'dropdown-menu',
+				// placement: 'block-controls',
+				controls: [
+					{
+						icon: 'list-view',
+						title: __( 'List View' ),
+						value: 'list',
+					},
+					{
+						icon: 'grid-view',
+						title: __( 'Grid View' ),
+						value: 'grid',
+					},
+				],
+			},
+		},
 		blockLink: {
 			type: 'string',
 			field: {

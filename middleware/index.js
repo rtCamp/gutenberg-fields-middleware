@@ -182,6 +182,9 @@ class GutenbergFieldsMiddleWare {
 			case 'media-icon':
 				field[ attributeKey ] = fields.mediaIcon( props, config, attributeKey, this );
 				break;
+			case 'dropdown-menu':
+				field[ attributeKey ] = fields.dropDownMenu( props, config, attributeKey, this );
+				break;
 			case 'url-input-button':
 				field[ attributeKey ] = fields.urlInputButton( props, config, attributeKey, this );
 				break;
