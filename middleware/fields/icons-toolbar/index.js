@@ -5,7 +5,11 @@
 const { Toolbar } = wp.components;
 
 export default function iconsToolbar( props, config, attributeKey, middleware ) {
-	const fieldAttributes = _.extend( {}, config );
+	const defaultAttributes = _.extend( {}, middleware.getDefaultConfig( props, config, attributeKey ) );
+	delete defaultAttributes.value;
+	delete defaultAttributes.onChange;
+
+	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	if ( ! _.isEmpty( config.controls ) ) {
 		config.controls = config.controls.map( ( control ) => {

@@ -21,6 +21,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 				controls: [ 'left', 'center', 'right', 'wide', 'full' ],
 			},
 		},
+		link: {
+			type: 'string',
+			field: {
+				type: 'link',
+				placement: 'inspector',
+				label: 'Enter Text',
+			},
+		},
 		alignment: {
 			type: 'string',
 			field: {

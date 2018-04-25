@@ -191,7 +191,7 @@ class GutenbergFieldsMiddleWare {
 		}
 
 		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {
-			field[ attributeKey ] = fields.inputField( props, config, attributeKey, this.fields );
+			field[ attributeKey ] = fields.inputField( props, config, attributeKey, this );
 		}
 
 		return field;
@@ -358,7 +358,7 @@ class GutenbergFieldsMiddleWare {
 	createField( config, element ) {
 		if ( 'inspector' === config.placement || config.label || config.help ) {
 			return (
-				<BaseControl label={ config.label } help={ config.help } >
+				<BaseControl label={ config.label } help={ config.help } id={ config.id } >
 					{ element }
 				</BaseControl>
 			);

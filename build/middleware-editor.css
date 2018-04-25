@@ -96,6 +96,8 @@ ul.file-upload-field-files,
 .file-upload-field .dashicons-upload {
   vertical-align: middle;
   margin-bottom: 3px; }
+.edit-post-sidebar .middleware-link-field input {
+  width: 100%; }
 .middleware-media-field {
   position: relative; }
   .middleware-media-field .middleware-media-toolbar {
@@ -132,3 +134,5 @@ ul.file-upload-field-files,
   height: 0; }
   .middleware-block .block-rich-text__inline-toolbar .blocks-format-toolbar {
     height: 38px; }
+.edit-post-sidebar .middleware-input-field-textarea {
+  width: 100%; }
