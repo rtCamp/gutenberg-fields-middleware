@@ -2884,26 +2884,16 @@ function checkbox(props, config, attributeKey, middleware) {
 var CodeEditor = wp.components.CodeEditor;
 
 
-function codeEditor(props, config, attributeKey) {
-	var defaultAttributes = {
+function codeEditor(props, config, attributeKey, middleware) {
+	var defaultAttributes = _.extend(middleware.getDefaultConfig(props, config, attributeKey), {
 		value: props.attributes[attributeKey] || ''
-	};
+	});
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(CodeEditor, fieldAttributes);
+	return middleware.createField(config, wp.element.createElement(CodeEditor, fieldAttributes));
 }
 
 /***/ }),
@@ -2921,32 +2911,29 @@ var PanelColor = wp.components.PanelColor;
 var __ = wp.i18n.__;
 
 
-function color(props, config, attributeKey) {
-	var defaultAttributes = {
+function color(props, config, attributeKey, middleware) {
+	var defaultAttributes = _.extend(middleware.getDefaultConfig(props, config, attributeKey), {
 		value: props.attributes[attributeKey] || '',
 		label: __('Color'),
-		initialOpen: false
-	};
+		initialOpen: false,
+		panel: 'inspector' === config.placement
+	});
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(
-		PanelColor,
-		{ title: fieldAttributes.label, colorValue: fieldAttributes.value, initialOpen: fieldAttributes.initialOpen },
-		wp.element.createElement(ColorPalette, fieldAttributes)
-	);
+	var colorEl = wp.element.createElement(ColorPalette, fieldAttributes);
+
+	if (fieldAttributes.panel) {
+		return wp.element.createElement(
+			PanelColor,
+			{ title: fieldAttributes.label, colorValue: fieldAttributes.value, initialOpen: fieldAttributes.initialOpen },
+			colorEl
+		);
+	}
+
+	return middleware.createField(config, colorEl);
 }
 
 /***/ }),
