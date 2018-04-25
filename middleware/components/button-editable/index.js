@@ -3,6 +3,8 @@ const { RichText } = wp.blocks;
 const { Dashicon, IconButton } = wp.components;
 const { __ } = wp.i18n;
 
+import './editor.scss';
+
 class ButtonEditable extends Component {
 	constructor() {
 		super( ...arguments );
@@ -49,7 +51,7 @@ class ButtonEditable extends Component {
 		);
 
 		return (
-			<div className="button-editable">
+			<div className="button-editable middleware-button-editable">
 				<span className="wp-block-button" key="button">
 					<RichText
 						onFocus={ this.onFocus }

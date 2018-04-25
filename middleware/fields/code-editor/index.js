@@ -4,28 +4,18 @@
 
 const { CodeEditor } = wp.components;
 
-export default function codeEditor( props, config, attributeKey ) {
-	const defaultAttributes = {
+export default function codeEditor( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		value: props.attributes[ attributeKey ] || '',
-	};
+	} );
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
-	fieldAttributes.onChange = ( value ) => {
-		if ( config.onChange ) {
-			config.onChange( value, props );
-		} else {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = value;
-			props.setAttributes( newAttributes );
-		}
-	};
-
 	delete fieldAttributes.type;
 
-	return (
+	return middleware.createField( config, (
 		<CodeEditor
 			{ ...fieldAttributes }
 		/>
-	);
+	) );
 }
