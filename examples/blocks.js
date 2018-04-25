@@ -47,6 +47,25 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 		},
+		dropdownMenu: {
+			type: 'string',
+			field: {
+				type: 'dropdown-menu',
+				placement: 'block-controls',
+				controls: [
+					{
+						icon: 'list-view',
+						title: __( 'List View' ),
+						value: 'list',
+					},
+					{
+						icon: 'grid-view',
+						title: __( 'Grid View' ),
+						value: 'grid',
+					},
+				],
+			},
+		},
 		backgroundImage: {
 			type: 'object',
 			field: {
@@ -80,12 +99,36 @@ registerBlockType( 'gb-m-example/simple-block', {
 			source: 'children', // Read about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
 			selector: '.rich-text',
 		},
+		sidebarimage: {
+			type: 'object',
+			field: {
+				type: 'image',
+				buttonText: __( 'Upload' ),
+				placement: 'inspector',
+			},
+		},
+		sidebarvideo: {
+			type: 'object',
+			field: {
+				type: 'video',
+				buttonText: __( 'Upload' ),
+				placement: 'inspector',
+			},
+		},
+		sidebaraudio: {
+			type: 'object',
+			field: {
+				type: 'audio',
+				buttonText: __( 'Upload' ),
+				placement: 'inspector',
+			},
+		},
 		image: {
 			type: 'object',
 			field: {
 				type: 'image',
 				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a image file from your library, or upload a new one' ),
+				placeholderText: __( 'Select an image file from your library, or upload a new one' ),
 				helperFields: {
 					caption: 'imageCaption',
 				},
@@ -125,7 +168,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'audio',
 				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
+				placeholderText: __( 'Select an audio file from your library, or upload a new one' ),
 				helperFields: {
 					caption: 'audioCaption',
 				},
@@ -435,6 +478,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'file-upload',
 				fileType: 'video',
+				placement: 'inspector',
 				multiple: true,
 				label: 'Upload File',
 			},

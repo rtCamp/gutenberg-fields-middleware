@@ -6,6 +6,7 @@ export { default as checkbox } from './checkbox';
 export { default as codeEditor } from './code-editor';
 export { default as color } from './color';
 export { default as dateTime } from './date-time';
+export { default as dropDownMenu } from './dropdown-menu';
 export { default as fileUpload } from './file-upload';
 export { default as formToggle } from './form-toggle';
 export { default as iconsToolbar } from './icons-toolbar';

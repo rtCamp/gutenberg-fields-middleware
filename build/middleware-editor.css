@@ -1,3 +1,15 @@
+.middleware-button-editable {
+  margin-bottom: 20px; }
+  .middleware-button-editable .blocks-url-input {
+    z-index: 1; }
+.middleware-date-time-no-panel {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.components-base-control .middleware-date-time-no-panel {
+  margin-top: 0;
+  margin-bottom: 0; }
 .file-upload-filed-actions {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -84,6 +96,8 @@ ul.file-upload-field-files,
 .file-upload-field .dashicons-upload {
   vertical-align: middle;
   margin-bottom: 3px; }
+.edit-post-sidebar .middleware-link-field input {
+  width: 100%; }
 .middleware-media-field {
   position: relative; }
   .middleware-media-field .middleware-media-toolbar {
@@ -108,15 +122,29 @@ ul.file-upload-field-files,
 .is-selected .middleware-media-field:hover .middleware-media-toolbar {
   display: inline-block; }
 
-.wp-block-image .components-placeholder__fieldset {
+.wp-block-image .components-placeholder__fieldset,
+.wp-block-video .components-placeholder__fieldset,
+.wp-block-audio .components-placeholder__fieldset {
   max-width: 400px; }
-  .wp-block-image .components-placeholder__fieldset form {
+  .wp-block-image .components-placeholder__fieldset form,
+  .wp-block-video .components-placeholder__fieldset form,
+  .wp-block-audio .components-placeholder__fieldset form {
     max-width: none; }
-  .wp-block-image .components-placeholder__fieldset .button.button-large {
+  .wp-block-image .components-placeholder__fieldset .button.button-large,
+  .wp-block-video .components-placeholder__fieldset .button.button-large,
+  .wp-block-audio .components-placeholder__fieldset .button.button-large {
     margin-top: 0.5em; }
-  .wp-block-image .components-placeholder__fieldset .components-placeholder__input {
+  .wp-block-image .components-placeholder__fieldset .components-placeholder__input,
+  .wp-block-video .components-placeholder__fieldset .components-placeholder__input,
+  .wp-block-audio .components-placeholder__fieldset .components-placeholder__input {
     margin-top: 0.5em; }
+    .edit-post-sidebar .wp-block-image .components-placeholder__fieldset .components-placeholder__input, .edit-post-sidebar
+    .wp-block-video .components-placeholder__fieldset .components-placeholder__input, .edit-post-sidebar
+    .wp-block-audio .components-placeholder__fieldset .components-placeholder__input {
+      width: 60%; }
 .middleware-block .block-rich-text__inline-toolbar {
   height: 0; }
   .middleware-block .block-rich-text__inline-toolbar .blocks-format-toolbar {
     height: 38px; }
+.edit-post-sidebar .middleware-input-field-textarea {
+  width: 100%; }

@@ -26,7 +26,7 @@ describe( 'RadioControl', () => {
 		],
 	};
 
-	const wrapper = render( radio( '', config, 'radio' ) );
+	const wrapper = render( radio( '', config, {}, 'radio' ) );
 	const radioEl = wrapper.find( '.components-radio-control__option > input[type=\'radio\']' );
 	const defaultRadio = wrapper.find( '.components-radio-control__option > input[type=\'radio\'][value=\'one\']' );
 

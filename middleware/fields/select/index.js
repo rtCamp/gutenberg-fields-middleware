@@ -4,22 +4,8 @@
 
 const { SelectControl } = wp.components;
 
-export default function select( props, config, attributeKey ) {
-	const defaultAttributes = {
-		value: props.attributes[ attributeKey ] || '',
-	};
-
-	const fieldAttributes = _.extend( defaultAttributes, config );
-
-	fieldAttributes.onChange = ( value ) => {
-		if ( config.onChange ) {
-			config.onChange( value, props );
-		} else {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = value;
-			props.setAttributes( newAttributes );
-		}
-	};
+export default function select( props, config, defaultConfig ) {
+	const fieldAttributes = _.extend( defaultConfig, config );
 
 	delete fieldAttributes.type;
 

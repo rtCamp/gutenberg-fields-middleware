@@ -118,6 +118,7 @@ class MediaPlaceholder extends Component {
 
 	render() {
 		const {
+			config,
 			type,
 			placeholderText,
 			buttonText,
@@ -128,6 +129,8 @@ class MediaPlaceholder extends Component {
 		if ( this.state.editing ) {
 			const mediaIcon = getDashIconSuffixByType( type );
 			const placeholderClassName = 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type;
+
+			const mediaButtonText = 'inspector' !== config.placement ? __( 'Add from Media Library' ) : __( 'Media Library' );
 
 			return (
 				<Placeholder
@@ -163,7 +166,7 @@ class MediaPlaceholder extends Component {
 						type={ type }
 						render={ ( { open } ) => (
 							<Button isLarge onClick={ open } >
-								{ __( 'Add from Media Library' ) }
+								{ mediaButtonText }
 							</Button>
 						) }
 					/>

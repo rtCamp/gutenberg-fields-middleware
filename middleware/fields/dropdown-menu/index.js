@@ -2,9 +2,9 @@
  * icons-toolbar field.
  */
 
-const { Toolbar } = wp.components;
+const { DropdownMenu } = wp.components;
 
-export default function iconsToolbar( props, config, defaultConfig, attributeKey, middleware ) {
+export default function dropDownMenu( props, config, defaultConfig, attributeKey, middleware ) {
 	const defaultAttributes = _.extend( {}, defaultConfig );
 	delete defaultAttributes.value;
 	delete defaultAttributes.onChange;
@@ -27,12 +27,7 @@ export default function iconsToolbar( props, config, defaultConfig, attributeKey
 
 	delete fieldAttributes.type;
 
-	const toolbarConfig = _.extend( {}, config );
-	toolbarConfig.placement = 'block-controls' === config.placement ? '' : config.placement; // To avoid one more Toolbar wrapper.
-
-	return middleware.createField( toolbarConfig, (
-		<Toolbar
-			{ ...fieldAttributes }
-		/>
+	return middleware.createField( config, (
+		<DropdownMenu { ...fieldAttributes } />
 	) );
 }

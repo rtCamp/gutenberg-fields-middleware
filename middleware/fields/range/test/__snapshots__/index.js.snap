@@ -7,65 +7,26 @@ exports[`RangeControl should render a range Control 1`] = `
   <div
     class="components-base-control__field"
   >
-    <label
-      class="components-base-control__label"
-      for="inspector-range-control-0"
-    >
-      Select Range
-    </label>
-    <svg
-      aria-hidden="true"
-      class="dashicon dashicons-editor-textcolor"
-      focusable="false"
-      height="20"
-      role="img"
-      viewBox="0 0 20 20"
-      width="20"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M13.23 15h1.9L11 4H9L5 15h1.88l1.07-3h4.18zm-1.53-4.54H8.51L10 5.6z"
-      />
-    </svg>
     <input
-      aria-describedby="inspector-range-control-0__help"
+      0="r"
+      1="a"
+      2="d"
+      3="i"
+      4="o"
       class="components-range-control__slider"
       id="inspector-range-control-0"
-      max="20"
-      min="0"
-      placement="inspector"
       type="range"
       value=""
     />
-    <svg
-      aria-hidden="true"
-      class="dashicon dashicons-editor-textcolor"
-      focusable="false"
-      height="20"
-      role="img"
-      viewBox="0 0 20 20"
-      width="20"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M13.23 15h1.9L11 4H9L5 15h1.88l1.07-3h4.18zm-1.53-4.54H8.51L10 5.6z"
-      />
-    </svg>
     <input
-      aria-label="Select Range"
+      0="r"
+      1="a"
+      2="d"
+      3="i"
+      4="o"
       class="components-range-control__number"
-      max="20"
-      min="0"
-      placement="inspector"
       type="number"
-      value=""
     />
   </div>
-  <p
-    class="components-base-control__help"
-    id="inspector-range-control-0__help"
-  >
-    This is your range control
-  </p>
 </div>
 `;

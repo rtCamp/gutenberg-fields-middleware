@@ -1,0 +1,12 @@
+.middleware-date-time-no-panel {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.components-base-control {
+  .middleware-date-time-no-panel {
+	margin-top: 0;
+	margin-bottom: 0;
+  }
+}

@@ -4,7 +4,7 @@
 
 const { InspectorControls, BlockControls } = wp.blocks;
 const { addFilter } = wp.hooks;
-const { withState } = wp.components;
+const { withState, BaseControl, Toolbar } = wp.components;
 
 /**
  * Fields
@@ -37,6 +37,7 @@ class GutenbergFieldsMiddleWare {
 		this.getHelperFields = this.getHelperFields.bind( this );
 		this.updateAlignment = this.updateAlignment.bind( this );
 		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind( this );
+		this.getDefaultConfig = this.getDefaultConfig.bind( this );
 	}
 
 	/**
@@ -110,85 +111,89 @@ class GutenbergFieldsMiddleWare {
 	/**
 	 * Get field according to the field type.
 	 *
-	 * @param {Object} props        Properties.
-	 * @param {Object} config       Field configuration provided.
-	 * @param {String} attributeKey Attribute Key.
+	 * @param {Object} props         Properties.
+	 * @param {Object} config        Field configuration provided.
+	 * @param {Object} defaultConfig Field default configuration.
+	 * @param {String} attributeKey  Attribute Key.
 	 *
 	 * @return {Object} Field.
 	 */
-	getField( props, config, attributeKey ) {
+	getField( props, config, defaultConfig, attributeKey ) {
 		const field = {};
 
 		switch ( config.type ) {
 			case 'text':
-				field[ attributeKey ] = fields.text( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.text( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'rich-text':
-				field[ attributeKey ] = fields.richText( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.richText( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'link':
-				field[ attributeKey ] = fields.link( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.link( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'video':
 			case 'audio':
 			case 'image':
-				field[ attributeKey ] = fields.mediaUpload( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.mediaUpload( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'select':
-				field[ attributeKey ] = fields.select( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.select( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'range':
-				field[ attributeKey ] = fields.range( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.range( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'radio':
-				field[ attributeKey ] = fields.radio( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.radio( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'checkbox':
-				field[ attributeKey ] = fields.checkbox( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.checkbox( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'button-editable':
-				field[ attributeKey ] = fields.buttonEditable( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.buttonEditable( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'color':
-				field[ attributeKey ] = fields.color( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.color( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'code-editor':
-				field[ attributeKey ] = fields.codeEditor( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.codeEditor( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'date-time':
-				field[ attributeKey ] = fields.dateTime( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.dateTime( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'textarea':
-				field[ attributeKey ] = fields.textarea( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.textarea( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'switch':
-				field[ attributeKey ] = fields.formToggle( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.formToggle( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'tree-select':
-				field[ attributeKey ] = fields.treeSelect( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.treeSelect( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'file-upload':
-				field[ attributeKey ] = fields.fileUpload( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.fileUpload( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'block-alignment-toolbar':
-				field[ attributeKey ] = fields.blockAlignmentToolbar( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.blockAlignmentToolbar( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'alignment-toolbar':
-				field[ attributeKey ] = fields.alignmentToolbar( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.alignmentToolbar( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'icons-toolbar':
-				field[ attributeKey ] = fields.iconsToolbar( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.iconsToolbar( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'media-icon':
-				field[ attributeKey ] = fields.mediaIcon( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.mediaIcon( props, config, defaultConfig, attributeKey, this );
+				break;
+			case 'dropdown-menu':
+				field[ attributeKey ] = fields.dropDownMenu( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'url-input-button':
-				field[ attributeKey ] = fields.urlInputButton( props, config, attributeKey, this );
+				field[ attributeKey ] = fields.urlInputButton( props, config, defaultConfig, attributeKey, this );
 				break;
 		}
 
 		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {
-			field[ attributeKey ] = fields.inputField( props, config, attributeKey, this.fields );
+			field[ attributeKey ] = fields.inputField( props, config, defaultConfig, attributeKey, this );
 		}
 
 		return field;
@@ -244,15 +249,10 @@ class GutenbergFieldsMiddleWare {
 	 * @return {Object|void} Field.
 	 */
 	setupField( props, attribute, attributeKey, extend = true ) {
-		const config = _.extend( {
-			onFocus() {
-				props.setState( {
-					editable: attributeKey,
-				} );
-			},
-		}, attribute.field );
+		const config = attribute.field;
+		const defaultConfig = this.getDefaultConfig( props, config, attributeKey );
 
-		const field = this.getField( props, config, attributeKey );
+		const field = this.getField( props, config, defaultConfig, attributeKey );
 
 		if ( 'inspector' === config.placement ) {
 			_.extend( this.inspectorControlFields, field );
@@ -263,6 +263,31 @@ class GutenbergFieldsMiddleWare {
 		}
 
 		return field;
+	}
+
+	/**
+	 * Get default configuration for all fields.
+	 *
+	 * @param {Object} props         Properties.
+	 * @param {Object} config        Field configuration provided.
+	 * @param {String} attributeKey  Attribute Key.
+	 *
+	 * @return {Object} Default Config object.
+	 */
+	getDefaultConfig( props, config, attributeKey ) {
+		return {
+			value: props.attributes[ attributeKey ],
+			onChange( value ) {
+				const newAttributes = {};
+				newAttributes[ attributeKey ] = value;
+				props.setAttributes( newAttributes );
+			},
+			onFocus() {
+				props.setState( {
+					editable: attributeKey,
+				} );
+			},
+		};
 	}
 
 	/**
@@ -332,6 +357,32 @@ class GutenbergFieldsMiddleWare {
 		}
 
 		return blockAlignmentToolbarAttributeKey;
+	}
+
+	/**
+	 * Create middleware field according to the placement.
+	 *
+	 * @param {Object} config  Configuration passed in field.
+	 * @param {Object} element React element or component.
+	 *
+	 * @return {Object} element.
+	 */
+	createField( config, element ) {
+		if ( 'inspector' === config.placement || config.label || config.help ) {
+			return (
+				<BaseControl label={ config.label } help={ config.help } id={ config.id } >
+					{ element }
+				</BaseControl>
+			);
+		} else if ( 'block-controls' === config.placement ) {
+			return (
+				<Toolbar>
+					{ element }
+				</Toolbar>
+			);
+		}
+
+		return element;
 	}
 
 	/**
