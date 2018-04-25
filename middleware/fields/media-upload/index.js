@@ -32,6 +32,7 @@ export default function mediaUpload( props, config, attributeKey, middleware ) {
 	return (
 		<MediaPlaceholder
 			{ ...fieldAttributes }
+			config={ config }
 			mediaData={ props.attributes[ attributeKey ] }
 			captionField={ helperFields.caption }
 		/>
