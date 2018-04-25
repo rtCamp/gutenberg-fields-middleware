@@ -1475,13 +1475,9 @@ var GutenbergFieldsMiddleWare = function () {
 			return {
 				value: props.attributes[attributeKey],
 				onChange: function onChange(value) {
-					if (config.onChange) {
-						config.onChange(value, props);
-					} else {
-						var newAttributes = {};
-						newAttributes[attributeKey] = value;
-						props.setAttributes(newAttributes);
-					}
+					var newAttributes = {};
+					newAttributes[attributeKey] = value;
+					props.setAttributes(newAttributes);
 				},
 				onFocus: function onFocus() {
 					props.setState({
@@ -3019,7 +3015,11 @@ var DropdownMenu = wp.components.DropdownMenu;
 
 
 function dropDownMenu(props, config, attributeKey, middleware) {
-	var fieldAttributes = _.extend({}, config);
+	var defaultAttributes = _.extend({}, middleware.getDefaultConfig(props, config, attributeKey));
+	delete defaultAttributes.value;
+	delete defaultAttributes.onChange;
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	if (!_.isEmpty(config.controls)) {
 		config.controls = config.controls.map(function (control) {
@@ -3055,32 +3055,31 @@ function dropDownMenu(props, config, attributeKey, middleware) {
  */
 
 
-var BaseControl = wp.components.BaseControl;
+
 var __ = wp.i18n.__;
 
 
-function fileUpload(props, config, attributeKey) {
-	var defaultAttributes = {
+function fileUpload(props, config, attributeKey, middleware) {
+	var defaultAttributes = _.extend(middleware.getDefaultConfig(props, config, attributeKey), {
 		fileType: 'application',
 		isLarge: true,
 		buttonText: __('Upload')
-	};
+	});
+
+	delete defaultAttributes.onChange;
+	delete defaultAttributes.value;
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	fieldAttributes.onSelect = function (files) {
-		if (config.onSelect) {
-			config.onSelect(files, props);
-		} else {
-			var newAttributes = {};
+		var newAttributes = {};
 
-			if (!_.isEmpty(props.attributes[attributeKey]) && !_.isEmpty(files) && _.isArray(files)) {
-				files = [].concat(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(props.attributes[attributeKey]), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(files));
-			}
-
-			newAttributes[attributeKey] = files;
-			props.setAttributes(newAttributes);
+		if (!_.isEmpty(props.attributes[attributeKey]) && !_.isEmpty(files) && _.isArray(files)) {
+			files = [].concat(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(props.attributes[attributeKey]), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(files));
 		}
+
+		newAttributes[attributeKey] = files;
+		props.setAttributes(newAttributes);
 	};
 
 	/**
@@ -3115,27 +3114,12 @@ function fileUpload(props, config, attributeKey) {
 
 	fieldAttributes.type = fieldAttributes.fileType;
 
-	var fileUploadComponent = wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_file_upload__["a" /* default */], {
+	return middleware.createField(fieldAttributes, wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_file_upload__["a" /* default */], {
 		config: config,
 		fieldAttributes: fieldAttributes,
 		value: props.attributes[attributeKey],
 		removeFile: removeFile
-	});
-
-	if ('inspector' === config.placement) {
-		delete fieldAttributes.placement;
-		return wp.element.createElement(
-			BaseControl,
-			{
-				label: fieldAttributes.label,
-				help: fieldAttributes.help,
-				className: fieldAttributes.className
-			},
-			fileUploadComponent
-		);
-	}
-
-	return fileUploadComponent;
+	}));
 }
 
 /***/ }),
@@ -3486,23 +3470,18 @@ var _wp$components = wp.components,
     BaseControl = _wp$components.BaseControl;
 
 
-function formToggle(props, config, attributeKey) {
-	var defaultAttributes = {
+function formToggle(props, config, attributeKey, middleware) {
+	var defaultAttributes = _.extend(middleware.getDefaultConfig(props, config, attributeKey), {
 		checked: 'on' === props.attributes[attributeKey],
-		value: props.attributes[attributeKey] || 'off'
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (event) {
-		if (config.onChange) {
-			config.onChange(event, props);
-		} else {
+		value: props.attributes[attributeKey] || 'off',
+		onChange: function onChange(event) {
 			var newAttributes = {};
 			newAttributes[attributeKey] = 'on' === event.target.value ? 'off' : 'on';
 			props.setAttributes(newAttributes);
 		}
-	};
+	});
+
+	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	delete fieldAttributes.type;
 

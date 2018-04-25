@@ -4,23 +4,18 @@
 
 const { FormToggle, BaseControl } = wp.components;
 
-export default function formToggle( props, config, attributeKey ) {
-	const defaultAttributes = {
+export default function formToggle( props, config, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
 		checked: 'on' === props.attributes[ attributeKey ],
 		value: props.attributes[ attributeKey ] || 'off',
-	};
-
-	const fieldAttributes = _.extend( defaultAttributes, config );
-
-	fieldAttributes.onChange = ( event ) => {
-		if ( config.onChange ) {
-			config.onChange( event, props );
-		} else {
+		onChange( event ) {
 			const newAttributes = {};
 			newAttributes[ attributeKey ] = 'on' === event.target.value ? 'off' : 'on';
 			props.setAttributes( newAttributes );
-		}
-	};
+		},
+	} );
+
+	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	delete fieldAttributes.type;
 

@@ -3,32 +3,30 @@
  */
 
 import FileUpload from './../../components/file-upload';
-const { BaseControl } = wp.components;
 
 const { __ } = wp.i18n;
 
-export default function fileUpload( props, config, attributeKey ) {
-	const defaultAttributes = {
+export default function fileUpload( props, config, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( middleware.getDefaultConfig( props, config, attributeKey ), {
 		fileType: 'application',
 		isLarge: true,
 		buttonText: __( 'Upload' ),
-	};
+	} );
+
+	delete defaultAttributes.onChange;
+	delete defaultAttributes.value;
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	fieldAttributes.onSelect = ( files ) => {
-		if ( config.onSelect ) {
-			config.onSelect( files, props );
-		} else {
-			const newAttributes = {};
+		const newAttributes = {};
 
-			if ( ! _.isEmpty( props.attributes[ attributeKey ] ) && ! _.isEmpty( files ) && _.isArray( files ) ) {
-				files = [ ...props.attributes[ attributeKey ], ...files ];
-			}
-
-			newAttributes[ attributeKey ] = files;
-			props.setAttributes( newAttributes );
+		if ( ! _.isEmpty( props.attributes[ attributeKey ] ) && ! _.isEmpty( files ) && _.isArray( files ) ) {
+			files = [ ...props.attributes[ attributeKey ], ...files ];
 		}
+
+		newAttributes[ attributeKey ] = files;
+		props.setAttributes( newAttributes );
 	};
 
 	/**
@@ -63,27 +61,12 @@ export default function fileUpload( props, config, attributeKey ) {
 
 	fieldAttributes.type = fieldAttributes.fileType;
 
-	const fileUploadComponent = (
+	return middleware.createField( fieldAttributes, (
 		<FileUpload
 			config={ config }
 			fieldAttributes={ fieldAttributes }
 			value={ props.attributes[ attributeKey ] }
 			removeFile={ removeFile }
 		/>
-	);
-
-	if ( 'inspector' === config.placement ) {
-		delete fieldAttributes.placement;
-		return (
-			<BaseControl
-				label={ fieldAttributes.label }
-				help={ fieldAttributes.help }
-				className={ fieldAttributes.className }
-			>
-				{ fileUploadComponent }
-			</BaseControl>
-		);
-	}
-
-	return fileUploadComponent;
+	) );
 }

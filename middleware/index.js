@@ -266,13 +266,9 @@ class GutenbergFieldsMiddleWare {
 		return {
 			value: props.attributes[ attributeKey ],
 			onChange( value ) {
-				if ( config.onChange ) {
-					config.onChange( value, props );
-				} else {
-					const newAttributes = {};
-					newAttributes[ attributeKey ] = value;
-					props.setAttributes( newAttributes );
-				}
+				const newAttributes = {};
+				newAttributes[ attributeKey ] = value;
+				props.setAttributes( newAttributes );
 			},
 			onFocus() {
 				props.setState( {
