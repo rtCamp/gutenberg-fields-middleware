@@ -20,7 +20,6 @@ export default function checkbox( props, config, defaultConfig, attributeKey ) {
 
 	delete fieldAttributes.type;
 
-	// Checkbox already has base control.
 	return (
 		<CheckboxControl
 			{ ...fieldAttributes }

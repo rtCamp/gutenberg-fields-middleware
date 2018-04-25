@@ -2813,7 +2813,6 @@ function checkbox(props, config, defaultConfig, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	// Checkbox already has base control.
 	return wp.element.createElement(CheckboxControl, fieldAttributes);
 }
 
@@ -4020,22 +4019,8 @@ function radio(props, config, defaultConfig, attributeKey) {
 var RangeControl = wp.components.RangeControl;
 
 
-function range(props, config, defaultConfig, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey]
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
+function range(props, config, defaultConfig) {
+	var fieldAttributes = _.extend(defaultConfig, config);
 
 	delete fieldAttributes.type;
 
@@ -4061,29 +4046,18 @@ function range(props, config, defaultConfig, attributeKey) {
 var RichText = wp.blocks.RichText;
 
 
-function richText(props, config, defaultConfig, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || '',
+function richText(props, config, defaultConfig, attributeKey, middleware) {
+	var defaultAttributes = _.extend(defaultConfig, {
 		inlineToolbar: true
-	};
+	});
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
-
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(RichText, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+	return middleware.createField(config, wp.element.createElement(RichText, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 		isSelected: props.isSelected && attributeKey === props.editable
-	}));
+	})));
 }
 
 /***/ }),
@@ -4105,22 +4079,8 @@ function richText(props, config, defaultConfig, attributeKey) {
 var SelectControl = wp.components.SelectControl;
 
 
-function select(props, config, defaultConfig, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
+function select(props, config, defaultConfig) {
+	var fieldAttributes = _.extend(defaultConfig, config);
 
 	delete fieldAttributes.type;
 
@@ -4135,37 +4095,23 @@ function select(props, config, defaultConfig, attributeKey) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = text;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__input_field__ = __webpack_require__(55);
 /**
- * Text field.
+ * text field.
  */
 
 var PlainText = wp.blocks.PlainText;
 
 
 
-function text(props, config, defaultConfig, attributeKey) {
+function text(props, config, defaultConfig, attributeKey, middleware) {
 	if ('inspector' === config.placement) {
-		return Object(__WEBPACK_IMPORTED_MODULE_0__input_field__["a" /* default */])(props, config, attributeKey);
+		return Object(__WEBPACK_IMPORTED_MODULE_0__input_field__["a" /* default */])(props, config, defaultConfig, attributeKey, middleware);
 	}
 
-	var defaultAttributes = {
-		value: props.attributes[attributeKey] || ''
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
+	var fieldAttributes = _.extend(defaultConfig, config);
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(PlainText, fieldAttributes);
+	return middleware.createField(config, wp.element.createElement(PlainText, fieldAttributes));
 }
 
 /***/ }),
@@ -4216,22 +4162,8 @@ function textarea(props, config, defaultConfig) {
 var TreeSelect = wp.components.TreeSelect;
 
 
-function treeSelect(props, config, defaultConfig, attributeKey) {
-	var defaultAttributes = {
-		value: props.attributes[attributeKey]
-	};
-
-	var fieldAttributes = _.extend(defaultAttributes, config);
-
-	fieldAttributes.onChange = function (value) {
-		if (config.onChange) {
-			config.onChange(value, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = value;
-			props.setAttributes(newAttributes);
-		}
-	};
+function treeSelect(props, config, defaultConfig) {
+	var fieldAttributes = _.extend(defaultConfig, config);
 
 	delete fieldAttributes.type;
 
@@ -4249,50 +4181,18 @@ function treeSelect(props, config, defaultConfig, attributeKey) {
  */
 
 var UrlInputButton = wp.blocks.UrlInputButton;
-var _wp$components = wp.components,
-    BaseControl = _wp$components.BaseControl,
-    Toolbar = _wp$components.Toolbar;
 
 
-function urlInputButton(props, config, defaultConfig, attributeKey) {
-	var defaultAttributes = {
+function urlInputButton(props, config, defaultConfig, attributeKey, middleware) {
+	var defaultAttributes = _.extend(defaultConfig, {
 		url: props.attributes[attributeKey]
-	};
+	});
+
+	delete defaultAttributes.value;
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.onChange = function (media) {
-		if (config.onChange) {
-			config.onChange(media, props);
-		} else {
-			var newAttributes = {};
-			newAttributes[attributeKey] = media;
-			props.setAttributes(newAttributes);
-		}
-	};
-
-	var help = fieldAttributes.help;
-	var label = fieldAttributes.label;
-
-	delete fieldAttributes.placement;
-	delete fieldAttributes.help;
-	delete fieldAttributes.label;
-
-	var toolbarComponent = wp.element.createElement(
-		Toolbar,
-		null,
-		wp.element.createElement(UrlInputButton, fieldAttributes)
-	);
-
-	if ('block-controls' !== config.placement) {
-		return wp.element.createElement(
-			BaseControl,
-			{ label: label, help: help },
-			toolbarComponent
-		);
-	}
-
-	return toolbarComponent;
+	return middleware.createField(config, wp.element.createElement(UrlInputButton, fieldAttributes));
 }
 
 /***/ })
