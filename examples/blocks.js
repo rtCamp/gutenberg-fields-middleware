@@ -80,6 +80,33 @@ registerBlockType( 'gb-m-example/simple-block', {
 			source: 'children', // Read about Rich text api here https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.
 			selector: '.rich-text',
 		},
+		sidebarimage: {
+			type: 'object',
+			field: {
+				type: 'image',
+				buttonText: __( 'Upload' ),
+				placeholderText: __( 'Select a image file from your library, or upload a new one' ),
+				placement: 'inspector',
+			},
+		},
+		sidebarvideo: {
+			type: 'object',
+			field: {
+				type: 'video',
+				buttonText: __( 'Upload' ),
+				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
+				placement: 'inspector',
+			},
+		},
+		sidebaraudio: {
+			type: 'object',
+			field: {
+				type: 'audio',
+				buttonText: __( 'Upload' ),
+				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
+				placement: 'inspector',
+			},
+		},
 		image: {
 			type: 'object',
 			field: {
