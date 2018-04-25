@@ -3661,6 +3661,7 @@ function mediaUpload(props, config, attributeKey, middleware) {
 	};
 
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		config: config,
 		mediaData: props.attributes[attributeKey],
 		captionField: helperFields.caption
 	}));
@@ -3846,6 +3847,7 @@ var MediaPlaceholder = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
+			    config = _props.config,
 			    type = _props.type,
 			    placeholderText = _props.placeholderText,
 			    buttonText = _props.buttonText,
@@ -3856,6 +3858,8 @@ var MediaPlaceholder = function (_Component) {
 			if (this.state.editing) {
 				var mediaIcon = Object(__WEBPACK_IMPORTED_MODULE_7__utils_media__["b" /* getDashIconSuffixByType */])(type);
 				var placeholderClassName = 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type;
+
+				var mediaButtonText = 'inspector' !== config.placement ? __('Add from Media Library') : __('Media Library');
 
 				return wp.element.createElement(
 					Placeholder,
@@ -3901,7 +3905,7 @@ var MediaPlaceholder = function (_Component) {
 							return wp.element.createElement(
 								Button,
 								{ isLarge: true, onClick: open },
-								__('Add from Media Library')
+								mediaButtonText
 							);
 						}
 					})
