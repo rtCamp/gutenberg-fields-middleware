@@ -4,12 +4,16 @@
 const { __ } = wp.i18n;
 import MediaPlaceholder from './../../components/media-placeholder';
 
-export default function mediaUpload( props, config, attributeKey, middleware ) {
-	const defaultAttributes = {
+export default function mediaUpload( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		placeholderText: __( 'Select a ' ) + config.type + __( ' file from your library, or upload a new one' ),
 		buttonText: __( 'Upload' ),
 		isSelected: props.isSelected,
-	};
+	} );
+
+	delete defaultAttributes.onChange;
+	delete defaultAttributes.value;
+
 	const fieldAttributes = _.extend( defaultAttributes, config );
 	const helperFields = middleware.getHelperFields( attributeKey );
 
@@ -29,11 +33,11 @@ export default function mediaUpload( props, config, attributeKey, middleware ) {
 		}
 	};
 
-	return (
+	return middleware.createField( config, (
 		<MediaPlaceholder
 			{ ...fieldAttributes }
 			mediaData={ props.attributes[ attributeKey ] }
 			captionField={ helperFields.caption }
 		/>
-	);
+	) );
 }

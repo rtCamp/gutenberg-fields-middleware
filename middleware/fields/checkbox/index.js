@@ -4,22 +4,18 @@
 
 const { CheckboxControl } = wp.components;
 
-export default function checkbox( props, config, attributeKey ) {
-	const defaultAttributes = {
+export default function checkbox( props, config, defaultConfig, attributeKey ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		value: '1',
 		checked: props.attributes[ attributeKey ],
-	};
+	} );
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	fieldAttributes.onChange = ( checked ) => {
-		if ( config.onChange ) {
-			config.onChange( checked, props );
-		} else {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = checked ? defaultAttributes.value : false;
-			props.setAttributes( newAttributes );
-		}
+		const newAttributes = {};
+		newAttributes[ attributeKey ] = checked ? fieldAttributes.value : false;
+		props.setAttributes( newAttributes );
 	};
 
 	delete fieldAttributes.type;

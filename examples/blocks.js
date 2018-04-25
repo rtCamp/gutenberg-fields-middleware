@@ -47,6 +47,25 @@ registerBlockType( 'gb-m-example/simple-block', {
 				],
 			},
 		},
+		dropdownMenu: {
+			type: 'string',
+			field: {
+				type: 'dropdown-menu',
+				placement: 'block-controls',
+				controls: [
+					{
+						icon: 'list-view',
+						title: __( 'List View' ),
+						value: 'list',
+					},
+					{
+						icon: 'grid-view',
+						title: __( 'Grid View' ),
+						value: 'grid',
+					},
+				],
+			},
+		},
 		backgroundImage: {
 			type: 'object',
 			field: {
@@ -435,6 +454,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'file-upload',
 				fileType: 'video',
+				placement: 'inspector',
 				multiple: true,
 				label: 'Upload File',
 			},

@@ -1,36 +1,22 @@
 /**
- * Text field.
+ * text field.
  */
 
 const { PlainText } = wp.blocks;
 import inputField from './../input-field';
 
-export default function text( props, config, attributeKey ) {
+export default function text( props, config, defaultConfig, attributeKey, middleware ) {
 	if ( 'inspector' === config.placement ) {
-		return inputField( props, config, attributeKey );
+		return inputField( props, config, defaultConfig, attributeKey, middleware );
 	}
 
-	const defaultAttributes = {
-		value: props.attributes[ attributeKey ] || '',
-	};
-
-	const fieldAttributes = _.extend( defaultAttributes, config );
-
-	fieldAttributes.onChange = ( value ) => {
-		if ( config.onChange ) {
-			config.onChange( value, props );
-		} else {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = value;
-			props.setAttributes( newAttributes );
-		}
-	};
+	const fieldAttributes = _.extend( defaultConfig, config );
 
 	delete fieldAttributes.type;
 
-	return (
+	return middleware.createField( config, (
 		<PlainText
 			{ ...fieldAttributes }
 		/>
-	);
+	) );
 }

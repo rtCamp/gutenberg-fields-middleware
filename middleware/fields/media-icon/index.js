@@ -4,17 +4,18 @@
 
 import { getDashIconSuffixByType } from './../../utils/media';
 const { MediaUpload } = wp.blocks;
-const { BaseControl, Toolbar, IconButton, Button } = wp.components;
+const { IconButton, Button } = wp.components;
 const { __ } = wp.i18n;
 
-export default function mediaIcon( props, config, attributeKey ) {
-	const defaultAttributes = {
-		value: props.attributes[ attributeKey ],
+export default function mediaIcon( props, config, defaultConfig, attributeKey, middleware ) {
+	const defaultAttributes = _.extend( defaultConfig, {
 		mediaType: 'image',
 		button: false,
 		buttonText: __( 'Upload' ),
 		buttonClass: '',
-	};
+	} );
+
+	delete defaultAttributes.onChange;
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
@@ -42,38 +43,16 @@ export default function mediaIcon( props, config, attributeKey ) {
 	};
 
 	fieldAttributes.onSelect = ( media ) => {
-		if ( config.onSelect ) {
-			config.onSelect( media, props );
-		} else {
-			const newAttributes = {};
-			newAttributes[ attributeKey ] = media;
-			props.setAttributes( newAttributes );
-		}
+		const newAttributes = {};
+		newAttributes[ attributeKey ] = media;
+		props.setAttributes( newAttributes );
 	};
 
-	const help = fieldAttributes.help;
-	const label = fieldAttributes.label;
-
 	fieldAttributes.type = fieldAttributes.mediaType;
-	delete fieldAttributes.placement;
-	delete fieldAttributes.help;
-	delete fieldAttributes.label;
 
-	const toolbarComponent = (
-		<Toolbar>
-			<MediaUpload
-				{ ...fieldAttributes }
-			/>
-		</Toolbar>
-	);
-
-	if ( 'block-controls' !== config.placement ) {
-		return (
-			<BaseControl label={ label } help={ help } >
-				{ toolbarComponent }
-			</BaseControl>
-		);
-	}
-
-	return toolbarComponent;
+	return middleware.createField( fieldAttributes, (
+		<MediaUpload
+			{ ...fieldAttributes }
+		/>
+	) );
 }
