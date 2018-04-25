@@ -5,8 +5,10 @@ const { __ } = wp.i18n;
 import MediaPlaceholder from './../../components/media-placeholder';
 
 export default function mediaUpload( props, config, attributeKey, middleware ) {
+	const vowelPrefix = 'video' === config.type ? __( ' a ' ) : __( ' an ' );
+
 	const defaultAttributes = {
-		placeholderText: __( 'Select a ' ) + config.type + __( ' file from your library, or upload a new one' ),
+		placeholderText: __( 'Select' ) + vowelPrefix + config.type + __( ' file from your library, or upload a new one' ),
 		buttonText: __( 'Upload' ),
 		isSelected: props.isSelected,
 	};

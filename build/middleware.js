@@ -3636,8 +3636,10 @@ var __ = wp.i18n.__;
 
 
 function mediaUpload(props, config, attributeKey, middleware) {
+	var vowelPrefix = 'video' === config.type ? __(' a ') : __(' an ');
+
 	var defaultAttributes = {
-		placeholderText: __('Select a ') + config.type + __(' file from your library, or upload a new one'),
+		placeholderText: __('Select') + vowelPrefix + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
 		isSelected: props.isSelected
 	};

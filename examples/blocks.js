@@ -85,7 +85,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'image',
 				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a image file from your library, or upload a new one' ),
 				placement: 'inspector',
 			},
 		},
@@ -94,7 +93,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'video',
 				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a video file from your library, or upload a new one' ),
 				placement: 'inspector',
 			},
 		},
@@ -103,7 +101,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'audio',
 				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
 				placement: 'inspector',
 			},
 		},
@@ -112,7 +109,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'image',
 				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a image file from your library, or upload a new one' ),
+				placeholderText: __( 'Select an image file from your library, or upload a new one' ),
 				helperFields: {
 					caption: 'imageCaption',
 				},
@@ -152,7 +149,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'audio',
 				buttonText: __( 'Upload' ),
-				placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
+				placeholderText: __( 'Select an audio file from your library, or upload a new one' ),
 				helperFields: {
 					caption: 'audioCaption',
 				},
