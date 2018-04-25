@@ -4,7 +4,7 @@
 
 const { InspectorControls, BlockControls } = wp.blocks;
 const { addFilter } = wp.hooks;
-const { withState } = wp.components;
+const { withState, BaseControl } = wp.components;
 
 /**
  * Fields
@@ -332,6 +332,18 @@ class GutenbergFieldsMiddleWare {
 		}
 
 		return blockAlignmentToolbarAttributeKey;
+	}
+
+	createField( config, element ) {
+		if ( 'inspector' === config.placement ) {
+			return (
+				<BaseControl label={ config.label } help={ config.help } >
+					{ element }
+				</BaseControl>
+			);
+		}
+
+		return element;
 	}
 
 	/**

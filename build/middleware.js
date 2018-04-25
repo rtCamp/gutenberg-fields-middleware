@@ -1174,7 +1174,9 @@ var _wp$blocks = wp.blocks,
     InspectorControls = _wp$blocks.InspectorControls,
     BlockControls = _wp$blocks.BlockControls;
 var addFilter = wp.hooks.addFilter;
-var withState = wp.components.withState;
+var _wp$components = wp.components,
+    withState = _wp$components.withState,
+    BaseControl = _wp$components.BaseControl;
 
 /**
  * Fields
@@ -1545,6 +1547,19 @@ var GutenbergFieldsMiddleWare = function () {
 			}
 
 			return blockAlignmentToolbarAttributeKey;
+		}
+	}, {
+		key: 'createField',
+		value: function createField(config, element) {
+			if ('inspector' === config.placement) {
+				return wp.element.createElement(
+					BaseControl,
+					{ label: config.label, help: config.help },
+					element
+				);
+			}
+
+			return element;
 		}
 
 		/**
@@ -3521,51 +3536,30 @@ function formToggle(props, config, attributeKey) {
  */
 
 var Toolbar = wp.components.Toolbar;
-var BaseControl = wp.components.BaseControl;
 
 
-function iconsToolbar(props, config, attributeKey) {
+function iconsToolbar(props, config, attributeKey, middleware) {
 	var defaultAttributes = {};
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
 	if (!_.isEmpty(config.controls)) {
 		config.controls = config.controls.map(function (control) {
-			var originalControl = _.extend({}, control);
-			control.onClick = function (event) {
-				if (originalControl.onClick) {
-					originalControl.onClick(event, props);
-				} else {
-					var newAttributes = {};
-					newAttributes[attributeKey] = control.value;
-					props.setAttributes(newAttributes);
-				}
+			control.onClick = function () {
+				var newAttributes = {};
+				newAttributes[attributeKey] = control.isActive ? '' : control.value;
+				props.setAttributes(newAttributes);
 			};
+
 			control.isActive = control.value === props.attributes[attributeKey];
 
 			return control;
 		});
 	}
 
-	var help = fieldAttributes.help;
-	var label = fieldAttributes.label;
-
 	delete fieldAttributes.type;
-	delete fieldAttributes.placement;
-	delete fieldAttributes.help;
-	delete fieldAttributes.label;
 
-	var toolbarComponent = wp.element.createElement(Toolbar, fieldAttributes);
-
-	if ('inspector' === config.placement) {
-		return wp.element.createElement(
-			BaseControl,
-			{ label: label, help: help },
-			toolbarComponent
-		);
-	}
-
-	return toolbarComponent;
+	return middleware.createField(config, wp.element.createElement(Toolbar, fieldAttributes));
 }
 
 /***/ }),
