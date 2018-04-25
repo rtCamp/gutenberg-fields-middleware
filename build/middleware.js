@@ -1442,6 +1442,17 @@ var GutenbergFieldsMiddleWare = function () {
 
 			return field;
 		}
+
+		/**
+   * Get default configuration for all fields.
+   *
+   * @param {Object} props         Properties.
+   * @param {Object} config        Field configuration provided.
+   * @param {String} attributeKey  Attribute Key.
+   *
+   * @return {Object} Default Config object.
+   */
+
 	}, {
 		key: 'getDefaultConfig',
 		value: function getDefaultConfig(props, config, attributeKey) {
