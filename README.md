@@ -4,8 +4,6 @@ Register fields for Gutenberg blocks with a simple, declarative API.
 
 This project is in its early stages. Please [open an issue](https://github.com/rtCamp/gutenberg-fields-middleware/issues) with questions, feedback, suggestions, and bug reports.
 
-Haven't written a Gutenberg block yet? During the month of April, rtCamp is offering [complimentary technical introductions to Gutenberg](https://gutenberg.rtcamp.com/) as a public service campaign for the community.
-
 [Using](#using) | [Available Fields](#available-fields)
 
 ## Using
