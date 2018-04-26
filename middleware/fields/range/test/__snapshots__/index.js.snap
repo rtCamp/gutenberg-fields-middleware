@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RangeControl should render a range Control 1`] = `
+<div
+  class="components-base-control components-range-control"
+>
+  <div
+    class="components-base-control__field"
+  >
+    <input
+      0="r"
+      1="a"
+      2="d"
+      3="i"
+      4="o"
+      class="components-range-control__slider"
+      id="inspector-range-control-0"
+      type="range"
+      value=""
+    />
+    <input
+      0="r"
+      1="a"
+      2="d"
+      3="i"
+      4="o"
+      class="components-range-control__number"
+      type="number"
+    />
+  </div>
+</div>
+`;

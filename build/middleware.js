@@ -4029,10 +4029,6 @@ function radio(props, config, defaultConfig, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = range;
-/**
- * Range field.
- */
-
 var RangeControl = wp.components.RangeControl;
 
 

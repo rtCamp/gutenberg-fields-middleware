@@ -1,7 +1,3 @@
-/**
- * Range field.
- */
-
 const { RangeControl } = wp.components;
 
 export default function range( props, config, defaultConfig ) {
