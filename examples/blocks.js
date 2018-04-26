@@ -242,6 +242,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 			source: 'children',
 			selector: '.button-link',
 		},
+		buttonEditableLink: {
+			type: 'string',
+			field: {
+				type: 'link',
+			},
+		},
 		buttonBackgroundColor: {
 			type: 'string',
 			field: {
@@ -280,12 +286,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 					},
 				],
 				placement: 'inspector',
-			},
-		},
-		buttonEditableLink: {
-			type: 'string',
-			field: {
-				type: 'link',
 			},
 		},
 		treeSelect: {
@@ -524,6 +524,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 					width: attributes.image ? attributes.image.width : null,
 					height: attributes.image ? attributes.image.height : null,
 				}, null ),
+				
 
 				// field: imageCaption
 				el( 'div', { className: 'image-caption' }, attributes.imageCaption || '' ),

@@ -24,9 +24,21 @@ image: {
 	field: {
 		type: 'image',
 		buttonText: __( 'Upload' ),
-		placeholderText: __( 'Select a image file from your library, or upload a new one' ),
+		placeholderText: __( 'Select an image file from your library, or upload a new one' ),
+		helperFields: {
+			caption: 'imageCaption',
+		},
 	},
-}
+},
+imageCaption: {
+	type: 'array',
+	field: {
+		type: 'rich-text',
+		placeholder: __( 'Enter caption' ),
+	},
+	source: 'children',
+	selector: '.image-caption',
+},
 ```
 
 ### Return

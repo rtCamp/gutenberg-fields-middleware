@@ -24,9 +24,21 @@ audio: {
 	field: {
 		type: 'audio',
 		buttonText: __( 'Upload' ),
-		placeholderText: __( 'Select a audio file from your library, or upload a new one' ),
+		placeholderText: __( 'Select an audio file from your library, or upload a new one' ),
+		helperFields: {
+			caption: 'audioCaption',
+		},
 	},
-}
+},
+audioCaption: {
+	type: 'array',
+	field: {
+		type: 'rich-text',
+		placeholder: __( 'Enter caption' ),
+	},
+	source: 'children',
+	selector: '.audio-caption',
+},
 ```
 
 ### Return
