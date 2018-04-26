@@ -4,6 +4,11 @@
  * Enqueue Example Block scripts.
  */
 function gutenberg_fields_middleware_server_side_registration_example() {
+
+	if ( ! function_exists( 'register_block_type' ) ) {
+		return;
+	}
+
 	wp_register_script(
 		'gutenberg-middleware-server-side-examples',
 		plugins_url( 'blocks.js', __FILE__ ),
