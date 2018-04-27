@@ -39,3 +39,52 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 		return wp.element.createElement( 'p', { style: { textAlign: props.attributes.alignment } }, props.attributes.text );
 	},
 } );
+
+/**
+ * Audio Example.
+ */
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
+	title: 'Single Field Block Audio.',
+	attributes: {
+		audio: {
+			type: 'object',
+			field: {
+				type: 'audio',
+				helperFields: {
+					caption: 'audioCaption', // If required.
+				},
+			},
+		},
+		audioCaption: {
+			type: 'array',
+			field: {
+				type: 'rich-text',
+				placeholder: 'Enter caption',
+			},
+			source: 'children',
+			selector: '.audio-caption',
+		},
+	},
+
+	edit( props ) {
+		return [
+			props.middleware.fields.audio,
+			props.middleware.fields.audioCaption,
+		];
+	},
+
+	save( props ) {
+		const el = wp.element;
+
+		return [
+			el.createElement( 'audio', {
+				className: 'audio',
+				controls: true,
+			}, el.createElement( 'source', {
+				src: props.attributes.audio ? props.attributes.audio.url : null,
+				type: props.attributes.audio ? props.attributes.audio.mime : null,
+			}, null ) ),
+			el.createElement( 'div', { className: 'audio-caption' }, props.attributes.audioCaption || '' ),
+		];
+	},
+} );

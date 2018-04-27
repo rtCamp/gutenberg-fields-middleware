@@ -27,7 +27,7 @@ If added, a help text will be added below the field. Should not be used when fie
 Defines where you want to show the field. By default a field would be added to the block however it can be added to the sidebar settings by using `inspector` or in the block-controls by using `block-controls`.
 
 - Accepts: `block-controls`, `inspector`
-- Type: `function`
+- Type: `String`
 - Required: No
 
 
@@ -52,7 +52,7 @@ alignment: {
 
 - `props.middleware.blockControls` for **all** block-control fields. ( `placement: 'block-control'` ) 
 - `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
-- `props.middleware.field.yourAttributeKeyName` for a single field when `placement` property is not defined.
+- `props.middleware.fields.yourAttributeKeyName` for a **single** field when `placement` property is not defined.
 
 
 
@@ -65,7 +65,7 @@ alignment: {
 
 
 
-## Example Usage
+## Example Usage ( ES5 )
 
 ```js
 wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
@@ -87,7 +87,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 		},
 	},
 
-	edit( props ) {
+	edit: function( props ) {
 		props.middleware.fields.text.props.style = {
 			textAlign: props.attributes.alignment,
 		};
@@ -98,7 +98,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 		];
 	},
 
-	save( props ) {
+	save: function( props ) {
 		return wp.element.createElement( 'p', { style: { 
 				textAlign: props.attributes.alignment 
 			} }, props.attributes.text );
