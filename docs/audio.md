@@ -53,7 +53,7 @@ If caption field is required, define a new attribute field and use the attribute
 - Type: `Object`
 - Required: No
 
-For more read Gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/alignment-toolbar).
+
 
 **Example:**
 
@@ -83,6 +83,8 @@ audioCaption: {
 	field: {
 		type: 'rich-text',
 	},
+	source: 'children',
+	selector: '.audio-caption',
 },
 ```
 
@@ -215,3 +217,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 ```
 
 Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/block-api/attributes/).
+
+
+
+After uploading audio:
+
+![image](https://user-images.githubusercontent.com/6297436/39365283-50925716-4a4e-11e8-8141-ffd2e2374a53.png)
