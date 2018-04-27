@@ -25,8 +25,20 @@ video: {
 		type: 'video',
 		buttonText: __( 'Upload' ),
 		placeholderText: __( 'Select a video file from your library, or upload a new one' ),
+		helperFields: {
+			caption: 'videoCaption',
+		},
 	},
-}
+},
+videoCaption: {
+	type: 'array',
+	field: {
+		type: 'rich-text',
+		placeholder: __( 'Enter caption' ),
+	},
+	source: 'children',
+	selector: '.video-caption',
+},
 ```
 
 ### Return
