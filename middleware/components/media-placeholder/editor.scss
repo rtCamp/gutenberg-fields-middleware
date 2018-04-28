@@ -45,6 +45,16 @@
 	}
 }
 
+.edit-post-sidebar {
+  .middleware-media-field {
+	&:hover {
+	  .middleware-media-toolbar{
+		display: inline-block;
+	  }
+	}
+  }
+}
+
 .wp-block-image,
 .wp-block-video,
 .wp-block-audio {

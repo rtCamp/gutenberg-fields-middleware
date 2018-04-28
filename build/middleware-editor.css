@@ -122,6 +122,9 @@ ul.file-upload-field-files,
 .is-selected .middleware-media-field:hover .middleware-media-toolbar {
   display: inline-block; }
 
+.edit-post-sidebar .middleware-media-field:hover .middleware-media-toolbar {
+  display: inline-block; }
+
 .wp-block-image .components-placeholder__fieldset,
 .wp-block-video .components-placeholder__fieldset,
 .wp-block-audio .components-placeholder__fieldset {

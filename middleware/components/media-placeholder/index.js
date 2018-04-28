@@ -193,14 +193,9 @@ class MediaPlaceholder extends Component {
 							<audio controls src={ this.state.mediaData.url } />
 						) }
 						{ 'image' === type && (
-							<figure key="image" className={ 'wp-middleware-block-image ' + className }>
-								<img src={ this.state.mediaData.url } alt={ this.state.mediaData.title || '' } />
-								{ isSelected && (
-									this.props.captionField
-								) }
-							</figure>
+							<img src={ this.state.mediaData.url } alt={ this.state.mediaData.title || '' } />
 						) }
-						{ isSelected && 'image' !== type && (
+						{ isSelected && (
 							this.props.captionField
 						) }
 					</figure>
