@@ -195,7 +195,6 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 	edit( props ) {
 		return [
 			props.middleware.fields.image,
-			props.middleware.fields.imageCaption,
 		];
 	},
 

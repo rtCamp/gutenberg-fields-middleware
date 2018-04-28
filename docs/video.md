@@ -191,7 +191,6 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-video', {
 	edit( props ) {
 		return [
 			props.middleware.fields.video,
-			props.middleware.fields.videoCaption,
 		];
 	},
 

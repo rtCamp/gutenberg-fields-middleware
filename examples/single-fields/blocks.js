@@ -1,8 +1,4 @@
 /**
- * Block registration.
- */
-
-/**
  * Alignment Example.
  */
 wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
@@ -24,7 +20,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 		},
 	},
 
-	edit( props ) {
+	edit: function( props ) {
 		props.middleware.fields.text.props.style = {
 			textAlign: props.attributes.alignment, // Set alignment whenever value changes.
 		};
@@ -35,7 +31,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 		];
 	},
 
-	save( props ) {
+	save: function( props ) {
 		return wp.element.createElement( 'p', { style: { textAlign: props.attributes.alignment } }, props.attributes.text );
 	},
 } );
@@ -66,16 +62,15 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 		},
 	},
 
-	edit( props ) {
+	edit: function( props ) {
 		return [
 			props.middleware.fields.image,
-			props.middleware.fields.imageCaption,
 		];
 	},
 
-	save( props ) {
-		const el = wp.element;
-		const attributes = props.attributes;
+	save: function( props ) {
+		var el = wp.element.createElement,
+			attributes = props.attributes;
 
 		return [
 			el( 'img', { // field: image.
@@ -117,25 +112,24 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 		},
 	},
 
-	edit( props ) {
+	edit: function( props ) {
 		return [
 			props.middleware.fields.audio,
-			props.middleware.fields.audioCaption,
 		];
 	},
 
-	save( props ) {
-		const el = wp.element;
+	save: function( props ) {
+		var el = wp.element.createElement;
 
 		return [
-			el.createElement( 'audio', {
+			el( 'audio', {
 				className: 'audio',
 				controls: true,
-			}, el.createElement( 'source', {
+			}, el( 'source', {
 				src: props.attributes.audio ? props.attributes.audio.url : null,
 				type: props.attributes.audio ? props.attributes.audio.mime : null,
 			}, null ) ),
-			el.createElement( 'div', { className: 'audio-caption' }, props.attributes.audioCaption || '' ),
+			el( 'div', { className: 'audio-caption' }, props.attributes.audioCaption || '' ),
 		];
 	},
 } );
@@ -166,25 +160,69 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-video', {
 		},
 	},
 
-	edit( props ) {
+	edit: function( props ) {
 		return [
 			props.middleware.fields.video,
-			props.middleware.fields.videoCaption,
 		];
 	},
 
-	save( props ) {
-		const el = wp.element;
+	save: function( props ) {
+		var el = wp.element.createElement,
+			attributes = props.attributes;
 
 		return [
-			el.createElement( 'video', {
+			el( 'video', {
 				className: 'video',
 				controls: true,
-			}, el.createElement( 'source', {
-				src: props.attributes.video ? props.attributes.video.url : null,
-				type: props.attributes.video ? props.attributes.video.mime : null,
+			}, el( 'source', {
+				src: attributes.video ? attributes.video.url : null,
+				type: attributes.video ? attributes.video.mime : null,
 			}, null ) ),
-			el.createElement( 'div', { className: 'video-caption' }, props.attributes.videoCaption || '' ),
+			el( 'div', { className: 'video-caption' }, attributes.videoCaption || '' ),
+		];
+	},
+} );
+
+/**
+ * Button Editable Example.
+ */
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-button-editable', {
+	title: 'Single Field Block Button Editable.',
+	attributes: {
+		buttonEditable: {
+			type: 'array',
+			field: {
+				type: 'button-editable',
+				helperFields: {
+					link: 'buttonEditableLink',
+				},
+			},
+			source: 'children',
+			selector: '.button-link',
+		},
+		buttonEditableLink: {
+			type: 'string',
+			field: {
+				type: 'link',
+			},
+		},
+	},
+
+	edit: function( props ) {
+		return [
+			props.middleware.fields.buttonEditable,
+		];
+	},
+
+	save: function( props ) {
+		var el = wp.element.createElement,
+			attributes = props.attributes;
+
+		return [
+			el( 'a', {
+				className: 'button-link',
+				href: attributes.buttonEditable,
+			}, attributes.buttonEditable ),
 		];
 	},
 } );
