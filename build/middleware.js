@@ -3858,13 +3858,8 @@ var MediaPlaceholder = function (_Component) {
 					{ key: type, className: className + ' wp-block-' + type },
 					'video' === type && wp.element.createElement('video', { controls: true, src: this.state.mediaData.url }),
 					'audio' === type && wp.element.createElement('audio', { controls: true, src: this.state.mediaData.url }),
-					'image' === type && wp.element.createElement(
-						'figure',
-						{ key: 'image', className: 'wp-middleware-block-image ' + className },
-						wp.element.createElement('img', { src: this.state.mediaData.url, alt: this.state.mediaData.title || '' }),
-						isSelected && this.props.captionField
-					),
-					isSelected && 'image' !== type && this.props.captionField
+					'image' === type && wp.element.createElement('img', { src: this.state.mediaData.url, alt: this.state.mediaData.title || '' }),
+					isSelected && this.props.captionField
 				)
 			);
 		}
