@@ -29,12 +29,51 @@ Upload button text.
 - Type: `String`
 - Required: No
 
+#### mediaButtonText:
+
+Media button text
+
+- Type: `String`
+- Required: No
+
 #### placeholderText:
 
 Audio placeholder text.
 
 - Type: `String`
 - Required: No
+
+#### fileUpload:
+
+Show file upload button or not.
+
+- Type: `Boolean`
+- Required: No
+- Default: `true`
+
+#### mediaUploadButton:
+
+Show file media upload button or not.
+
+- Type: `Boolean`
+- Required: No
+- Default: `true`
+
+#### inputUrl:
+
+Show file input url button or not.
+
+- Type: `Boolean`
+- Required: No
+- Default: `true`
+
+#### placeholder:
+
+Show placeholder or not.
+
+- Type: `Boolean`
+- Required: No
+- Default: `true`
 
 #### placement:
 

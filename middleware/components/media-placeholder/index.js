@@ -118,7 +118,6 @@ class MediaPlaceholder extends Component {
 
 	render() {
 		const {
-			config,
 			type,
 			placeholderText,
 			buttonText,
@@ -129,17 +128,10 @@ class MediaPlaceholder extends Component {
 		if ( this.state.editing ) {
 			const mediaIcon = getDashIconSuffixByType( type );
 			const placeholderClassName = 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type;
+			const mediaButtons = [];
 
-			const mediaButtonText = 'inspector' !== config.placement ? __( 'Add from Media Library' ) : __( 'Media Library' );
-
-			return (
-				<Placeholder
-					key="placeholder"
-					icon={ mediaIcon }
-					label={ type }
-					className={ placeholderClassName }
-					instructions={ placeholderText } >
-					<DropZone onFilesDrop={ this.onFilesDrop } />
+			if ( this.props.inputUrl ) {
+				mediaButtons.push( (
 					<form onSubmit={ this.onSelectUrl }>
 						<input
 							type="url"
@@ -153,6 +145,11 @@ class MediaPlaceholder extends Component {
 							{ __( 'Use URL' ) }
 						</Button>
 					</form>
+				) );
+			}
+
+			if ( this.props.fileUpload ) {
+				mediaButtons.push( (
 					<FormFileUpload
 						isLarge
 						className="wp-block-video__upload-button"
@@ -161,17 +158,38 @@ class MediaPlaceholder extends Component {
 					>
 						{ buttonText }
 					</FormFileUpload>
+				) );
+			}
+
+			if ( this.props.mediaUploadButton ) {
+				mediaButtons.push(
 					<MediaUpload
 						onSelect={ this.onSelectMedia }
 						type={ type }
 						render={ ( { open } ) => (
 							<Button isLarge onClick={ open } >
-								{ mediaButtonText }
+								{ this.props.mediaButtonText }
 							</Button>
 						) }
 					/>
-				</Placeholder>
-			);
+				);
+			}
+
+			if ( this.props.placeholder ) {
+				return (
+					<Placeholder
+						key="placeholder"
+						icon={ mediaIcon }
+						label={ type }
+						className={ placeholderClassName }
+						instructions={ placeholderText } >
+						<DropZone onFilesDrop={ this.onFilesDrop } />
+						{ mediaButtons }
+					</Placeholder>
+				);
+			}
+
+			return mediaButtons;
 		}
 
 		return (

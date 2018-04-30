@@ -11,6 +11,11 @@ export default function mediaUpload( props, config, defaultConfig, attributeKey,
 		placeholderText: __( 'Select' ) + vowelPrefix + config.type + __( ' file from your library, or upload a new one' ),
 		buttonText: __( 'Upload' ),
 		isSelected: props.isSelected,
+		fileUpload: true,
+		mediaButtonText: 'inspector' !== config.placement ? __( 'Add from Media Library' ) : __( 'Media Library' ),
+		mediaUploadButton: true,
+		inputUrl: true,
+		placeholder: true,
 	} );
 
 	delete defaultAttributes.onChange;
@@ -38,7 +43,6 @@ export default function mediaUpload( props, config, defaultConfig, attributeKey,
 	return middleware.createField( config, (
 		<MediaPlaceholder
 			{ ...fieldAttributes }
-			config={ config }
 			mediaData={ props.attributes[ attributeKey ] }
 			captionField={ helperFields.caption }
 		/>

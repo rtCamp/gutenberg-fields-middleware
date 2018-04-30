@@ -3607,7 +3607,12 @@ function mediaUpload(props, config, defaultConfig, attributeKey, middleware) {
 	var defaultAttributes = _.extend(defaultConfig, {
 		placeholderText: __('Select') + vowelPrefix + config.type + __(' file from your library, or upload a new one'),
 		buttonText: __('Upload'),
-		isSelected: props.isSelected
+		isSelected: props.isSelected,
+		fileUpload: true,
+		mediaButtonText: 'inspector' !== config.placement ? __('Add from Media Library') : __('Media Library'),
+		mediaUploadButton: true,
+		inputUrl: true,
+		placeholder: true
 	});
 
 	delete defaultAttributes.onChange;
@@ -3633,7 +3638,6 @@ function mediaUpload(props, config, defaultConfig, attributeKey, middleware) {
 	};
 
 	return middleware.createField(config, wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
-		config: config,
 		mediaData: props.attributes[attributeKey],
 		captionField: helperFields.caption
 	})));
@@ -3818,8 +3822,9 @@ var MediaPlaceholder = function (_Component) {
 	}, {
 		key: 'render',
 		value: function render() {
+			var _this4 = this;
+
 			var _props = this.props,
-			    config = _props.config,
 			    type = _props.type,
 			    placeholderText = _props.placeholderText,
 			    buttonText = _props.buttonText,
@@ -3830,19 +3835,10 @@ var MediaPlaceholder = function (_Component) {
 			if (this.state.editing) {
 				var mediaIcon = Object(__WEBPACK_IMPORTED_MODULE_7__utils__["b" /* getDashIconSuffixByType */])(type);
 				var placeholderClassName = 'wp-middleware-block-' + type + ' ' + className + ' wp-block-' + type;
+				var mediaButtons = [];
 
-				var mediaButtonText = 'inspector' !== config.placement ? __('Add from Media Library') : __('Media Library');
-
-				return wp.element.createElement(
-					Placeholder,
-					{
-						key: 'placeholder',
-						icon: mediaIcon,
-						label: type,
-						className: placeholderClassName,
-						instructions: placeholderText },
-					wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop }),
-					wp.element.createElement(
+				if (this.props.inputUrl) {
+					mediaButtons.push(wp.element.createElement(
 						'form',
 						{ onSubmit: this.onSelectUrl },
 						wp.element.createElement('input', {
@@ -3858,8 +3854,11 @@ var MediaPlaceholder = function (_Component) {
 								type: 'submit' },
 							__('Use URL')
 						)
-					),
-					wp.element.createElement(
+					));
+				}
+
+				if (this.props.fileUpload) {
+					mediaButtons.push(wp.element.createElement(
 						FormFileUpload,
 						{
 							isLarge: true,
@@ -3868,8 +3867,11 @@ var MediaPlaceholder = function (_Component) {
 							accept: type + '/*'
 						},
 						buttonText
-					),
-					wp.element.createElement(MediaUpload, {
+					));
+				}
+
+				if (this.props.mediaUploadButton) {
+					mediaButtons.push(wp.element.createElement(MediaUpload, {
 						onSelect: this.onSelectMedia,
 						type: type,
 						render: function render(_ref5) {
@@ -3877,11 +3879,27 @@ var MediaPlaceholder = function (_Component) {
 							return wp.element.createElement(
 								Button,
 								{ isLarge: true, onClick: open },
-								mediaButtonText
+								_this4.props.mediaButtonText
 							);
 						}
-					})
-				);
+					}));
+				}
+
+				if (this.props.placeholder) {
+					return wp.element.createElement(
+						Placeholder,
+						{
+							key: 'placeholder',
+							icon: mediaIcon,
+							label: type,
+							className: placeholderClassName,
+							instructions: placeholderText },
+						wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop }),
+						mediaButtons
+					);
+				}
+
+				return mediaButtons;
 			}
 
 			return wp.element.createElement(
