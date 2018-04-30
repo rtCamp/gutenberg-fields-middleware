@@ -22,6 +22,14 @@ Text of file-upload button.
 - Type: `String`
 - Required: No
 
+#### multiple:
+
+Allow multiple files to be uploaded
+
+- Type: `Boolean`
+- Required: No
+- Default: `false`
+
 #### label:
 
 A label for the field.
@@ -53,27 +61,68 @@ fileUpload: {
 
 This will return array of uploaded file / files.
 
-- Type: `array`
+- Type: `array` ( If `multiple: true` )
 
 ```js
 [
 	{
-		"id": 1544,
-		"url": "https://example.org/wp-content/uploads/2018/04/Image-1.jpg",
-		"link": "https://example.org/Image-1/",
-		"name": "Image-1.jpg"
+		"id": 534,
+		"title": "video1",
+		"filename": "video1.mp4",
+		"url": "https://rtcamp.test/wp-content/uploads/2018/04/video1.mp4",
+		"link": "https://rtcamp.test/video1-2/",
+		"alt": "",
+		"author": "1",
+		"description": "",
+		"caption": "",
+		"name": "video1-2",
+		"status": "inherit",
+		"uploadedTo": 0,
+		"date": "2018-04-16T11:37:25.000Z",
+		"modified": "2018-04-16T11:37:25.000Z",
+		"menuOrder": 0,
+		"mime": "video/mp4",
+		"type": "video",
+		"subtype": "mp4",
+		"icon": "https://rtcamp.test/wp-includes/images/media/video.png",
+		"dateFormatted": "April 16, 2018",
+		"nonces": {
+			"update": "818edf9570",
+			"delete": "2877fe3f9a",
+			"edit": "6214e67e05"
+		},
+		"editLink": "https://rtcamp.test/wp-admin/post.php?post=534&action=edit",
+		"meta": {
+			"artist": false,
+			"album": false,
+			"bitrate": false,
+			"bitrate_mode": false
+		},
+		"authorName": "dev",
+		"filesizeInBytes": 1055736,
+		"filesizeHumanReadable": "1 MB",
+		"context": "",
+		"width": 1280,
+		"height": 720,
+		"fileLength": "0:05",
+		"image": {
+			"src": "https://rtcamp.test/wp-includes/images/media/video.png",
+			"width": 48,
+			"height": 64
+		},
+		"thumb": {
+			"src": "https://rtcamp.test/wp-includes/images/media/video.png",
+			"width": 48,
+			"height": 64
+		},
+		"compat": {
+			"item": "",
+			"meta": ""
+		}
 	},
-	{
-		"id": 1545,
-		"url": "https://example.org/wp-content/uploads/2018/04/Image-2.jpeg",
-		"link": "https://example.org/Image-2/",
-		"name": "Image-2.jpeg"
-	},
-	{
-		"id": 1546,
-		"url": "https://example.org/wp-content/uploads/2018/04/Image-3.png",
-		"link": "https://example.org/Image-3/",
-		"name": "Image-3.png"
-	},
+	{ ... }
 ]
 ```
+
+- Type: `Object` ( If  `multiple: false` )
+
