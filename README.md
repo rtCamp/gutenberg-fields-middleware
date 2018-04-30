@@ -6,19 +6,23 @@ This project is in its early stages. Please [open an issue](https://github.com/r
 
 [Using](#using) | [Available Fields](#available-fields)
 
-## Using
 
-Gutenberg fields middleware requires only `build/middleware.min.js` and `build/middleware.min.css` files as dependency. There are two ways of using the middleware.
 
-- **As Plugin:** Install the Gutenberg Fields Middleware as a standalone WordPress plugin which will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script.
-- **As JS file:** Or you can use `build/middleware.min.js` and `build/middleware.min.css` and enqueue them as dependency for your block script. 
-  - Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' )` handles as your dependency when enqueing middleware js file.
+## Using 
+
+Gutenberg fields middleware requires only two files `build/middleware.min.js` and `build/middleware.min.css` as dependency. 
+
+There are two ways of using the middleware.
+
+1. **As a Plugin:** Install the Gutenberg Fields Middleware as a standalone WordPress plugin which will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script.
+2. **Using JS and CSS files:** Or you can use `middleware.min.js` and `middleware.min.css` and enqueue them as dependency for your block script. Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date', 'wp-hooks' )` handles as your dependency when enqueing middleware js file.
 
 Fields are now registered as attribute configuration details. Here's how you might register `url`, `text` and `range` fields:
 
 ```js
-registerBlockType( 'example-namespace/example-block', {
+wp.blocks.registerBlockType( 'example-namespace/example-block', {
 	title: 'Example Block',
+    category: 'common',
 	attributes: {
 		url: {
 			type: 'string',
@@ -57,7 +61,7 @@ registerBlockType( 'example-namespace/example-block', {
 
 
 
-✔️ Gutenberg Fields Middleware also works for PHP block registration:
+✔️ Fields can also be used in the same way when using `register_block_type` in PHP.
 
 ```php
 register_block_type( 'example-namespace/example-block', array(
@@ -118,9 +122,13 @@ Gutenberg Fields Middleware supports the following field types and type configur
 
 #### Returning field in `edit` method:
 
-- `props.middleware.fields.yourAttributeKeyName` for a **single** field when `placement` property is not defined.
+- `props.middleware.fields.key` for a **single** field when `placement` property is not defined.
 - `props.middleware.blockControls` for **all** block-control fields. ( `placement: 'block-control'` ) 
+  - Alternatively individual block control fields can be returned using `props.middleware.blockControlFields.key` but then you would need to wrap them in `<BlockControls>` yourself.
 - `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
+  - Alternatively individual inspector fields can be returned using `props.middleware.inspectorControlFields.key` but then you would need to wrap them in `InspectorControls` yourself.
+
+
 
 
 

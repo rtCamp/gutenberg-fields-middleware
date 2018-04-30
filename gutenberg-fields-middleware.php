@@ -3,7 +3,7 @@
  * Plugin Name: Gutenberg Fields Middleware
  * Plugin URI: https://github.com/rtCamp/gutenberg-fields-middleware
  * Description: Provides middleware to easily register fields for Gutenberg blocks.
- * Version: 0.1
+ * Version: 0.2
  * Author:  rtCamp
  * Contributors: Sayed Taqui, Daniel Bachhuber
  * License: GPLv2+
@@ -51,6 +51,7 @@ function gutenberg_fields_middleware_register_scripts() {
 
 	wp_register_style( 'gutenberg-fields-middleware', plugins_url( 'build/middleware-editor.css', __FILE__ ) );
 	wp_enqueue_style( 'gutenberg-fields-middleware' );
+	wp_enqueue_script( 'gutenberg-fields-middleware' );
 }
 
 add_action( 'enqueue_block_editor_assets', 'gutenberg_fields_middleware_register_scripts' );
