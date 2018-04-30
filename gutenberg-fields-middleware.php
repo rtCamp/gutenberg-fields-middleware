@@ -31,7 +31,7 @@
  */
 
 if ( ! defined( 'IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV' ) ) {
-	define( 'IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV', true );
+	define( 'IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV', false );
 }
 
 if ( ! defined( 'GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR' ) ) {

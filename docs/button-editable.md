@@ -30,7 +30,14 @@ Defines where you want to show the field. By default a field would be added to t
 - Type: `String`
 - Required: No
 
-For more read Gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/alignment-toolbar).
+#### helperFields:
+
+If some helper fields are required, define a new attribute field and use the attribute key name as 
+
+`{ link: 'buttonEditableLink' }` . Check Example below to see what helper fields it supports
+
+- Type: `Object`
+- Required: No
 
 **Example:**
 
@@ -118,8 +125,14 @@ buttonClasses: {
 
 ## Return value in `props.attribute`
 
-- Type: `string`
-- Possible Values: `left`, `right`, `center`
+- Type: `object`
+
+```javascript
+{
+  "text": [ "Action" ],
+  "link": "http://example.org/"
+}
+```
 
 
 
@@ -169,94 +182,3 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-button-editable', 
 ```
 
 Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/block-api/attributes/).
-
-
-
-
-
-# button-editable
-
-#### style:
-
-The style applies to the button.
-
-- Type: `object`
-- Required: No
-
-**Example:**
-
-```js
-buttonEditable: {
-	type: 'array',
-	field: {
-		type: 'button-editable',
-		helperFields: {
-			link: 'buttonEditableLink',
-			backgroundColor: 'buttonBackgroundColor',
-			color: 'buttonColor',
-			class: 'buttonClasses',
-		},
-	},
-	source: 'children',
-	selector: '.button-link',
-},
-buttonEditableLink: {
-	type: 'string',
-	field: {
-		type: 'link',
-	},
-},
-buttonBackgroundColor: {
-	type: 'string',
-	field: {
-		type: 'color',
-		label: __( 'Button Background Color' ),
-		placement: 'inspector',
-		initialOpen: true,
-	},
-},
-buttonColor: {
-	type: 'string',
-	field: {
-		type: 'color',
-		label: __( 'Button Color' ),
-		placement: 'inspector',
-		initialOpen: false,
-	},
-},
-buttonClasses: {
-	type: 'string',
-	field: {
-		type: 'select',
-		label: __( 'Button Type' ),
-		options: [
-			{
-				value: 'button-large',
-				label: __( 'Large' ),
-			},
-			{
-				value: 'button-medium',
-				label: __( 'Medium' ),
-			},
-			{
-				value: 'button-small',
-				label: __( 'Small' ),
-			},
-		],
-		placement: 'inspector',
-	},
-},
-```
-
-### Return
-
-This will return complete button object.
-
-- Type: `object`
-
-```javascript
-{
-  "text": [ "Action" ],
-  "link": "http://example.org/"
-}
-```
