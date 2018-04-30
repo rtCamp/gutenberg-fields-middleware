@@ -162,15 +162,10 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-button-editable', 
 	},
 
 	save: function( props ) {
-		var el = wp.element.createElement,
-			attributes = props.attributes;
-
-		return [
-			el( 'a', {
-				className: 'button-link',
-				href: attributes.buttonEditable,
-			}, attributes.buttonEditable ),
-		];
+		return wp.element.createElement( 'a', {
+			className: 'button-link',
+			href: props.attributes.buttonEditableLink,
+		}, props.attributes.buttonEditable );
 	},
 } );
 ```

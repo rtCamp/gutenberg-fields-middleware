@@ -126,3 +126,49 @@ This will return array of uploaded file / files.
 
 - Type: `Object` ( If  `multiple: false` )
 
+## Example Usage ( ES5 )
+
+```js
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-file-upload', {
+	title: 'Single Field Block File Upload.',
+	attributes: {
+		fileUpload: {
+			type: 'array',
+			field: {
+				type: 'file-upload',
+				fileType: [ 'video', 'audio', 'image' ],
+				multiple: true,
+				label: 'Upload File',
+			},
+		},
+	},
+
+	edit: function( props ) {
+		return [
+			props.middleware.fields.fileUpload,
+		];
+	},
+
+	save: function( props ) {
+		var attributes = props.attributes,
+			files = [];
+
+		if ( attributes.fileUpload ) {
+			_.each( attributes.fileUpload, function( file ) {
+				files.push(
+					wp.element.createElement( 'li', {},
+						wp.element.createElement( 'a', {
+							className: 'file-upload',
+							href: file.url,
+						}, file.name )
+					)
+				);
+			} );
+		}
+
+		return (
+			wp.element.createElement( 'ul', {}, files )
+		);
+	},
+} );
+```

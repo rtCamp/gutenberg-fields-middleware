@@ -1,8 +1,8 @@
 /**
- * Alignment Example.
+ * Text Alignment Example.
  */
-wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
-	title: 'Single Field Block Alignment.',
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
+	title: 'Single Field Block Text Alignment.',
 	attributes: {
 		alignment: {
 			type: 'string',
@@ -33,6 +33,43 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 
 	save: function( props ) {
 		return wp.element.createElement( 'p', { style: { textAlign: props.attributes.alignment } }, props.attributes.text );
+	},
+} );
+
+/**
+ * Block Alignment Example.
+ * Make sure theme support added for 'wide' and 'full' alignment.
+ * Ref. https://wordpress.org/gutenberg/handbook/extensibility/theme-support/#wide-alignment
+ */
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
+	title: 'Single Field Block Alignment.',
+	attributes: {
+		alignment: {
+			type: 'string',
+			field: {
+				type: 'block-alignment-toolbar',
+				placement: 'block-controls',
+				controls: [ 'left', 'center', 'right', 'wide', 'full' ],
+			},
+			default: 'center',
+		},
+		text: {
+			type: 'string',
+			field: {
+				type: 'text',
+			},
+		},
+	},
+
+	edit: function( props ) {
+		return [
+			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
+			props.middleware.fields.text,
+		];
+	},
+
+	save: function( props ) {
+		return wp.element.createElement( 'p', { className: 'align' + props.attributes.alignment }, props.attributes.text );
 	},
 } );
 
@@ -69,11 +106,12 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 	},
 
 	save: function( props ) {
-		var el = wp.element.createElement,
-			attributes = props.attributes;
+		var attributes = props.attributes;
 
-		return [
-			el( 'img', { // field: image.
+		return wp.element.createElement( 'figure', {
+				className: props.className
+			},
+			wp.element.createElement( 'img', { // field: image.
 				className: 'image',
 				src: attributes.image ? attributes.image.url : null,
 				alt: attributes.image ? attributes.image.alt : null,
@@ -81,8 +119,61 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 				width: attributes.image ? attributes.image.width : null,
 				height: attributes.image ? attributes.image.height : null,
 			}, null ),
-			el( 'div', { className: 'image-caption' }, attributes.imageCaption || '' ), // field: imageCaption.
+			wp.element.createElement( 'figcaption', {
+				className: 'image-caption'
+			}, attributes.imageCaption || '' ), // field: imageCaption.
+		);
+	},
+} );
+
+/**
+ * Block control Image Example.
+ */
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
+	title: 'Single Field Block Controls Image.',
+	attributes: {
+		image: {
+			type: 'object',
+			field: {
+				type: 'media-icon',
+				mediaType: 'image',
+				placement: 'block-controls',
+			},
+		},
+	},
+
+	edit: function( props ) {
+		var image = props.attributes.image,
+			imageUrl = image ? 'url(' + image.url + ')' : undefined,
+			imageHeight = image ? image.height : undefined;
+
+		return [
+			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
+
+			wp.element.createElement( 'div', { // field: image.
+				className: 'block-control-image',
+				style: {
+					backgroundImage: imageUrl,
+					backgroundRepeat: 'no-repeat',
+					height: imageHeight,
+				}
+			}, null ),
 		];
+	},
+
+	save: function( props ) {
+		var image = props.attributes.image,
+			imageUrl = image ? 'url(' + image.url + ')' : undefined,
+			imageHeight = image ? image.height : undefined;
+
+		return wp.element.createElement( 'div', {
+			className: 'block-control-image',
+			style: {
+				backgroundImage: imageUrl,
+				backgroundRepeat: 'no-repeat',
+				height: imageHeight,
+			}
+		}, null );
 	},
 } );
 
@@ -119,18 +210,22 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 	},
 
 	save: function( props ) {
-		var el = wp.element.createElement;
-
-		return [
-			el( 'audio', {
-				className: 'audio',
-				controls: true,
-			}, el( 'source', {
-				src: props.attributes.audio ? props.attributes.audio.url : null,
-				type: props.attributes.audio ? props.attributes.audio.mime : null,
-			}, null ) ),
-			el( 'div', { className: 'audio-caption' }, props.attributes.audioCaption || '' ),
-		];
+		return wp.element.createElement( 'div', {},
+			wp.element.createElement( 'audio', {
+					className: 'audio',
+					controls: true,
+				},
+				wp.element.createElement( 'source', {
+					src: props.attributes.audio ? props.attributes.audio.url : null,
+					type: props.attributes.audio ? props.attributes.audio.mime : null,
+				}, null )
+			),
+			wp.element.createElement( 'div', {
+					className: 'audio-caption'
+				},
+				props.attributes.audioCaption || ''
+			)
+		);
 	},
 } );
 
@@ -167,19 +262,22 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-video', {
 	},
 
 	save: function( props ) {
-		var el = wp.element.createElement,
-			attributes = props.attributes;
-
-		return [
-			el( 'video', {
-				className: 'video',
-				controls: true,
-			}, el( 'source', {
-				src: attributes.video ? attributes.video.url : null,
-				type: attributes.video ? attributes.video.mime : null,
-			}, null ) ),
-			el( 'div', { className: 'video-caption' }, attributes.videoCaption || '' ),
-		];
+		return wp.element.createElement( 'div', {},
+			wp.element.createElement( 'video', {
+					className: 'video',
+					controls: true,
+				},
+				wp.element.createElement( 'source', {
+					src: props.attributes.video ? props.attributes.video.url : null,
+					type: props.attributes.video ? props.attributes.video.mime : null,
+				}, null )
+			),
+			wp.element.createElement( 'div', {
+					className: 'video-caption'
+				},
+				props.attributes.videoCaption || ''
+			)
+		);
 	},
 } );
 
@@ -215,14 +313,55 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-button-editable', 
 	},
 
 	save: function( props ) {
-		var el = wp.element.createElement,
-			attributes = props.attributes;
+		return wp.element.createElement( 'a', {
+			className: 'button-link',
+			href: props.attributes.buttonEditableLink,
+		}, props.attributes.buttonEditable );
+	},
+} );
 
+/**
+ * File Upload Example.
+ */
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-file-upload', {
+	title: 'Single Field Block File Upload.',
+	attributes: {
+		fileUpload: {
+			type: 'array',
+			field: {
+				type: 'file-upload',
+				fileType: [ 'video', 'audio', 'image' ],
+				multiple: true,
+				label: 'Upload File',
+			},
+		},
+	},
+
+	edit: function( props ) {
 		return [
-			el( 'a', {
-				className: 'button-link',
-				href: attributes.buttonEditable,
-			}, attributes.buttonEditable ),
+			props.middleware.fields.fileUpload,
 		];
+	},
+
+	save: function( props ) {
+		var attributes = props.attributes,
+			files = [];
+
+		if ( attributes.fileUpload ) {
+			_.each( attributes.fileUpload, function( file ) {
+				files.push(
+					wp.element.createElement( 'li', {},
+						wp.element.createElement( 'a', {
+							className: 'file-upload',
+							href: file.url,
+						}, file.name )
+					)
+				);
+			} );
+		}
+
+		return (
+			wp.element.createElement( 'ul', {}, files )
+		);
 	},
 } );

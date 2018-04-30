@@ -188,21 +188,22 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 	},
 
 	save: function( props ) {
-		var el = wp.element.createElement,
-			attributes = props.attributes;
-
-		return [
-			el( 'audio', {
-				className: 'audio',
-				controls: true,
-			}, el( 'source', {
-				src: attributes.audio ? attributes.audio.url : null,
-				type: attributes.audio ? attributes.audio.mime : null,
-			}, null ) ),
-			el( 'div', { 
-				className: 'audio-caption' 
-			}, attributes.audioCaption || '' ),
-		];
+		return wp.element.createElement( 'div', {},
+			wp.element.createElement( 'audio', {
+					className: 'audio',
+					controls: true,
+				},
+				wp.element.createElement( 'source', {
+					src: props.attributes.audio ? props.attributes.audio.url : null,
+					type: props.attributes.audio ? props.attributes.audio.mime : null,
+				}, null )
+			),
+			wp.element.createElement( 'div', {
+					className: 'audio-caption'
+				},
+				props.attributes.audioCaption || ''
+			)
+		);
 	},
 } );
 ```

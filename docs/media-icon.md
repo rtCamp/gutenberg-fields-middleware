@@ -57,6 +57,57 @@ Returns media object.
 
 - Type: `Object`
 
+## Example Usage ( ES5 )
+
+```js
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
+	title: 'Single Field Block Controls Image.',
+	attributes: {
+		image: {
+			type: 'object',
+			field: {
+				type: 'media-icon',
+				mediaType: 'image',
+				placement: 'block-controls',
+			},
+		},
+	},
+
+	edit: function( props ) {
+		var image = props.attributes.image,
+			imageUrl = image ? 'url(' + image.url + ')' : undefined,
+			imageHeight = image ? image.height : undefined;
+
+		return [
+			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
+
+			wp.element.createElement( 'div', {
+				className: 'block-control-image',
+				style: {
+					backgroundImage: imageUrl,
+					backgroundRepeat: 'no-repeat',
+					height: imageHeight,
+				}
+			}, null ),
+		];
+	},
+
+	save: function( props ) {
+		var image = props.attributes.image,
+			imageUrl = image ? 'url(' + image.url + ')' : undefined,
+			imageHeight = image ? image.height : undefined;
+
+		return wp.element.createElement( 'div', {
+			className: 'block-control-image',
+			style: {
+				backgroundImage: imageUrl,
+				backgroundRepeat: 'no-repeat',
+				height: imageHeight,
+			}
+		}, null );
+	},
+} );
+```
 
 
 Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/block-api/attributes/).

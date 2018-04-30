@@ -477,7 +477,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'array',
 			field: {
 				type: 'file-upload',
-				fileType: 'video',
+				fileType: [ 'video', 'audio', 'image' ],
 				placement: 'inspector',
 				multiple: true,
 				label: 'Upload File',
@@ -568,7 +568,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				// field: button-editable
 				el( 'a', {
 					className: 'button-link',
-					href: '',
+					href: attributes.buttonEditableLink,
 				}, attributes.buttonEditable ),
 
 				// field: tree-select
