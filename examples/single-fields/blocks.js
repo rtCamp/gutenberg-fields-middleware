@@ -122,6 +122,61 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 } );
 
 /**
+ * Image Example.
+ */
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
+	title: 'Single Field Block Controls Image.',
+	attributes: {
+		image: {
+			type: 'object',
+			field: {
+				type: 'media-icon',
+				mediaType: 'image',
+				placement: 'block-controls',
+			},
+			selector: '.image',
+		},
+	},
+
+	edit: function( props ) {
+		var el = wp.element.createElement,
+			image = props.attributes.image,
+			imageUrl = image ? 'url(' + image.url + ')' : undefined,
+			imageHeight = image ? image.height : undefined;
+
+		return [
+			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
+
+			el( 'div', { // field: image.
+				className: 'block-control-image',
+				style: {
+					backgroundImage: imageUrl,
+					height: imageHeight,
+				}
+			}, null ),
+		];
+	},
+
+	save: function( props ) {
+		var image = props.attributes.image,
+			imageUrl = image ? 'url(' + image.url + ')' : undefined,
+			imageHeight = image ? image.height : undefined;
+
+		return wp.element.createElement(
+			'div',
+			{
+				className: 'block-control-image',
+				style: {
+					backgroundImage: imageUrl,
+					height: imageHeight,
+				}
+			},
+			null
+		);
+	},
+} );
+
+/**
  * Audio Example.
  */
 wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
