@@ -8,13 +8,13 @@ This project is in its early stages. Please [open an issue](https://github.com/r
 
 ## Using
 
-1. First, install the Gutenberg Fields Middleware as a standalone WordPress plugin. This will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script:
+Gutenberg fields middleware requires only `build/middleware.min.js` and `build/middleware.min.css` files as dependency. There are two ways of using the middleware.
 
-```php
-wp_enqueue_script( 'script-handle', plugins_url( 'blocks.js', __FILE__ ), array( 'gutenberg-fields-middleware' ) );
-```
+- **As Plugin:** Install the Gutenberg Fields Middleware as a standalone WordPress plugin which will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script.
+- **As JS file:** Or you can use `build/middleware.min.js` and `build/middleware.min.css` and enqueue them as dependency for your block script. 
+  - Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' )` handles as your dependency when enqueing middleware js file.
 
-2. Fields are now registered as attribute configuration details. Here's how you might register `url`, `text` and `range` fields:
+Fields are now registered as attribute configuration details. Here's how you might register `url`, `text` and `range` fields:
 
 ```js
 registerBlockType( 'example-namespace/example-block', {
@@ -81,8 +81,6 @@ register_block_type( 'example-namespace/example-block', array(
 	'render_callback' => 'example_callback',
 ) );
 ```
-
-✔️ Alternatively the middleware can also be used just by enqueuing `build/middleware.min.js` file as dependency. Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' )` as dependency. 
 
 
 

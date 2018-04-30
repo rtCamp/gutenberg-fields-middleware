@@ -1,4 +1,4 @@
-import { getDashIconSuffix } from './../../utils/media';
+import { getDashIconSuffix } from './../../utils';
 
 const { Component } = wp.element;
 

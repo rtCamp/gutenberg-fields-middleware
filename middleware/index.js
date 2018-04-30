@@ -2,14 +2,21 @@
  * Gutenberg Fields Middleware.
  */
 
-const { InspectorControls, BlockControls } = wp.blocks;
-const { addFilter } = wp.hooks;
-const { withState, BaseControl, Toolbar } = wp.components;
+import { getMiddlewareWarnings } from './utils';
+
+const { InspectorControls, BlockControls } = 'undefined' !== typeof wp.blocks ? wp.blocks : {};
+const { addFilter } = 'undefined' !== typeof wp.hooks ? wp.hooks : {};
+const { withState, BaseControl, Toolbar } = 'undefined' !== typeof wp.components ? wp.components : {};
+const middlewareWarnings = getMiddlewareWarnings();
+
+if ( middlewareWarnings ) {
+	console.warn( middlewareWarnings ); // eslint-disable-line
+}
 
 /**
  * Fields
  */
-import * as fields from './fields';
+const fields = ! middlewareWarnings ? require( './fields' ) : false;
 
 /**
  * Gutenberg Middleware Class.
@@ -54,6 +61,10 @@ class GutenbergFieldsMiddleWare {
 			attributes: {},
 
 		}, this.config );
+
+		if ( ! fields ) {
+			return this.blockConfigs;
+		}
 
 		const blockStates = _.extend( {
 			editable: '',
