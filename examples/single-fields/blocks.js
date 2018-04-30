@@ -83,6 +83,10 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 			type: 'object',
 			field: {
 				type: 'image',
+				fileUpload: true,
+				inputUrl: true,
+				mediaUploadButton: true,
+				placeholder: true,
 				helperFields: {
 					caption: 'imageCaption', // If required.
 				},
@@ -187,6 +191,10 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 			type: 'object',
 			field: {
 				type: 'audio',
+				fileUpload: true,
+				inputUrl: true,
+				mediaUploadButton: true,
+				placeholder: true,
 				helperFields: {
 					caption: 'audioCaption', // If required.
 				},
@@ -239,6 +247,10 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-video', {
 			type: 'object',
 			field: {
 				type: 'video',
+				fileUpload: true,
+				inputUrl: true,
+				mediaUploadButton: true,
+				placeholder: true,
 				helperFields: {
 					caption: 'videoCaption', // If required.
 				},
