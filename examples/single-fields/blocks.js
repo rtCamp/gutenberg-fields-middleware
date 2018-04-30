@@ -134,7 +134,6 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 				mediaType: 'image',
 				placement: 'block-controls',
 			},
-			selector: '.image',
 		},
 	},
 
@@ -151,6 +150,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 				className: 'block-control-image',
 				style: {
 					backgroundImage: imageUrl,
+					backgroundRepeat: 'no-repeat',
 					height: imageHeight,
 				}
 			}, null ),
@@ -168,6 +168,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 				className: 'block-control-image',
 				style: {
 					backgroundImage: imageUrl,
+					backgroundRepeat: 'no-repeat',
 					height: imageHeight,
 				}
 			},
