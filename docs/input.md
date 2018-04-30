@@ -1,6 +1,25 @@
 # email / number / hidden / search / tel
 
-Creates input fields with above types. You can pass key value pairs will be passed to the input. 
+Creates input fields with input types. Types can be one of the following.
+
+- email
+- hidden
+- number
+- search
+- tel
+- time
+- date
+- datetime-local
+- file
+- month
+- password
+- time
+- url
+- week
+
+
+
+## Properties
 
 #### label:
 
@@ -136,7 +155,9 @@ password: {
 },
 ```
 
-### Return
+
+
+## Return value in `props.attribute`
 
 This will return string.
 

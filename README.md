@@ -109,18 +109,24 @@ Gutenberg Fields Middleware supports the following field types and type configur
 - [text](docs/text.md)
 - [textarea](docs/textarea.md)
 - [tree-select](docs/tree-select.md)
-- alignment-toolbar
-- icons-toolbar
-- media-icon
-- dropdown-menu
-- url-input-button
+- [alignment-toolbar](docs/alignment-toolbar.md)
+- [icons-toolbar](docs/icons-toolbar.md)
+- [media-icon](docs/media-icon.md)
+- [dropdown-menu](docs/dropdown-menu.md)
+- [url-input-button](docs/url-input.md)
 
 
-## Updating Field props
 
-To update or add properties to a field from `edit` method use `props.middleware.fields.attributeKey.props`.
 
-Example:
+#### Returning field in `edit` method:
+
+- `props.middleware.fields.yourAttributeKeyName` for a **single** field when `placement` property is not defined.
+- `props.middleware.blockControls` for **all** block-control fields. ( `placement: 'block-control'` ) 
+- `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
+
+
+
+#### Updating Field props:
 
 ```js
 registerBlockType( 'gb-m-example/simple-block', {

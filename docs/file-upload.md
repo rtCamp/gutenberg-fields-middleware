@@ -28,6 +28,20 @@ Text of file-upload button.
 - Type: `String`
 - Required: No
 
+#### label:
+
+A label for the field.
+
+- Type: `String`
+- Required: No
+
+#### help:
+
+If added, a help text will be added below the field.
+
+- Type: `String`
+- Required: No
+
 **Example:**
 
 ```js
