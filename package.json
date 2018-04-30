@@ -3,6 +3,7 @@
 	"title": "Gutenberg Fields Middleware",
 	"version": "0.2.0",
 	"main": "middleware/index.js",
+	"license": "GPL-2.0-or-later",
 	"devDependencies": {
 		"@wordpress/babel-preset-default": "1.1.1",
 		"@wordpress/hooks": "1.1.4",

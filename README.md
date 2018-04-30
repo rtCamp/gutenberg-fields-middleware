@@ -69,7 +69,7 @@ wp.blocks.registerBlockType( 'example-namespace/example-block', {
 
 Which will create a block like this
 
-![image](https://user-images.githubusercontent.com/6297436/39425478-4bdc6444-4c99-11e8-8691-bad892910678.png)
+![image](https://user-images.githubusercontent.com/6297436/39425913-3c4c7260-4c9b-11e8-8e68-7e19b6df1d43.png)
 
 
 
