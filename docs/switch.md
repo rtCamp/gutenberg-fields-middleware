@@ -7,6 +7,13 @@ Field Label
 - Type: `string`
 - Required: No
 
+#### help:
+
+If added, a help text will be added below the field.
+
+- Type: `String`
+- Required: No
+
 #### checked:
 
 Checked attribute of checkbox. Changes the accessibility text to "On/Off".

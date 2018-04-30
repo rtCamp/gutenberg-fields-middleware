@@ -7,6 +7,13 @@ If this property is added, a label will be generated using label property as the
 - Type: `String`
 - Required: No
 
+#### help:
+
+If added, a help text will be added below the field.
+
+- Type: `String`
+- Required: No
+
 #### noOptionLabel:
 
 If this property is added, an option will be added with this label to represent empty selection.

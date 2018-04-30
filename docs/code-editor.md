@@ -1,10 +1,17 @@
 # code-editor
 
-#### value:
+#### label:
 
-The source code to load into the code editor.
+A label for the field.
 
-- Type: `string`
+- Type: `String`
+- Required: No
+
+#### help:
+
+If added, a help text will be added below the field.
+
+- Type: `String`
 - Required: No
 
 For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/code-editor).

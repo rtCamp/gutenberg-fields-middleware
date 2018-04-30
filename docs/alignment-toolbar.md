@@ -48,15 +48,6 @@ alignment: {
 
 
 
-## Returning field in `edit` method:
-
-- `props.middleware.blockControls` for **all** block-control fields. ( `placement: 'block-control'` ) 
-- `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
-- `props.middleware.fields.yourAttributeKeyName` for a **single** field when `placement` property is not defined.
-
-
-
-
 ## Return value in `props.attribute`
 
 - Type: `string`
