@@ -25,12 +25,6 @@ If checked is true the checkbox will be checked. If checked is false the checkbo
 * Type: `Boolean`
 * Required: No
 
-#### onChange:
-
-A function that receives the checked state (boolean) as input. It passes the new `checked` value as first argument and `props` as second argument.
-* Type: `function`
-* Required: No
-
 For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/checkbox-control).
 
 **Example:**

@@ -1,19 +1,5 @@
 # textarea
 
-#### value:
-
-The current value of the textarea.
-
-- Type: `string`
-- Required: No
-
-#### onChange:
-
-A function that receives the new value of the textarea each time it changes. It passes the new `value` as first argument and `props` as second argument.
-
-- Type: `Function`
-- Required: No
-
 #### label:
 
 If this property is added, a label will be generated using label property as the content.

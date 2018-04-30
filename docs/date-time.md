@@ -15,13 +15,6 @@ The current date and time at initialization.
 - Type: `string`
 - Required: No
 
-#### onChange:
-
-The function called when a new date or time has been selected.It passes the `currentDate` as the first argument and `props` as second argument.
-
-- Type: `Function`
-- Required: No
-
 #### locale:
 
 The localization for the display of the date and time.

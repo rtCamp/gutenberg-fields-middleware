@@ -1,19 +1,5 @@
 # link
 
-#### value:
-
-Value of url field.
-
-- Type: `String`
-- Required: No
-
-#### onChange:
-
-A function that receives the value of the new option that is being selected as input. It passes the new `value` as first argument and `props` as second argument.
-
-- Type: `function`
-- Required: No
-
 #### label:
 
 Label for input but applicable only when using it in inspector controls.
