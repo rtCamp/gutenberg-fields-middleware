@@ -103,6 +103,11 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'object',
 			field: {
 				type: 'image',
+				inputUrl: true,
+				fileUpload: true,
+				placeholder: true,
+				mediaUploadButton: true,
+				mediaButtonText: __( 'Media Library' ),
 				buttonText: __( 'Upload' ),
 				placement: 'inspector',
 			},
@@ -111,6 +116,10 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'object',
 			field: {
 				type: 'video',
+				inputUrl: true,
+				fileUpload: true,
+				placeholder: true,
+				mediaUploadButton: true,
 				buttonText: __( 'Upload' ),
 				placement: 'inspector',
 			},
@@ -119,6 +128,10 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'object',
 			field: {
 				type: 'audio',
+				inputUrl: true,
+				fileUpload: true,
+				placeholder: true,
+				mediaUploadButton: true,
 				buttonText: __( 'Upload' ),
 				placement: 'inspector',
 			},
