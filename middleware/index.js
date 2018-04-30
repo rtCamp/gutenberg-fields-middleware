@@ -10,7 +10,7 @@ const { withState, BaseControl, Toolbar } = 'undefined' !== typeof wp.components
 const middlewareWarnings = getMiddlewareWarnings();
 
 if ( middlewareWarnings ) {
-	console.warn( middlewareWarnings ); // eslint-disable-line
+	console.error( middlewareWarnings ); // eslint-disable-line
 }
 
 /**
