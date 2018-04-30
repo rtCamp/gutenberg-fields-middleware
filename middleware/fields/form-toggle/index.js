@@ -2,12 +2,14 @@
  * Switch field.
  */
 
-const { FormToggle, BaseControl } = wp.components;
+const { FormToggle } = wp.components;
+import Field from './../../components/field';
 
-export default function formToggle( props, config, defaultConfig, attributeKey, middleware ) {
+export default function formToggle( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = _.extend( defaultConfig, {
 		checked: 'on' === props.attributes[ attributeKey ],
 		value: props.attributes[ attributeKey ] || 'off',
+		baseControlClassName: 'components-toggle-control',
 		onChange( event ) {
 			const newAttributes = {};
 			newAttributes[ attributeKey ] = 'on' === event.target.value ? 'off' : 'on';
@@ -20,15 +22,10 @@ export default function formToggle( props, config, defaultConfig, attributeKey, 
 	delete fieldAttributes.type;
 
 	return (
-		<BaseControl
-			label={ fieldAttributes.label }
-			id={ fieldAttributes.id }
-			help={ fieldAttributes.help }
-			className="components-toggle-control"
-		>
-			<FormToggle
-				{ ...fieldAttributes }
-			/>
-		</BaseControl>
+		<Field
+			config={ config }
+			component={ FormToggle }
+			{ ...fieldAttributes }
+		/>
 	);
 }

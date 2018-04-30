@@ -3,6 +3,7 @@
  */
 
 import FileUpload from './../../components/file-upload';
+import Field from './../../components/field';
 
 const { __ } = wp.i18n;
 
@@ -61,12 +62,13 @@ export default function fileUpload( props, config, defaultConfig, attributeKey, 
 
 	fieldAttributes.type = fieldAttributes.fileType;
 
-	return middleware.createField( fieldAttributes, (
-		<FileUpload
+	return (
+		<Field
 			config={ config }
+			component={ FileUpload }
 			fieldAttributes={ fieldAttributes }
 			value={ props.attributes[ attributeKey ] }
 			removeFile={ removeFile }
 		/>
-	) );
+	);
 }

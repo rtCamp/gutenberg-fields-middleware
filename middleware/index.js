@@ -374,32 +374,6 @@ class GutenbergFieldsMiddleWare {
 	}
 
 	/**
-	 * Create middleware field according to the placement.
-	 *
-	 * @param {Object} config  Configuration passed in field.
-	 * @param {Object} element React element or component.
-	 *
-	 * @return {Object} element.
-	 */
-	createField( config, element ) {
-		if ( 'inspector' === config.placement || config.label || config.help ) {
-			return (
-				<BaseControl label={ config.label } help={ config.help } id={ config.id } >
-					{ element }
-				</BaseControl>
-			);
-		} else if ( 'block-controls' === config.placement ) {
-			return (
-				<Toolbar>
-					{ element }
-				</Toolbar>
-			);
-		}
-
-		return element;
-	}
-
-	/**
 	 * Fallback edit method.
 	 *
 	 * @param {Object} props Properties.

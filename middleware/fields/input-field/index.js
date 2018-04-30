@@ -13,7 +13,6 @@ export default function inputField( props, config, defaultConfig, attributeKey )
 
 	fieldAttributes.id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId( attributeKey );
 
-	// Already has BaseControl wrapper.
 	return (
 		<TextControl
 			{ ...fieldAttributes }

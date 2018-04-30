@@ -4,8 +4,9 @@
 
 import './editor.scss';
 const { RichText } = wp.blocks;
+import Field from './../../components/field';
 
-export default function richText( props, config, defaultConfig, attributeKey, middleware ) {
+export default function richText( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = _.extend( defaultConfig, {
 		inlineToolbar: true,
 	} );
@@ -14,10 +15,12 @@ export default function richText( props, config, defaultConfig, attributeKey, mi
 
 	delete fieldAttributes.type;
 
-	return middleware.createField( config, (
-		<RichText
+	return (
+		<Field
+			config={ config }
+			component={ RichText }
 			{ ...fieldAttributes }
 			isSelected={ props.isSelected && attributeKey === props.editable }
 		/>
-	) );
+	);
 }
