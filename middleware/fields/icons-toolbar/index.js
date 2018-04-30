@@ -3,8 +3,9 @@
  */
 
 const { Toolbar } = wp.components;
+import Field from './../../components/field';
 
-export default function iconsToolbar( props, config, defaultConfig, attributeKey, middleware ) {
+export default function iconsToolbar( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = _.extend( {}, defaultConfig );
 	delete defaultAttributes.value;
 	delete defaultAttributes.onChange;
@@ -12,7 +13,7 @@ export default function iconsToolbar( props, config, defaultConfig, attributeKey
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	if ( ! _.isEmpty( config.controls ) ) {
-		config.controls = config.controls.map( ( control ) => {
+		fieldAttributes.controls = config.controls.map( ( control ) => {
 			control.onClick = () => {
 				const newAttributes = {};
 				newAttributes[ attributeKey ] = control.isActive ? '' : control.value;
@@ -30,9 +31,11 @@ export default function iconsToolbar( props, config, defaultConfig, attributeKey
 	const toolbarConfig = _.extend( {}, config );
 	toolbarConfig.placement = 'block-controls' === config.placement ? '' : config.placement; // To avoid one more Toolbar wrapper.
 
-	return middleware.createField( toolbarConfig, (
-		<Toolbar
+	return (
+		<Field
+			config={ toolbarConfig }
+			component={ Toolbar }
 			{ ...fieldAttributes }
 		/>
-	) );
+	);
 }

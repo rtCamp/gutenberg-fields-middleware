@@ -2,13 +2,14 @@
  * Date time field.
  */
 
-const { DateTimePicker, PanelBody } = wp.components;
+const { DateTimePicker } = wp.components;
 const { dateI18n, settings } = wp.date;
 const { __ } = wp.i18n;
 
 import './editor.scss';
+import Field from './../../components/field';
 
-export default function dateTime( props, config, defaultConfig, attributeKey, middleware ) {
+export default function dateTime( props, config, defaultConfig, attributeKey ) {
 	const is12HourTime = /a(?!\\)/i.test(
 		settings.formats.time
 			.toLowerCase() // Test only the lower case a
@@ -35,27 +36,12 @@ export default function dateTime( props, config, defaultConfig, attributeKey, mi
 
 	delete fieldAttributes.type;
 
-	const dateTimeEl = (
-		<DateTimePicker
+	return (
+		<Field
+			config={ config }
+			component={ DateTimePicker }
 			{ ...fieldAttributes }
+			getFormattedDate={ getFormattedDate }
 		/>
 	);
-
-	if ( fieldAttributes.panel ) {
-		return (
-			<PanelBody initialOpen={ fieldAttributes.initialOpen } title={ [
-				fieldAttributes.label + ': ',
-				<span key="label">{ getFormattedDate() }</span>,
-			]
-			}>
-				{ dateTimeEl }
-			</PanelBody>
-		);
-	}
-
-	return middleware.createField( fieldAttributes, (
-		<div className="middleware-date-time-no-panel">
-			{ dateTimeEl }
-		</div>
-	) );
 }

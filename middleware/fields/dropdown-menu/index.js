@@ -4,7 +4,9 @@
 
 const { DropdownMenu } = wp.components;
 
-export default function dropDownMenu( props, config, defaultConfig, attributeKey, middleware ) {
+import Field from './../../components/field';
+
+export default function dropDownMenu( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = _.extend( {}, defaultConfig );
 	delete defaultAttributes.value;
 	delete defaultAttributes.onChange;
@@ -12,7 +14,7 @@ export default function dropDownMenu( props, config, defaultConfig, attributeKey
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	if ( ! _.isEmpty( config.controls ) ) {
-		config.controls = config.controls.map( ( control ) => {
+		fieldAttributes.controls = config.controls.map( ( control ) => {
 			control.onClick = () => {
 				const newAttributes = {};
 				newAttributes[ attributeKey ] = control.isActive ? '' : control.value;
@@ -27,7 +29,11 @@ export default function dropDownMenu( props, config, defaultConfig, attributeKey
 
 	delete fieldAttributes.type;
 
-	return middleware.createField( config, (
-		<DropdownMenu { ...fieldAttributes } />
-	) );
+	return (
+		<Field
+			config={ config }
+			component={ DropdownMenu }
+			{ ...fieldAttributes }
+		/>
+	);
 }

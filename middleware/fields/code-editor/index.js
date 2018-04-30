@@ -3,8 +3,9 @@
  */
 
 const { CodeEditor } = wp.components;
+import Field from './../../components/field';
 
-export default function codeEditor( props, config, defaultConfig, attributeKey, middleware ) {
+export default function codeEditor( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = _.extend( defaultConfig, {
 		value: props.attributes[ attributeKey ] || '',
 	} );
@@ -13,9 +14,11 @@ export default function codeEditor( props, config, defaultConfig, attributeKey, 
 
 	delete fieldAttributes.type;
 
-	return middleware.createField( config, (
-		<CodeEditor
+	return (
+		<Field
+			config={ config }
+			component={ CodeEditor }
 			{ ...fieldAttributes }
 		/>
-	) );
+	);
 }

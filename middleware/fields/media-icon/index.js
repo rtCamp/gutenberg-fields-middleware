@@ -3,6 +3,7 @@
  */
 
 import { getDashIconSuffixByType } from './../../utils';
+import Field from './../../components/field';
 const { MediaUpload } = wp.blocks;
 const { IconButton, Button } = wp.components;
 const { __ } = wp.i18n;
@@ -50,9 +51,11 @@ export default function mediaIcon( props, config, defaultConfig, attributeKey, m
 
 	fieldAttributes.type = fieldAttributes.mediaType;
 
-	return middleware.createField( fieldAttributes, (
-		<MediaUpload
+	return (
+		<Field
+			config={ config }
+			component={ MediaUpload }
 			{ ...fieldAttributes }
 		/>
-	) );
+	);
 }

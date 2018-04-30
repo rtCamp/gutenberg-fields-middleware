@@ -3,15 +3,18 @@
  */
 
 const { AlignmentToolbar } = wp.blocks;
+import Field from './../../components/field';
 
-export default function alignmentToolbar( props, config, defaultConfig, attributeKey, middleware ) {
+export default function alignmentToolbar( props, config, defaultConfig ) {
 	const fieldAttributes = _.extend( defaultConfig, config );
 
 	delete fieldAttributes.type;
 
-	return middleware.createField( config, (
-		<AlignmentToolbar
+	return (
+		<Field
+			config={ config }
+			component={ AlignmentToolbar }
 			{ ...fieldAttributes }
 		/>
-	) );
+	);
 }

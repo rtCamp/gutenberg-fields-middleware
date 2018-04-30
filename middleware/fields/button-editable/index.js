@@ -4,6 +4,7 @@
 
 const { __ } = wp.i18n;
 import ButtonEditable from './../../components/button-editable';
+import Field from './../../components/field';
 
 export default function buttonEditable( props, config, defaultConfig, attributeKey, middleware ) {
 	const defaultAttributes = _.extend( defaultConfig, {
@@ -19,8 +20,10 @@ export default function buttonEditable( props, config, defaultConfig, attributeK
 	const fieldAttributes = _.extend( defaultAttributes, config );
 	const helperFields = middleware.getHelperFields( attributeKey );
 
-	return middleware.createField( config, (
-		<ButtonEditable
+	return (
+		<Field
+			config={ config }
+			component={ ButtonEditable }
 			{ ...fieldAttributes }
 			buttonValue={ fieldAttributes.value }
 			isSelected={ props.isSelected && attributeKey === props.editable }
@@ -29,5 +32,5 @@ export default function buttonEditable( props, config, defaultConfig, attributeK
 			textColor={ middleware.getHelperFieldValue( props, config, 'color' ) }
 			buttonClass={ middleware.getHelperFieldValue( props, config, 'class' ) }
 		/>
-	) );
+	);
 }

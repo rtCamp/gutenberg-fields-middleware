@@ -3,8 +3,9 @@
  */
 
 const { UrlInputButton } = wp.blocks;
+import Field from './../../components/field';
 
-export default function urlInputButton( props, config, defaultConfig, attributeKey, middleware ) {
+export default function urlInputButton( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = _.extend( defaultConfig, {
 		url: props.attributes[ attributeKey ],
 	} );
@@ -13,9 +14,11 @@ export default function urlInputButton( props, config, defaultConfig, attributeK
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
-	return middleware.createField( config, (
-		<UrlInputButton
+	return (
+		<Field
+			config={ config }
+			component={ UrlInputButton }
 			{ ...fieldAttributes }
 		/>
-	) );
+	);
 }

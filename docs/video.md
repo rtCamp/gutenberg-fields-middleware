@@ -110,10 +110,6 @@ video: {
 	type: 'object',
 	field: {
 		type: 'video',
-		fileUpload: true,
-		inputUrl: true,
-		mediaUploadButton: true,
-		placeholder: true,
 		helperFields: {
 			caption: 'videoCaption',
 		},

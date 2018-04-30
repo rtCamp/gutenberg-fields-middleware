@@ -3,6 +3,7 @@
  */
 const { __ } = wp.i18n;
 import MediaPlaceholder from './../../components/media-placeholder';
+import Field from './../../components/field';
 
 export default function mediaUpload( props, config, defaultConfig, attributeKey, middleware ) {
 	const vowelPrefix = 'video' === config.type ? __( ' a ' ) : __( ' an ' );
@@ -40,11 +41,13 @@ export default function mediaUpload( props, config, defaultConfig, attributeKey,
 		}
 	};
 
-	return middleware.createField( config, (
-		<MediaPlaceholder
+	return (
+		<Field
+			config={ config }
+			component={ MediaPlaceholder }
 			{ ...fieldAttributes }
 			mediaData={ props.attributes[ attributeKey ] }
 			captionField={ helperFields.caption }
 		/>
-	) );
+	);
 }
