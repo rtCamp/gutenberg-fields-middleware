@@ -59,8 +59,8 @@ alignment: {
 ## Example Usage ( ES5 )
 
 ```js
-wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
-	title: 'Single Field Block Alignment.',
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
+	title: 'Single Field Block Text Alignment.',
 	attributes: {
 		alignment: {
 			type: 'string',
@@ -80,19 +80,19 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 
 	edit: function( props ) {
 		props.middleware.fields.text.props.style = {
-			textAlign: props.attributes.alignment,
+			textAlign: props.attributes.alignment, // Set alignment whenever value changes.
 		};
 
 		return [
-			props.middleware.blockControls, // Contains ALL block controls.
+			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
 			props.middleware.fields.text,
 		];
 	},
 
 	save: function( props ) {
-		return wp.element.createElement( 'p', { style: { 
-				textAlign: props.attributes.alignment 
-			} }, props.attributes.text );
+		return wp.element.createElement( 'p', {
+			style: { textAlign: props.attributes.alignment }
+		}, props.attributes.text );
 	},
 } );
 ```

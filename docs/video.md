@@ -182,25 +182,29 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-video', {
 		},
 	},
 
-	edit( props ) {
+	edit: function( props ) {
 		return [
 			props.middleware.fields.video,
 		];
 	},
 
-	save( props ) {
-		const el = wp.element;
-
-		return [
-			el.createElement( 'video', {
-				className: 'video',
-				controls: true,
-			}, el.createElement( 'source', {
-				src: props.attributes.video ? props.attributes.video.url : null,
-				type: props.attributes.video ? props.attributes.video.mime : null,
-			}, null ) ),
-			el.createElement( 'div', { className: 'video-caption' }, props.attributes.videoCaption || '' ),
-		];
+	save: function( props ) {
+		return wp.element.createElement( 'div', {},
+			wp.element.createElement( 'video', {
+					className: 'video',
+					controls: true,
+				},
+				wp.element.createElement( 'source', {
+					src: props.attributes.video ? props.attributes.video.url : null,
+					type: props.attributes.video ? props.attributes.video.mime : null,
+				}, null )
+			),
+			wp.element.createElement( 'div', {
+					className: 'video-caption'
+				},
+				props.attributes.videoCaption || ''
+			)
+		);
 	},
 } );
 ```

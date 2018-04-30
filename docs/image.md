@@ -187,23 +187,30 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 		},
 	},
 
-	edit( props ) {
+	edit: function( props ) {
 		return [
 			props.middleware.fields.image,
 		];
 	},
 
-	save( props ) {
-		const el = wp.element;
-		const attributes = props.attributes;
+	save: function( props ) {
+		var attributes = props.attributes;
 
-		return [
-			el( 'img', {
+		return wp.element.createElement( 'figure', {
+				className: props.className
+			},
+			wp.element.createElement( 'img', { // field: image.
 				className: 'image',
 				src: attributes.image ? attributes.image.url : null,
+				alt: attributes.image ? attributes.image.alt : null,
+				title: attributes.image ? attributes.image.title : null,
+				width: attributes.image ? attributes.image.width : null,
+				height: attributes.image ? attributes.image.height : null,
 			}, null ),
-			el( 'div', { className: 'image-caption' }, attributes.imageCaption || '' ),
-		];
+			wp.element.createElement( 'figcaption', {
+				className: 'image-caption'
+			}, attributes.imageCaption || '' ), // field: imageCaption.
+		);
 	},
 } );
 ```
