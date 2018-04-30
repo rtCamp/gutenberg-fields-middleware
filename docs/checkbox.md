@@ -15,7 +15,7 @@ A label for the input field, that appears at the side of the checkbox. The prop 
 
 #### help:
 
-If this property is added, a help text will be generated using help property as the content.
+Used to add help text below the field.
 * Type: `String`
 * Required: No
 

@@ -8,7 +8,7 @@ If set, a label will be generated using label property value as the content.
 
 #### help:
 
-If set, a help text will be generated using help property value as the content.
+Used to add help text below the field.
 * Type: `String`
 * Required: No
 

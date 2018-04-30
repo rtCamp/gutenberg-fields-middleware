@@ -113,7 +113,7 @@ Gutenberg Fields Middleware supports the following field types and type configur
 - [icons-toolbar](docs/icons-toolbar.md)
 - [media-icon](docs/media-icon.md)
 - [dropdown-menu](docs/dropdown-menu.md)
-- [url-input-button](docs/url-input.md)
+- [url-input-button](docs/url-input-button.md)
 
 
 

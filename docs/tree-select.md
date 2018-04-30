@@ -9,7 +9,7 @@ If this property is added, a label will be generated using label property as the
 
 #### help:
 
-If added, a help text will be added below the field.
+Used to add help text below the field.
 
 - Type: `String`
 - Required: No

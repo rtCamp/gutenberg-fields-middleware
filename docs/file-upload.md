@@ -1,18 +1,12 @@
 # file-upload
 
-#### accept:
-
-File types to accept with uploader.
-
-- Type: `String`
-- Required: No
-
 #### fileType:
 
-Selected file type to be upload on library.
+Selected file type to be upload on library like `application`, `image`, `video`, `audio`
 
 - Type: `String`
 - Required: No
+- Default: `application`
 
 #### isLarge:
 
@@ -37,7 +31,7 @@ A label for the field.
 
 #### help:
 
-If added, a help text will be added below the field.
+Used to add help text below the field.
 
 - Type: `String`
 - Required: No

@@ -2,6 +2,8 @@
 
 Generally used in block-controls or inspector. 
 
+![image](https://user-images.githubusercontent.com/6297436/39417930-097416f2-4c75-11e8-8b75-68fc6e8231f7.png)
+
 
 
 ## Properties
@@ -15,7 +17,7 @@ A label for the field. Should not be used when field goes in block-controls.
 
 #### help:
 
-If added, a help text will be added below the field. Should not be used when field goes in block-controls.
+Used to add help text below the field. Should not be used when field goes in block-controls.
 
 - Type: `String`
 - Required: No
