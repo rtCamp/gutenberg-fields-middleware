@@ -110,22 +110,22 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 	},
 
 	save: function( props ) {
-		var attributes = props.attributes;
+		const attributes = props.attributes;
 
 		return wp.element.createElement( 'figure', {
-				className: props.className
-			},
-			wp.element.createElement( 'img', { // field: image.
-				className: 'image',
-				src: attributes.image ? attributes.image.url : null,
-				alt: attributes.image ? attributes.image.alt : null,
-				title: attributes.image ? attributes.image.title : null,
-				width: attributes.image ? attributes.image.width : null,
-				height: attributes.image ? attributes.image.height : null,
-			}, null ),
-			wp.element.createElement( 'figcaption', {
-				className: 'image-caption'
-			}, attributes.imageCaption || '' ), // field: imageCaption.
+			className: props.className,
+		},
+		wp.element.createElement( 'img', { // field: image.
+			className: 'image',
+			src: attributes.image ? attributes.image.url : null,
+			alt: attributes.image ? attributes.image.alt : null,
+			title: attributes.image ? attributes.image.title : null,
+			width: attributes.image ? attributes.image.width : null,
+			height: attributes.image ? attributes.image.height : null,
+		}, null ),
+		wp.element.createElement( 'figcaption', {
+			className: 'image-caption',
+		}, attributes.imageCaption || '' ), // field: imageCaption.
 		);
 	},
 } );
@@ -140,16 +140,15 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 			type: 'object',
 			field: {
 				type: 'media-icon',
-				mediaType: 'image',
 				placement: 'block-controls',
 			},
 		},
 	},
 
 	edit: function( props ) {
-		var image = props.attributes.image,
-			imageUrl = image ? 'url(' + image.url + ')' : undefined,
-			imageHeight = image ? image.height : undefined;
+		const image = props.attributes.image;
+		const imageUrl = image ? 'url(' + image.url + ')' : null;
+		const imageHeight = image ? image.height : null;
 
 		return [
 			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
@@ -160,15 +159,15 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 					backgroundImage: imageUrl,
 					backgroundRepeat: 'no-repeat',
 					height: imageHeight,
-				}
+				},
 			}, null ),
 		];
 	},
 
 	save: function( props ) {
-		var image = props.attributes.image,
-			imageUrl = image ? 'url(' + image.url + ')' : undefined,
-			imageHeight = image ? image.height : undefined;
+		const image = props.attributes.image;
+		const imageUrl = image ? 'url(' + image.url + ')' : null;
+		const imageHeight = image ? image.height : null;
 
 		return wp.element.createElement( 'div', {
 			className: 'block-control-image',
@@ -176,7 +175,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 				backgroundImage: imageUrl,
 				backgroundRepeat: 'no-repeat',
 				height: imageHeight,
-			}
+			},
 		}, null );
 	},
 } );
@@ -220,18 +219,18 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 	save: function( props ) {
 		return wp.element.createElement( 'div', {},
 			wp.element.createElement( 'audio', {
-					className: 'audio',
-					controls: true,
-				},
-				wp.element.createElement( 'source', {
-					src: props.attributes.audio ? props.attributes.audio.url : null,
-					type: props.attributes.audio ? props.attributes.audio.mime : null,
-				}, null )
+				className: 'audio',
+				controls: true,
+			},
+			wp.element.createElement( 'source', {
+				src: props.attributes.audio ? props.attributes.audio.url : null,
+				type: props.attributes.audio ? props.attributes.audio.mime : null,
+			}, null )
 			),
 			wp.element.createElement( 'div', {
-					className: 'audio-caption'
-				},
-				props.attributes.audioCaption || ''
+				className: 'audio-caption',
+			},
+			props.attributes.audioCaption || ''
 			)
 		);
 	},
@@ -276,18 +275,18 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-video', {
 	save: function( props ) {
 		return wp.element.createElement( 'div', {},
 			wp.element.createElement( 'video', {
-					className: 'video',
-					controls: true,
-				},
-				wp.element.createElement( 'source', {
-					src: props.attributes.video ? props.attributes.video.url : null,
-					type: props.attributes.video ? props.attributes.video.mime : null,
-				}, null )
+				className: 'video',
+				controls: true,
+			},
+			wp.element.createElement( 'source', {
+				src: props.attributes.video ? props.attributes.video.url : null,
+				type: props.attributes.video ? props.attributes.video.mime : null,
+			}, null )
 			),
 			wp.element.createElement( 'div', {
-					className: 'video-caption'
-				},
-				props.attributes.videoCaption || ''
+				className: 'video-caption',
+			},
+			props.attributes.videoCaption || ''
 			)
 		);
 	},
@@ -356,8 +355,8 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-file-upload', {
 	},
 
 	save: function( props ) {
-		var attributes = props.attributes,
-			files = [];
+		const attributes = props.attributes;
+		const files = [];
 
 		if ( attributes.fileUpload ) {
 			_.each( attributes.fileUpload, function( file ) {

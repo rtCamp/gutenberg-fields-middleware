@@ -111,10 +111,6 @@ image: {
 	type: 'object',
 	field: {
 		type: 'image',
-		fileUpload: true,
-		inputUrl: true,
-		mediaUploadButton: true,
-		placeholder: true,
 		helperFields: {
 			caption: 'imageCaption',
 		},

@@ -1,8 +1,10 @@
 # icons-toolbar
 
-![image](https://user-images.githubusercontent.com/1138833/39433636-fea1863a-4cb3-11e8-99e4-f4e678506787.png)
+Generally used in block-controls or inspector.  ( See example usage )
 
-Generally used in block-controls or inspector. 
+![icon-toolbar](https://user-images.githubusercontent.com/6297436/39447333-0a0f2a6a-4cdf-11e8-842b-cb326aeb3cbc.png)
+
+
 
 ## Properties
 
@@ -34,6 +36,7 @@ Type of the media to be added.
 
 - Accepts: `image`, `video`, `audio`
 - Type: `String`
+- Default: `image`
 - Required: No
 
 **Example:**
@@ -67,7 +70,6 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 			type: 'object',
 			field: {
 				type: 'media-icon',
-				mediaType: 'image',
 				placement: 'block-controls',
 			},
 		},
@@ -75,8 +77,8 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 
 	edit: function( props ) {
 		var image = props.attributes.image,
-			imageUrl = image ? 'url(' + image.url + ')' : undefined,
-			imageHeight = image ? image.height : undefined;
+			imageUrl = image ? 'url(' + image.url + ')' : null,
+			imageHeight = image ? image.height : null;
 
 		return [
 			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
@@ -94,8 +96,8 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 
 	save: function( props ) {
 		var image = props.attributes.image,
-			imageUrl = image ? 'url(' + image.url + ')' : undefined,
-			imageHeight = image ? image.height : undefined;
+			imageUrl = image ? 'url(' + image.url + ')' : null,
+			imageHeight = image ? image.height : null;
 
 		return wp.element.createElement( 'div', {
 			className: 'block-control-image',

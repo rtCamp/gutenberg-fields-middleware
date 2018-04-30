@@ -112,10 +112,6 @@ audio: {
 	type: 'object',
 	field: {
 		type: 'audio',
-		fileUpload: true,
-		inputUrl: true,
-		mediaUploadButton: true,
-		placeholder: true,
 		helperFields: {
 			caption: 'audioCaption',
 		},
