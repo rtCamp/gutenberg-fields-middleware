@@ -38,6 +38,8 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
 
 /**
  * Block Alignment Example.
+ * Make sure theme support added for 'wide' and 'full' alignment.
+ * Ref. https://wordpress.org/gutenberg/handbook/extensibility/theme-support/#wide-alignment
  */
 wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 	title: 'Single Field Block Alignment.',
@@ -122,7 +124,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 } );
 
 /**
- * Image Example.
+ * Block control Image Example.
  */
 wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 	title: 'Single Field Block Controls Image.',
@@ -315,5 +317,51 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-button-editable', 
 				href: attributes.buttonEditable,
 			}, attributes.buttonEditable ),
 		];
+	},
+} );
+
+/**
+ * File Upload Example.
+ */
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-file-upload', {
+	title: 'Single Field Block File Upload.',
+	attributes: {
+		fileUpload: {
+			type: 'array',
+			field: {
+				type: 'file-upload',
+				fileType: [ 'video', 'audio', 'image' ],
+				multiple: true,
+				label: 'Upload File',
+			},
+		},
+	},
+
+	edit: function( props ) {
+		return [
+			props.middleware.fields.fileUpload,
+		];
+	},
+
+	save: function( props ) {
+		var attributes = props.attributes,
+			files = [];
+
+		if ( attributes.fileUpload ) {
+			_.each( attributes.fileUpload, function( file ) {
+				files.push(
+					wp.element.createElement( 'li', {},
+						wp.element.createElement( 'a', {
+							className: 'file-upload',
+							href: file.url,
+						}, file.name )
+					)
+				);
+			} );
+		}
+
+		return (
+			wp.element.createElement( 'ul', {}, files )
+		);
 	},
 } );
