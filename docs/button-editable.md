@@ -17,7 +17,7 @@ A label for the field. Should not be used when field goes in block-controls.
 
 #### help:
 
-If added, a help text will be added below the field. Should not be used when field goes in block-controls.
+Used to add help text below the field. Should not be used when field goes in block-controls.
 
 - Type: `String`
 - Required: No
@@ -114,12 +114,6 @@ buttonClasses: {
 },
 ```
 
-
-
-## Returning field in `edit` method:
-
-- `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
-- `props.middleware.fields.yourAttributeKeyName` for a **single** field when `placement` property is not defined.
 
 
 

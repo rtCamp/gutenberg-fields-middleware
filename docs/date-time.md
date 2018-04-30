@@ -1,5 +1,11 @@
 # date-time
 
+![image](https://user-images.githubusercontent.com/6297436/39417816-64e5dbca-4c74-11e8-852e-f3d05205f06d.png)
+
+
+
+## Properties
+
 #### label:
 
 Field Label
@@ -25,6 +31,11 @@ The localization for the display of the date and time.
 #### is12Hour:
 
 Whether the current timezone is a 12 hour time.
+
+- Type: `bool`
+- Required: No
+
+#### initialOpen:
 
 - Type: `bool`
 - Required: No

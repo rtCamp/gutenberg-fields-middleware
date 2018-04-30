@@ -30,7 +30,7 @@ If this property is added, a label will be generated using label property value 
 
 #### help:
 
-If set, a help text will be generated using help property as the content.
+Used to add help text below the field.
 
 - Type: `String`
 - Required: No

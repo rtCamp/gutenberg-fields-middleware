@@ -17,7 +17,7 @@ A label for the field.
 
 #### help:
 
-If added, a help text will be added below the field.
+Used to add help text below the field.
 
 - Type: `String`
 - Required: No
@@ -86,12 +86,6 @@ videoCaption: {
 },
 ```
 
-
-
-## Returning field in `edit` method:
-
-- `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
-- `props.middleware.fields.yourAttributeKeyName` for a **single** field when `placement` property is not defined.
 
 
 

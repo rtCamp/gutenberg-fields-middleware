@@ -1,5 +1,9 @@
 # code-editor
 
+![image](https://user-images.githubusercontent.com/6297436/39417719-d00fa648-4c73-11e8-97ab-c91d742d3244.png)
+
+## Properties
+
 #### label:
 
 A label for the field.
@@ -9,7 +13,7 @@ A label for the field.
 
 #### help:
 
-If added, a help text will be added below the field.
+Used to add help text below the field.
 
 - Type: `String`
 - Required: No

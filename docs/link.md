@@ -9,7 +9,7 @@ Label for input but applicable only when using it in inspector controls.
 
 #### help:
 
-If added, a help text will be added below the field.
+Used to add help text below the field.
 
 - Type: `String`
 - Required: No

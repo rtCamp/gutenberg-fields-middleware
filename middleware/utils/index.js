@@ -1,4 +1,29 @@
 /**
+ * Get middeware warnings when some dependency is not added.
+ *
+ * @return {string} Warning.
+ */
+export function getMiddlewareWarnings() {
+	let error = false;
+
+	if ( 'undefined' === typeof wp ) {
+		error = 'No wp object found, its a dependency for gutenberg middleware to work.';
+	} else if ( 'undefined' === typeof wp.blocks ) {
+		error = 'wp.blocks object not defined, have you used wp-blocks as dependency when enqueuing middleware script ?';
+	} else if ( 'undefined' === typeof wp.i18n ) {
+		error = 'wp.i18n object not defined, have you used wp-i18n as dependency when enqueuing middleware script ?';
+	} else if ( 'undefined' === typeof wp.element ) {
+		error = 'wp.element object not defined, have you used wp-element as dependency when enqueuing middleware script ?';
+	} else if ( 'undefined' === typeof wp.date ) {
+		error = 'wp.date object not defined, have you used wp-date as dependency when enqueuing middleware script ?';
+	} else if ( 'undefined' === typeof wp.hooks ) {
+		error = 'wp.hooks object not defined, have you used wp-hooks as dependency when enqueuing middleware script ?';
+	}
+
+	return error;
+}
+
+/**
  * Get dashicon css class suffix using extension.
  *
  * @param {string} extension File extension.

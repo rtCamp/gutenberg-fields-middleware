@@ -1,5 +1,5 @@
 import './editor.scss';
-import { getDashIconSuffixByType } from './../../utils/media';
+import { getDashIconSuffixByType } from './../../utils';
 
 const { Component } = wp.element;
 const { __ } = wp.i18n;

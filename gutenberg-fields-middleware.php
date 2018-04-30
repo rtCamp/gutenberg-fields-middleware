@@ -56,7 +56,7 @@ function gutenberg_fields_middleware_register_scripts() {
 add_action( 'enqueue_block_editor_assets', 'gutenberg_fields_middleware_register_scripts' );
 
 if ( IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV ) {
-	include 'examples/examples.php';
-	include 'examples/server-side-registration/example.php';
+	include 'examples/all-fields-block/examples.php';
+	include 'examples/fields-using-php/example.php';
 	include 'examples/single-fields/example.php';
 }

@@ -2,7 +2,7 @@
  * media-icon field.
  */
 
-import { getDashIconSuffixByType } from './../../utils/media';
+import { getDashIconSuffixByType } from './../../utils';
 const { MediaUpload } = wp.blocks;
 const { IconButton, Button } = wp.components;
 const { __ } = wp.i18n;
