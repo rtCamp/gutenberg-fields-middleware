@@ -1,8 +1,8 @@
 # icons-toolbar
 
+![image](https://user-images.githubusercontent.com/1138833/39433283-113c0c44-4cb3-11e8-9d56-021306f76132.png)
+
 Generally used in block-controls or inspector. 
-
-
 
 ## Properties
 

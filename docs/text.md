@@ -1,5 +1,7 @@
 # text
 
+![image](https://user-images.githubusercontent.com/1138833/39434428-2884a3d6-4cb6-11e8-8dff-b35c9888afc9.png)
+
 Render an auto-growing textarea allow users to fill any textual content.
 
 You can also pass any extra prop to the textarea rendered by this field. 

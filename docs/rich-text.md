@@ -1,5 +1,7 @@
 # rich-text
 
+![image](https://user-images.githubusercontent.com/1138833/39434143-5d665eb0-4cb5-11e8-9ddc-3efcd8c81cd4.png)
+
 #### placeholder:
 
 - Type: `String`

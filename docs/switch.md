@@ -1,5 +1,7 @@
 # switch
 
+![image](https://user-images.githubusercontent.com/1138833/39434339-f851cb80-4cb5-11e8-9953-89aa9070fae9.png)
+
 #### label:
 
 Field Label

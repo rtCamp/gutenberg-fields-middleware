@@ -1,5 +1,7 @@
 # checkbox
 
+![image](https://user-images.githubusercontent.com/1138833/39432913-35af77a6-4cb2-11e8-9e9c-a6e139829a16.png)
+
 #### heading:
 
 A heading for the input field, that appears above the checkbox. If the prop is not passed no heading will be rendered.

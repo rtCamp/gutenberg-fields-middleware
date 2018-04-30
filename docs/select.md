@@ -1,5 +1,7 @@
 # select
 
+![image](https://user-images.githubusercontent.com/1138833/39434214-8c12589a-4cb5-11e8-9192-c4b9c9c31541.png)
+
 #### label:
 
 If set, a label will be generated using label property value as the content.

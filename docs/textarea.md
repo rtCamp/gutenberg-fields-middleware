@@ -1,5 +1,7 @@
 # textarea
 
+![image](https://user-images.githubusercontent.com/1138833/39434561-89fddf9c-4cb6-11e8-92cd-9d47c6c6cc47.png)
+
 #### label:
 
 If this property is added, a label will be generated using label property as the content.
