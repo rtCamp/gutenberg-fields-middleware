@@ -2,8 +2,7 @@
 
 Generally used in block-controls or inspector.  ( See Example Usage )
 
-![alignment-toolbar](https://user-images.githubusercontent.com/6297436/39360805-451366a2-4a3d-11e8-8a2e-2b9900228284.gif)
-
+![block-alignment-toolbar](https://user-images.githubusercontent.com/1138833/39424133-c48ef1b0-4c92-11e8-9d15-1bdb976cb953.gif)
 
 
 ## Properties
@@ -32,7 +31,7 @@ Defines where you want to show the field. By default a field would be added to t
 
 
 
-For more read Gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/alignment-toolbar).
+For more read Gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/block-alignment-toolbar).
 
 **Example:**
 
@@ -40,10 +39,12 @@ For more read Gutenberg [readme](https://github.com/WordPress/gutenberg/tree/mas
 alignment: {
 	type: 'string',
 	field: {
-		type: 'alignment-toolbar',
-		placement: 'block-controls',            
+		type: 'block-alignment-toolbar',
+		placement: 'block-controls',
+		controls: [ 'left', 'center', 'right', 'wide', 'full' ],
 	},
-}
+	default: 'center',
+},
 ```
 
 
@@ -51,24 +52,23 @@ alignment: {
 ## Return value in `props.attribute`
 
 - Type: `string`
-- Possible Values: `left`, `right`, `center`
-
-
+- Possible Values: `left`, `center`, `right`, `wide`, `full`
 
 
 ## Example Usage ( ES5 )
 
 ```js
-wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
-	title: 'Single Field Block Text Alignment.',
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
+	title: 'Single Field Block Alignment.',
 	attributes: {
 		alignment: {
 			type: 'string',
 			field: {
-				type: 'alignment-toolbar',
+				type: 'block-alignment-toolbar',
 				placement: 'block-controls',
+				controls: [ 'left', 'center', 'right', 'wide', 'full' ],
 			},
-			default: 'left',
+			default: 'center',
 		},
 		text: {
 			type: 'string',
@@ -79,10 +79,6 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
 	},
 
 	edit: function( props ) {
-		props.middleware.fields.text.props.style = {
-			textAlign: props.attributes.alignment, // Set alignment whenever value changes.
-		};
-
 		return [
 			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
 			props.middleware.fields.text,
@@ -90,9 +86,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
 	},
 
 	save: function( props ) {
-		return wp.element.createElement( 'p', {
-			style: { textAlign: props.attributes.alignment }
-		}, props.attributes.text );
+		return wp.element.createElement( 'p', { className: 'align' + props.attributes.alignment }, props.attributes.text );
 	},
 } );
 ```

@@ -92,17 +92,21 @@ register_block_type( 'example-namespace/example-block', array(
 
 Gutenberg Fields Middleware supports the following field types and type configuration.
 
-- [image](docs/image.md)
+- [alignment-toolbar](docs/alignment-toolbar.md)
 - [audio](docs/audio.md)
-- [video](docs/video.md)
+- [block-alignment-toolbar](docs/block-alignment-toolbar.md)
 - [button-editable](docs/button-editable.md)
 - [checkbox](docs/checkbox.md)
 - [code-editor](docs/code-editor.md)
 - [color](docs/color.md)
 - [date-time](docs/date-time.md)
+- [dropdown-menu](docs/dropdown-menu.md)
 - [file-upload](docs/file-upload.md)
+- [icons-toolbar](docs/icons-toolbar.md)
+- [image](docs/image.md)
 - [input types: email / number/ hidden / search / tel etc.](docs/input.md)
 - [link](docs/link.md)
+- [media-icon](docs/media-icon.md)
 - [radio](docs/radio.md)
 - [range](docs/range.md)
 - [rich-text](docs/rich-text.md)
@@ -111,11 +115,8 @@ Gutenberg Fields Middleware supports the following field types and type configur
 - [text](docs/text.md)
 - [textarea](docs/textarea.md)
 - [tree-select](docs/tree-select.md)
-- [alignment-toolbar](docs/alignment-toolbar.md)
-- [icons-toolbar](docs/icons-toolbar.md)
-- [media-icon](docs/media-icon.md)
-- [dropdown-menu](docs/dropdown-menu.md)
 - [url-input-button](docs/url-input-button.md)
+- [video](docs/video.md)
 
 
 
