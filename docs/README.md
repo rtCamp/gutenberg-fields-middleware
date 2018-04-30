@@ -126,7 +126,7 @@ Gutenberg Fields Middleware supports the following field types and type configur
 - `props.middleware.blockControls` for **all** block-control fields. ( `placement: 'block-control'` ) 
   - Alternatively individual block control fields can be returned using `props.middleware.blockControlFields.key` but then you would need to wrap them in `<BlockControls>` yourself.
 - `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
-  - Alternatively individual inspector fields can be returned using `props.middleware.inspectorControlFields.key` but then you would need to wrap them in `InspectorControls` yourself.
+  - Alternatively individual inspector fields can be returned using `props.middleware.inspectorControlFields.key` but then you would need to wrap them in `<InspectorControls>` yourself.
 
 
 

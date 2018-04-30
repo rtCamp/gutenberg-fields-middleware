@@ -60,5 +60,5 @@ if ( IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV ) {
 	include 'examples/all-fields-block/examples.php';
 	include 'examples/fields-using-php/example.php';
 	include 'examples/single-fields/example.php';
-	include 'examples/block-using-withAPIData/example.php';
+	include 'examples/block-using-hoc/example.php';
 }
