@@ -568,7 +568,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				// field: button-editable
 				el( 'a', {
 					className: 'button-link',
-					href: '',
+					href: attributes.buttonEditableLink,
 				}, attributes.buttonEditable ),
 
 				// field: tree-select
