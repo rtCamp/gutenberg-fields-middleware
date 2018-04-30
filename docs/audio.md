@@ -1,20 +1,59 @@
 # audio
 
+See Example Usage.
+
+![image](https://user-images.githubusercontent.com/6297436/39362275-78fb9c68-4a43-11e8-8ba6-66b63025696d.png)
+
+
+
+## Properties
+
+#### label:
+
+A label for the field.
+
+- Type: `String`
+- Required: No
+
+#### help:
+
+If added, a help text will be added below the field.
+
+- Type: `String`
+- Required: No
+
 #### buttonText:
 
 Upload button text.
 
-- Type: `string`
+- Type: `String`
 - Required: No
-- Default: null
 
 #### placeholderText:
 
 Audio placeholder text.
 
+- Type: `String`
+- Required: No
+
+#### placement:
+
+Defines where you want to show the field. By default a field would be added to the block however it can be added to the sidebar settings by using `inspector` .
+
+- Accepts: `inspector`
 - Type: `string`
 - Required: No
-- Default: null
+
+#### helperFields:
+
+If caption field is required, define a new attribute field and use the attribute key name as 
+
+`{ caption: 'yourCaptionAttributeKeyName' }` .
+
+- Type: `Object`
+- Required: No
+
+
 
 **Example:**
 
@@ -23,8 +62,17 @@ audio: {
 	type: 'object',
 	field: {
 		type: 'audio',
-		buttonText: __( 'Upload' ),
-		placeholderText: __( 'Select an audio file from your library, or upload a new one' ),
+	},
+},
+```
+
+**Example with caption:**
+
+```js
+audio: {
+	type: 'object',
+	field: {
+		type: 'audio',
 		helperFields: {
 			caption: 'audioCaption',
 		},
@@ -34,16 +82,25 @@ audioCaption: {
 	type: 'array',
 	field: {
 		type: 'rich-text',
-		placeholder: __( 'Enter caption' ),
 	},
 	source: 'children',
 	selector: '.audio-caption',
 },
 ```
 
-### Return
 
-This will return complete audio object.
+
+## Returning field in `edit` method:
+
+- `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
+- `props.middleware.fields.yourAttributeKeyName` for a **single** field when `placement` property is not defined.
+
+
+
+
+## Return value in `props.attribute`
+
+Returns complete audio object.
 
 - Type: `object`
 
@@ -102,3 +159,66 @@ This will return complete audio object.
 	}
 }
 ```
+
+
+
+
+## Example Usage ( ES5 )
+
+```js
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
+	title: 'Single Field Block Audio.',
+	attributes: {
+		audio: {
+			type: 'object',
+			field: {
+				type: 'audio',
+				helperFields: {
+					caption: 'audioCaption', // If required.
+				},
+			},
+		},
+		audioCaption: {
+			type: 'array',
+			field: {
+				type: 'rich-text',
+				placeholder: 'Enter caption',
+			},
+			source: 'children',
+			selector: '.audio-caption',
+		},
+	},
+
+	edit: function( props ) {
+		return [
+			props.middleware.fields.audio,
+		];
+	},
+
+	save: function( props ) {
+		var el = wp.element.createElement,
+			attributes = props.attributes;
+
+		return [
+			el( 'audio', {
+				className: 'audio',
+				controls: true,
+			}, el( 'source', {
+				src: attributes.audio ? attributes.audio.url : null,
+				type: attributes.audio ? attributes.audio.mime : null,
+			}, null ) ),
+			el( 'div', { 
+				className: 'audio-caption' 
+			}, attributes.audioCaption || '' ),
+		];
+	},
+} );
+```
+
+Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/block-api/attributes/).
+
+
+
+After uploading audio:
+
+![image](https://user-images.githubusercontent.com/6297436/39365283-50925716-4a4e-11e8-8141-ffd2e2374a53.png)

@@ -28,12 +28,6 @@ An array of objects containing the following properties:
 * Type: `Array`
 * Required: No
 
-#### onChange:
-
-A function that receives the value of the new option that is being selected as input . If multiple is true the value received is an array of the selected value. If multiple is false the value received is a single value with the new selected value. It passes the new `value` as first argument and `props` as second argument.
-* Type: `Function`
-* Required: No
-
 For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/select-control).
 
 **Example:**

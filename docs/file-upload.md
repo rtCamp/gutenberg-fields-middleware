@@ -14,13 +14,6 @@ Selected file type to be upload on library.
 - Type: `String`
 - Required: No
 
-#### onChange:
-
-A function that receives the event object which has selected files..
-
-- Type: `function`
-- Required: No
-
 #### isLarge:
 
 Adds class `button-large` if set true.

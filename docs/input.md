@@ -2,13 +2,6 @@
 
 Creates input fields with above types. You can pass key value pairs will be passed to the input. 
 
-#### onChange:
-
-A function that receives the new value of the input field each time it changes. It passes the new `value` as first argument and `props` as second argument.
-
-- Type: `Function`
-- Required: No
-
 #### label:
 
 If this property is added, a label will be generated using label property value as the content.
@@ -19,13 +12,6 @@ If this property is added, a label will be generated using label property value 
 #### help:
 
 If set, a help text will be generated using help property as the content.
-
-- Type: `String`
-- Required: No
-
-#### className:
-
-CSS class name for the input field.
 
 - Type: `String`
 - Required: No

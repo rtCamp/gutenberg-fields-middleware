@@ -31,7 +31,7 @@
  */
 
 if ( ! defined( 'IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV' ) ) {
-	define( 'IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV', true );
+	define( 'IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV', false );
 }
 
 if ( ! defined( 'GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR' ) ) {
@@ -58,4 +58,5 @@ add_action( 'enqueue_block_editor_assets', 'gutenberg_fields_middleware_register
 if ( IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV ) {
 	include 'examples/examples.php';
 	include 'examples/server-side-registration/example.php';
+	include 'examples/single-fields/example.php';
 }

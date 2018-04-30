@@ -78,18 +78,21 @@ class GutenbergFieldsMiddleWare {
 			return ( <div className={ wrapperClassName }>{ this.edit( props ) }</div> );
 		} );
 
-		this.blockConfigs.getEditWrapperProps = ( attributes ) => {
-			let newAttributes = {};
-			const getEditWrapperProps = this.config.getEditWrapperProps ? this.config.getEditWrapperProps( attributes ) : {};
-			const attributeKey = this.getBlockAlignmentToolbarAttributeKey();
-			const align = attributes[ attributeKey ];
+		const BlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey();
 
-			if ( _.contains( [ 'left', 'center', 'right', 'wide', 'full' ], align ) ) {
-				newAttributes = { 'data-align': align };
-			}
+		if ( BlockAlignmentToolbarAttributeKey ) {
+			this.blockConfigs.getEditWrapperProps = ( attributes ) => {
+				let newAttributes = {};
+				const getEditWrapperProps = this.config.getEditWrapperProps ? this.config.getEditWrapperProps( attributes ) : {};
+				const align = attributes[ BlockAlignmentToolbarAttributeKey ];
 
-			return _.extend( newAttributes, getEditWrapperProps );
-		};
+				if ( _.contains( [ 'left', 'center', 'right', 'wide', 'full' ], align ) ) {
+					newAttributes = { 'data-align': align };
+				}
+
+				return _.extend( newAttributes, getEditWrapperProps );
+			};
+		}
 
 		this.blockConfigs.save = ( props ) => {
 			props.middleware = this;

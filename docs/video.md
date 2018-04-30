@@ -1,20 +1,57 @@
 # video
 
+See Example Usage.
+
+![image](https://user-images.githubusercontent.com/6297436/39364929-4a268a42-4a4d-11e8-8ecf-a52743796583.png)
+
+
+
+## Properties
+
+#### label:
+
+A label for the field.
+
+- Type: `String`
+- Required: No
+
+#### help:
+
+If added, a help text will be added below the field.
+
+- Type: `String`
+- Required: No
+
 #### buttonText:
 
 Upload button text.
 
-- Type: `string`
+- Type: `String`
 - Required: No
-- Default: null
 
 #### placeholderText:
 
-Video placeholder text.
+Audio placeholder text.
 
+- Type: `String`
+- Required: No
+
+#### placement:
+
+Defines where you want to show the field. By default a field would be added to the block however it can be added to the sidebar settings by using `inspector` .
+
+- Accepts: `inspector`
 - Type: `string`
 - Required: No
-- Default: null
+
+#### helperFields:
+
+If caption field is required, define a new attribute field and use the attribute key name as 
+
+`{ caption: 'yourCaptionAttributeKeyName' }` .
+
+- Type: `Object`
+- Required: No
 
 **Example:**
 
@@ -23,8 +60,17 @@ video: {
 	type: 'object',
 	field: {
 		type: 'video',
-		buttonText: __( 'Upload' ),
-		placeholderText: __( 'Select a video file from your library, or upload a new one' ),
+	},
+},
+```
+
+**Example with caption:**
+
+```js
+video: {
+	type: 'object',
+	field: {
+		type: 'video',
 		helperFields: {
 			caption: 'videoCaption',
 		},
@@ -34,16 +80,24 @@ videoCaption: {
 	type: 'array',
 	field: {
 		type: 'rich-text',
-		placeholder: __( 'Enter caption' ),
 	},
 	source: 'children',
 	selector: '.video-caption',
 },
 ```
 
-### Return
 
-This will return complete video object.
+
+## Returning field in `edit` method:
+
+- `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
+- `props.middleware.fields.yourAttributeKeyName` for a **single** field when `placement` property is not defined.
+
+
+
+## Return value in `props.attribute`
+
+Returns complete video object.
 
 - Type: `object`
 
@@ -105,3 +159,60 @@ This will return complete video object.
 	"mediaCaption": "Video Caption" // Caption added by user.
 }
 ```
+
+
+
+## Example Usage ( ES5 )
+
+```js
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-video', {
+	title: 'Single Field Block Video.',
+	attributes: {
+		video: {
+			type: 'object',
+			field: {
+				type: 'video',
+				helperFields: {
+					caption: 'videoCaption', // If required.
+				},
+			},
+		},
+		videoCaption: {
+			type: 'array',
+			field: {
+				type: 'rich-text',
+				placeholder: 'Enter caption',
+			},
+			source: 'children',
+			selector: '.video-caption',
+		},
+	},
+
+	edit( props ) {
+		return [
+			props.middleware.fields.video,
+		];
+	},
+
+	save( props ) {
+		const el = wp.element;
+
+		return [
+			el.createElement( 'video', {
+				className: 'video',
+				controls: true,
+			}, el.createElement( 'source', {
+				src: props.attributes.video ? props.attributes.video.url : null,
+				type: props.attributes.video ? props.attributes.video.mime : null,
+			}, null ) ),
+			el.createElement( 'div', { className: 'video-caption' }, props.attributes.videoCaption || '' ),
+		];
+	},
+} );
+```
+
+Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/block-api/attributes/).
+
+
+
+After uploading video:![image](https://user-images.githubusercontent.com/6297436/39365164-071ece7a-4a4e-11e8-8ed5-63d6ac3e978d.png)

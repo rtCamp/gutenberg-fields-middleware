@@ -14,13 +14,6 @@ If this property is added, an option will be added with this label to represent 
 - Type: `String`
 - Required: No
 
-#### onChange:
-
-A function that receives the id of the new node element that is being selected. It passes the new `value` as first argument and `props` as second argument.
-
-- Type: `function`
-- Required: No
-
 #### selectedId:
 
 The id of the currently selected node.

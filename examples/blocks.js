@@ -524,7 +524,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 					width: attributes.image ? attributes.image.width : null,
 					height: attributes.image ? attributes.image.height : null,
 				}, null ),
-				
+
 
 				// field: imageCaption
 				el( 'div', { className: 'image-caption' }, attributes.imageCaption || '' ),

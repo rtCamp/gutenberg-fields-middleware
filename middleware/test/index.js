@@ -263,7 +263,7 @@ describe( 'GutenbergFieldsMiddleWare', () => {
 
 	describe( 'getSettings()', () => {
 		it( 'Should contains all required keys', () => {
-			expect( _.keys( middlewareSettings ) ).toEqual( [ 'title', 'category', 'attributes', 'description', 'icon', 'save', 'edit', 'getEditWrapperProps' ] );
+			expect( _.keys( middlewareSettings ) ).toEqual( [ 'title', 'category', 'attributes', 'description', 'icon', 'save', 'edit' ] );
 		} );
 
 		it( 'edit is function', () => {
