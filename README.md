@@ -17,24 +17,31 @@ There are two ways of using the middleware.
 1. **As a Plugin:** Install the Gutenberg Fields Middleware as a standalone WordPress plugin which will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script.
 2. **Using JS and CSS files:** Or you can use `middleware.min.js` and `middleware.min.css` and enqueue them as dependency for your block script. Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date', 'wp-hooks' )` handles as your dependency when enqueing middleware js file.
 
-Fields are now registered as attribute configuration details. Here's how you might register `url`, `text` and `range` fields:
+Fields are now registered as attribute configuration details. Here's how you might register `image`, `text`, `color` and `range` fields:
 
 ```js
 wp.blocks.registerBlockType( 'example-namespace/example-block', {
 	title: 'Example Block',
-    category: 'common',
+	category: 'common',
 	attributes: {
-		url: {
-			type: 'string',
+		image: {
+			type: 'object',
 			field: {
-				type: 'link',
+				type: 'image',
 			},
 		},
 		text: {
 			type: 'string',
 			field: {
 				type: 'text',
-				placeholder: 'Enter link text',
+				placeholder: 'Enter text..',
+			},
+		},
+		color: {
+			type: 'string',
+			field: {
+				type: 'color',
+				placement: 'inspector',
 			},
 		},
 		range: {
@@ -44,20 +51,25 @@ wp.blocks.registerBlockType( 'example-namespace/example-block', {
 				label: 'Columns',
 				placement: 'inspector', // To show in sidebar.
 			},
+			default: 20,
 		},
 	},
 
 	edit: function( props ) {
 		return [
 			props.middleware.inspectorControls, // Contains ALL inspector controls.
-			props.middleware.fields.url,
+			props.middleware.fields.image,
 			props.middleware.fields.text,
 		];
 	},
-	
+
 	save: function( props ) {}
 });
 ```
+
+Which will create a block like this
+
+![image](https://user-images.githubusercontent.com/6297436/39425478-4bdc6444-4c99-11e8-8691-bad892910678.png)
 
 
 
@@ -135,36 +147,5 @@ Gutenberg Fields Middleware supports the following field types and type configur
 
 #### Updating Field props:
 
-```js
-registerBlockType( 'gb-m-example/simple-block', {
-	title: 'Simple Block',
-
-	attributes: {
-		button: {
-			type: 'object',
-			field: {
-				type: 'button-editable',
-			},
-		},
-		color: {
-			type: 'string',
-			field: {
-				type: 'color',
-				placement: 'inspector',
-			},
-		},
-	},
-
-	edit( props ) {
-		props.middleware.fields.button.props.style = {
-			backgroundColor: props.attributes.color,
-		};
-
-		return [
-			props.middleware.inspectorControls,
-			props.middleware.fields.button
-		];
-	}
-} );
-```
+See [example usage](docs/alignment-toolbar.md#example-usage--es5-) of alignment-toolbar.
 
