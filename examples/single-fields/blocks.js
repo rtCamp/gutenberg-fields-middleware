@@ -1,8 +1,8 @@
 /**
- * Alignment Example.
+ * Text Alignment Example.
  */
-wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
-	title: 'Single Field Block Alignment.',
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
+	title: 'Single Field Block Text Alignment.',
 	attributes: {
 		alignment: {
 			type: 'string',
@@ -33,6 +33,41 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 
 	save: function( props ) {
 		return wp.element.createElement( 'p', { style: { textAlign: props.attributes.alignment } }, props.attributes.text );
+	},
+} );
+
+/**
+ * Block Alignment Example.
+ */
+wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
+	title: 'Single Field Block Alignment.',
+	attributes: {
+		alignment: {
+			type: 'string',
+			field: {
+				type: 'block-alignment-toolbar',
+				placement: 'block-controls',
+				controls: [ 'left', 'center', 'right', 'wide', 'full' ],
+			},
+			default: 'center',
+		},
+		text: {
+			type: 'string',
+			field: {
+				type: 'text',
+			},
+		},
+	},
+
+	edit: function( props ) {
+		return [
+			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
+			props.middleware.fields.text,
+		];
+	},
+
+	save: function( props ) {
+		return wp.element.createElement( 'p', { className: 'align' + props.attributes.alignment }, props.attributes.text );
 	},
 } );
 
