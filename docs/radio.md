@@ -1,5 +1,7 @@
 # radio
 
+![image](https://user-images.githubusercontent.com/1138833/39433832-8f317c64-4cb4-11e8-8322-989499418f06.png)
+
 #### label:
 
 If set, a label will be generated using label property as the content.
@@ -43,11 +45,11 @@ radio: {
 		options: [
 			{
 				value: 'one',
-				label: 'one',
+				label: 'Option One',
 			},
 			{
 				value: 'two',
-				label: 'two',
+				label: 'Option Two',
 			},
 		],
 	},

@@ -1,5 +1,7 @@
 # range
 
+![image](https://user-images.githubusercontent.com/1138833/39434055-1f51cd26-4cb5-11e8-8a8f-79a8136d2a47.png)
+
 #### label:
 
 If set, a label will be generated using label property value as the content.

@@ -31,14 +31,14 @@ Upload button text.
 
 #### mediaButtonText:
 
-Media button text
+Media button text.
 
 - Type: `String`
 - Required: No
 
 #### placeholderText:
 
-Audio placeholder text.
+Image placeholder text.
 
 - Type: `String`
 - Required: No
@@ -99,6 +99,7 @@ image: {
 	type: 'object',
 	field: {
 		type: 'image',
+		buttonText: 'Upload',
 	},
 },
 ```
@@ -110,6 +111,10 @@ image: {
 	type: 'object',
 	field: {
 		type: 'image',
+		fileUpload: true,
+		inputUrl: true,
+		mediaUploadButton: true,
+		placeholder: true,
 		helperFields: {
 			caption: 'imageCaption',
 		},
@@ -210,6 +215,11 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 			type: 'object',
 			field: {
 				type: 'image',
+				buttonText: 'Upload',
+				fileUpload: true,
+				inputUrl: true,
+				mediaUploadButton: true,
+				placeholder: true,
 				helperFields: {
 					caption: 'imageCaption', // If required.
 				},

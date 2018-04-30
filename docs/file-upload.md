@@ -1,5 +1,7 @@
 # file-upload
 
+![image](https://user-images.githubusercontent.com/1138833/39432635-8fc8c4e6-4cb1-11e8-8e64-9c404d065dd8.png)
+
 #### fileType:
 
 Selected file type to be upload on library like `application`, `image`, `video`, `audio`

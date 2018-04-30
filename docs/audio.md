@@ -31,7 +31,7 @@ Upload button text.
 
 #### mediaButtonText:
 
-Media button text
+Media button text.
 
 - Type: `String`
 - Required: No
@@ -112,6 +112,10 @@ audio: {
 	type: 'object',
 	field: {
 		type: 'audio',
+		fileUpload: true,
+		inputUrl: true,
+		mediaUploadButton: true,
+		placeholder: true,
 		helperFields: {
 			caption: 'audioCaption',
 		},
@@ -204,6 +208,10 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 			type: 'object',
 			field: {
 				type: 'audio',
+				fileUpload: true,
+				inputUrl: true,
+				mediaUploadButton: true,
+				placeholder: true,
 				helperFields: {
 					caption: 'audioCaption', // If required.
 				},
