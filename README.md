@@ -12,7 +12,7 @@ This project is in its early stages. Please [open an issue](https://github.com/r
 
 Gutenberg fields middleware requires only two files `dist/middleware.min.js` and `dist/middleware.min.css` as dependency. 
 
-There are two ways of using the middleware.
+There are two ways of using fields middleware.
 
 1. **As a Plugin:** Install the Gutenberg Fields Middleware as a standalone WordPress plugin which will register a `gutenberg-fields-middleware` handle you can add as a dependency for your block script.
 2. **Using JS and CSS files:** Or you can use `middleware.min.js` and `middleware.min.css` and enqueue them as dependency for your block script. Be sure to use `array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date', 'wp-hooks' )` handles as your dependency when enqueing middleware js file.
@@ -100,6 +100,14 @@ register_block_type( 'example-namespace/example-block', array(
 
 
 
+✔️ Gutenberg fields middleware is also available as npm [package](https://www.npmjs.com/package/gutenberg-fields-middleware).
+
+```bash
+npm i gutenberg-fields-middleware
+```
+
+
+
 ## Available Fields
 
 Gutenberg Fields Middleware supports the following field types and type configuration.
@@ -148,4 +156,11 @@ Gutenberg Fields Middleware supports the following field types and type configur
 #### Updating Field props:
 
 See [example usage](docs/alignment-toolbar.md#example-usage--es5-) of alignment-toolbar.
+
+
+
+#### Example Usage:
+
+- See [examples](examples/)
+- Check [gutenberg-supplements](https://github.com/rtCamp/gutenberg-supplements) plugin where we have created some actual blocks using middleware.
 
