@@ -44,12 +44,12 @@ if ( ! defined( 'GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR' ) ) {
 function gutenberg_fields_middleware_register_scripts() {
 	wp_register_script(
 		'gutenberg-fields-middleware',
-		plugins_url( 'build/middleware.js', __FILE__ ),
+		plugins_url( 'dist/middleware.js', __FILE__ ),
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' ),
-		filemtime( GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR. '/build/middleware.js' )
+		filemtime( GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR. '/dist/middleware.js' )
 	);
 
-	wp_register_style( 'gutenberg-fields-middleware', plugins_url( 'build/middleware-editor.css', __FILE__ ) );
+	wp_register_style( 'gutenberg-fields-middleware', plugins_url( 'dist/middleware-editor.css', __FILE__ ) );
 	wp_enqueue_style( 'gutenberg-fields-middleware' );
 	wp_enqueue_script( 'gutenberg-fields-middleware' );
 }

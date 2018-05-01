@@ -10,7 +10,7 @@ This project is in its early stages. Please [open an issue](https://github.com/r
 
 ## Using 
 
-Gutenberg fields middleware requires only two files `build/middleware.min.js` and `build/middleware.min.css` as dependency. 
+Gutenberg fields middleware requires only two files `dist/middleware.min.js` and `dist/middleware.min.css` as dependency. 
 
 There are two ways of using the middleware.
 

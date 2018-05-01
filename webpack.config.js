@@ -30,12 +30,12 @@ const extractConfig = {
 };
 
 const editBlocksCSSPlugin = new ExtractTextPlugin( {
-	filename: isProd ? './build/middleware-editor.min.css' : './build/middleware-editor.css',
+	filename: isProd ? './dist/middleware-editor.min.css' : './dist/middleware-editor.css',
 } );
 
 // CSS loader for styles specific to blocks in general.
 const blocksCSSPlugin = new ExtractTextPlugin( {
-	filename: isProd ? './build/style.min.css' : './build/style.css',
+	filename: isProd ? './dist/style.min.css' : './dist/style.css',
 } );
 
 const externals = {
@@ -52,7 +52,7 @@ module.exports = {
 		blocks: glob.sync( './middleware/index.js' ),
 	},
 	output: {
-		filename: isProd ? 'build/middleware.min.js' : 'build/middleware.js',
+		filename: isProd ? 'dist/middleware.min.js' : 'dist/middleware.js',
 		path: __dirname,
 	},
 	externals,
