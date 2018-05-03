@@ -6,8 +6,9 @@ import { getMiddlewareWarnings } from './utils';
 
 const { InspectorControls, BlockControls } = 'undefined' !== typeof wp.blocks ? wp.blocks : {};
 const { addFilter } = 'undefined' !== typeof wp.hooks ? wp.hooks : {};
-const { withState, BaseControl, Toolbar } = 'undefined' !== typeof wp.components ? wp.components : {};
+const { withState } = 'undefined' !== typeof wp.components ? wp.components : {};
 const middlewareWarnings = getMiddlewareWarnings();
+const { merge } = 'undefined' !== typeof lodash ? lodash : {};
 
 if ( middlewareWarnings ) {
 	console.error( middlewareWarnings ); // eslint-disable-line
@@ -36,7 +37,7 @@ class GutenbergFieldsMiddleWare {
 		this.inspectorControls = null;
 		this.blockControlFields = {};
 		this.blockControls = null;
-		this.config = _.extend( {}, config );
+		this.config = merge( {}, config );
 		this.helperFields = {};
 
 		this.setupBlockFields = this.setupBlockFields.bind( this );
