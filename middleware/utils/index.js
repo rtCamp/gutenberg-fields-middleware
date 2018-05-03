@@ -18,6 +18,8 @@ export function getMiddlewareWarnings() {
 		error = 'MIDDLEWARE ERROR: wp.date object is not defined, have you used wp-date as dependency when enqueuing middleware script ?';
 	} else if ( 'undefined' === typeof wp.hooks ) {
 		error = 'MIDDLEWARE ERROR: wp.hooks object is not defined, have you used wp-hooks as dependency when enqueuing middleware script ?';
+	} else if ( 'undefined' === typeof lodash ) {
+		error = 'MIDDLEWARE ERROR: lodash is not defined, are you using the latest version of gutenberg plugin?';
 	}
 
 	return error;
