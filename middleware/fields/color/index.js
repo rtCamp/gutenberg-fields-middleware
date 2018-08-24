@@ -2,7 +2,7 @@
  * Color Palette field.
  */
 
-const { ColorPalette } = wp.blocks;
+const { ColorPalette } = wp.editor;
 const { __ } = wp.i18n;
 
 import Field from './../../components/field';

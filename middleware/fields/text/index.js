@@ -2,7 +2,7 @@
  * text field.
  */
 
-const { PlainText } = wp.blocks;
+const { PlainText } = wp.editor;
 import inputField from './../input-field';
 import Field from './../../components/field';
 

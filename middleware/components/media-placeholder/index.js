@@ -6,7 +6,7 @@ const { __ } = wp.i18n;
 
 const {
 	MediaUpload,
-} = wp.blocks;
+} = wp.editor;
 
 const {
 	Placeholder,
@@ -17,7 +17,7 @@ const {
 	DropZone,
 } = wp.components;
 
-const { mediaUpload } = wp.utils;
+const { mediaUpload } = wp.editor;
 
 /**
  * MediaPlaceholder component class.

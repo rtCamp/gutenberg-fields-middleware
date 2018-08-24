@@ -4,7 +4,7 @@
 
 import { getDashIconSuffixByType } from './../../utils';
 import Field from './../../components/field';
-const { MediaUpload } = wp.blocks;
+const { MediaUpload } = wp.editor;
 const { IconButton, Button } = wp.components;
 const { __ } = wp.i18n;
 

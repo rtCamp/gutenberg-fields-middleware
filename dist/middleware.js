@@ -1279,17 +1279,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var _ref = 'undefined' !== typeof wp.blocks ? wp.blocks : {},
+var _ref = 'undefined' !== typeof wp.editor ? wp.editor : {},
     InspectorControls = _ref.InspectorControls,
     BlockControls = _ref.BlockControls;
 
 var _ref2 = 'undefined' !== typeof wp.hooks ? wp.hooks : {},
     addFilter = _ref2.addFilter;
 
-var _ref3 = 'undefined' !== typeof wp.components ? wp.components : {},
-    withState = _ref3.withState,
-    BaseControl = _ref3.BaseControl,
-    Toolbar = _ref3.Toolbar;
+var _ref3 = 'undefined' !== typeof wp.compose ? wp.compose : {},
+    withState = _ref3.withState;
 
 var middlewareWarnings = Object(__WEBPACK_IMPORTED_MODULE_4__utils__["c" /* getMiddlewareWarnings */])();
 
@@ -2030,7 +2028,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * alignment-toolbar field.
  */
 
-var AlignmentToolbar = wp.blocks.AlignmentToolbar;
+var AlignmentToolbar = wp.editor.AlignmentToolbar;
 
 
 
@@ -2701,7 +2699,7 @@ $export($export.S, 'Object', { create: __webpack_require__(37) });
 
 
 
-var MediaUpload = wp.blocks.MediaUpload;
+var MediaUpload = wp.editor.MediaUpload;
 var _wp$components = wp.components,
     IconButton = _wp$components.IconButton,
     Button = _wp$components.Button;
@@ -2771,7 +2769,7 @@ function mediaIcon(props, config, defaultConfig, attributeKey, middleware) {
  * block-alignment-toolbar field.
  */
 
-var BlockAlignmentToolbar = wp.blocks.BlockAlignmentToolbar;
+var BlockAlignmentToolbar = wp.editor.BlockAlignmentToolbar;
 
 
 
@@ -2859,7 +2857,7 @@ function buttonEditable(props, config, defaultConfig, attributeKey, middleware) 
 
 
 var Component = wp.element.Component;
-var RichText = wp.blocks.RichText;
+var RichText = wp.editor.RichText;
 var _wp$components = wp.components,
     Dashicon = _wp$components.Dashicon,
     IconButton = _wp$components.IconButton;
@@ -3029,7 +3027,7 @@ function codeEditor(props, config, defaultConfig, attributeKey) {
  * Color Palette field.
  */
 
-var ColorPalette = wp.blocks.ColorPalette;
+var ColorPalette = wp.editor.ColorPalette;
 var __ = wp.i18n.__;
 
 
@@ -3072,7 +3070,7 @@ function color(props, config, defaultConfig, attributeKey) {
 var DateTimePicker = wp.components.DateTimePicker;
 var _wp$date = wp.date,
     dateI18n = _wp$date.dateI18n,
-    settings = _wp$date.settings;
+    getSettings = _wp$date.getSettings;
 var __ = wp.i18n.__;
 
 
@@ -3080,6 +3078,7 @@ var __ = wp.i18n.__;
 
 
 function dateTime(props, config, defaultConfig, attributeKey) {
+	var settings = getSettings();
 	var is12HourTime = /a(?!\\)/i.test(settings.formats.time.toLowerCase() // Test only the lower case a
 	.replace(/\\\\/g, '') // Replace "//" with empty strings
 	.split('').reverse().join('') // Reverse the string and test for "a" not followed by a slash
@@ -3439,7 +3438,7 @@ var Component = wp.element.Component;
 var _wp$components = wp.components,
     Button = _wp$components.Button,
     Dashicon = _wp$components.Dashicon;
-var MediaUpload = wp.blocks.MediaUpload;
+var MediaUpload = wp.editor.MediaUpload;
 
 
 
@@ -3690,7 +3689,7 @@ function iconsToolbar(props, config, defaultConfig, attributeKey) {
  * Url field.
  */
 
-var UrlInput = wp.blocks.UrlInput;
+var URLInput = wp.editor.URLInput;
 
 
 
@@ -3703,7 +3702,7 @@ function link(props, config, defaultConfig) {
 
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
-		component: UrlInput
+		component: URLInput
 	}, fieldAttributes));
 }
 
@@ -3808,7 +3807,7 @@ function mediaUpload(props, config, defaultConfig, attributeKey, middleware) {
 
 var Component = wp.element.Component;
 var __ = wp.i18n.__;
-var MediaUpload = wp.blocks.MediaUpload;
+var MediaUpload = wp.editor.MediaUpload;
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
     FormFileUpload = _wp$components.FormFileUpload,
@@ -3816,7 +3815,7 @@ var _wp$components = wp.components,
     Toolbar = _wp$components.Toolbar,
     IconButton = _wp$components.IconButton,
     DropZone = _wp$components.DropZone;
-var mediaUpload = wp.utils.mediaUpload;
+var mediaUpload = wp.editor.mediaUpload;
 
 /**
  * MediaPlaceholder component class.
@@ -4248,7 +4247,7 @@ function range(props, config, defaultConfig) {
  */
 
 
-var RichText = wp.blocks.RichText;
+var RichText = wp.editor.RichText;
 
 
 
@@ -4311,7 +4310,7 @@ function select(props, config, defaultConfig) {
  * text field.
  */
 
-var PlainText = wp.blocks.PlainText;
+var PlainText = wp.editor.PlainText;
 
 
 

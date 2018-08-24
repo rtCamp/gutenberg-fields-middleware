@@ -4,9 +4,9 @@
 
 import { getMiddlewareWarnings } from './utils';
 
-const { InspectorControls, BlockControls } = 'undefined' !== typeof wp.blocks ? wp.blocks : {};
+const { InspectorControls, BlockControls } = 'undefined' !== typeof wp.editor ? wp.editor : {};
 const { addFilter } = 'undefined' !== typeof wp.hooks ? wp.hooks : {};
-const { withState, BaseControl, Toolbar } = 'undefined' !== typeof wp.components ? wp.components : {};
+const { withState } = 'undefined' !== typeof wp.compose ? wp.compose : {};
 const middlewareWarnings = getMiddlewareWarnings();
 
 if ( middlewareWarnings ) {

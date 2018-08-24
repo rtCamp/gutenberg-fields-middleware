@@ -3,7 +3,7 @@
  */
 
 import './editor.scss';
-const { RichText } = wp.blocks;
+const { RichText } = wp.editor;
 import Field from './../../components/field';
 
 export default function richText( props, config, defaultConfig, attributeKey ) {

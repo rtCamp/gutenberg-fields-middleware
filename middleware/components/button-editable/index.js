@@ -1,5 +1,5 @@
 const { Component } = wp.element;
-const { RichText } = wp.blocks;
+const { RichText } = wp.editor;
 const { Dashicon, IconButton } = wp.components;
 const { __ } = wp.i18n;
 
