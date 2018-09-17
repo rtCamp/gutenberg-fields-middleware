@@ -64,6 +64,7 @@ export default function fileUpload( props, config, defaultConfig, attributeKey, 
 
 	return (
 		<Field
+			key={ _.uniqueId( 'file-upload' ) }
 			config={ config }
 			component={ FileUpload }
 			fieldAttributes={ fieldAttributes }

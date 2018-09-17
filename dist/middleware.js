@@ -1609,6 +1609,7 @@ var GutenbergFieldsMiddleWare = function () {
 		key: 'getDefaultConfig',
 		value: function getDefaultConfig(props, config, attributeKey) {
 			return {
+				key: _.uniqueId(attributeKey),
 				value: props.attributes[attributeKey],
 				onChange: function onChange(value) {
 					var newAttributes = {};
@@ -3242,6 +3243,7 @@ function fileUpload(props, config, defaultConfig, attributeKey, middleware) {
 	fieldAttributes.type = fieldAttributes.fileType;
 
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], {
+		key: _.uniqueId('file-upload'),
 		config: config,
 		component: __WEBPACK_IMPORTED_MODULE_1__components_file_upload__["a" /* default */],
 		fieldAttributes: fieldAttributes,

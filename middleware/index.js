@@ -290,6 +290,7 @@ class GutenbergFieldsMiddleWare {
 	 */
 	getDefaultConfig( props, config, attributeKey ) {
 		return {
+			key: _.uniqueId( attributeKey ),
 			value: props.attributes[ attributeKey ],
 			onChange( value ) {
 				const newAttributes = {};
