@@ -502,6 +502,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 	 * If not defined, save would be null.
 	 *
 	 * @param {Object} props Same properties we get in default edit method.
+	 *
 	 * @return {Object} React elements.
 	 */
 	save( props ) {

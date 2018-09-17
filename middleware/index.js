@@ -76,17 +76,16 @@ class GutenbergFieldsMiddleWare {
 			this.setupBlockFields( props );
 
 			const wrapperClassName = 'middleware-block ' + props.className;
-			props.middleware = this;
 
 			if ( this.config.edit ) {
 				if ( this.constructor.isClassComponent( this.config.edit ) ) {
-					return ( <div className={ wrapperClassName }><this.config.edit { ...props } /></div> );
+					return ( <div className={ wrapperClassName }><this.config.edit middleware={ this } { ...props } /></div> );
 				}
 
-				return ( <div className={ wrapperClassName }>{ this.config.edit( props ) }</div> );
+				return ( <div className={ wrapperClassName }>{ this.config.edit( props, this ) }</div> );
 			}
 
-			return ( <div className={ wrapperClassName }>{ this.edit( props ) }</div> );
+			return ( <div className={ wrapperClassName }>{ this.edit( props, this ) }</div> );
 		} );
 
 		const BlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey();
@@ -106,17 +105,16 @@ class GutenbergFieldsMiddleWare {
 		}
 
 		this.blockConfigs.save = ( props ) => {
-			props.middleware = this;
 
 			if ( this.config.save ) {
 				if ( this.constructor.isClassComponent( this.config.save ) ) {
-					return ( <this.config.save { ...props } /> );
+					return ( <this.config.save middleware={ this } { ...props } /> );
 				}
 
-				return this.config.save( props );
+				return this.config.save( props, this );
 			}
 
-			return this.save( props );
+			return this.save( props, this );
 		};
 
 		return this.blockConfigs;

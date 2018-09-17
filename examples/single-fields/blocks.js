@@ -20,14 +20,14 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
 		},
 	},
 
-	edit: function( props ) {
-		props.middleware.fields.text.props.style = {
+	edit: function( props, middleware ) {
+		middleware.fields.text.props.style = {
 			textAlign: props.attributes.alignment, // Set alignment whenever value changes.
 		};
 
 		return [
-			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
-			props.middleware.fields.text,
+			middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
+			middleware.fields.text,
 		];
 	},
 
@@ -61,10 +61,10 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-alignment', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
-			props.middleware.fields.text,
+			middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
+			middleware.fields.text,
 		];
 	},
 
@@ -103,9 +103,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.image,
+			middleware.fields.image,
 		];
 	},
 
@@ -145,13 +145,13 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		const image = props.attributes.image;
 		const imageUrl = image ? 'url(' + image.url + ')' : null;
 		const imageHeight = image ? image.height : null;
 
 		return [
-			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
+			middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
 
 			wp.element.createElement( 'div', { // field: image.
 				className: 'block-control-image',
@@ -210,9 +210,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.audio,
+			middleware.fields.audio,
 		];
 	},
 
@@ -266,9 +266,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-video', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.video,
+			middleware.fields.video,
 		];
 	},
 
@@ -317,9 +317,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-button-editable', 
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.buttonEditable,
+			middleware.fields.buttonEditable,
 		];
 	},
 
@@ -348,9 +348,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-file-upload', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.fileUpload,
+			middleware.fields.fileUpload,
 		];
 	},
 

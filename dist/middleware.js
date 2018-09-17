@@ -1260,10 +1260,10 @@ module.exports = __webpack_require__(58);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(15);
@@ -1367,28 +1367,27 @@ var GutenbergFieldsMiddleWare = function () {
 				_this.setupBlockFields(props);
 
 				var wrapperClassName = 'middleware-block ' + props.className;
-				props.middleware = _this;
 
 				if (_this.config.edit) {
 					if (_this.constructor.isClassComponent(_this.config.edit)) {
 						return wp.element.createElement(
 							'div',
 							{ className: wrapperClassName },
-							wp.element.createElement(_this.config.edit, props)
+							wp.element.createElement(_this.config.edit, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props))
 						);
 					}
 
 					return wp.element.createElement(
 						'div',
 						{ className: wrapperClassName },
-						_this.config.edit(props)
+						_this.config.edit(props, _this)
 					);
 				}
 
 				return wp.element.createElement(
 					'div',
 					{ className: wrapperClassName },
-					_this.edit(props)
+					_this.edit(props, _this)
 				);
 			});
 
@@ -1409,17 +1408,16 @@ var GutenbergFieldsMiddleWare = function () {
 			}
 
 			this.blockConfigs.save = function (props) {
-				props.middleware = _this;
 
 				if (_this.config.save) {
 					if (_this.constructor.isClassComponent(_this.config.save)) {
-						return wp.element.createElement(_this.config.save, props);
+						return wp.element.createElement(_this.config.save, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props));
 					}
 
-					return _this.config.save(props);
+					return _this.config.save(props, _this);
 				}
 
-				return _this.save(props);
+				return _this.save(props, _this);
 			};
 
 			return this.blockConfigs;
@@ -1550,7 +1548,7 @@ var GutenbergFieldsMiddleWare = function () {
 			this.inspectorControls = props.isSelected ? wp.element.createElement(
 				InspectorControls,
 				{ key: 'inspector-control' },
-				__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
+				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
 					return _this2.inspectorControlFields[key];
 				})
 			) : null;
@@ -1558,7 +1556,7 @@ var GutenbergFieldsMiddleWare = function () {
 			this.blockControls = props.isSelected ? wp.element.createElement(
 				BlockControls,
 				{ key: 'block-controls' },
-				__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
+				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
 					return _this2.blockControlFields[key];
 				})
 			) : null;
@@ -1676,7 +1674,7 @@ var GutenbergFieldsMiddleWare = function () {
 		key: 'updateAlignment',
 		value: function updateAlignment(props, nextAlign) {
 			var extraUpdatedAttributes = ['wide', 'full'].indexOf(nextAlign) !== -1 ? { width: undefined, height: undefined } : {};
-			props.setAttributes(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, extraUpdatedAttributes, { align: nextAlign }));
+			props.setAttributes(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, extraUpdatedAttributes, { align: nextAlign }));
 		}
 
 		/**
@@ -1717,7 +1715,7 @@ var GutenbergFieldsMiddleWare = function () {
 			return [this.blockControls, this.inspectorControls, wp.element.createElement(
 				'div',
 				{ key: props.className },
-				__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
+				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
 					return _this4.fields[key];
 				})
 			)];
@@ -3187,7 +3185,7 @@ function dropDownMenu(props, config, defaultConfig, attributeKey) {
 var __ = wp.i18n.__;
 
 
-function fileUpload(props, config, defaultConfig, attributeKey, middleware) {
+function fileUpload(props, config, defaultConfig, attributeKey) {
 	var defaultAttributes = _.extend(defaultConfig, {
 		fileType: 'application',
 		isLarge: true,
