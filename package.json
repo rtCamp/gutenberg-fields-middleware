@@ -5,6 +5,7 @@
 	"main": "middleware/index.js",
 	"license": "GPL-2.0-or-later",
 	"devDependencies": {
+		"@babel/plugin-transform-react-jsx-source": "^7.0.0",
 		"@wordpress/babel-preset-default": "1.1.1",
 		"@wordpress/hooks": "1.1.4",
 		"@wordpress/i18n": "^1.1.0",
