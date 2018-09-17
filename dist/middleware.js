@@ -4400,7 +4400,7 @@ function treeSelect(props, config, defaultConfig) {
  * url-input-button field.
  */
 
-var UrlInputButton = wp.blocks.UrlInputButton;
+var URLInput = wp.editor.URLInput;
 
 
 
@@ -4415,7 +4415,7 @@ function urlInputButton(props, config, defaultConfig, attributeKey) {
 
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
-		component: UrlInputButton
+		component: URLInput
 	}, fieldAttributes));
 }
 

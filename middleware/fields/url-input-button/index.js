@@ -2,7 +2,7 @@
  * url-input-button field.
  */
 
-const { UrlInputButton } = wp.blocks;
+const { URLInput } = wp.editor;
 import Field from './../../components/field';
 
 export default function urlInputButton( props, config, defaultConfig, attributeKey ) {
@@ -17,7 +17,7 @@ export default function urlInputButton( props, config, defaultConfig, attributeK
 	return (
 		<Field
 			config={ config }
-			component={ UrlInputButton }
+			component={ URLInput }
 			{ ...fieldAttributes }
 		/>
 	);
