@@ -12,42 +12,45 @@ class Field extends Component {
 			component,
 		} = this.props;
 
+		const props = _.extend( {}, this.props );
 		const FieldComponent = component;
 		let field = null;
+
+		delete props.component;
 
 		if ( 'inspector' === config.placement || config.label || config.help ) {
 			field = (
 				<BaseControl label={ config.label } help={ config.help } id={ config.id } className={ this.props.baseControlClassName } >
-					<FieldComponent { ...this.props } />
+					<FieldComponent { ...props } />
 				</BaseControl>
 			);
 		} else if ( 'block-controls' === config.placement ) {
 			field = (
 				<Toolbar>
-					<FieldComponent { ...this.props } />
+					<FieldComponent { ...props } />
 				</Toolbar>
 			);
 		} else {
-			field = <FieldComponent { ...this.props } />;
+			field = <FieldComponent { ...props } />;
 		}
 
-		if ( 'color' === config.type && this.props.panel ) {
+		if ( 'color' === config.type && props.panel ) {
 			field = (
-				<PanelColor title={ this.props.label } colorValue={ this.props.value } initialOpen={ this.props.initialOpen }>
-					<FieldComponent { ...this.props } />
+				<PanelColor title={ props.label } colorValue={ props.value } initialOpen={ props.initialOpen }>
+					<FieldComponent { ...props } />
 				</PanelColor>
 			);
 		}
 
 		if ( 'date-time' === config.type ) {
-			if ( this.props.panel ) {
+			if ( props.panel ) {
 				field = (
-					<PanelBody initialOpen={ this.props.initialOpen } title={ [
-						this.props.label + ': ',
-						<span key="label">{ this.props.getFormattedDate() }</span>,
+					<PanelBody initialOpen={ props.initialOpen } title={ [
+						props.label + ': ',
+						<span key="label">{ props.getFormattedDate() }</span>,
 					]
 					}>
-						<FieldComponent { ...this.props } />
+						<FieldComponent { ...props } />
 					</PanelBody>
 				);
 			} else {

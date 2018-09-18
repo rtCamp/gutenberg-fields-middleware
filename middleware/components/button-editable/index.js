@@ -31,13 +31,8 @@ class ButtonEditable extends Component {
 
 	render() {
 		const link = this.props.linkField;
-		this.props.style = _.extend( {
-			backgroundColor: this.props.backgroundColor,
-			color: this.props.textColor,
-		}, this.props.style );
 
 		const buttonClass = this.props.buttonClass ? ' ' + this.props.buttonClass : '';
-		this.props.className = this.props.className + buttonClass;
 
 		const form = link && this.props.isSelected && this.state.displayForm && (
 			<form
@@ -56,6 +51,11 @@ class ButtonEditable extends Component {
 					<RichText
 						onFocus={ this.onFocus }
 						onClick={ this.onFocus } // Hack.
+						className={ this.props.className + buttonClass }
+						style={ {
+							backgroundColor: this.props.backgroundColor,
+							color: this.props.textColor
+						} }
 						{ ...this.props }
 					/>
 				</span>

@@ -72,7 +72,7 @@
 
 exports.__esModule = true;
 
-var _assign = __webpack_require__(59);
+var _assign = __webpack_require__(65);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -97,21 +97,25 @@ exports.default = _assign2.default || function (target) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
 
 
 
 
 
+
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/components/field/index.js';
 var Component = wp.element.Component;
 var _wp$components = wp.components,
     BaseControl = _wp$components.BaseControl,
@@ -124,15 +128,15 @@ var PanelColor = wp.components.PanelColor;
  */
 
 var Field = function (_Component) {
-	__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(Field, _Component);
+	__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default()(Field, _Component);
 
 	function Field() {
-		__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, Field);
+		__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default()(this, Field);
 
-		return __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Field.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Field)).apply(this, arguments));
+		return __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Field.__proto__ || __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default()(Field)).apply(this, arguments));
 	}
 
-	__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Field, [{
+	__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(Field, [{
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
@@ -140,48 +144,101 @@ var Field = function (_Component) {
 			    component = _props.component;
 
 
+			var props = _.extend({}, this.props);
 			var FieldComponent = component;
 			var field = null;
+
+			delete props.component;
 
 			if ('inspector' === config.placement || config.label || config.help) {
 				field = wp.element.createElement(
 					BaseControl,
-					{ label: config.label, help: config.help, id: config.id, className: this.props.baseControlClassName },
-					wp.element.createElement(FieldComponent, this.props)
+					{ label: config.label, help: config.help, id: config.id, className: this.props.baseControlClassName, __source: {
+							fileName: _jsxFileName,
+							lineNumber: 23
+						}
+					},
+					wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
+						__source: {
+							fileName: _jsxFileName,
+							lineNumber: 24
+						}
+					}))
 				);
 			} else if ('block-controls' === config.placement) {
 				field = wp.element.createElement(
 					Toolbar,
-					null,
-					wp.element.createElement(FieldComponent, this.props)
+					{
+						__source: {
+							fileName: _jsxFileName,
+							lineNumber: 29
+						}
+					},
+					wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
+						__source: {
+							fileName: _jsxFileName,
+							lineNumber: 30
+						}
+					}))
 				);
 			} else {
-				field = wp.element.createElement(FieldComponent, this.props);
+				field = wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
+					__source: {
+						fileName: _jsxFileName,
+						lineNumber: 34
+					}
+				}));
 			}
 
-			if ('color' === config.type && this.props.panel) {
+			if ('color' === config.type && props.panel) {
 				field = wp.element.createElement(
 					PanelColor,
-					{ title: this.props.label, colorValue: this.props.value, initialOpen: this.props.initialOpen },
-					wp.element.createElement(FieldComponent, this.props)
+					{ title: props.label, colorValue: props.value, initialOpen: props.initialOpen, __source: {
+							fileName: _jsxFileName,
+							lineNumber: 39
+						}
+					},
+					wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
+						__source: {
+							fileName: _jsxFileName,
+							lineNumber: 40
+						}
+					}))
 				);
 			}
 
 			if ('date-time' === config.type) {
-				if (this.props.panel) {
+				if (props.panel) {
 					field = wp.element.createElement(
 						PanelBody,
-						{ initialOpen: this.props.initialOpen, title: [this.props.label + ': ', wp.element.createElement(
+						{ initialOpen: props.initialOpen, title: [props.label + ': ', wp.element.createElement(
 								'span',
-								{ key: 'label' },
-								this.props.getFormattedDate()
-							)] },
-						wp.element.createElement(FieldComponent, this.props)
+								{ key: 'label', __source: {
+										fileName: _jsxFileName,
+										lineNumber: 50
+									}
+								},
+								props.getFormattedDate()
+							)], __source: {
+								fileName: _jsxFileName,
+								lineNumber: 48
+							}
+						},
+						wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
+							__source: {
+								fileName: _jsxFileName,
+								lineNumber: 53
+							}
+						}))
 					);
 				} else {
 					field = wp.element.createElement(
 						'div',
-						{ className: 'middleware-date-time-no-panel' },
+						{ className: 'middleware-date-time-no-panel', __source: {
+								fileName: _jsxFileName,
+								lineNumber: 58
+							}
+						},
 						field
 					);
 				}
@@ -190,7 +247,11 @@ var Field = function (_Component) {
 			if ('link' === config.type) {
 				field = wp.element.createElement(
 					'div',
-					{ className: 'middleware-link-field' },
+					{ className: 'middleware-link-field', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 67
+						}
+					},
 					field
 				);
 			}
@@ -216,9 +277,9 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store = __webpack_require__(33)('wks');
+var store = __webpack_require__(31)('wks');
 var uid = __webpack_require__(23);
-var Symbol = __webpack_require__(5).Symbol;
+var Symbol = __webpack_require__(4).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
 var $exports = module.exports = function (name) {
@@ -231,12 +292,24 @@ $exports.store = store;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(5);
+var global = __webpack_require__(4);
 var core = __webpack_require__(2);
-var ctx = __webpack_require__(27);
-var hide = __webpack_require__(10);
+var ctx = __webpack_require__(33);
+var hide = __webpack_require__(11);
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -297,27 +370,15 @@ module.exports = $export;
 
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-var global = module.exports = typeof window != 'undefined' && window.Math == Math
-  ? window : typeof self != 'undefined' && self.Math == Math ? self
-  // eslint-disable-next-line no-new-func
-  : Function('return this')();
-if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
-
-
-/***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(7);
-var IE8_DOM_DEFINE = __webpack_require__(42);
-var toPrimitive = __webpack_require__(28);
+var anObject = __webpack_require__(8);
+var IE8_DOM_DEFINE = __webpack_require__(46);
+var toPrimitive = __webpack_require__(34);
 var dP = Object.defineProperty;
 
-exports.f = __webpack_require__(8) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+exports.f = __webpack_require__(9) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -332,27 +393,6 @@ exports.f = __webpack_require__(8) ? Object.defineProperty : function defineProp
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(11);
-module.exports = function (it) {
-  if (!isObject(it)) throw TypeError(it + ' is not an object!');
-  return it;
-};
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(12)(function () {
-  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
-});
-
-
-/***/ }),
-/* 9 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -362,12 +402,45 @@ module.exports = function (it, key) {
 
 
 /***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(12);
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(13)(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __webpack_require__(43);
+var defined = __webpack_require__(27);
+module.exports = function (it) {
+  return IObject(defined(it));
+};
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var dP = __webpack_require__(6);
-var createDesc = __webpack_require__(17);
-module.exports = __webpack_require__(8) ? function (object, key, value) {
+var createDesc = __webpack_require__(19);
+module.exports = __webpack_require__(9) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
   object[key] = value;
@@ -376,7 +449,7 @@ module.exports = __webpack_require__(8) ? function (object, key, value) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -385,7 +458,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = function (exec) {
@@ -394,18 +467,6 @@ module.exports = function (exec) {
   } catch (e) {
     return true;
   }
-};
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(45);
-var defined = __webpack_require__(30);
-module.exports = function (it) {
-  return IObject(defined(it));
 };
 
 
@@ -466,6 +527,30 @@ module.exports = {};
 
 /***/ }),
 /* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.13 ToObject(argument)
+var defined = __webpack_require__(27);
+module.exports = function (it) {
+  return Object(defined(it));
+};
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 / 15.2.3.14 Object.keys(O)
+var $keys = __webpack_require__(42);
+var enumBugKeys = __webpack_require__(32);
+
+module.exports = Object.keys || function keys(O) {
+  return $keys(O, enumBugKeys);
+};
+
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = function (bitmap, value) {
@@ -475,30 +560,6 @@ module.exports = function (bitmap, value) {
     writable: !(bitmap & 4),
     value: value
   };
-};
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(44);
-var enumBugKeys = __webpack_require__(34);
-
-module.exports = Object.keys || function keys(O) {
-  return $keys(O, enumBugKeys);
-};
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.1.13 ToObject(argument)
-var defined = __webpack_require__(30);
-module.exports = function (it) {
-  return Object(defined(it));
 };
 
 
@@ -699,10 +760,77 @@ __webpack_require__(50)(String, 'String', function (iterated) {
 
 /***/ }),
 /* 27 */
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+module.exports = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var shared = __webpack_require__(31)('keys');
+var uid = __webpack_require__(23);
+module.exports = function (key) {
+  return shared[key] || (shared[key] = uid(key));
+};
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(4);
+var SHARED = '__core-js_shared__';
+var store = global[SHARED] || (global[SHARED] = {});
+module.exports = function (key) {
+  return store[key] || (store[key] = {});
+};
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+// IE 8- don't enum bug keys
+module.exports = (
+  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+).split(',');
+
+
+/***/ }),
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(62);
+var aFunction = __webpack_require__(64);
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -724,11 +852,11 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 28 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(11);
+var isObject = __webpack_require__(12);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function (it, S) {
@@ -739,73 +867,6 @@ module.exports = function (it, S) {
   if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
   throw TypeError("Can't convert object to primitive value");
 };
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = function (it) {
-  return toString.call(it).slice(8, -1);
-};
-
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-// 7.2.1 RequireObjectCoercible(argument)
-module.exports = function (it) {
-  if (it == undefined) throw TypeError("Can't call method on  " + it);
-  return it;
-};
-
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-// 7.1.4 ToInteger
-var ceil = Math.ceil;
-var floor = Math.floor;
-module.exports = function (it) {
-  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-};
-
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var shared = __webpack_require__(33)('keys');
-var uid = __webpack_require__(23);
-module.exports = function (key) {
-  return shared[key] || (shared[key] = uid(key));
-};
-
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(5);
-var SHARED = '__core-js_shared__';
-var store = global[SHARED] || (global[SHARED] = {});
-module.exports = function (key) {
-  return store[key] || (store[key] = {});
-};
-
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports) {
-
-// IE 8- don't enum bug keys
-module.exports = (
-  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
-).split(',');
 
 
 /***/ }),
@@ -827,17 +888,17 @@ module.exports = true;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(7);
+var anObject = __webpack_require__(8);
 var dPs = __webpack_require__(80);
-var enumBugKeys = __webpack_require__(34);
-var IE_PROTO = __webpack_require__(32)('IE_PROTO');
+var enumBugKeys = __webpack_require__(32);
+var IE_PROTO = __webpack_require__(30)('IE_PROTO');
 var Empty = function () { /* empty */ };
 var PROTOTYPE = 'prototype';
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var createDict = function () {
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(43)('iframe');
+  var iframe = __webpack_require__(47)('iframe');
   var i = enumBugKeys.length;
   var lt = '<';
   var gt = '>';
@@ -874,7 +935,7 @@ module.exports = Object.create || function create(O, Properties) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var def = __webpack_require__(6).f;
-var has = __webpack_require__(9);
+var has = __webpack_require__(7);
 var TAG = __webpack_require__(3)('toStringTag');
 
 module.exports = function (it, tag, stat) {
@@ -887,8 +948,8 @@ module.exports = function (it, tag, stat) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(82);
-var global = __webpack_require__(5);
-var hide = __webpack_require__(10);
+var global = __webpack_require__(4);
+var hide = __webpack_require__(11);
 var Iterators = __webpack_require__(16);
 var TO_STRING_TAG = __webpack_require__(3)('toStringTag');
 
@@ -918,7 +979,7 @@ exports.f = __webpack_require__(3);
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(5);
+var global = __webpack_require__(4);
 var core = __webpack_require__(2);
 var LIBRARY = __webpack_require__(36);
 var wksExt = __webpack_require__(40);
@@ -933,32 +994,10 @@ module.exports = function (name) {
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(8) && !__webpack_require__(12)(function () {
-  return Object.defineProperty(__webpack_require__(43)('div'), 'a', { get: function () { return 7; } }).a != 7;
-});
-
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(11);
-var document = __webpack_require__(5).document;
-// typeof document.createElement is 'object' in old IE
-var is = isObject(document) && isObject(document.createElement);
-module.exports = function (it) {
-  return is ? document.createElement(it) : {};
-};
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var has = __webpack_require__(9);
-var toIObject = __webpack_require__(13);
-var arrayIndexOf = __webpack_require__(64)(false);
-var IE_PROTO = __webpack_require__(32)('IE_PROTO');
+var has = __webpack_require__(7);
+var toIObject = __webpack_require__(10);
+var arrayIndexOf = __webpack_require__(62)(false);
+var IE_PROTO = __webpack_require__(30)('IE_PROTO');
 
 module.exports = function (object, names) {
   var O = toIObject(object);
@@ -975,11 +1014,11 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 45 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(29);
+var cof = __webpack_require__(28);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -987,11 +1026,11 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 46 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
-var toInteger = __webpack_require__(31);
+var toInteger = __webpack_require__(29);
 var min = Math.min;
 module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
@@ -999,13 +1038,13 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 47 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // most Object methods by ES6 should accept primitives
-var $export = __webpack_require__(4);
+var $export = __webpack_require__(5);
 var core = __webpack_require__(2);
-var fails = __webpack_require__(12);
+var fails = __webpack_require__(13);
 module.exports = function (KEY, exec) {
   var fn = (core.Object || {})[KEY] || Object[KEY];
   var exp = {};
@@ -1015,13 +1054,35 @@ module.exports = function (KEY, exec) {
 
 
 /***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__(9) && !__webpack_require__(13)(function () {
+  return Object.defineProperty(__webpack_require__(47)('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(12);
+var document = __webpack_require__(4).document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
+
+/***/ }),
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has = __webpack_require__(9);
-var toObject = __webpack_require__(19);
-var IE_PROTO = __webpack_require__(32)('IE_PROTO');
+var has = __webpack_require__(7);
+var toObject = __webpack_require__(17);
+var IE_PROTO = __webpack_require__(30)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function (O) {
@@ -1067,10 +1128,10 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 "use strict";
 
 var LIBRARY = __webpack_require__(36);
-var $export = __webpack_require__(4);
+var $export = __webpack_require__(5);
 var redefine = __webpack_require__(51);
-var hide = __webpack_require__(10);
-var has = __webpack_require__(9);
+var hide = __webpack_require__(11);
+var has = __webpack_require__(7);
 var Iterators = __webpack_require__(16);
 var $iterCreate = __webpack_require__(79);
 var setToStringTag = __webpack_require__(38);
@@ -1141,7 +1202,7 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(10);
+module.exports = __webpack_require__(11);
 
 
 /***/ }),
@@ -1149,8 +1210,8 @@ module.exports = __webpack_require__(10);
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys = __webpack_require__(44);
-var hiddenKeys = __webpack_require__(34).concat('length', 'prototype');
+var $keys = __webpack_require__(42);
+var hiddenKeys = __webpack_require__(32).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
@@ -1162,14 +1223,14 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var pIE = __webpack_require__(24);
-var createDesc = __webpack_require__(17);
-var toIObject = __webpack_require__(13);
-var toPrimitive = __webpack_require__(28);
-var has = __webpack_require__(9);
-var IE8_DOM_DEFINE = __webpack_require__(42);
+var createDesc = __webpack_require__(19);
+var toIObject = __webpack_require__(10);
+var toPrimitive = __webpack_require__(34);
+var has = __webpack_require__(7);
+var IE8_DOM_DEFINE = __webpack_require__(46);
 var gOPD = Object.getOwnPropertyDescriptor;
 
-exports.f = __webpack_require__(8) ? gOPD : function getOwnPropertyDescriptor(O, P) {
+exports.f = __webpack_require__(9) ? gOPD : function getOwnPropertyDescriptor(O, P) {
   O = toIObject(O);
   P = toPrimitive(P, true);
   if (IE8_DOM_DEFINE) try {
@@ -1198,7 +1259,7 @@ module.exports = __webpack_require__(2).getIteratorMethod = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(29);
+var cof = __webpack_require__(28);
 var TAG = __webpack_require__(3)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
@@ -1228,6 +1289,10 @@ module.exports = function (it) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = inputField;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/input-field/index.js';
 /**
  * Input field for email, hidden, number, search, tel.
  */
@@ -1244,7 +1309,12 @@ function inputField(props, config, defaultConfig, attributeKey) {
 
 	fieldAttributes.id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId(attributeKey);
 
-	return wp.element.createElement(TextControl, fieldAttributes);
+	return wp.element.createElement(TextControl, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 17
+		}
+	}));
 }
 
 /***/ }),
@@ -1260,7 +1330,7 @@ module.exports = __webpack_require__(58);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
@@ -1273,6 +1343,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/index.js';
 /**
  * Gutenberg Fields Middleware.
  */
@@ -1372,21 +1443,38 @@ var GutenbergFieldsMiddleWare = function () {
 					if (_this.constructor.isClassComponent(_this.config.edit)) {
 						return wp.element.createElement(
 							'div',
-							{ className: wrapperClassName },
-							wp.element.createElement(_this.config.edit, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props))
+							{ className: wrapperClassName, __source: {
+									fileName: _jsxFileName,
+									lineNumber: 82
+								}
+							},
+							wp.element.createElement(_this.config.edit, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props, {
+								__source: {
+									fileName: _jsxFileName,
+									lineNumber: 82
+								}
+							}))
 						);
 					}
 
 					return wp.element.createElement(
 						'div',
-						{ className: wrapperClassName },
+						{ className: wrapperClassName, __source: {
+								fileName: _jsxFileName,
+								lineNumber: 85
+							}
+						},
 						_this.config.edit(props, _this)
 					);
 				}
 
 				return wp.element.createElement(
 					'div',
-					{ className: wrapperClassName },
+					{ className: wrapperClassName, __source: {
+							fileName: _jsxFileName,
+							lineNumber: 88
+						}
+					},
 					_this.edit(props, _this)
 				);
 			});
@@ -1411,7 +1499,12 @@ var GutenbergFieldsMiddleWare = function () {
 
 				if (_this.config.save) {
 					if (_this.constructor.isClassComponent(_this.config.save)) {
-						return wp.element.createElement(_this.config.save, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props));
+						return wp.element.createElement(_this.config.save, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props, {
+							__source: {
+								fileName: _jsxFileName,
+								lineNumber: 111
+							}
+						}));
 					}
 
 					return _this.config.save(props, _this);
@@ -1547,7 +1640,11 @@ var GutenbergFieldsMiddleWare = function () {
 
 			this.inspectorControls = props.isSelected ? wp.element.createElement(
 				InspectorControls,
-				{ key: 'inspector-control' },
+				{ key: 'inspector-control', __source: {
+						fileName: _jsxFileName,
+						lineNumber: 238
+					}
+				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
 					return _this2.inspectorControlFields[key];
 				})
@@ -1555,7 +1652,11 @@ var GutenbergFieldsMiddleWare = function () {
 
 			this.blockControls = props.isSelected ? wp.element.createElement(
 				BlockControls,
-				{ key: 'block-controls' },
+				{ key: 'block-controls', __source: {
+						fileName: _jsxFileName,
+						lineNumber: 246
+					}
+				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
 					return _this2.blockControlFields[key];
 				})
@@ -1714,7 +1815,11 @@ var GutenbergFieldsMiddleWare = function () {
 
 			return [this.blockControls, this.inspectorControls, wp.element.createElement(
 				'div',
-				{ key: props.className },
+				{ key: props.className, __source: {
+						fileName: _jsxFileName,
+						lineNumber: 387
+					}
+				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
 					return _this4.fields[key];
 				})
@@ -1776,21 +1881,68 @@ module.exports = { "default": __webpack_require__(60), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(61);
-module.exports = __webpack_require__(2).Object.assign;
+module.exports = __webpack_require__(2).Object.keys;
 
 
 /***/ }),
 /* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(4);
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__(17);
+var $keys = __webpack_require__(18);
 
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(63) });
+__webpack_require__(45)('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
+  };
+});
 
 
 /***/ }),
 /* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = __webpack_require__(10);
+var toLength = __webpack_require__(44);
+var toAbsoluteIndex = __webpack_require__(63);
+module.exports = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = toIObject($this);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
+    var value;
+    // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++];
+      // eslint-disable-next-line no-self-compare
+      if (value != value) return true;
+    // Array#indexOf ignores holes, Array#includes - not
+    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+      if (O[index] === el) return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__(29);
+var max = Math.max;
+var min = Math.min;
+module.exports = function (index, length) {
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+
+/***/ }),
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -1800,7 +1952,31 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 63 */
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(66), __esModule: true };
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(67);
+module.exports = __webpack_require__(2).Object.assign;
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(5);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(68) });
+
+
+/***/ }),
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1809,12 +1985,12 @@ module.exports = function (it) {
 var getKeys = __webpack_require__(18);
 var gOPS = __webpack_require__(35);
 var pIE = __webpack_require__(24);
-var toObject = __webpack_require__(19);
-var IObject = __webpack_require__(45);
+var toObject = __webpack_require__(17);
+var IObject = __webpack_require__(43);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(12)(function () {
+module.exports = !$assign || __webpack_require__(13)(function () {
   var A = {};
   var B = {};
   // eslint-disable-next-line no-undef
@@ -1841,77 +2017,6 @@ module.exports = !$assign || __webpack_require__(12)(function () {
 
 
 /***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// false -> Array#indexOf
-// true  -> Array#includes
-var toIObject = __webpack_require__(13);
-var toLength = __webpack_require__(46);
-var toAbsoluteIndex = __webpack_require__(65);
-module.exports = function (IS_INCLUDES) {
-  return function ($this, el, fromIndex) {
-    var O = toIObject($this);
-    var length = toLength(O.length);
-    var index = toAbsoluteIndex(fromIndex, length);
-    var value;
-    // Array#includes uses SameValueZero equality algorithm
-    // eslint-disable-next-line no-self-compare
-    if (IS_INCLUDES && el != el) while (length > index) {
-      value = O[index++];
-      // eslint-disable-next-line no-self-compare
-      if (value != value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
-    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
-      if (O[index] === el) return IS_INCLUDES || index || 0;
-    } return !IS_INCLUDES && -1;
-  };
-};
-
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var toInteger = __webpack_require__(31);
-var max = Math.max;
-var min = Math.min;
-module.exports = function (index, length) {
-  index = toInteger(index);
-  return index < 0 ? max(index + length, 0) : min(index, length);
-};
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(67), __esModule: true };
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(68);
-module.exports = __webpack_require__(2).Object.keys;
-
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.14 Object.keys(O)
-var toObject = __webpack_require__(19);
-var $keys = __webpack_require__(18);
-
-__webpack_require__(47)('keys', function () {
-  return function keys(it) {
-    return $keys(toObject(it));
-  };
-});
-
-
-/***/ }),
 /* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1932,9 +2037,9 @@ module.exports = function defineProperty(it, key, desc) {
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $export = __webpack_require__(4);
+var $export = __webpack_require__(5);
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(8), 'Object', { defineProperty: __webpack_require__(6).f });
+$export($export.S + $export.F * !__webpack_require__(9), 'Object', { defineProperty: __webpack_require__(6).f });
 
 
 /***/ }),
@@ -2023,6 +2128,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/alignment-toolbar/index.js';
 /**
  * alignment-toolbar field.
  */
@@ -2039,7 +2145,12 @@ function alignmentToolbar(props, config, defaultConfig) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: AlignmentToolbar
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 14
+		}
+	}));
 }
 
 /***/ }),
@@ -2055,10 +2166,10 @@ module.exports = __webpack_require__(2).Object.getPrototypeOf;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 Object.getPrototypeOf(O)
-var toObject = __webpack_require__(19);
+var toObject = __webpack_require__(17);
 var $getPrototypeOf = __webpack_require__(48);
 
-__webpack_require__(47)('getPrototypeOf', function () {
+__webpack_require__(45)('getPrototypeOf', function () {
   return function getPrototypeOf(it) {
     return $getPrototypeOf(toObject(it));
   };
@@ -2084,8 +2195,8 @@ module.exports = __webpack_require__(40).f('iterator');
 /* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(31);
-var defined = __webpack_require__(30);
+var toInteger = __webpack_require__(29);
+var defined = __webpack_require__(27);
 // true  -> String#at
 // false -> String#codePointAt
 module.exports = function (TO_STRING) {
@@ -2110,12 +2221,12 @@ module.exports = function (TO_STRING) {
 "use strict";
 
 var create = __webpack_require__(37);
-var descriptor = __webpack_require__(17);
+var descriptor = __webpack_require__(19);
 var setToStringTag = __webpack_require__(38);
 var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(10)(IteratorPrototype, __webpack_require__(3)('iterator'), function () { return this; });
+__webpack_require__(11)(IteratorPrototype, __webpack_require__(3)('iterator'), function () { return this; });
 
 module.exports = function (Constructor, NAME, next) {
   Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
@@ -2128,10 +2239,10 @@ module.exports = function (Constructor, NAME, next) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(6);
-var anObject = __webpack_require__(7);
+var anObject = __webpack_require__(8);
 var getKeys = __webpack_require__(18);
 
-module.exports = __webpack_require__(8) ? Object.defineProperties : function defineProperties(O, Properties) {
+module.exports = __webpack_require__(9) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
   var keys = getKeys(Properties);
   var length = keys.length;
@@ -2146,7 +2257,7 @@ module.exports = __webpack_require__(8) ? Object.defineProperties : function def
 /* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var document = __webpack_require__(5).document;
+var document = __webpack_require__(4).document;
 module.exports = document && document.documentElement;
 
 
@@ -2159,7 +2270,7 @@ module.exports = document && document.documentElement;
 var addToUnscopables = __webpack_require__(83);
 var step = __webpack_require__(84);
 var Iterators = __webpack_require__(16);
-var toIObject = __webpack_require__(13);
+var toIObject = __webpack_require__(10);
 
 // 22.1.3.4 Array.prototype.entries()
 // 22.1.3.13 Array.prototype.keys()
@@ -2231,14 +2342,14 @@ module.exports = __webpack_require__(2).Symbol;
 "use strict";
 
 // ECMAScript 6 symbols shim
-var global = __webpack_require__(5);
-var has = __webpack_require__(9);
-var DESCRIPTORS = __webpack_require__(8);
-var $export = __webpack_require__(4);
+var global = __webpack_require__(4);
+var has = __webpack_require__(7);
+var DESCRIPTORS = __webpack_require__(9);
+var $export = __webpack_require__(5);
 var redefine = __webpack_require__(51);
 var META = __webpack_require__(88).KEY;
-var $fails = __webpack_require__(12);
-var shared = __webpack_require__(33);
+var $fails = __webpack_require__(13);
+var shared = __webpack_require__(31);
 var setToStringTag = __webpack_require__(38);
 var uid = __webpack_require__(23);
 var wks = __webpack_require__(3);
@@ -2246,11 +2357,11 @@ var wksExt = __webpack_require__(40);
 var wksDefine = __webpack_require__(41);
 var enumKeys = __webpack_require__(89);
 var isArray = __webpack_require__(90);
-var anObject = __webpack_require__(7);
-var isObject = __webpack_require__(11);
-var toIObject = __webpack_require__(13);
-var toPrimitive = __webpack_require__(28);
-var createDesc = __webpack_require__(17);
+var anObject = __webpack_require__(8);
+var isObject = __webpack_require__(12);
+var toIObject = __webpack_require__(10);
+var toPrimitive = __webpack_require__(34);
+var createDesc = __webpack_require__(19);
 var _create = __webpack_require__(37);
 var gOPNExt = __webpack_require__(91);
 var $GOPD = __webpack_require__(53);
@@ -2456,7 +2567,7 @@ $JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
 });
 
 // 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(10)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(11)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 // 19.4.3.5 Symbol.prototype[@@toStringTag]
 setToStringTag($Symbol, 'Symbol');
 // 20.2.1.9 Math[@@toStringTag]
@@ -2470,14 +2581,14 @@ setToStringTag(global.JSON, 'JSON', true);
 /***/ (function(module, exports, __webpack_require__) {
 
 var META = __webpack_require__(23)('meta');
-var isObject = __webpack_require__(11);
-var has = __webpack_require__(9);
+var isObject = __webpack_require__(12);
+var has = __webpack_require__(7);
 var setDesc = __webpack_require__(6).f;
 var id = 0;
 var isExtensible = Object.isExtensible || function () {
   return true;
 };
-var FREEZE = !__webpack_require__(12)(function () {
+var FREEZE = !__webpack_require__(13)(function () {
   return isExtensible(Object.preventExtensions({}));
 });
 var setMeta = function (it) {
@@ -2550,7 +2661,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(29);
+var cof = __webpack_require__(28);
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
@@ -2561,7 +2672,7 @@ module.exports = Array.isArray || function isArray(arg) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-var toIObject = __webpack_require__(13);
+var toIObject = __webpack_require__(10);
 var gOPN = __webpack_require__(52).f;
 var toString = {}.toString;
 
@@ -2620,7 +2731,7 @@ module.exports = __webpack_require__(2).Object.setPrototypeOf;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
-var $export = __webpack_require__(4);
+var $export = __webpack_require__(5);
 $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(98).set });
 
 
@@ -2630,8 +2741,8 @@ $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(98).set });
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
-var isObject = __webpack_require__(11);
-var anObject = __webpack_require__(7);
+var isObject = __webpack_require__(12);
+var anObject = __webpack_require__(8);
 var check = function (O, proto) {
   anObject(O);
   if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
@@ -2640,7 +2751,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function (test, buggy, set) {
       try {
-        set = __webpack_require__(27)(Function.call, __webpack_require__(53).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(33)(Function.call, __webpack_require__(53).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch (e) { buggy = true; }
@@ -2676,7 +2787,7 @@ module.exports = function create(P, D) {
 /* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $export = __webpack_require__(4);
+var $export = __webpack_require__(5);
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 $export($export.S, 'Object', { create: __webpack_require__(37) });
 
@@ -2692,6 +2803,7 @@ $export($export.S, 'Object', { create: __webpack_require__(37) });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/media-icon/index.js';
 /**
  * media-icon field.
  */
@@ -2727,7 +2839,11 @@ function mediaIcon(props, config, defaultConfig, attributeKey, middleware) {
 		if (defaultAttributes.button) {
 			return wp.element.createElement(
 				Button,
-				{ onClick: open, className: fieldAttributes.buttonClass },
+				{ onClick: open, className: fieldAttributes.buttonClass, __source: {
+						fileName: _jsxFileName,
+						lineNumber: 30
+					}
+				},
 				fieldAttributes.buttonText
 			);
 		}
@@ -2736,7 +2852,11 @@ function mediaIcon(props, config, defaultConfig, attributeKey, middleware) {
 			className: 'components-toolbar__control',
 			label: props.attributes[attributeKey] ? fieldAttributes.iconLabelAdded : fieldAttributes.iconLabel,
 			icon: fieldAttributes.icon,
-			onClick: open
+			onClick: open,
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 37
+			}
 		});
 	};
 
@@ -2751,7 +2871,12 @@ function mediaIcon(props, config, defaultConfig, attributeKey, middleware) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: MediaUpload
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 55
+		}
+	}));
 }
 
 /***/ }),
@@ -2764,6 +2889,7 @@ function mediaIcon(props, config, defaultConfig, attributeKey, middleware) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/block-alignment-toolbar/index.js';
 /**
  * block-alignment-toolbar field.
  */
@@ -2780,7 +2906,12 @@ function blockAlignmentToolbar(props, config, defaultConfig) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: BlockAlignmentToolbar
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 14
+		}
+	}));
 }
 
 /***/ }),
@@ -2794,6 +2925,7 @@ function blockAlignmentToolbar(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_button_editable__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/button-editable/index.js';
 /**
  * Button field.
  */
@@ -2826,7 +2958,11 @@ function buttonEditable(props, config, defaultConfig, attributeKey, middleware) 
 		linkField: helperFields.link,
 		backgroundColor: middleware.getHelperFieldValue(props, config, 'backgroundColor'),
 		textColor: middleware.getHelperFieldValue(props, config, 'color'),
-		buttonClass: middleware.getHelperFieldValue(props, config, 'class')
+		buttonClass: middleware.getHelperFieldValue(props, config, 'class'),
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 24
+		}
 	}));
 }
 
@@ -2855,6 +2991,7 @@ function buttonEditable(props, config, defaultConfig, attributeKey, middleware) 
 
 
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/components/button-editable/index.js';
 var Component = wp.element.Component;
 var RichText = wp.editor.RichText;
 var _wp$components = wp.components,
@@ -2901,35 +3038,60 @@ var ButtonEditable = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var link = this.props.linkField;
-			this.props.style = _.extend({
-				backgroundColor: this.props.backgroundColor,
-				color: this.props.textColor
-			}, this.props.style);
 
 			var buttonClass = this.props.buttonClass ? ' ' + this.props.buttonClass : '';
-			this.props.className = this.props.className + buttonClass;
 
 			var form = link && this.props.isSelected && this.state.displayForm && wp.element.createElement(
 				'form',
 				{
 					key: 'form-link',
 					className: 'blocks-button__inline-link',
-					onSubmit: this.onSubmit },
-				wp.element.createElement(Dashicon, { icon: 'admin-links' }),
+					onSubmit: this.onSubmit, __source: {
+						fileName: _jsxFileName,
+						lineNumber: 38
+					}
+				},
+				wp.element.createElement(Dashicon, { icon: 'admin-links', __source: {
+						fileName: _jsxFileName,
+						lineNumber: 42
+					}
+				}),
 				link,
-				wp.element.createElement(IconButton, { icon: 'editor-break', label: __('Apply'), type: 'submit' })
+				wp.element.createElement(IconButton, { icon: 'editor-break', label: __('Apply'), type: 'submit', __source: {
+						fileName: _jsxFileName,
+						lineNumber: 44
+					}
+				})
 			);
 
 			return wp.element.createElement(
 				'div',
-				{ className: 'button-editable middleware-button-editable' },
+				{ className: 'button-editable middleware-button-editable', __source: {
+						fileName: _jsxFileName,
+						lineNumber: 49
+					}
+				},
 				wp.element.createElement(
 					'span',
-					{ className: 'wp-block-button', key: 'button' },
+					{ className: 'wp-block-button', key: 'button', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 50
+						}
+					},
 					wp.element.createElement(RichText, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 						onFocus: this.onFocus,
 						onClick: this.onFocus // Hack.
-					}, this.props))
+						, className: this.props.className + buttonClass,
+						style: {
+							backgroundColor: this.props.backgroundColor,
+							color: this.props.textColor
+						}
+					}, this.props, {
+						__source: {
+							fileName: _jsxFileName,
+							lineNumber: 51
+						}
+					}))
 				),
 				form
 			);
@@ -2953,6 +3115,10 @@ var ButtonEditable = function (_Component) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = checkbox;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/checkbox/index.js';
 /**
  * Checkbox field.
  */
@@ -2976,7 +3142,12 @@ function checkbox(props, config, defaultConfig, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(CheckboxControl, fieldAttributes);
+	return wp.element.createElement(CheckboxControl, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 24
+		}
+	}));
 }
 
 /***/ }),
@@ -2989,6 +3160,7 @@ function checkbox(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/code-editor/index.js';
 /**
  * Code editor field.
  */
@@ -3009,7 +3181,12 @@ function codeEditor(props, config, defaultConfig, attributeKey) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: CodeEditor
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 18
+		}
+	}));
 }
 
 /***/ }),
@@ -3022,6 +3199,7 @@ function codeEditor(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/color/index.js';
 /**
  * Color Palette field.
  */
@@ -3047,7 +3225,12 @@ function color(props, config, defaultConfig, attributeKey) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: ColorPalette
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 23
+		}
+	}));
 }
 
 /***/ }),
@@ -3062,6 +3245,7 @@ function color(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/date-time/index.js';
 /**
  * Date time field.
  */
@@ -3106,7 +3290,11 @@ function dateTime(props, config, defaultConfig, attributeKey) {
 		config: config,
 		component: DateTimePicker
 	}, fieldAttributes, {
-		getFormattedDate: getFormattedDate
+		getFormattedDate: getFormattedDate,
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 41
+		}
 	}));
 }
 
@@ -3126,6 +3314,7 @@ function dateTime(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/dropdown-menu/index.js';
 /**
  * icons-toolbar field.
  */
@@ -3161,7 +3350,12 @@ function dropDownMenu(props, config, defaultConfig, attributeKey) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: DropdownMenu
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 33
+		}
+	}));
 }
 
 /***/ }),
@@ -3175,6 +3369,7 @@ function dropDownMenu(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_file_upload__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/file-upload/index.js';
 /**
  * File Upload.
  */
@@ -3246,7 +3441,11 @@ function fileUpload(props, config, defaultConfig, attributeKey) {
 		component: __WEBPACK_IMPORTED_MODULE_1__components_file_upload__["a" /* default */],
 		fieldAttributes: fieldAttributes,
 		value: props.attributes[attributeKey],
-		removeFile: removeFile
+		removeFile: removeFile,
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 66
+		}
 	});
 }
 
@@ -3298,12 +3497,12 @@ module.exports = __webpack_require__(2).Array.from;
 
 "use strict";
 
-var ctx = __webpack_require__(27);
-var $export = __webpack_require__(4);
-var toObject = __webpack_require__(19);
+var ctx = __webpack_require__(33);
+var $export = __webpack_require__(5);
+var toObject = __webpack_require__(17);
 var call = __webpack_require__(118);
 var isArrayIter = __webpack_require__(119);
-var toLength = __webpack_require__(46);
+var toLength = __webpack_require__(44);
 var createProperty = __webpack_require__(120);
 var getIterFn = __webpack_require__(54);
 
@@ -3341,7 +3540,7 @@ $export($export.S + $export.F * !__webpack_require__(121)(function (iter) { Arra
 /***/ (function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
-var anObject = __webpack_require__(7);
+var anObject = __webpack_require__(8);
 module.exports = function (iterator, fn, value, entries) {
   try {
     return entries ? fn(anObject(value)[0], value[1]) : fn(value);
@@ -3375,7 +3574,7 @@ module.exports = function (it) {
 "use strict";
 
 var $defineProperty = __webpack_require__(6);
-var createDesc = __webpack_require__(17);
+var createDesc = __webpack_require__(19);
 
 module.exports = function (object, index, value) {
   if (index in object) $defineProperty.f(object, index, createDesc(0, value));
@@ -3416,24 +3615,28 @@ module.exports = function (exec, skipClosing) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__file_thumb__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editor_scss__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__editor_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__file_thumb__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__editor_scss__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__editor_scss__);
 
 
 
 
 
+
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/components/file-upload/index.js';
 var Component = wp.element.Component;
 var _wp$components = wp.components,
     Button = _wp$components.Button,
@@ -3445,15 +3648,15 @@ var MediaUpload = wp.editor.MediaUpload;
 
 
 var FileUpload = function (_Component) {
-	__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(FileUpload, _Component);
+	__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default()(FileUpload, _Component);
 
 	function FileUpload() {
-		__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, FileUpload);
+		__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default()(this, FileUpload);
 
-		return __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (FileUpload.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(FileUpload)).apply(this, arguments));
+		return __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default()(this, (FileUpload.__proto__ || __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default()(FileUpload)).apply(this, arguments));
 	}
 
-	__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(FileUpload, [{
+	__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(FileUpload, [{
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
@@ -3473,8 +3676,16 @@ var FileUpload = function (_Component) {
 					if (_.isEmpty(value)) {
 						return wp.element.createElement(
 							Button,
-							{ isLarge: fieldAttributes.isLarge, onClick: open },
-							wp.element.createElement(Dashicon, { icon: 'upload' }),
+							{ isLarge: fieldAttributes.isLarge, onClick: open, __source: {
+									fileName: _jsxFileName,
+									lineNumber: 24
+								}
+							},
+							wp.element.createElement(Dashicon, { icon: 'upload', __source: {
+									fileName: _jsxFileName,
+									lineNumber: 25
+								}
+							}),
 							fieldAttributes.buttonText
 						);
 					}
@@ -3484,19 +3695,44 @@ var FileUpload = function (_Component) {
 
 			return wp.element.createElement(
 				'div',
-				{ className: fieldWrapperClasses },
+				{ className: fieldWrapperClasses, __source: {
+						fileName: _jsxFileName,
+						lineNumber: 35
+					}
+				},
 				wp.element.createElement(
 					'div',
-					{ className: 'file-upload-filed-actions' },
-					wp.element.createElement(MediaUpload, mediaUploadProps)
+					{ className: 'file-upload-filed-actions', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 36
+						}
+					},
+					wp.element.createElement(MediaUpload, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, mediaUploadProps, {
+						__source: {
+							fileName: _jsxFileName,
+							lineNumber: 37
+						}
+					}))
 				),
 				!_.isEmpty(value) && wp.element.createElement(
 					'ul',
-					{ className: 'file-upload-field-files' },
+					{ className: 'file-upload-field-files', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 43
+						}
+					},
 					_.isArray(value) && value.map(function (file, key) {
-						return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_5__file_thumb__["a" /* default */], { file: file, key: key, dataKey: key, removeFile: removeFile });
+						return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_6__file_thumb__["a" /* default */], { file: file, key: key, dataKey: key, removeFile: removeFile, __source: {
+								fileName: _jsxFileName,
+								lineNumber: 45
+							}
+						});
 					}),
-					!_.isArray(value) && wp.element.createElement(__WEBPACK_IMPORTED_MODULE_5__file_thumb__["a" /* default */], { file: value, key: 0, removeFile: removeFile })
+					!_.isArray(value) && wp.element.createElement(__WEBPACK_IMPORTED_MODULE_6__file_thumb__["a" /* default */], { file: value, key: 0, removeFile: removeFile, __source: {
+							fileName: _jsxFileName,
+							lineNumber: 48
+						}
+					})
 				)
 			);
 		}
@@ -3528,6 +3764,7 @@ var FileUpload = function (_Component) {
 
 
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/components/file-upload/file-thumb.js';
 
 
 var Component = wp.element.Component;
@@ -3552,19 +3789,44 @@ var FileThumb = function (_Component) {
 
 			return wp.element.createElement(
 				'li',
-				null,
-				wp.element.createElement('button', { className: 'dashicons dashicons-no-alt middleware-remove-file', 'data-key': this.props.dataKey, onClick: this.props.removeFile }),
+				{
+					__source: {
+						fileName: _jsxFileName,
+						lineNumber: 14
+					}
+				},
+				wp.element.createElement('button', { className: 'dashicons dashicons-no-alt middleware-remove-file', 'data-key': this.props.dataKey, onClick: this.props.removeFile, __source: {
+						fileName: _jsxFileName,
+						lineNumber: 15
+					}
+				}),
 				wp.element.createElement(
 					'div',
-					{ className: 'middleware-field-media-thumbnail' },
-					wp.element.createElement('span', { className: dashIcon })
+					{ className: 'middleware-field-media-thumbnail', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 16
+						}
+					},
+					wp.element.createElement('span', { className: dashIcon, __source: {
+							fileName: _jsxFileName,
+							lineNumber: 17
+						}
+					})
 				),
 				wp.element.createElement(
 					'div',
-					{ className: 'middleware-file' },
+					{ className: 'middleware-file', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 19
+						}
+					},
 					wp.element.createElement(
 						'a',
-						{ target: '_blank', href: this.props.file.url },
+						{ target: '_blank', href: this.props.file.url, __source: {
+								fileName: _jsxFileName,
+								lineNumber: 20
+							}
+						},
 						this.props.file.filename
 					)
 				)
@@ -3593,6 +3855,7 @@ var FileThumb = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/form-toggle/index.js';
 /**
  * Switch field.
  */
@@ -3605,7 +3868,6 @@ function formToggle(props, config, defaultConfig, attributeKey) {
 	var defaultAttributes = _.extend(defaultConfig, {
 		checked: 'on' === props.attributes[attributeKey],
 		value: props.attributes[attributeKey] || 'off',
-		baseControlClassName: 'components-toggle-control',
 		onChange: function onChange(event) {
 			var newAttributes = {};
 			newAttributes[attributeKey] = 'on' === event.target.value ? 'off' : 'on';
@@ -3620,7 +3882,12 @@ function formToggle(props, config, defaultConfig, attributeKey) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: FormToggle
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 24
+		}
+	}));
 }
 
 /***/ }),
@@ -3633,6 +3900,7 @@ function formToggle(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/icons-toolbar/index.js';
 /**
  * icons-toolbar field.
  */
@@ -3670,7 +3938,12 @@ function iconsToolbar(props, config, defaultConfig, attributeKey) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: toolbarConfig,
 		component: Toolbar
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 35
+		}
+	}));
 }
 
 /***/ }),
@@ -3685,6 +3958,7 @@ function iconsToolbar(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/link/index.js';
 /**
  * Url field.
  */
@@ -3703,7 +3977,12 @@ function link(props, config, defaultConfig) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: URLInput
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 16
+		}
+	}));
 }
 
 /***/ }),
@@ -3723,6 +4002,7 @@ function link(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/media-upload/index.js';
 /**
  * image/video/audio field.
  */
@@ -3772,7 +4052,11 @@ function mediaUpload(props, config, defaultConfig, attributeKey, middleware) {
 		component: __WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__["a" /* default */]
 	}, fieldAttributes, {
 		mediaData: props.attributes[attributeKey],
-		captionField: helperFields.caption
+		captionField: helperFields.caption,
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 45
+		}
 	}));
 }
 
@@ -3802,6 +4086,7 @@ function mediaUpload(props, config, defaultConfig, attributeKey, middleware) {
 
 
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/components/media-placeholder/index.js';
 
 
 
@@ -3973,18 +4258,30 @@ var MediaPlaceholder = function (_Component) {
 				if (this.props.inputUrl) {
 					mediaButtons.push(wp.element.createElement(
 						'form',
-						{ onSubmit: this.onSelectUrl },
+						{ key: _.uniqueId('form'), onSubmit: this.onSelectUrl, __source: {
+								fileName: _jsxFileName,
+								lineNumber: 135
+							}
+						},
 						wp.element.createElement('input', {
 							type: 'url',
 							className: 'components-placeholder__input',
 							placeholder: __('Enter URL of ') + type + __(' file here…'),
 							onChange: this.onUrlChange,
-							value: this.state.mediaData.url || '' }),
+							value: this.state.mediaData.url || '', __source: {
+								fileName: _jsxFileName,
+								lineNumber: 136
+							}
+						}),
 						wp.element.createElement(
 							Button,
 							{
 								isLarge: true,
-								type: 'submit' },
+								type: 'submit', __source: {
+									fileName: _jsxFileName,
+									lineNumber: 142
+								}
+							},
 							__('Use URL')
 						)
 					));
@@ -3994,10 +4291,15 @@ var MediaPlaceholder = function (_Component) {
 					mediaButtons.push(wp.element.createElement(
 						FormFileUpload,
 						{
+							key: _.uniqueId('form-field'),
 							isLarge: true,
 							className: 'wp-block-video__upload-button',
 							onChange: this.uploadFromFiles,
-							accept: type + '/*'
+							accept: type + '/*',
+							__source: {
+								fileName: _jsxFileName,
+								lineNumber: 153
+							}
 						},
 						buttonText
 					));
@@ -4007,13 +4309,22 @@ var MediaPlaceholder = function (_Component) {
 					mediaButtons.push(wp.element.createElement(MediaUpload, {
 						onSelect: this.onSelectMedia,
 						type: type,
+						key: _.uniqueId('media-upload'),
 						render: function render(_ref5) {
 							var open = _ref5.open;
 							return wp.element.createElement(
 								Button,
-								{ isLarge: true, onClick: open },
+								{ isLarge: true, onClick: open, __source: {
+										fileName: _jsxFileName,
+										lineNumber: 172
+									}
+								},
 								_this4.props.mediaButtonText
 							);
+						},
+						__source: {
+							fileName: _jsxFileName,
+							lineNumber: 167
 						}
 					}));
 				}
@@ -4026,8 +4337,16 @@ var MediaPlaceholder = function (_Component) {
 							icon: mediaIcon,
 							label: type,
 							className: placeholderClassName,
-							instructions: placeholderText },
-						wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop }),
+							instructions: placeholderText, __source: {
+								fileName: _jsxFileName,
+								lineNumber: 182
+							}
+						},
+						wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop, __source: {
+								fileName: _jsxFileName,
+								lineNumber: 188
+							}
+						}),
 						mediaButtons
 					);
 				}
@@ -4037,23 +4356,51 @@ var MediaPlaceholder = function (_Component) {
 
 			return wp.element.createElement(
 				'div',
-				{ className: 'middleware-media-field' },
+				{ className: 'middleware-media-field', __source: {
+						fileName: _jsxFileName,
+						lineNumber: 198
+					}
+				},
 				wp.element.createElement(
 					Toolbar,
-					{ key: type, className: 'middleware-media-toolbar' },
+					{ key: type, className: 'middleware-media-toolbar', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 199
+						}
+					},
 					wp.element.createElement(IconButton, {
 						className: 'components-icon-button components-toolbar__control',
 						label: __('Edit ') + type,
 						onClick: this.switchToEditing,
-						icon: 'edit'
+						icon: 'edit',
+						__source: {
+							fileName: _jsxFileName,
+							lineNumber: 200
+						}
 					})
 				),
 				wp.element.createElement(
 					'figure',
-					{ key: type, className: className + ' wp-block-' + type },
-					'video' === type && wp.element.createElement('video', { controls: true, src: this.state.mediaData.url }),
-					'audio' === type && wp.element.createElement('audio', { controls: true, src: this.state.mediaData.url }),
-					'image' === type && wp.element.createElement('img', { src: this.state.mediaData.url, alt: this.state.mediaData.title || '' }),
+					{ key: type, className: className + ' wp-block-' + type, __source: {
+							fileName: _jsxFileName,
+							lineNumber: 208
+						}
+					},
+					'video' === type && wp.element.createElement('video', { controls: true, src: this.state.mediaData.url, __source: {
+							fileName: _jsxFileName,
+							lineNumber: 210
+						}
+					}),
+					'audio' === type && wp.element.createElement('audio', { controls: true, src: this.state.mediaData.url, __source: {
+							fileName: _jsxFileName,
+							lineNumber: 213
+						}
+					}),
+					'image' === type && wp.element.createElement('img', { src: this.state.mediaData.url, alt: this.state.mediaData.title || '', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 216
+						}
+					}),
 					isSelected && this.props.captionField
 				)
 			);
@@ -4172,7 +4519,7 @@ module.exports = __webpack_require__(137);
 /* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(7);
+var anObject = __webpack_require__(8);
 var get = __webpack_require__(54);
 module.exports = __webpack_require__(2).getIterator = function (it) {
   var iterFn = get(it);
@@ -4193,6 +4540,10 @@ module.exports = __webpack_require__(2).getIterator = function (it) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = radio;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/radio/index.js';
 /**
  * Radio Control field.
  */
@@ -4210,7 +4561,12 @@ function radio(props, config, defaultConfig, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(RadioControl, fieldAttributes);
+	return wp.element.createElement(RadioControl, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 18
+		}
+	}));
 }
 
 /***/ }),
@@ -4219,6 +4575,10 @@ function radio(props, config, defaultConfig, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = range;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+
+var _jsxFileName = "/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/range/index.js";
 var RangeControl = wp.components.RangeControl;
 
 
@@ -4227,7 +4587,12 @@ function range(props, config, defaultConfig) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(RangeControl, fieldAttributes);
+	return wp.element.createElement(RangeControl, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 9
+		}
+	}));
 }
 
 /***/ }),
@@ -4242,6 +4607,7 @@ function range(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/rich-text/index.js';
 /**
  * Text field.
  */
@@ -4264,7 +4630,11 @@ function richText(props, config, defaultConfig, attributeKey) {
 		config: config,
 		component: RichText
 	}, fieldAttributes, {
-		isSelected: props.isSelected && attributeKey === props.editable
+		isSelected: props.isSelected && attributeKey === props.editable,
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 19
+		}
 	}));
 }
 
@@ -4280,6 +4650,10 @@ function richText(props, config, defaultConfig, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = select;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+
+var _jsxFileName = "/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/select/index.js";
 /**
  * Select field.
  */
@@ -4292,7 +4666,12 @@ function select(props, config, defaultConfig) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(SelectControl, fieldAttributes);
+	return wp.element.createElement(SelectControl, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 13
+		}
+	}));
 }
 
 /***/ }),
@@ -4306,6 +4685,7 @@ function select(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__input_field__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/text/index.js';
 /**
  * text field.
  */
@@ -4327,7 +4707,12 @@ function text(props, config, defaultConfig, attributeKey, middleware) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: PlainText
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 19
+		}
+	}));
 }
 
 /***/ }),
@@ -4336,8 +4721,12 @@ function text(props, config, defaultConfig, attributeKey, middleware) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = textarea;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_scss__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__editor_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
+
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/textarea/index.js';
 /**
  * Textarea field.
  */
@@ -4356,7 +4745,12 @@ function textarea(props, config, defaultConfig) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(TextareaControl, fieldAttributes);
+	return wp.element.createElement(TextareaControl, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 19
+		}
+	}));
 }
 
 /***/ }),
@@ -4371,6 +4765,10 @@ function textarea(props, config, defaultConfig) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = treeSelect;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+
+var _jsxFileName = "/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/tree-select/index.js";
 /**
  * tree-select field.
  */
@@ -4383,7 +4781,12 @@ function treeSelect(props, config, defaultConfig) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(TreeSelect, fieldAttributes);
+	return wp.element.createElement(TreeSelect, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 13
+		}
+	}));
 }
 
 /***/ }),
@@ -4396,6 +4799,7 @@ function treeSelect(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
+var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/url-input-button/index.js';
 /**
  * url-input-button field.
  */
@@ -4416,7 +4820,12 @@ function urlInputButton(props, config, defaultConfig, attributeKey) {
 	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
 		config: config,
 		component: URLInput
-	}, fieldAttributes));
+	}, fieldAttributes, {
+		__source: {
+			fileName: _jsxFileName,
+			lineNumber: 18
+		}
+	}));
 }
 
 /***/ })

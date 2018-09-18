@@ -469,12 +469,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 			},
 		},
-		codeEditor: {
-			type: 'string',
-			field: {
-				type: 'code-editor',
-			},
-		},
+		// codeEditor: { @todo Fix setState error.
+		// 	type: 'string',
+		// 	field: {
+		// 		type: 'code-editor',
+		// 	},
+		// },
 		range: {
 			type: 'string',
 			field: {
