@@ -20,10 +20,8 @@ export default function color( props, config, defaultConfig, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ ColorPalette }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<ColorPalette { ...fieldAttributes } />
+		</Field>
 	);
 }

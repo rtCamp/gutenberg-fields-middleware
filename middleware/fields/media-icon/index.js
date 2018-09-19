@@ -52,10 +52,8 @@ export default function mediaIcon( props, config, defaultConfig, attributeKey, m
 	fieldAttributes.type = fieldAttributes.mediaType;
 
 	return (
-		<Field
-			config={ config }
-			component={ MediaUpload }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<MediaUpload { ...fieldAttributes } />
+		</Field>
 	);
 }

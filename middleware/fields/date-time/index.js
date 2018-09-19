@@ -38,11 +38,11 @@ export default function dateTime( props, config, defaultConfig, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ DateTimePicker }
-			{ ...fieldAttributes }
-			getFormattedDate={ getFormattedDate }
-		/>
+		<Field { ...config }>
+			<DateTimePicker
+				{ ...fieldAttributes }
+				getFormattedDate={ getFormattedDate }
+			/>
+		</Field>
 	);
 }

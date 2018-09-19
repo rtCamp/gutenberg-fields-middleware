@@ -8,49 +8,51 @@ const { PanelColor } = wp.components;
 class Field extends Component {
 	render() {
 		const {
-			config,
-			component,
+			id,
+			placement,
+			label,
+			help,
+			baseControlClassName,
+			type,
+			panel,
+			initialOpen
 		} = this.props;
 
-		const props = _.extend( {}, this.props );
-		const FieldComponent = component;
 		let field = null;
 
-		delete props.component;
-
-		if ( 'inspector' === config.placement || config.label || config.help ) {
+		if ( 'inspector' === placement || label || help ) {
 			field = (
-				<BaseControl label={ config.label } help={ config.help } id={ config.id } className={ this.props.baseControlClassName } >
-					<FieldComponent { ...props } />
+				<BaseControl label={ label } help={ help } id={ id } className={ baseControlClassName } >
+					{ this.props.children }
 				</BaseControl>
 			);
-		} else if ( 'block-controls' === config.placement ) {
+		} else if ( 'block-controls' === placement ) {
 			field = (
 				<Toolbar>
-					<FieldComponent { ...props } />
+					{ this.props.children }
 				</Toolbar>
 			);
 		} else {
-			field = <FieldComponent { ...props } />;
+			field = this.props.children;
 		}
 
-		if ( 'color' === config.type && props.panel ) {
+		if ( 'color' === type && panel ) {
 			field = (
-				<PanelColor title={ props.label } colorValue={ props.value } initialOpen={ props.initialOpen }>
-					<FieldComponent { ...props } />
+				<PanelColor title={ label } colorValue={ value } initialOpen={ initialOpen }>
+					{ this.props.children }
 				</PanelColor>
 			);
 		}
 
-		if ( 'date-time' === config.type ) {
-			if ( props.panel ) {
+		if ( 'date-time' === type ) {
+			if ( panel ) {
 				field = (
-					<PanelBody initialOpen={ props.initialOpen } title={ [
+					<PanelBody initialOpen={ initialOpen } title={ [
 						props.label + ': ',
 						<span key="label">{ props.getFormattedDate() }</span>,
 					]
 					}>
-						<FieldComponent { ...props } />
+						{ this.props.children }
 					</PanelBody>
 				);
 			} else {
@@ -62,7 +64,7 @@ class Field extends Component {
 			}
 		}
 
-		if ( 'link' === config.type ) {
+		if ( 'link' === type ) {
 			field = (
 				<div className="middleware-link-field">
 					{ field }

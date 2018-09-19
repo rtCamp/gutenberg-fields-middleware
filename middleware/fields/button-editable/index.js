@@ -21,16 +21,16 @@ export default function buttonEditable( props, config, defaultConfig, attributeK
 	const helperFields = middleware.getHelperFields( attributeKey );
 
 	return (
-		<Field
-			config={ config }
-			component={ ButtonEditable }
-			{ ...fieldAttributes }
-			buttonValue={ fieldAttributes.value }
-			isSelected={ props.isSelected && attributeKey === props.editable }
-			linkField={ helperFields.link }
-			backgroundColor={ middleware.getHelperFieldValue( props, config, 'backgroundColor' ) }
-			textColor={ middleware.getHelperFieldValue( props, config, 'color' ) }
-			buttonClass={ middleware.getHelperFieldValue( props, config, 'class' ) }
-		/>
+		<Field { ...config } >
+			<ButtonEditable
+				{ ...fieldAttributes }
+				buttonValue={ fieldAttributes.value }
+				isSelected={ props.isSelected && attributeKey === props.editable }
+				linkField={ helperFields.link }
+				backgroundColor={ middleware.getHelperFieldValue( props, config, 'backgroundColor' ) }
+				textColor={ middleware.getHelperFieldValue( props, config, 'color' ) }
+				buttonClass={ middleware.getHelperFieldValue( props, config, 'class' ) }
+			/>
+		</Field>
 	);
 }

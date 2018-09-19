@@ -30,10 +30,8 @@ export default function dropDownMenu( props, config, defaultConfig, attributeKey
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ DropdownMenu }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<DropdownMenu { ...fieldAttributes } />
+		</Field>
 	);
 }

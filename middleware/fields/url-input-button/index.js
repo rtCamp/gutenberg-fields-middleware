@@ -15,10 +15,8 @@ export default function urlInputButton( props, config, defaultConfig, attributeK
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
 	return (
-		<Field
-			config={ config }
-			component={ URLInput }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<URLInput { ...fieldAttributes } />
+		</Field>
 	);
 }

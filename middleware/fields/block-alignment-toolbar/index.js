@@ -11,10 +11,8 @@ export default function blockAlignmentToolbar( props, config, defaultConfig ) {
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ BlockAlignmentToolbar }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<BlockAlignmentToolbar { ...fieldAttributes } />
+		</Field>
 	);
 }

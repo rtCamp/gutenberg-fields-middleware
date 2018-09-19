@@ -13,10 +13,8 @@ export default function link( props, config, defaultConfig ) {
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ URLInput }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<URLInput { ...fieldAttributes } />
+		</Field>
 	);
 }

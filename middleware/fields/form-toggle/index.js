@@ -21,10 +21,8 @@ export default function formToggle( props, config, defaultConfig, attributeKey )
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ FormToggle }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<FormToggle { ...fieldAttributes } />
+		</Field>
 	);
 }

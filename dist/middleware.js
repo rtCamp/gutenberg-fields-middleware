@@ -97,19 +97,16 @@ exports.default = _assign2.default || function (target) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
 
 
 
@@ -128,115 +125,92 @@ var PanelColor = wp.components.PanelColor;
  */
 
 var Field = function (_Component) {
-	__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default()(Field, _Component);
+	__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(Field, _Component);
 
 	function Field() {
-		__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default()(this, Field);
+		__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, Field);
 
-		return __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Field.__proto__ || __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default()(Field)).apply(this, arguments));
+		return __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Field.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Field)).apply(this, arguments));
 	}
 
-	__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(Field, [{
+	__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Field, [{
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
-			    config = _props.config,
-			    component = _props.component;
+			    id = _props.id,
+			    placement = _props.placement,
+			    label = _props.label,
+			    help = _props.help,
+			    baseControlClassName = _props.baseControlClassName,
+			    type = _props.type,
+			    panel = _props.panel,
+			    initialOpen = _props.initialOpen;
 
 
-			var props = _.extend({}, this.props);
-			var FieldComponent = component;
 			var field = null;
 
-			delete props.component;
-
-			if ('inspector' === config.placement || config.label || config.help) {
+			if ('inspector' === placement || label || help) {
 				field = wp.element.createElement(
 					BaseControl,
-					{ label: config.label, help: config.help, id: config.id, className: this.props.baseControlClassName, __source: {
+					{ label: label, help: help, id: id, className: baseControlClassName, __source: {
 							fileName: _jsxFileName,
-							lineNumber: 23
+							lineNumber: 25
 						}
 					},
-					wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
-						__source: {
-							fileName: _jsxFileName,
-							lineNumber: 24
-						}
-					}))
+					this.props.children
 				);
-			} else if ('block-controls' === config.placement) {
+			} else if ('block-controls' === placement) {
 				field = wp.element.createElement(
 					Toolbar,
 					{
 						__source: {
 							fileName: _jsxFileName,
-							lineNumber: 29
+							lineNumber: 31
 						}
 					},
-					wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
-						__source: {
-							fileName: _jsxFileName,
-							lineNumber: 30
-						}
-					}))
+					this.props.children
 				);
 			} else {
-				field = wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
-					__source: {
-						fileName: _jsxFileName,
-						lineNumber: 34
-					}
-				}));
+				field = this.props.children;
 			}
 
-			if ('color' === config.type && props.panel) {
+			if ('color' === type && panel) {
 				field = wp.element.createElement(
 					PanelColor,
-					{ title: props.label, colorValue: props.value, initialOpen: props.initialOpen, __source: {
+					{ title: label, colorValue: value, initialOpen: initialOpen, __source: {
 							fileName: _jsxFileName,
-							lineNumber: 39
+							lineNumber: 41
 						}
 					},
-					wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
-						__source: {
-							fileName: _jsxFileName,
-							lineNumber: 40
-						}
-					}))
+					this.props.children
 				);
 			}
 
-			if ('date-time' === config.type) {
-				if (props.panel) {
+			if ('date-time' === type) {
+				if (panel) {
 					field = wp.element.createElement(
 						PanelBody,
-						{ initialOpen: props.initialOpen, title: [props.label + ': ', wp.element.createElement(
+						{ initialOpen: initialOpen, title: [props.label + ': ', wp.element.createElement(
 								'span',
 								{ key: 'label', __source: {
 										fileName: _jsxFileName,
-										lineNumber: 50
+										lineNumber: 52
 									}
 								},
 								props.getFormattedDate()
 							)], __source: {
 								fileName: _jsxFileName,
-								lineNumber: 48
+								lineNumber: 50
 							}
 						},
-						wp.element.createElement(FieldComponent, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, props, {
-							__source: {
-								fileName: _jsxFileName,
-								lineNumber: 53
-							}
-						}))
+						this.props.children
 					);
 				} else {
 					field = wp.element.createElement(
 						'div',
 						{ className: 'middleware-date-time-no-panel', __source: {
 								fileName: _jsxFileName,
-								lineNumber: 58
+								lineNumber: 60
 							}
 						},
 						field
@@ -244,12 +218,12 @@ var Field = function (_Component) {
 				}
 			}
 
-			if ('link' === config.type) {
+			if ('link' === type) {
 				field = wp.element.createElement(
 					'div',
 					{ className: 'middleware-link-field', __source: {
 							fileName: _jsxFileName,
-							lineNumber: 67
+							lineNumber: 69
 						}
 					},
 					field
@@ -1671,7 +1645,7 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function setupField(props, attribute, attributeKey) {
 			var extend = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
 
-			var config = attribute.field;
+			var config = _.extend(attribute.field, { key: _.uniqueId(attributeKey) });
 			var defaultConfig = this.getDefaultConfig(props, config, attributeKey);
 
 			var field = this.getField(props, config, defaultConfig, attributeKey);
@@ -1707,11 +1681,6 @@ var GutenbergFieldsMiddleWare = function () {
 					var newAttributes = {};
 					newAttributes[attributeKey] = value;
 					props.setAttributes(newAttributes);
-				},
-				onFocus: function onFocus() {
-					props.setState({
-						editable: attributeKey
-					});
 				}
 			};
 		}
@@ -1810,7 +1779,7 @@ var GutenbergFieldsMiddleWare = function () {
 				'div',
 				{ key: props.className, __source: {
 						fileName: _jsxFileName,
-						lineNumber: 382
+						lineNumber: 377
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
@@ -2135,15 +2104,21 @@ function alignmentToolbar(props, config, defaultConfig) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: AlignmentToolbar
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 14
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 14
+			}
+		}),
+		wp.element.createElement(AlignmentToolbar, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 15
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -2861,15 +2836,21 @@ function mediaIcon(props, config, defaultConfig, attributeKey, middleware) {
 
 	fieldAttributes.type = fieldAttributes.mediaType;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: MediaUpload
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 55
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 55
+			}
+		}),
+		wp.element.createElement(MediaUpload, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 56
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -2896,15 +2877,21 @@ function blockAlignmentToolbar(props, config, defaultConfig) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: BlockAlignmentToolbar
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 14
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 14
+			}
+		}),
+		wp.element.createElement(BlockAlignmentToolbar, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 15
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -2942,21 +2929,27 @@ function buttonEditable(props, config, defaultConfig, attributeKey, middleware) 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 	var helperFields = middleware.getHelperFields(attributeKey);
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: __WEBPACK_IMPORTED_MODULE_1__components_button_editable__["a" /* default */]
-	}, fieldAttributes, {
-		buttonValue: fieldAttributes.value,
-		isSelected: props.isSelected && attributeKey === props.editable,
-		linkField: helperFields.link,
-		backgroundColor: middleware.getHelperFieldValue(props, config, 'backgroundColor'),
-		textColor: middleware.getHelperFieldValue(props, config, 'color'),
-		buttonClass: middleware.getHelperFieldValue(props, config, 'class'),
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 24
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 24
+			}
+		}),
+		wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_button_editable__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			buttonValue: fieldAttributes.value,
+			isSelected: props.isSelected && attributeKey === props.editable,
+			linkField: helperFields.link,
+			backgroundColor: middleware.getHelperFieldValue(props, config, 'backgroundColor'),
+			textColor: middleware.getHelperFieldValue(props, config, 'color'),
+			buttonClass: middleware.getHelperFieldValue(props, config, 'class'),
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 25
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -3171,15 +3164,21 @@ function codeEditor(props, config, defaultConfig, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: CodeEditor
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 18
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 18
+			}
+		}),
+		wp.element.createElement(CodeEditor, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 19
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -3215,15 +3214,21 @@ function color(props, config, defaultConfig, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: ColorPalette
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 23
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 23
+			}
+		}),
+		wp.element.createElement(ColorPalette, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 24
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -3279,16 +3284,22 @@ function dateTime(props, config, defaultConfig, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: DateTimePicker
-	}, fieldAttributes, {
-		getFormattedDate: getFormattedDate,
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 41
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 41
+			}
+		}),
+		wp.element.createElement(DateTimePicker, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			getFormattedDate: getFormattedDate,
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 42
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -3340,15 +3351,21 @@ function dropDownMenu(props, config, defaultConfig, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: DropdownMenu
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 33
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 33
+			}
+		}),
+		wp.element.createElement(DropdownMenu, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 34
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -3357,10 +3374,13 @@ function dropDownMenu(props, config, defaultConfig, attributeKey) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = fileUpload;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_file_upload__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_file_upload__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_field__ = __webpack_require__(1);
+
 
 var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/file-upload/index.js';
 /**
@@ -3389,7 +3409,7 @@ function fileUpload(props, config, defaultConfig, attributeKey) {
 		var newAttributes = {};
 
 		if (!_.isEmpty(props.attributes[attributeKey]) && !_.isEmpty(files) && _.isArray(files)) {
-			files = [].concat(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(props.attributes[attributeKey]), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(files));
+			files = [].concat(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(props.attributes[attributeKey]), __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(files));
 		}
 
 		newAttributes[attributeKey] = files;
@@ -3428,18 +3448,25 @@ function fileUpload(props, config, defaultConfig, attributeKey) {
 
 	fieldAttributes.type = fieldAttributes.fileType;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], {
-		key: _.uniqueId('file-upload'),
-		config: config,
-		component: __WEBPACK_IMPORTED_MODULE_1__components_file_upload__["a" /* default */],
-		fieldAttributes: fieldAttributes,
-		value: props.attributes[attributeKey],
-		removeFile: removeFile,
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 66
-		}
-	});
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_3__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ key: _.uniqueId('file-upload') }, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 66
+			}
+		}),
+		wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_file_upload__["a" /* default */], {
+			fieldAttributes: fieldAttributes,
+			value: props.attributes[attributeKey],
+			removeFile: removeFile,
+			config: config,
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 67
+			}
+		})
+	);
 }
 
 /***/ }),
@@ -3872,15 +3899,21 @@ function formToggle(props, config, defaultConfig, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: FormToggle
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 24
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 24
+			}
+		}),
+		wp.element.createElement(FormToggle, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 25
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -3928,15 +3961,21 @@ function iconsToolbar(props, config, defaultConfig, attributeKey) {
 	var toolbarConfig = _.extend({}, config);
 	toolbarConfig.placement = 'block-controls' === config.placement ? '' : config.placement; // To avoid one more Toolbar wrapper.
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: toolbarConfig,
-		component: Toolbar
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 35
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 35
+			}
+		}),
+		wp.element.createElement(Toolbar, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 36
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -3967,15 +4006,21 @@ function link(props, config, defaultConfig) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: URLInput
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 16
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 16
+			}
+		}),
+		wp.element.createElement(URLInput, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 17
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -4040,17 +4085,23 @@ function mediaUpload(props, config, defaultConfig, attributeKey, middleware) {
 		}
 	};
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: __WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__["a" /* default */]
-	}, fieldAttributes, {
-		mediaData: props.attributes[attributeKey],
-		captionField: helperFields.caption,
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 45
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 45
+			}
+		}),
+		wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			mediaData: props.attributes[attributeKey],
+			captionField: helperFields.caption,
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 46
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -4619,16 +4670,22 @@ function richText(props, config, defaultConfig, attributeKey) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: RichText
-	}, fieldAttributes, {
-		isSelected: props.isSelected && attributeKey === props.editable,
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 19
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 19
+			}
+		}),
+		wp.element.createElement(RichText, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			isSelected: props.isSelected && attributeKey === props.editable,
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 20
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -4697,15 +4754,21 @@ function text(props, config, defaultConfig, attributeKey, middleware) {
 
 	delete fieldAttributes.type;
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: PlainText
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 19
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 19
+			}
+		}),
+		wp.element.createElement(PlainText, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 20
+			}
+		}))
+	);
 }
 
 /***/ }),
@@ -4810,15 +4873,21 @@ function urlInputButton(props, config, defaultConfig, attributeKey) {
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	return wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-		config: config,
-		component: URLInput
-	}, fieldAttributes, {
-		__source: {
-			fileName: _jsxFileName,
-			lineNumber: 18
-		}
-	}));
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 18
+			}
+		}),
+		wp.element.createElement(URLInput, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 19
+			}
+		}))
+	);
 }
 
 /***/ })

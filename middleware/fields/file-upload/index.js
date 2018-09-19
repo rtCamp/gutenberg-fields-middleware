@@ -63,13 +63,13 @@ export default function fileUpload( props, config, defaultConfig, attributeKey )
 	fieldAttributes.type = fieldAttributes.fileType;
 
 	return (
-		<Field
-			key={ _.uniqueId( 'file-upload' ) }
-			config={ config }
-			component={ FileUpload }
-			fieldAttributes={ fieldAttributes }
-			value={ props.attributes[ attributeKey ] }
-			removeFile={ removeFile }
-		/>
+		<Field key={ _.uniqueId( 'file-upload' ) } { ...config } >
+			<FileUpload
+				fieldAttributes={ fieldAttributes }
+				value={ props.attributes[ attributeKey ] }
+				removeFile={ removeFile }
+				config={ config }
+			/>
+		</Field>
 	);
 }

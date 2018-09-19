@@ -16,10 +16,10 @@ export default function text( props, config, defaultConfig, attributeKey, middle
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ PlainText }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<PlainText
+				{ ...fieldAttributes }
+			/>
+		</Field>
 	);
 }

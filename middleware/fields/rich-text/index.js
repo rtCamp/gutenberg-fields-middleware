@@ -16,11 +16,11 @@ export default function richText( props, config, defaultConfig, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ RichText }
-			{ ...fieldAttributes }
-			isSelected={ props.isSelected && attributeKey === props.editable }
-		/>
+		<Field { ...config } >
+			<RichText
+				{ ...fieldAttributes }
+				isSelected={ props.isSelected && attributeKey === props.editable }
+			/>
+		</Field>
 	);
 }

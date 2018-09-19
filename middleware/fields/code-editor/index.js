@@ -15,10 +15,8 @@ export default function codeEditor( props, config, defaultConfig, attributeKey )
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ CodeEditor }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<CodeEditor { ...fieldAttributes } />
+		</Field>
 	);
 }
