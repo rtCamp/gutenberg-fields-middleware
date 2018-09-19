@@ -74,13 +74,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'block-controls',
 			},
 		},
-		blockLink: {
-			type: 'string',
-			field: {
-				type: 'url-input-button',
-				placement: 'block-controls',
-			},
-		},
+		// blockLink: {
+		// 	type: 'string',
+		// 	field: {
+		// 		type: 'url-input-button',
+		// 		placement: 'block-controls',
+		// 	},
+		// },
 		text: {
 			type: 'string',
 			field: {
@@ -246,7 +246,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'button-editable',
 				helperFields: {
-					link: 'buttonEditableLink',
+					// link: 'buttonEditableLink',
 					backgroundColor: 'buttonBackgroundColor',
 					color: 'buttonColor',
 					class: 'buttonClasses',
@@ -255,12 +255,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 			source: 'children',
 			selector: '.button-link',
 		},
-		buttonEditableLink: {
-			type: 'string',
-			field: {
-				type: 'link',
-			},
-		},
+		// buttonEditableLink: {
+		// 	type: 'string',
+		// 	field: {
+		// 		type: 'link',
+		// 	},
+		// },
 		buttonBackgroundColor: {
 			type: 'string',
 			field: {

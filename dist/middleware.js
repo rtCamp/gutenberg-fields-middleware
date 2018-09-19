@@ -1357,9 +1357,6 @@ var _ref = 'undefined' !== typeof wp.editor ? wp.editor : {},
 var _ref2 = 'undefined' !== typeof wp.hooks ? wp.hooks : {},
     addFilter = _ref2.addFilter;
 
-var _ref3 = 'undefined' !== typeof wp.compose ? wp.compose : {},
-    withState = _ref3.withState;
-
 var middlewareWarnings = Object(__WEBPACK_IMPORTED_MODULE_4__utils__["c" /* getMiddlewareWarnings */])();
 
 if (middlewareWarnings) {
@@ -1428,13 +1425,9 @@ var GutenbergFieldsMiddleWare = function () {
 				return this.blockConfigs;
 			}
 
-			var blockStates = _.extend({
-				editable: ''
-			}, this.config.blockStates || {});
-
 			delete this.blockConfigs.blockStates;
 
-			this.blockConfigs.edit = withState(blockStates)(function (props) {
+			this.blockConfigs.edit = function (props) {
 				_this.setupBlockFields(props);
 
 				var wrapperClassName = 'middleware-block ' + props.className;
@@ -1445,13 +1438,13 @@ var GutenbergFieldsMiddleWare = function () {
 							'div',
 							{ className: wrapperClassName, __source: {
 									fileName: _jsxFileName,
-									lineNumber: 82
+									lineNumber: 77
 								}
 							},
 							wp.element.createElement(_this.config.edit, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props, {
 								__source: {
 									fileName: _jsxFileName,
-									lineNumber: 82
+									lineNumber: 77
 								}
 							}))
 						);
@@ -1461,7 +1454,7 @@ var GutenbergFieldsMiddleWare = function () {
 						'div',
 						{ className: wrapperClassName, __source: {
 								fileName: _jsxFileName,
-								lineNumber: 85
+								lineNumber: 80
 							}
 						},
 						_this.config.edit(props, _this)
@@ -1472,12 +1465,12 @@ var GutenbergFieldsMiddleWare = function () {
 					'div',
 					{ className: wrapperClassName, __source: {
 							fileName: _jsxFileName,
-							lineNumber: 88
+							lineNumber: 83
 						}
 					},
 					_this.edit(props, _this)
 				);
-			});
+			};
 
 			var BlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey();
 
@@ -1502,7 +1495,7 @@ var GutenbergFieldsMiddleWare = function () {
 						return wp.element.createElement(_this.config.save, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props, {
 							__source: {
 								fileName: _jsxFileName,
-								lineNumber: 111
+								lineNumber: 106
 							}
 						}));
 					}
@@ -1642,7 +1635,7 @@ var GutenbergFieldsMiddleWare = function () {
 				InspectorControls,
 				{ key: 'inspector-control', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 238
+						lineNumber: 233
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
@@ -1654,7 +1647,7 @@ var GutenbergFieldsMiddleWare = function () {
 				BlockControls,
 				{ key: 'block-controls', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 246
+						lineNumber: 241
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
@@ -1817,7 +1810,7 @@ var GutenbergFieldsMiddleWare = function () {
 				'div',
 				{ key: props.className, __source: {
 						fileName: _jsxFileName,
-						lineNumber: 387
+						lineNumber: 382
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
