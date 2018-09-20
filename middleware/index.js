@@ -256,7 +256,7 @@ class GutenbergFieldsMiddleWare {
 	 * @return {Object|void} Field.
 	 */
 	setupField( props, attribute, attributeKey, extend = true ) {
-		const config = _.extend( attribute.field, { key: _.uniqueId( attributeKey ) } );
+		const config = _.extend( attribute.field, { key: attributeKey } );
 		const defaultConfig = this.getDefaultConfig( props, config, attributeKey );
 
 		const field = this.getField( props, config, defaultConfig, attributeKey );
@@ -283,7 +283,6 @@ class GutenbergFieldsMiddleWare {
 	 */
 	getDefaultConfig( props, config, attributeKey ) {
 		return {
-			key: _.uniqueId( attributeKey ),
 			value: props.attributes[ attributeKey ],
 			onChange( value ) {
 				const newAttributes = {};

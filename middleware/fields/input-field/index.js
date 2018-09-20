@@ -11,7 +11,7 @@ export default function inputField( props, config, defaultConfig, attributeKey )
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
 
-	fieldAttributes.id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId( attributeKey );
+	fieldAttributes.id = fieldAttributes.id ? fieldAttributes.id : attributeKey;
 
 	return (
 		<TextControl

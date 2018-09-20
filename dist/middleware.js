@@ -1281,7 +1281,7 @@ function inputField(props, config, defaultConfig, attributeKey) {
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
-	fieldAttributes.id = fieldAttributes.id ? fieldAttributes.id : _.uniqueId(attributeKey);
+	fieldAttributes.id = fieldAttributes.id ? fieldAttributes.id : attributeKey;
 
 	return wp.element.createElement(TextControl, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 		__source: {
@@ -1645,7 +1645,7 @@ var GutenbergFieldsMiddleWare = function () {
 		value: function setupField(props, attribute, attributeKey) {
 			var extend = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
 
-			var config = _.extend(attribute.field, { key: _.uniqueId(attributeKey) });
+			var config = _.extend(attribute.field, { key: attributeKey });
 			var defaultConfig = this.getDefaultConfig(props, config, attributeKey);
 
 			var field = this.getField(props, config, defaultConfig, attributeKey);
@@ -1675,7 +1675,6 @@ var GutenbergFieldsMiddleWare = function () {
 		key: 'getDefaultConfig',
 		value: function getDefaultConfig(props, config, attributeKey) {
 			return {
-				key: _.uniqueId(attributeKey),
 				value: props.attributes[attributeKey],
 				onChange: function onChange(value) {
 					var newAttributes = {};
@@ -1779,7 +1778,7 @@ var GutenbergFieldsMiddleWare = function () {
 				'div',
 				{ key: props.className, __source: {
 						fileName: _jsxFileName,
-						lineNumber: 377
+						lineNumber: 376
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
@@ -3450,7 +3449,7 @@ function fileUpload(props, config, defaultConfig, attributeKey) {
 
 	return wp.element.createElement(
 		__WEBPACK_IMPORTED_MODULE_3__components_field__["a" /* default */],
-		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ key: _.uniqueId('file-upload') }, config, {
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ key: 'file-upload' }, config, {
 			__source: {
 				fileName: _jsxFileName,
 				lineNumber: 66
@@ -4302,7 +4301,7 @@ var MediaPlaceholder = function (_Component) {
 				if (this.props.inputUrl) {
 					mediaButtons.push(wp.element.createElement(
 						'form',
-						{ key: _.uniqueId('form'), onSubmit: this.onSelectUrl, __source: {
+						{ key: 'form', onSubmit: this.onSelectUrl, __source: {
 								fileName: _jsxFileName,
 								lineNumber: 135
 							}
@@ -4335,7 +4334,7 @@ var MediaPlaceholder = function (_Component) {
 					mediaButtons.push(wp.element.createElement(
 						FormFileUpload,
 						{
-							key: _.uniqueId('form-field'),
+							key: 'form-field',
 							isLarge: true,
 							className: 'wp-block-video__upload-button',
 							onChange: this.uploadFromFiles,
@@ -4353,7 +4352,7 @@ var MediaPlaceholder = function (_Component) {
 					mediaButtons.push(wp.element.createElement(MediaUpload, {
 						onSelect: this.onSelectMedia,
 						type: type,
-						key: _.uniqueId('media-upload'),
+						key: 'media-upload',
 						render: function render(_ref5) {
 							var open = _ref5.open;
 							return wp.element.createElement(

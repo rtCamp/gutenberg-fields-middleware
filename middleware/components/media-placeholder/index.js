@@ -132,7 +132,7 @@ class MediaPlaceholder extends Component {
 
 			if ( this.props.inputUrl ) {
 				mediaButtons.push( (
-					<form key={ _.uniqueId( 'form' ) } onSubmit={ this.onSelectUrl }>
+					<form key='form' onSubmit={ this.onSelectUrl }>
 						<input
 							type="url"
 							className="components-placeholder__input"
@@ -151,7 +151,7 @@ class MediaPlaceholder extends Component {
 			if ( this.props.fileUpload ) {
 				mediaButtons.push( (
 					<FormFileUpload
-						key={ _.uniqueId( 'form-field' ) }
+						key='form-field'
 						isLarge
 						className="wp-block-video__upload-button"
 						onChange={ this.uploadFromFiles }
@@ -167,7 +167,7 @@ class MediaPlaceholder extends Component {
 					<MediaUpload
 						onSelect={ this.onSelectMedia }
 						type={ type }
-						key={ _.uniqueId( 'media-upload' ) }
+						key='media-upload'
 						render={ ( { open } ) => (
 							<Button isLarge onClick={ open } >
 								{ this.props.mediaButtonText }
