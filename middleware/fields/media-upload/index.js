@@ -47,6 +47,7 @@ export default function mediaUpload( props, config, defaultConfig, attributeKey,
 				{ ...fieldAttributes }
 				mediaData={ props.attributes[ attributeKey ] }
 				captionField={ helperFields.caption }
+				attributeKey={ attributeKey }
 			/>
 		</Field>
 	);

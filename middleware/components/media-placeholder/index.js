@@ -123,6 +123,7 @@ class MediaPlaceholder extends Component {
 			buttonText,
 			className,
 			isSelected,
+			attributeKey,
 		} = this.props;
 
 		if ( this.state.editing ) {
@@ -132,7 +133,7 @@ class MediaPlaceholder extends Component {
 
 			if ( this.props.inputUrl ) {
 				mediaButtons.push( (
-					<form key='form' onSubmit={ this.onSelectUrl }>
+					<form key={ `form-${attributeKey}` } onSubmit={ this.onSelectUrl }>
 						<input
 							type="url"
 							className="components-placeholder__input"
@@ -151,7 +152,7 @@ class MediaPlaceholder extends Component {
 			if ( this.props.fileUpload ) {
 				mediaButtons.push( (
 					<FormFileUpload
-						key='form-field'
+						key={ `form-field-${attributeKey}` }
 						isLarge
 						className="wp-block-video__upload-button"
 						onChange={ this.uploadFromFiles }
@@ -180,7 +181,7 @@ class MediaPlaceholder extends Component {
 			if ( this.props.placeholder ) {
 				return (
 					<Placeholder
-						key="placeholder"
+						key={ `placeholder-${attributeKey}` }
 						icon={ mediaIcon }
 						label={ type }
 						className={ placeholderClassName }
@@ -205,7 +206,7 @@ class MediaPlaceholder extends Component {
 					/>
 				</Toolbar>
 				{
-					<figure key={ type } className={ className + ' wp-block-' + type }>
+					<figure key={ attributeKey + type } className={ className + ' wp-block-' + type }>
 						{ 'video' === type && (
 							<video controls src={ this.state.mediaData.url } />
 						) }
