@@ -45,6 +45,8 @@ class GutenbergFieldsMiddleWare {
 		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind( this );
 		this.getField = this.getField.bind( this );
 		this.getFieldConfig = this.getFieldConfig.bind( this );
+		this.getBlockControls = this.getBlockControls.bind( this );
+		this.getInspectorControls = this.getInspectorControls.bind( this );
 	}
 
 	/**
@@ -235,20 +237,49 @@ class GutenbergFieldsMiddleWare {
 			}
 		} );
 
-		this.inspectorControls = props.isSelected ? (
-			<InspectorControls key="inspector-control">
-				{ Object.keys( this.inspectorControlFields ).map( ( key ) => {
-					return this.inspectorControlFields[ key ];
-				} ) }
-			</InspectorControls>
-		) : null;
+		this.inspectorControls = this.getInspectorControls( props );
+		this.blockControls = this.getBlockControls( props );
+	}
 
-		this.blockControls = props.isSelected ? (
+	/**
+	 * Get block controls.
+	 *
+	 * @param {Object} props Props
+	 * @param {array} fields Fields
+	 *
+	 * @return {Object|null}
+	 */
+	getBlockControls( props, fields = [] ) {
+		return props.isSelected ? (
 			<BlockControls key="block-controls">
-				{ Object.keys( this.blockControlFields ).map( ( key ) => {
-					return this.blockControlFields[ key ];
-				} ) }
+				{ _.isEmpty( fields ) && (
+					Object.keys( this.blockControlFields ).map( ( key ) => {
+						return this.blockControlFields[ key ];
+					} )
+				) }
+				{ ! _.isEmpty( fields ) && fields }
 			</BlockControls>
+		) : null;
+	}
+
+	/**
+	 * Get inspector controls.
+	 *
+	 * @param {Object} props Props
+	 * @param {array} fields Fields
+	 *
+	 * @return {Object|null}
+	 */
+	getInspectorControls( props, fields = [] ) {
+		return props.isSelected ? (
+			<InspectorControls key="inspector-control">
+				{ _.isEmpty( fields ) && (
+					Object.keys( this.inspectorControlFields ).map( ( key ) => {
+						return this.inspectorControlFields[ key ];
+					} )
+				) }
+				{ ! _.isEmpty( fields ) && fields }
+			</InspectorControls>
 		) : null;
 	}
 

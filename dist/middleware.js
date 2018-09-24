@@ -1386,6 +1386,8 @@ var GutenbergFieldsMiddleWare = function () {
 		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind(this);
 		this.getField = this.getField.bind(this);
 		this.getFieldConfig = this.getFieldConfig.bind(this);
+		this.getBlockControls = this.getBlockControls.bind(this);
+		this.getInspectorControls = this.getInspectorControls.bind(this);
 	}
 
 	/**
@@ -1430,13 +1432,13 @@ var GutenbergFieldsMiddleWare = function () {
 							'div',
 							{ className: wrapperClassName, __source: {
 									fileName: _jsxFileName,
-									lineNumber: 82
+									lineNumber: 84
 								}
 							},
 							wp.element.createElement(_this.config.edit, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props, {
 								__source: {
 									fileName: _jsxFileName,
-									lineNumber: 82
+									lineNumber: 84
 								}
 							}))
 						);
@@ -1446,7 +1448,7 @@ var GutenbergFieldsMiddleWare = function () {
 						'div',
 						{ className: wrapperClassName, __source: {
 								fileName: _jsxFileName,
-								lineNumber: 85
+								lineNumber: 87
 							}
 						},
 						_this.config.edit(props, _this)
@@ -1457,7 +1459,7 @@ var GutenbergFieldsMiddleWare = function () {
 					'div',
 					{ className: wrapperClassName, __source: {
 							fileName: _jsxFileName,
-							lineNumber: 88
+							lineNumber: 90
 						}
 					},
 					_this.edit(props, _this)
@@ -1487,7 +1489,7 @@ var GutenbergFieldsMiddleWare = function () {
 						return wp.element.createElement(_this.config.save, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props, {
 							__source: {
 								fileName: _jsxFileName,
-								lineNumber: 111
+								lineNumber: 113
 							}
 						}));
 					}
@@ -1626,28 +1628,67 @@ var GutenbergFieldsMiddleWare = function () {
 				}
 			});
 
-			this.inspectorControls = props.isSelected ? wp.element.createElement(
-				InspectorControls,
-				{ key: 'inspector-control', __source: {
-						fileName: _jsxFileName,
-						lineNumber: 239
-					}
-				},
-				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
-					return _this2.inspectorControlFields[key];
-				})
-			) : null;
+			this.inspectorControls = this.getInspectorControls(props);
+			this.blockControls = this.getBlockControls(props);
+		}
 
-			this.blockControls = props.isSelected ? wp.element.createElement(
+		/**
+   * Get block controls.
+   *
+   * @param {Object} props Props
+   * @param {array} fields Fields
+   *
+   * @return {Object|null}
+   */
+
+	}, {
+		key: 'getBlockControls',
+		value: function getBlockControls(props) {
+			var _this3 = this;
+
+			var fields = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+			return props.isSelected ? wp.element.createElement(
 				BlockControls,
 				{ key: 'block-controls', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 247
+						lineNumber: 254
 					}
 				},
-				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
-					return _this2.blockControlFields[key];
-				})
+				_.isEmpty(fields) && __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
+					return _this3.blockControlFields[key];
+				}),
+				!_.isEmpty(fields) && fields
+			) : null;
+		}
+
+		/**
+   * Get inspector controls.
+   *
+   * @param {Object} props Props
+   * @param {array} fields Fields
+   *
+   * @return {Object|null}
+   */
+
+	}, {
+		key: 'getInspectorControls',
+		value: function getInspectorControls(props) {
+			var _this4 = this;
+
+			var fields = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+			return props.isSelected ? wp.element.createElement(
+				InspectorControls,
+				{ key: 'inspector-control', __source: {
+						fileName: _jsxFileName,
+						lineNumber: 275
+					}
+				},
+				_.isEmpty(fields) && __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
+					return _this4.inspectorControlFields[key];
+				}),
+				!_.isEmpty(fields) && fields
 			) : null;
 		}
 
@@ -1715,14 +1756,14 @@ var GutenbergFieldsMiddleWare = function () {
    * @return {Object} Helper fields.
    */
 		value: function getHelperFields(attributeKey) {
-			var _this3 = this;
+			var _this5 = this;
 
 			var helperFields = {};
 			var config = this.blockConfigs.attributes[attributeKey].field;
 
 			if (config && !_.isEmpty(config.helperFields)) {
 				_.each(config.helperFields, function (helperFieldAttributeKey, helperFieldKeyName) {
-					helperFields[helperFieldKeyName] = _this3.helperFields[helperFieldAttributeKey];
+					helperFields[helperFieldKeyName] = _this5.helperFields[helperFieldAttributeKey];
 				});
 			}
 
@@ -1793,17 +1834,17 @@ var GutenbergFieldsMiddleWare = function () {
 	}, {
 		key: 'edit',
 		value: function edit(props) {
-			var _this4 = this;
+			var _this6 = this;
 
 			return [this.blockControls, this.inspectorControls, wp.element.createElement(
 				'div',
 				{ key: props.className, __source: {
 						fileName: _jsxFileName,
-						lineNumber: 396
+						lineNumber: 427
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
-					return _this4.fields[key];
+					return _this6.fields[key];
 				})
 			)];
 		}
