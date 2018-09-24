@@ -42,9 +42,9 @@ class GutenbergFieldsMiddleWare {
 		this.setupBlockFields = this.setupBlockFields.bind( this );
 		this.setupField = this.setupField.bind( this );
 		this.getHelperFields = this.getHelperFields.bind( this );
-		this.updateAlignment = this.updateAlignment.bind( this );
 		this.getBlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey.bind( this );
-		this.getDefaultConfig = this.getDefaultConfig.bind( this );
+		this.getField = this.getField.bind( this );
+		this.getFieldConfig = this.getFieldConfig.bind( this );
 	}
 
 	/**
@@ -123,89 +123,90 @@ class GutenbergFieldsMiddleWare {
 	/**
 	 * Get field according to the field type.
 	 *
-	 * @param {Object} props         Properties.
-	 * @param {Object} config        Field configuration provided.
-	 * @param {Object} defaultConfig Field default configuration.
-	 * @param {String} attributeKey  Attribute Key.
+	 * @param {Object} props        Properties.
+	 * @param {String} attributeKey Attribute Key.
+	 * @param {Object} fieldConfig  Extra field configuration, can be used to override or extend config from edit().
 	 *
 	 * @return {Object} Field.
 	 */
-	getField( props, config, defaultConfig, attributeKey ) {
-		const field = {};
+	getField( props, attributeKey, fieldConfig = {} ) {
+		let field = {};
+		const defaultConfig = this.constructor.getDefaultFieldConfig( props, attributeKey );
+		const config = _.extend( this.getFieldConfig( attributeKey ), fieldConfig );
 
 		switch ( config.type ) {
 			case 'text':
-				field[ attributeKey ] = fields.text( props, config, defaultConfig, attributeKey, this );
+				field = fields.text( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'rich-text':
-				field[ attributeKey ] = fields.richText( props, config, defaultConfig, attributeKey, this );
+				field = fields.richText( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'link':
-				field[ attributeKey ] = fields.link( props, config, defaultConfig, attributeKey, this );
+				field = fields.link( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'video':
 			case 'audio':
 			case 'image':
-				field[ attributeKey ] = fields.mediaUpload( props, config, defaultConfig, attributeKey, this );
+				field = fields.mediaUpload( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'select':
-				field[ attributeKey ] = fields.select( props, config, defaultConfig, attributeKey, this );
+				field = fields.select( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'range':
-				field[ attributeKey ] = fields.range( props, config, defaultConfig, attributeKey, this );
+				field = fields.range( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'radio':
-				field[ attributeKey ] = fields.radio( props, config, defaultConfig, attributeKey, this );
+				field = fields.radio( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'checkbox':
-				field[ attributeKey ] = fields.checkbox( props, config, defaultConfig, attributeKey, this );
+				field = fields.checkbox( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'button-editable':
-				field[ attributeKey ] = fields.buttonEditable( props, config, defaultConfig, attributeKey, this );
+				field = fields.buttonEditable( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'color':
-				field[ attributeKey ] = fields.color( props, config, defaultConfig, attributeKey, this );
+				field = fields.color( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'code-editor':
-				field[ attributeKey ] = fields.codeEditor( props, config, defaultConfig, attributeKey, this );
+				field = fields.codeEditor( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'date-time':
-				field[ attributeKey ] = fields.dateTime( props, config, defaultConfig, attributeKey, this );
+				field = fields.dateTime( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'textarea':
-				field[ attributeKey ] = fields.textarea( props, config, defaultConfig, attributeKey, this );
+				field = fields.textarea( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'switch':
-				field[ attributeKey ] = fields.formToggle( props, config, defaultConfig, attributeKey, this );
+				field = fields.formToggle( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'tree-select':
-				field[ attributeKey ] = fields.treeSelect( props, config, defaultConfig, attributeKey, this );
+				field = fields.treeSelect( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'file-upload':
-				field[ attributeKey ] = fields.fileUpload( props, config, defaultConfig, attributeKey, this );
+				field = fields.fileUpload( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'block-alignment-toolbar':
-				field[ attributeKey ] = fields.blockAlignmentToolbar( props, config, defaultConfig, attributeKey, this );
+				field = fields.blockAlignmentToolbar( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'alignment-toolbar':
-				field[ attributeKey ] = fields.alignmentToolbar( props, config, defaultConfig, attributeKey, this );
+				field = fields.alignmentToolbar( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'icons-toolbar':
-				field[ attributeKey ] = fields.iconsToolbar( props, config, defaultConfig, attributeKey, this );
+				field = fields.iconsToolbar( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'media-icon':
-				field[ attributeKey ] = fields.mediaIcon( props, config, defaultConfig, attributeKey, this );
+				field = fields.mediaIcon( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'dropdown-menu':
-				field[ attributeKey ] = fields.dropDownMenu( props, config, defaultConfig, attributeKey, this );
+				field = fields.dropDownMenu( props, config, defaultConfig, attributeKey, this );
 				break;
 			case 'url-input-button':
-				field[ attributeKey ] = fields.urlInputButton( props, config, defaultConfig, attributeKey, this );
+				field = fields.urlInputButton( props, config, defaultConfig, attributeKey, this );
 				break;
 		}
 
 		if ( _.contains( [ 'email', 'hidden', 'number', 'search', 'tel', 'time', 'date', 'datetime-local', 'file', 'month', 'password', 'time', 'url', 'week' ], config.type ) ) {
-			field[ attributeKey ] = fields.inputField( props, config, defaultConfig, attributeKey, this );
+			field = fields.inputField( props, config, defaultConfig, attributeKey, this );
 		}
 
 		return field;
@@ -223,14 +224,14 @@ class GutenbergFieldsMiddleWare {
 		_.each( this.blockConfigs.attributes, ( attribute ) => {
 			if ( attribute.field && attribute.field.helperFields ) {
 				_.each( attribute.field.helperFields, ( helperFieldAttributeKey ) => {
-					_.extend( this.helperFields, this.setupField( props, this.blockConfigs.attributes[ helperFieldAttributeKey ], helperFieldAttributeKey, false ) );
+					_.extend( this.helperFields, this.setupField( props, helperFieldAttributeKey, false ) );
 				} );
 			}
 		} );
 
 		_.each( this.blockConfigs.attributes, ( attribute, attributeKey ) => {
 			if ( attribute.field && ! this.helperFields[ attributeKey ] ) {
-				this.setupField( props, attribute, attributeKey );
+				this.setupField( props, attributeKey );
 			}
 		} );
 
@@ -254,39 +255,48 @@ class GutenbergFieldsMiddleWare {
 	/**
 	 * Setup a single Field.
 	 *
-	 * @param {Object} props Properties.
-	 * @param {Object} attribute Attribute.
-	 * @param {String} attributeKey Attribute key.
-	 * @param {Boolean} extend Whether to extend the field with field objects.
+	 * @param {Object}  props        Properties.
+	 * @param {String}  attributeKey Attribute key.
+	 * @param {Boolean} extend       Whether to extend the field with field objects.
+	 *
 	 * @return {Object|void} Field.
 	 */
-	setupField( props, attribute, attributeKey, extend = true ) {
-		const config = _.extend( attribute.field, { key: attributeKey } );
-		const defaultConfig = this.getDefaultConfig( props, config, attributeKey );
-
-		const field = this.getField( props, config, defaultConfig, attributeKey );
+	setupField( props, attributeKey, extend = true ) {
+		const field = this.getField( props, attributeKey );
+		const config = this.getFieldConfig( attributeKey );
 
 		if ( 'inspector' === config.placement ) {
-			_.extend( this.inspectorControlFields, field );
+			this.inspectorControlFields[ attributeKey ] = field;
 		} else if ( 'block-controls' === config.placement ) {
-			_.extend( this.blockControlFields, field );
+			this.blockControlFields[ attributeKey ] = field;
 		} else if ( extend ) {
-			_.extend( this.fields, field );
+			this.fields[ attributeKey ] = field;
 		}
 
 		return field;
 	}
 
 	/**
+	 * Get field configuration.
+	 *
+	 * @param {String} attributeKey Attribute key.
+	 *
+	 * @return {Object}
+	 */
+	getFieldConfig( attributeKey ) {
+		const attribute = this.blockConfigs.attributes[ attributeKey ];
+		return ! _.isEmpty( attribute.field ) ? _.extend( attribute.field, { key: attributeKey } ) : {};
+	}
+
+	/**
 	 * Get default configuration for all fields.
 	 *
 	 * @param {Object} props         Properties.
-	 * @param {Object} config        Field configuration provided.
 	 * @param {String} attributeKey  Attribute Key.
 	 *
 	 * @return {Object} Default Config object.
 	 */
-	getDefaultConfig( props, config, attributeKey ) {
+	static getDefaultFieldConfig( props, attributeKey ) {
 		return {
 			value: props.attributes[ attributeKey ],
 			onChange( value ) {

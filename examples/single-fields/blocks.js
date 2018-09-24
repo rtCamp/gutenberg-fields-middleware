@@ -21,13 +21,13 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
 	},
 
 	edit: function( props, middleware ) {
-		middleware.fields.text.props.style = {
-			textAlign: props.attributes.alignment, // Set alignment whenever value changes.
-		};
-
 		return [
 			middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
-			middleware.fields.text,
+			middleware.getField( props, 'text', {
+				style: {
+					textAlign: props.attributes.alignment
+				}
+			} )
 		];
 	},
 
