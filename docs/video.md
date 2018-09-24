@@ -225,9 +225,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-video', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.video,
+			middleware.fields.video,
 		];
 	},
 

@@ -224,9 +224,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.audio,
+			middleware.fields.audio,
 		];
 	},
 

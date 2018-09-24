@@ -6,7 +6,7 @@
 
 ## Properties
 
-#### label:
+#### title:
 
 The title of color control
 

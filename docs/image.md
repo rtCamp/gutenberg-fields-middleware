@@ -232,9 +232,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-image', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.image,
+			middleware.fields.image,
 		];
 	},
 

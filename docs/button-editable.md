@@ -155,9 +155,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-button-editable', 
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.buttonEditable,
+			middleware.fields.buttonEditable,
 		];
 	},
 

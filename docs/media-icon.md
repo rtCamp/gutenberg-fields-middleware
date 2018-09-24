@@ -75,13 +75,13 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-controls-image', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		var image = props.attributes.image,
 			imageUrl = image ? 'url(' + image.url + ')' : null,
 			imageHeight = image ? image.height : null;
 
 		return [
-			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
+			middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
 
 			wp.element.createElement( 'div', {
 				className: 'block-control-image',

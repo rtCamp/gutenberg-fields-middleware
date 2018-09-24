@@ -55,11 +55,11 @@ wp.blocks.registerBlockType( 'example-namespace/example-block', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.inspectorControls, // Contains ALL inspector controls.
-			props.middleware.fields.image,
-			props.middleware.fields.text,
+			middleware.inspectorControls, // Contains ALL inspector controls.
+			middleware.fields.image,
+			middleware.fields.text,
 		];
 	},
 
@@ -135,11 +135,11 @@ Gutenberg Fields Middleware supports the following field types and type configur
 
 #### Returning field in `edit` method:
 
-- `props.middleware.fields.key` for a **single** field when `placement` property is not defined.
-- `props.middleware.blockControls` for **all** block-control fields. ( `placement: 'block-control'` ) 
-  - Alternatively individual block control fields can be returned using `props.middleware.blockControlFields.key` but then you would need to wrap them in `<BlockControls>` yourself.
-- `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
-  - Alternatively individual inspector fields can be returned using `props.middleware.inspectorControlFields.key` but then you would need to wrap them in `<InspectorControls>` yourself.
+- `middleware.fields.key` for a **single** field when `placement` property is not defined.
+- `middleware.blockControls` for **all** block-control fields. ( `placement: 'block-control'` ) 
+  - Alternatively individual block control fields can be returned using `middleware.blockControlFields.key` but then you would need to wrap them in `<BlockControls>` yourself.
+- `middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
+  - Alternatively individual inspector fields can be returned using `middleware.inspectorControlFields.key` but then you would need to wrap them in `<InspectorControls>` yourself.
 
 
 
