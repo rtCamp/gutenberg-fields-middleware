@@ -64,6 +64,14 @@ class Field extends Component {
 			}
 		}
 
+		if ( 'color' === type ) {
+			field = (
+				<div className="middleware-color-field">
+					{ field }
+				</div>
+			);
+		}
+
 		if ( 'link' === type ) {
 			field = (
 				<div className="middleware-link-field">

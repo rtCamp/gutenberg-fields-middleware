@@ -74,13 +74,13 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'block-controls',
 			},
 		},
-		// blockLink: {
-		// 	type: 'string',
-		// 	field: {
-		// 		type: 'url-input-button',
-		// 		placement: 'block-controls',
-		// 	},
-		// },
+		blockLink: {
+			type: 'string',
+			field: {
+				type: 'url-input-button',
+				placement: 'block-controls',
+			},
+		},
 		text: {
 			type: 'string',
 			field: {
@@ -265,7 +265,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'color',
-				label: __( 'Button Background Color' ),
+				title: __( 'Button Background Color' ),
 				placement: 'inspector',
 				initialOpen: true,
 			},
@@ -274,7 +274,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'color',
-				label: __( 'Button Color' ),
+				title: __( 'Button Color' ),
 				placement: 'inspector',
 				initialOpen: false,
 			},

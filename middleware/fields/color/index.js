@@ -2,15 +2,16 @@
  * Color Palette field.
  */
 
-const { ColorPalette } = wp.editor;
+const { PanelColor } = wp.editor;
 const { __ } = wp.i18n;
 
+import './editor.scss';
 import Field from './../../components/field';
 
 export default function color( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = _.extend( defaultConfig, {
 		value: props.attributes[ attributeKey ] || '',
-		label: __( 'Color' ),
+		title: __( 'Color' ),
 		initialOpen: false,
 		panel: 'inspector' === config.placement,
 	} );
@@ -21,7 +22,7 @@ export default function color( props, config, defaultConfig, attributeKey ) {
 
 	return (
 		<Field { ...config } >
-			<ColorPalette { ...fieldAttributes } />
+			<PanelColor { ...fieldAttributes } />
 		</Field>
 	);
 }

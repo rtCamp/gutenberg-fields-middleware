@@ -63,14 +63,18 @@
 
 		form {
 			max-width: none;
+			margin-bottom: 10px;
 		}
 
 		.button.button-large {
 			margin-top: 0.5em;
 		}
 
+		.components-form-file-upload {
+			margin-right: 10px;
+		}
+
 		.components-placeholder__input {
-			margin-top: 0.5em;
 
 			.edit-post-sidebar & {
 				width: 60%;

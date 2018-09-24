@@ -218,12 +218,24 @@ var Field = function (_Component) {
 				}
 			}
 
+			if ('color' === type) {
+				field = wp.element.createElement(
+					'div',
+					{ className: 'middleware-color-field', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 69
+						}
+					},
+					field
+				);
+			}
+
 			if ('link' === type) {
 				field = wp.element.createElement(
 					'div',
 					{ className: 'middleware-link-field', __source: {
 							fileName: _jsxFileName,
-							lineNumber: 69
+							lineNumber: 77
 						}
 					},
 					field
@@ -3206,15 +3218,18 @@ function codeEditor(props, config, defaultConfig, attributeKey) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = color;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
 var _jsxFileName = '/Users/sayedtaqui/valet/middleware/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/color/index.js';
 /**
  * Color Palette field.
  */
 
-var ColorPalette = wp.editor.ColorPalette;
+var PanelColor = wp.editor.PanelColor;
 var __ = wp.i18n.__;
+
 
 
 
@@ -3222,7 +3237,7 @@ var __ = wp.i18n.__;
 function color(props, config, defaultConfig, attributeKey) {
 	var defaultAttributes = _.extend(defaultConfig, {
 		value: props.attributes[attributeKey] || '',
-		label: __('Color'),
+		title: __('Color'),
 		initialOpen: false,
 		panel: 'inspector' === config.placement
 	});
@@ -3232,17 +3247,17 @@ function color(props, config, defaultConfig, attributeKey) {
 	delete fieldAttributes.type;
 
 	return wp.element.createElement(
-		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */],
 		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
 			__source: {
 				fileName: _jsxFileName,
-				lineNumber: 23
+				lineNumber: 24
 			}
 		}),
-		wp.element.createElement(ColorPalette, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+		wp.element.createElement(PanelColor, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 			__source: {
 				fileName: _jsxFileName,
-				lineNumber: 24
+				lineNumber: 25
 			}
 		}))
 	);
@@ -4904,6 +4919,13 @@ function urlInputButton(props, config, defaultConfig, attributeKey) {
 		}))
 	);
 }
+
+/***/ }),
+/* 149 */,
+/* 150 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
