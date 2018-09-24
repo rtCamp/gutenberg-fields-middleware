@@ -6,6 +6,7 @@ import { getMiddlewareWarnings } from './utils';
 
 const { InspectorControls, BlockControls } = 'undefined' !== typeof wp.editor ? wp.editor : {};
 const { addFilter } = 'undefined' !== typeof wp.hooks ? wp.hooks : {};
+const { withState } = wp.compose;
 const middlewareWarnings = getMiddlewareWarnings();
 
 if ( middlewareWarnings ) {
@@ -65,9 +66,13 @@ class GutenbergFieldsMiddleWare {
 			return this.blockConfigs;
 		}
 
+		const blockStates = _.extend( {
+			editable: '',
+		}, this.config.blockStates || {} );
+
 		delete this.blockConfigs.blockStates;
 
-		this.blockConfigs.edit = ( props ) => {
+		this.blockConfigs.edit = withState( blockStates )( ( props ) => {
 			this.setupBlockFields( props );
 
 			const wrapperClassName = 'middleware-block ' + props.className;
@@ -81,7 +86,7 @@ class GutenbergFieldsMiddleWare {
 			}
 
 			return ( <div className={ wrapperClassName }>{ this.edit( props, this ) }</div> );
-		};
+		} );
 
 		const BlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey();
 
@@ -289,6 +294,11 @@ class GutenbergFieldsMiddleWare {
 				newAttributes[ attributeKey ] = value;
 				props.setAttributes( newAttributes );
 			},
+			onFocus() {
+				props.setState( {
+					editable: attributeKey,
+				} );
+			}
 		};
 	}
 

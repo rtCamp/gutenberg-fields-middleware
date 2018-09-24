@@ -1331,6 +1331,8 @@ var _ref = 'undefined' !== typeof wp.editor ? wp.editor : {},
 var _ref2 = 'undefined' !== typeof wp.hooks ? wp.hooks : {},
     addFilter = _ref2.addFilter;
 
+var withState = wp.compose.withState;
+
 var middlewareWarnings = Object(__WEBPACK_IMPORTED_MODULE_4__utils__["c" /* getMiddlewareWarnings */])();
 
 if (middlewareWarnings) {
@@ -1399,9 +1401,13 @@ var GutenbergFieldsMiddleWare = function () {
 				return this.blockConfigs;
 			}
 
+			var blockStates = _.extend({
+				editable: ''
+			}, this.config.blockStates || {});
+
 			delete this.blockConfigs.blockStates;
 
-			this.blockConfigs.edit = function (props) {
+			this.blockConfigs.edit = withState(blockStates)(function (props) {
 				_this.setupBlockFields(props);
 
 				var wrapperClassName = 'middleware-block ' + props.className;
@@ -1412,13 +1418,13 @@ var GutenbergFieldsMiddleWare = function () {
 							'div',
 							{ className: wrapperClassName, __source: {
 									fileName: _jsxFileName,
-									lineNumber: 77
+									lineNumber: 82
 								}
 							},
 							wp.element.createElement(_this.config.edit, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props, {
 								__source: {
 									fileName: _jsxFileName,
-									lineNumber: 77
+									lineNumber: 82
 								}
 							}))
 						);
@@ -1428,7 +1434,7 @@ var GutenbergFieldsMiddleWare = function () {
 						'div',
 						{ className: wrapperClassName, __source: {
 								fileName: _jsxFileName,
-								lineNumber: 80
+								lineNumber: 85
 							}
 						},
 						_this.config.edit(props, _this)
@@ -1439,12 +1445,12 @@ var GutenbergFieldsMiddleWare = function () {
 					'div',
 					{ className: wrapperClassName, __source: {
 							fileName: _jsxFileName,
-							lineNumber: 83
+							lineNumber: 88
 						}
 					},
 					_this.edit(props, _this)
 				);
-			};
+			});
 
 			var BlockAlignmentToolbarAttributeKey = this.getBlockAlignmentToolbarAttributeKey();
 
@@ -1469,7 +1475,7 @@ var GutenbergFieldsMiddleWare = function () {
 						return wp.element.createElement(_this.config.save, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({ middleware: _this }, props, {
 							__source: {
 								fileName: _jsxFileName,
-								lineNumber: 106
+								lineNumber: 111
 							}
 						}));
 					}
@@ -1609,7 +1615,7 @@ var GutenbergFieldsMiddleWare = function () {
 				InspectorControls,
 				{ key: 'inspector-control', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 233
+						lineNumber: 238
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
@@ -1621,7 +1627,7 @@ var GutenbergFieldsMiddleWare = function () {
 				BlockControls,
 				{ key: 'block-controls', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 241
+						lineNumber: 246
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
@@ -1680,6 +1686,11 @@ var GutenbergFieldsMiddleWare = function () {
 					var newAttributes = {};
 					newAttributes[attributeKey] = value;
 					props.setAttributes(newAttributes);
+				},
+				onFocus: function onFocus() {
+					props.setState({
+						editable: attributeKey
+					});
 				}
 			};
 		}
@@ -1778,7 +1789,7 @@ var GutenbergFieldsMiddleWare = function () {
 				'div',
 				{ key: props.className, __source: {
 						fileName: _jsxFileName,
-						lineNumber: 376
+						lineNumber: 386
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
@@ -2928,12 +2939,18 @@ function buttonEditable(props, config, defaultConfig, attributeKey, middleware) 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 	var helperFields = middleware.getHelperFields(attributeKey);
 
+	var setEditable = function setEditable() {
+		props.setState({
+			editable: attributeKey
+		});
+	};
+
 	return wp.element.createElement(
 		__WEBPACK_IMPORTED_MODULE_2__components_field__["a" /* default */],
 		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
 			__source: {
 				fileName: _jsxFileName,
-				lineNumber: 24
+				lineNumber: 30
 			}
 		}),
 		wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__components_button_editable__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
@@ -2943,9 +2960,10 @@ function buttonEditable(props, config, defaultConfig, attributeKey, middleware) 
 			backgroundColor: middleware.getHelperFieldValue(props, config, 'backgroundColor'),
 			textColor: middleware.getHelperFieldValue(props, config, 'color'),
 			buttonClass: middleware.getHelperFieldValue(props, config, 'class'),
+			setEditable: setEditable,
 			__source: {
 				fileName: _jsxFileName,
-				lineNumber: 25
+				lineNumber: 31
 			}
 		}))
 	);
@@ -2999,17 +3017,19 @@ var ButtonEditable = function (_Component) {
 			displayForm: true
 		};
 
-		_this.onFocus = _this.onFocus.bind(_this);
+		_this.onClick = _this.onClick.bind(_this);
 		_this.onSubmit = _this.onSubmit.bind(_this);
 		return _this;
 	}
 
 	__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(ButtonEditable, [{
-		key: 'onFocus',
-		value: function onFocus() {
+		key: 'onClick',
+		value: function onClick() {
 			this.setState({
 				displayForm: true
 			});
+
+			this.props.setEditable();
 		}
 	}, {
 		key: 'onSubmit',
@@ -3030,21 +3050,21 @@ var ButtonEditable = function (_Component) {
 				'form',
 				{
 					key: 'form-link',
-					className: 'blocks-button__inline-link',
+					className: 'block-library-button__inline-link',
 					onSubmit: this.onSubmit, __source: {
 						fileName: _jsxFileName,
-						lineNumber: 38
+						lineNumber: 40
 					}
 				},
 				wp.element.createElement(Dashicon, { icon: 'admin-links', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 42
+						lineNumber: 44
 					}
 				}),
 				link,
 				wp.element.createElement(IconButton, { icon: 'editor-break', label: __('Apply'), type: 'submit', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 44
+						lineNumber: 46
 					}
 				})
 			);
@@ -3053,20 +3073,18 @@ var ButtonEditable = function (_Component) {
 				'div',
 				{ className: 'button-editable middleware-button-editable', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 49
+						lineNumber: 51
 					}
 				},
 				wp.element.createElement(
 					'span',
-					{ className: 'wp-block-button', key: 'button', __source: {
+					{ className: 'wp-block-button', key: 'button', onClick: this.onClick, __source: {
 							fileName: _jsxFileName,
-							lineNumber: 50
+							lineNumber: 52
 						}
 					},
 					wp.element.createElement(RichText, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-						onFocus: this.onFocus,
-						onClick: this.onFocus // Hack.
-						, className: this.props.className + buttonClass,
+						className: this.props.className + buttonClass,
 						style: {
 							backgroundColor: this.props.backgroundColor,
 							color: this.props.textColor
@@ -3074,7 +3092,7 @@ var ButtonEditable = function (_Component) {
 					}, this.props, {
 						__source: {
 							fileName: _jsxFileName,
-							lineNumber: 51
+							lineNumber: 53
 						}
 					}))
 				),
@@ -4865,10 +4883,8 @@ var URLInput = wp.editor.URLInput;
 
 function urlInputButton(props, config, defaultConfig, attributeKey) {
 	var defaultAttributes = _.extend(defaultConfig, {
-		url: props.attributes[attributeKey]
+		value: props.attributes[attributeKey]
 	});
-
-	delete defaultAttributes.value;
 
 	var fieldAttributes = _.extend(defaultAttributes, config);
 
@@ -4877,13 +4893,13 @@ function urlInputButton(props, config, defaultConfig, attributeKey) {
 		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
 			__source: {
 				fileName: _jsxFileName,
-				lineNumber: 18
+				lineNumber: 16
 			}
 		}),
 		wp.element.createElement(URLInput, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
 			__source: {
 				fileName: _jsxFileName,
-				lineNumber: 19
+				lineNumber: 17
 			}
 		}))
 	);

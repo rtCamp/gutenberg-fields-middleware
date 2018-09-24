@@ -246,7 +246,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			field: {
 				type: 'button-editable',
 				helperFields: {
-					// link: 'buttonEditableLink',
+					link: 'buttonEditableLink',
 					backgroundColor: 'buttonBackgroundColor',
 					color: 'buttonColor',
 					class: 'buttonClasses',
@@ -255,12 +255,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 			source: 'children',
 			selector: '.button-link',
 		},
-		// buttonEditableLink: {
-		// 	type: 'string',
-		// 	field: {
-		// 		type: 'link',
-		// 	},
-		// },
+		buttonEditableLink: {
+			type: 'string',
+			field: {
+				type: 'link',
+			},
+		},
 		buttonBackgroundColor: {
 			type: 'string',
 			field: {
@@ -469,12 +469,12 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'inspector',
 			},
 		},
-		// codeEditor: { @todo Fix setState error.
-		// 	type: 'string',
-		// 	field: {
-		// 		type: 'code-editor',
-		// 	},
-		// },
+		codeEditor: {
+			type: 'string',
+			field: {
+				type: 'code-editor',
+			},
+		},
 		range: {
 			type: 'string',
 			field: {

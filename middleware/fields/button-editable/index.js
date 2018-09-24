@@ -20,6 +20,12 @@ export default function buttonEditable( props, config, defaultConfig, attributeK
 	const fieldAttributes = _.extend( defaultAttributes, config );
 	const helperFields = middleware.getHelperFields( attributeKey );
 
+	const setEditable = () => {
+		props.setState( {
+			editable: attributeKey
+		} );
+	};
+
 	return (
 		<Field { ...config } >
 			<ButtonEditable
@@ -30,6 +36,7 @@ export default function buttonEditable( props, config, defaultConfig, attributeK
 				backgroundColor={ middleware.getHelperFieldValue( props, config, 'backgroundColor' ) }
 				textColor={ middleware.getHelperFieldValue( props, config, 'color' ) }
 				buttonClass={ middleware.getHelperFieldValue( props, config, 'class' ) }
+				setEditable={ setEditable }
 			/>
 		</Field>
 	);

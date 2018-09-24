@@ -12,14 +12,16 @@ class ButtonEditable extends Component {
 			displayForm: true,
 		};
 
-		this.onFocus = this.onFocus.bind( this );
+		this.onClick = this.onClick.bind( this );
 		this.onSubmit = this.onSubmit.bind( this );
 	}
 
-	onFocus() {
+	onClick() {
 		this.setState( {
 			displayForm: true,
 		} );
+
+		this.props.setEditable();
 	}
 
 	onSubmit( event ) {
@@ -37,7 +39,7 @@ class ButtonEditable extends Component {
 		const form = link && this.props.isSelected && this.state.displayForm && (
 			<form
 				key="form-link"
-				className="blocks-button__inline-link"
+				className="block-library-button__inline-link"
 				onSubmit={ this.onSubmit }>
 				<Dashicon icon="admin-links" />
 				{ link }
@@ -47,10 +49,8 @@ class ButtonEditable extends Component {
 
 		return (
 			<div className="button-editable middleware-button-editable">
-				<span className="wp-block-button" key="button">
+				<span className="wp-block-button" key="button" onClick={ this.onClick }>
 					<RichText
-						onFocus={ this.onFocus }
-						onClick={ this.onFocus } // Hack.
 						className={ this.props.className + buttonClass }
 						style={ {
 							backgroundColor: this.props.backgroundColor,
