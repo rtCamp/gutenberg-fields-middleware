@@ -2,10 +2,10 @@
  * Code editor field.
  */
 
-const { CodeEditor } = wp.components;
+const { codeEditor } = wp;
 import Field from './../../components/field';
 
-export default function codeEditor( props, config, defaultConfig, attributeKey ) {
+export default function CodeEditor( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = _.extend( defaultConfig, {
 		value: props.attributes[ attributeKey ] || '',
 	} );
@@ -16,7 +16,7 @@ export default function codeEditor( props, config, defaultConfig, attributeKey )
 
 	return (
 		<Field { ...config } >
-			<CodeEditor { ...fieldAttributes } />
+			<codeEditor { ...fieldAttributes } />
 		</Field>
 	);
 }

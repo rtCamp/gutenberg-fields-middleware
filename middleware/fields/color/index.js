@@ -2,7 +2,7 @@
  * Color Palette field.
  */
 
-const { PanelColor } = wp.editor;
+const { PanelColorSettings } = wp.editor;
 const { __ } = wp.i18n;
 
 import './editor.scss';
@@ -22,7 +22,7 @@ export default function color( props, config, defaultConfig, attributeKey ) {
 
 	return (
 		<Field { ...config } >
-			<PanelColor { ...fieldAttributes } />
+			<PanelColorSettings { ...fieldAttributes } />
 		</Field>
 	);
 }
