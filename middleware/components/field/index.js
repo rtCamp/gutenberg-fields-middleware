@@ -1,6 +1,6 @@
 const { Component } = wp.element;
 const { BaseControl, Toolbar, PanelBody } = wp.components;
-const { PanelColor } = wp.components;
+const { PanelColorSettings } = wp.editor;
 
 /**
  * Field component as a wrapper for some fields so that the props can be dynamically updated from edit method if required.
@@ -38,9 +38,9 @@ class Field extends Component {
 
 		if ( 'color' === type && panel ) {
 			field = (
-				<PanelColor title={ label } colorValue={ value } initialOpen={ initialOpen }>
+				<PanelColorSettings title={ label } colorValue={ value } initialOpen={ initialOpen }>
 					{ this.props.children }
-				</PanelColor>
+				</PanelColorSettings>
 			);
 		}
 

@@ -45,7 +45,7 @@ function gutenberg_fields_middleware_register_scripts() {
 	wp_register_script(
 		'gutenberg-fields-middleware',
 		plugins_url( 'dist/middleware.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date', 'underscore' ),
+		array( 'wp-editor', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date', 'underscore' ),
 		filemtime( GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR. '/dist/middleware.js' )
 	);
 
