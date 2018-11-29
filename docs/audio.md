@@ -251,7 +251,7 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-audio', {
 } );
 ```
 
-Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/block-api/attributes/).
+Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-attributes/).
 
 
 

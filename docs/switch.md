@@ -23,7 +23,7 @@ Checked attribute of checkbox. Changes the accessibility text to "On/Off".
 - Type: `bool`
 - Required: No
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/form-toggle ).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/components/src/form-toggle).
 
 **Example:**
 
