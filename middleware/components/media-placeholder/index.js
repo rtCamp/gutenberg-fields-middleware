@@ -47,7 +47,7 @@ class MediaPlaceholder extends Component {
 	 * @return {void}
 	 */
 	uploadFromFiles( event ) {
-		mediaUpload( event.target.files, ( [ media ] ) => this.onSelectMedia( media ), this.props.type );
+		this.onFilesDrop( event.target.files );
 	}
 
 	/**
@@ -58,7 +58,14 @@ class MediaPlaceholder extends Component {
 	 * @return {void}
 	 */
 	onFilesDrop( files ) {
-		mediaUpload( files, ( [ media ] ) => this.onSelectMedia( media ), this.props.type );
+
+		const { type } = this.props;
+
+		mediaUpload( {
+			type,
+			filesList: files,
+			onFileChange: ( [ media ] ) => this.onSelectMedia( media )
+		} );
 	}
 
 	/**

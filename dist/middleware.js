@@ -112,7 +112,7 @@ exports.default = _assign2.default || function (target) {
 
 
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/components/field/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/components/field/index.js';
 var Component = wp.element.Component;
 var _wp$components = wp.components,
     BaseControl = _wp$components.BaseControl,
@@ -1278,7 +1278,7 @@ module.exports = function (it) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/input-field/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/input-field/index.js';
 /**
  * Input field for email, hidden, number, search, tel.
  */
@@ -1329,7 +1329,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/index.js';
 /**
  * Gutenberg Fields Middleware.
  */
@@ -2168,7 +2168,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/alignment-toolbar/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/alignment-toolbar/index.js';
 /**
  * alignment-toolbar field.
  */
@@ -2849,7 +2849,7 @@ $export($export.S, 'Object', { create: __webpack_require__(37) });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/media-icon/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/media-icon/index.js';
 /**
  * media-icon field.
  */
@@ -2941,7 +2941,7 @@ function mediaIcon(props, config, defaultConfig, attributeKey, middleware) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/block-alignment-toolbar/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/block-alignment-toolbar/index.js';
 /**
  * block-alignment-toolbar field.
  */
@@ -2983,7 +2983,7 @@ function blockAlignmentToolbar(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_button_editable__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/button-editable/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/button-editable/index.js';
 /**
  * Button field.
  */
@@ -3062,7 +3062,7 @@ function buttonEditable(props, config, defaultConfig, attributeKey, middleware) 
 
 
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/components/button-editable/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/components/button-editable/index.js';
 var Component = wp.element.Component;
 var RichText = wp.editor.RichText;
 var _wp$components = wp.components,
@@ -3189,7 +3189,7 @@ var ButtonEditable = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/checkbox/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/checkbox/index.js';
 /**
  * Checkbox field.
  */
@@ -3231,7 +3231,7 @@ function checkbox(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/code-editor/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/code-editor/index.js';
 /**
  * Code editor field.
  */
@@ -3279,7 +3279,7 @@ function CodeEditor(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/color/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/color/index.js';
 /**
  * Color Palette field.
  */
@@ -3338,7 +3338,7 @@ function color(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/date-time/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/date-time/index.js';
 /**
  * Date time field.
  */
@@ -3413,7 +3413,7 @@ function dateTime(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/dropdown-menu/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/dropdown-menu/index.js';
 /**
  * icons-toolbar field.
  */
@@ -3477,7 +3477,7 @@ function dropDownMenu(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_field__ = __webpack_require__(1);
 
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/file-upload/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/file-upload/index.js';
 /**
  * File Upload.
  */
@@ -3751,7 +3751,7 @@ module.exports = function (exec, skipClosing) {
 
 
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/components/file-upload/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/components/file-upload/index.js';
 var Component = wp.element.Component;
 var _wp$components = wp.components,
     Button = _wp$components.Button,
@@ -3879,7 +3879,7 @@ var FileUpload = function (_Component) {
 
 
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/components/file-upload/file-thumb.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/components/file-upload/file-thumb.js';
 
 
 var Component = wp.element.Component;
@@ -3970,7 +3970,7 @@ var FileThumb = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/form-toggle/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/form-toggle/index.js';
 /**
  * Switch field.
  */
@@ -4021,7 +4021,7 @@ function formToggle(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/icons-toolbar/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/icons-toolbar/index.js';
 /**
  * icons-toolbar field.
  */
@@ -4085,7 +4085,7 @@ function iconsToolbar(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/link/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/link/index.js';
 /**
  * Url field.
  */
@@ -4135,7 +4135,7 @@ function link(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_media_placeholder__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/media-upload/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/media-upload/index.js';
 /**
  * image/video/audio field.
  */
@@ -4226,7 +4226,7 @@ function mediaUpload(props, config, defaultConfig, attributeKey, middleware) {
 
 
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/components/media-placeholder/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/components/media-placeholder/index.js';
 
 
 
@@ -4280,14 +4280,7 @@ var MediaPlaceholder = function (_Component) {
 	__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(MediaPlaceholder, [{
 		key: 'uploadFromFiles',
 		value: function uploadFromFiles(event) {
-			var _this2 = this;
-
-			mediaUpload(event.target.files, function (_ref) {
-				var _ref2 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray___default()(_ref, 1),
-				    media = _ref2[0];
-
-				return _this2.onSelectMedia(media);
-			}, this.props.type);
+			this.onFilesDrop(event.target.files);
 		}
 
 		/**
@@ -4301,14 +4294,21 @@ var MediaPlaceholder = function (_Component) {
 	}, {
 		key: 'onFilesDrop',
 		value: function onFilesDrop(files) {
-			var _this3 = this;
+			var _this2 = this;
 
-			mediaUpload(files, function (_ref3) {
-				var _ref4 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray___default()(_ref3, 1),
-				    media = _ref4[0];
+			var type = this.props.type;
 
-				return _this3.onSelectMedia(media);
-			}, this.props.type);
+
+			mediaUpload({
+				type: type,
+				filesList: files,
+				onFileChange: function onFileChange(_ref) {
+					var _ref2 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray___default()(_ref, 1),
+					    media = _ref2[0];
+
+					return _this2.onSelectMedia(media);
+				}
+			});
 		}
 
 		/**
@@ -4380,7 +4380,7 @@ var MediaPlaceholder = function (_Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var _this4 = this;
+			var _this3 = this;
 
 			var _props = this.props,
 			    type = _props.type,
@@ -4401,7 +4401,7 @@ var MediaPlaceholder = function (_Component) {
 						'form',
 						{ key: 'form-' + attributeKey, onSubmit: this.onSelectUrl, __source: {
 								fileName: _jsxFileName,
-								lineNumber: 136
+								lineNumber: 143
 							}
 						},
 						wp.element.createElement('input', {
@@ -4411,7 +4411,7 @@ var MediaPlaceholder = function (_Component) {
 							onChange: this.onUrlChange,
 							value: this.state.mediaData.url || '', __source: {
 								fileName: _jsxFileName,
-								lineNumber: 137
+								lineNumber: 144
 							}
 						}),
 						wp.element.createElement(
@@ -4420,7 +4420,7 @@ var MediaPlaceholder = function (_Component) {
 								isLarge: true,
 								type: 'submit', __source: {
 									fileName: _jsxFileName,
-									lineNumber: 143
+									lineNumber: 150
 								}
 							},
 							__('Use URL')
@@ -4439,7 +4439,7 @@ var MediaPlaceholder = function (_Component) {
 							accept: type + '/*',
 							__source: {
 								fileName: _jsxFileName,
-								lineNumber: 154
+								lineNumber: 161
 							}
 						},
 						buttonText
@@ -4451,21 +4451,21 @@ var MediaPlaceholder = function (_Component) {
 						onSelect: this.onSelectMedia,
 						type: type,
 						key: 'media-upload',
-						render: function render(_ref5) {
-							var open = _ref5.open;
+						render: function render(_ref3) {
+							var open = _ref3.open;
 							return wp.element.createElement(
 								Button,
 								{ isLarge: true, onClick: open, __source: {
 										fileName: _jsxFileName,
-										lineNumber: 173
+										lineNumber: 180
 									}
 								},
-								_this4.props.mediaButtonText
+								_this3.props.mediaButtonText
 							);
 						},
 						__source: {
 							fileName: _jsxFileName,
-							lineNumber: 168
+							lineNumber: 175
 						}
 					}));
 				}
@@ -4480,12 +4480,12 @@ var MediaPlaceholder = function (_Component) {
 							className: placeholderClassName,
 							instructions: placeholderText, __source: {
 								fileName: _jsxFileName,
-								lineNumber: 183
+								lineNumber: 190
 							}
 						},
 						wp.element.createElement(DropZone, { onFilesDrop: this.onFilesDrop, __source: {
 								fileName: _jsxFileName,
-								lineNumber: 189
+								lineNumber: 196
 							}
 						}),
 						mediaButtons
@@ -4499,14 +4499,14 @@ var MediaPlaceholder = function (_Component) {
 				'div',
 				{ className: 'middleware-media-field', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 199
+						lineNumber: 206
 					}
 				},
 				wp.element.createElement(
 					Toolbar,
 					{ key: type, className: 'middleware-media-toolbar', __source: {
 							fileName: _jsxFileName,
-							lineNumber: 200
+							lineNumber: 207
 						}
 					},
 					wp.element.createElement(IconButton, {
@@ -4516,7 +4516,7 @@ var MediaPlaceholder = function (_Component) {
 						icon: 'edit',
 						__source: {
 							fileName: _jsxFileName,
-							lineNumber: 201
+							lineNumber: 208
 						}
 					})
 				),
@@ -4524,22 +4524,22 @@ var MediaPlaceholder = function (_Component) {
 					'figure',
 					{ key: attributeKey + type, className: className + ' wp-block-' + type, __source: {
 							fileName: _jsxFileName,
-							lineNumber: 209
+							lineNumber: 216
 						}
 					},
 					'video' === type && wp.element.createElement('video', { controls: true, src: this.state.mediaData.url, __source: {
 							fileName: _jsxFileName,
-							lineNumber: 211
+							lineNumber: 218
 						}
 					}),
 					'audio' === type && wp.element.createElement('audio', { controls: true, src: this.state.mediaData.url, __source: {
 							fileName: _jsxFileName,
-							lineNumber: 214
+							lineNumber: 221
 						}
 					}),
 					'image' === type && wp.element.createElement('img', { src: this.state.mediaData.url, alt: this.state.mediaData.title || '', __source: {
 							fileName: _jsxFileName,
-							lineNumber: 217
+							lineNumber: 224
 						}
 					}),
 					isSelected && this.props.captionField
@@ -4684,7 +4684,7 @@ module.exports = __webpack_require__(2).getIterator = function (it) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/radio/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/radio/index.js';
 /**
  * Radio Control field.
  */
@@ -4719,7 +4719,7 @@ function radio(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 
-var _jsxFileName = "/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/range/index.js";
+var _jsxFileName = "/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/range/index.js";
 var RangeControl = wp.components.RangeControl;
 
 
@@ -4748,7 +4748,7 @@ function range(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/rich-text/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/rich-text/index.js';
 /**
  * Text field.
  */
@@ -4800,7 +4800,7 @@ function richText(props, config, defaultConfig, attributeKey) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 
-var _jsxFileName = "/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/select/index.js";
+var _jsxFileName = "/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/select/index.js";
 /**
  * Select field.
  */
@@ -4832,7 +4832,7 @@ function select(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__input_field__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/text/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/text/index.js';
 /**
  * text field.
  */
@@ -4879,7 +4879,7 @@ function text(props, config, defaultConfig, attributeKey, middleware) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/textarea/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/textarea/index.js';
 /**
  * Textarea field.
  */
@@ -4921,7 +4921,7 @@ function textarea(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 
-var _jsxFileName = "/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/tree-select/index.js";
+var _jsxFileName = "/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/tree-select/index.js";
 /**
  * tree-select field.
  */
@@ -4952,7 +4952,7 @@ function treeSelect(props, config, defaultConfig) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
 
-var _jsxFileName = '/home/ajit/Documents/projects/contributions/gutenberg-fields-middleware/middleware/fields/url-input-button/index.js';
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/url-input-button/index.js';
 /**
  * url-input-button field.
  */
