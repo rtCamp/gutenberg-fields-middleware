@@ -162,6 +162,6 @@ See [example usage](docs/alignment-toolbar.md#example-usage--es5-) of alignment-
 #### Example Usage:
 
 - See [examples](examples/)
-	* To enable example blocks, Keep `IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV` constant true. 
+	* You can set GUTENBERG_FIELDS_MIDDLEWARE_IS_DEV to true during development in wp-config.php which will also enable example blocks. 
 - Check [gutenberg-supplements](https://github.com/rtCamp/gutenberg-supplements) plugin where we have created some actual blocks using middleware.
 
