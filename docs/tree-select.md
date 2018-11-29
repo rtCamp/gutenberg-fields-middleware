@@ -36,7 +36,7 @@ An array containing the tree objects with the possible nodes the user can select
 - Required: No
 
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/tree-select).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/components/src/tree-select).
 
 **Example:**
 

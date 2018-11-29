@@ -24,7 +24,7 @@ The number of rows the textarea should contain. Defaults to four.
 - Required: No
 - Default: 4
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/textarea-control).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/components/src/textarea-control).
 
 **Example:**
 

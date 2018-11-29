@@ -18,8 +18,6 @@ Used to add help text below the field.
 - Type: `String`
 - Required: No
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/code-editor).
-
 **Example:**
 
 ```js

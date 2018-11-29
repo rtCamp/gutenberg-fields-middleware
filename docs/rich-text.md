@@ -21,7 +21,7 @@ Used to add help text below the field.
 - Type: `String`
 - Required: No
 
-For full documentation read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/rich-text).
+For full documentation read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components/rich-text).
 
 **Example:**
 
@@ -36,7 +36,6 @@ text: {
 	selector: '.rich-text',
 }
 ```
-Read more about RichText api on Gutenberg handbook [here](https://wordpress.org/gutenberg/handbook/block-api/rich-text-api/.) for `source ` and `selector`.
 
 ### Return
 
