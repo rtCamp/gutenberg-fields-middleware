@@ -7,7 +7,7 @@ import Field from './../../components/field';
 
 const { __ } = wp.i18n;
 
-export default function fileUpload( props, config, defaultConfig, attributeKey, middleware ) {
+export default function fileUpload( props, config, defaultConfig, attributeKey ) {
 	const defaultAttributes = _.extend( defaultConfig, {
 		fileType: 'application',
 		isLarge: true,
@@ -63,12 +63,13 @@ export default function fileUpload( props, config, defaultConfig, attributeKey, 
 	fieldAttributes.type = fieldAttributes.fileType;
 
 	return (
-		<Field
-			config={ config }
-			component={ FileUpload }
-			fieldAttributes={ fieldAttributes }
-			value={ props.attributes[ attributeKey ] }
-			removeFile={ removeFile }
-		/>
+		<Field key={ 'file-upload' } { ...config } >
+			<FileUpload
+				fieldAttributes={ fieldAttributes }
+				value={ props.attributes[ attributeKey ] }
+				removeFile={ removeFile }
+				config={ config }
+			/>
+		</Field>
 	);
 }

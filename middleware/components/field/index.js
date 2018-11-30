@@ -1,6 +1,6 @@
 const { Component } = wp.element;
 const { BaseControl, Toolbar, PanelBody } = wp.components;
-const { PanelColor } = wp.components;
+const { PanelColorSettings } = wp.editor;
 
 /**
  * Field component as a wrapper for some fields so that the props can be dynamically updated from edit method if required.
@@ -8,46 +8,51 @@ const { PanelColor } = wp.components;
 class Field extends Component {
 	render() {
 		const {
-			config,
-			component,
+			id,
+			placement,
+			label,
+			help,
+			baseControlClassName,
+			type,
+			panel,
+			initialOpen
 		} = this.props;
 
-		const FieldComponent = component;
 		let field = null;
 
-		if ( 'inspector' === config.placement || config.label || config.help ) {
+		if ( 'inspector' === placement || label || help ) {
 			field = (
-				<BaseControl label={ config.label } help={ config.help } id={ config.id } className={ this.props.baseControlClassName } >
-					<FieldComponent { ...this.props } />
+				<BaseControl label={ label } help={ help } id={ id } className={ baseControlClassName } >
+					{ this.props.children }
 				</BaseControl>
 			);
-		} else if ( 'block-controls' === config.placement ) {
+		} else if ( 'block-controls' === placement ) {
 			field = (
 				<Toolbar>
-					<FieldComponent { ...this.props } />
+					{ this.props.children }
 				</Toolbar>
 			);
 		} else {
-			field = <FieldComponent { ...this.props } />;
+			field = this.props.children;
 		}
 
-		if ( 'color' === config.type && this.props.panel ) {
+		if ( 'color' === type && panel ) {
 			field = (
-				<PanelColor title={ this.props.label } colorValue={ this.props.value } initialOpen={ this.props.initialOpen }>
-					<FieldComponent { ...this.props } />
-				</PanelColor>
+				<PanelColorSettings title={ label } colorValue={ value } initialOpen={ initialOpen }>
+					{ this.props.children }
+				</PanelColorSettings>
 			);
 		}
 
-		if ( 'date-time' === config.type ) {
-			if ( this.props.panel ) {
+		if ( 'date-time' === type ) {
+			if ( panel ) {
 				field = (
-					<PanelBody initialOpen={ this.props.initialOpen } title={ [
-						this.props.label + ': ',
-						<span key="label">{ this.props.getFormattedDate() }</span>,
+					<PanelBody initialOpen={ initialOpen } title={ [
+						props.label + ': ',
+						<span key="label">{ props.getFormattedDate() }</span>,
 					]
 					}>
-						<FieldComponent { ...this.props } />
+						{ this.props.children }
 					</PanelBody>
 				);
 			} else {
@@ -59,7 +64,15 @@ class Field extends Component {
 			}
 		}
 
-		if ( 'link' === config.type ) {
+		if ( 'color' === type ) {
+			field = (
+				<div className="middleware-color-field">
+					{ field }
+				</div>
+			);
+		}
+
+		if ( 'link' === type ) {
 			field = (
 				<div className="middleware-link-field">
 					{ field }

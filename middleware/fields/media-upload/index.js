@@ -42,12 +42,13 @@ export default function mediaUpload( props, config, defaultConfig, attributeKey,
 	};
 
 	return (
-		<Field
-			config={ config }
-			component={ MediaPlaceholder }
-			{ ...fieldAttributes }
-			mediaData={ props.attributes[ attributeKey ] }
-			captionField={ helperFields.caption }
-		/>
+		<Field { ...config } >
+			<MediaPlaceholder
+				{ ...fieldAttributes }
+				mediaData={ props.attributes[ attributeKey ] }
+				captionField={ helperFields.caption }
+				attributeKey={ attributeKey }
+			/>
+		</Field>
 	);
 }

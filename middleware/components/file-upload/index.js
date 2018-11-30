@@ -1,6 +1,6 @@
 const { Component } = wp.element;
 const { Button, Dashicon } = wp.components;
-const { MediaUpload } = wp.blocks;
+const { MediaUpload } = wp.editor;
 
 import FileThumb from './file-thumb';
 import './editor.scss';

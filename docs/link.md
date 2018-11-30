@@ -14,7 +14,7 @@ Used to add help text below the field.
 - Type: `String`
 - Required: No
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/url-input).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components/url-input).
 
 **Example:**
 

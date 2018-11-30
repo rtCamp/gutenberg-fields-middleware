@@ -2,7 +2,7 @@
  * text field.
  */
 
-const { PlainText } = wp.blocks;
+const { PlainText } = wp.editor;
 import inputField from './../input-field';
 import Field from './../../components/field';
 
@@ -16,10 +16,10 @@ export default function text( props, config, defaultConfig, attributeKey, middle
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ PlainText }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<PlainText
+				{ ...fieldAttributes }
+			/>
+		</Field>
 	);
 }

@@ -32,7 +32,7 @@ If set to `true`, a button to reset the the slider is rendered.
 * Type: `Boolean`
 * Required: No
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/range-control).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/components/src/range-control).
 
 **Example:**
 

@@ -37,6 +37,8 @@ Add dropdown opitions to be added for selection.
 - Type: `Object`
 - Required: Yes
 
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/components/src/dropdown-menu).
+
 **Example:**
 
 ```js
@@ -69,4 +71,4 @@ dropdownMenu: {
 
 
 
-Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/block-api/attributes/).
+Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-attributes/).

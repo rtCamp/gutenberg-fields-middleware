@@ -32,7 +32,7 @@ Defines where you want to show the field. By default a field would be added to t
 
 
 
-For more read Gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/alignment-toolbar).
+For more read Gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components/alignment-toolbar).
 
 **Example:**
 
@@ -78,14 +78,16 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
 		},
 	},
 
-	edit: function( props ) {
-		props.middleware.fields.text.props.style = {
-			textAlign: props.attributes.alignment, // Set alignment whenever value changes.
-		};
-
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.blockControls, // Contains ALL fields which has placement: 'block-controls'.
-			props.middleware.fields.text,
+			middleware.getBlockControls( props, [
+				middleware.getField( props, 'alignment' )
+			] ),			
+			middleware.getField( props, 'text', {
+				style: {
+					textAlign: props.attributes.alignment
+				}
+			} )
 		];
 	},
 
@@ -97,4 +99,4 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-text-alignment', {
 } );
 ```
 
-Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/block-api/attributes/).
+Read more about defining attributes on official Gutenberg [handbook](https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-attributes/).

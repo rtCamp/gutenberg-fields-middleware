@@ -3,13 +3,14 @@
  */
 
 const { DateTimePicker } = wp.components;
-const { dateI18n, settings } = wp.date;
+const { dateI18n, __experimentalGetSettings } = wp.date;
 const { __ } = wp.i18n;
 
 import './editor.scss';
 import Field from './../../components/field';
 
 export default function dateTime( props, config, defaultConfig, attributeKey ) {
+	const settings = __experimentalGetSettings();
 	const is12HourTime = /a(?!\\)/i.test(
 		settings.formats.time
 			.toLowerCase() // Test only the lower case a
@@ -37,11 +38,11 @@ export default function dateTime( props, config, defaultConfig, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ DateTimePicker }
-			{ ...fieldAttributes }
-			getFormattedDate={ getFormattedDate }
-		/>
+		<Field { ...config }>
+			<DateTimePicker
+				{ ...fieldAttributes }
+				getFormattedDate={ getFormattedDate }
+			/>
+		</Field>
 	);
 }

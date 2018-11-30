@@ -55,11 +55,11 @@ wp.blocks.registerBlockType( 'example-namespace/example-block', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.inspectorControls, // Contains ALL inspector controls.
-			props.middleware.fields.image,
-			props.middleware.fields.text,
+			middleware.inspectorControls, // Contains ALL inspector controls.
+			middleware.fields.image,
+			middleware.fields.text,
 		];
 	},
 
@@ -143,17 +143,17 @@ Gutenberg Fields Middleware supports the following field types and type configur
 
 #### Returning field in `edit` method:
 
-- `props.middleware.fields.key` for a **single** field when `placement` property is not defined.
-- `props.middleware.blockControls` for **all** block-control fields. ( `placement: 'block-control'` ) 
-  - Alternatively individual block control fields can be returned using `props.middleware.blockControlFields.key` but then you would need to wrap them in `<BlockControls>` yourself.
-- `props.middleware.inspectorControls` for **all** inspector fields. ( `placement: 'inspector'` )
-  - Alternatively individual inspector fields can be returned using `props.middleware.inspectorControlFields.key` but then you would need to wrap them in `<InspectorControls>` yourself.
+- `middleware.fields.arrtibuteKeyName` for a **single** field when `placement` property is not defined.
+- `middleware.blockControls` for **all** block-control fields. ( where `placement` is `block-control` ) 
+- `middleware.inspectorControls` for **all** inspector fields. ( where `placement` is `inspector` )
 
 
 
+#### Getting more control over fields:
 
+There are two ways of getting a field, one is simply use `middleware.fields.arrtibuteKeyName` or `middleware.getField( props, 'arrtibuteKeyName', config )` when you need more control over a field, here you can use all configuration options in `config` parameter given in the fields doc.
 
-#### Updating Field props:
+The same can be done for block controls and inspector controls as `middleware.getBlockControls( props, fields )` and `middleware.getInspectorControls( props, fields )` where `fields` can be defined as an array of fields.
 
 See [example usage](docs/alignment-toolbar.md#example-usage--es5-) of alignment-toolbar.
 
@@ -162,5 +162,6 @@ See [example usage](docs/alignment-toolbar.md#example-usage--es5-) of alignment-
 #### Example Usage:
 
 - See [examples](examples/)
+	* You can set GUTENBERG_FIELDS_MIDDLEWARE_IS_DEV to true during development in wp-config.php which will also enable example blocks. 
 - Check [gutenberg-supplements](https://github.com/rtCamp/gutenberg-supplements) plugin where we have created some actual blocks using middleware.
 

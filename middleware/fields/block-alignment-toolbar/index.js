@@ -2,7 +2,7 @@
  * block-alignment-toolbar field.
  */
 
-const { BlockAlignmentToolbar } = wp.blocks;
+const { BlockAlignmentToolbar } = wp.editor;
 import Field from './../../components/field';
 
 export default function blockAlignmentToolbar( props, config, defaultConfig ) {
@@ -11,10 +11,8 @@ export default function blockAlignmentToolbar( props, config, defaultConfig ) {
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ BlockAlignmentToolbar }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<BlockAlignmentToolbar { ...fieldAttributes } />
+		</Field>
 	);
 }

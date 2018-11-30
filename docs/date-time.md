@@ -40,7 +40,7 @@ Whether the current timezone is a 12 hour time.
 - Type: `bool`
 - Required: No
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/date-time).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/components/src/date-time).
 
 **Example:**
 

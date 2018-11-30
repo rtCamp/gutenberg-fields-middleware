@@ -21,8 +21,6 @@ export default function checkbox( props, config, defaultConfig, attributeKey ) {
 	delete fieldAttributes.type;
 
 	return (
-		<CheckboxControl
-			{ ...fieldAttributes }
-		/>
+		<CheckboxControl { ...fieldAttributes } />
 	);
 }

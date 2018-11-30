@@ -2,6 +2,10 @@
   margin-bottom: 20px; }
   .middleware-button-editable .blocks-url-input {
     z-index: 1; }
+.middleware-color-field .is-opened:after {
+  content: '';
+  clear: both;
+  display: table; }
 .middleware-date-time-no-panel {
   display: inline-block;
   margin-top: 20px;
@@ -132,19 +136,20 @@ ul.file-upload-field-files,
   .wp-block-image .components-placeholder__fieldset form,
   .wp-block-video .components-placeholder__fieldset form,
   .wp-block-audio .components-placeholder__fieldset form {
-    max-width: none; }
+    max-width: none;
+    margin-bottom: 10px; }
   .wp-block-image .components-placeholder__fieldset .button.button-large,
   .wp-block-video .components-placeholder__fieldset .button.button-large,
   .wp-block-audio .components-placeholder__fieldset .button.button-large {
     margin-top: 0.5em; }
-  .wp-block-image .components-placeholder__fieldset .components-placeholder__input,
-  .wp-block-video .components-placeholder__fieldset .components-placeholder__input,
+  .wp-block-image .components-placeholder__fieldset .components-form-file-upload,
+  .wp-block-video .components-placeholder__fieldset .components-form-file-upload,
+  .wp-block-audio .components-placeholder__fieldset .components-form-file-upload {
+    margin-right: 10px; }
+  .edit-post-sidebar .wp-block-image .components-placeholder__fieldset .components-placeholder__input, .edit-post-sidebar
+  .wp-block-video .components-placeholder__fieldset .components-placeholder__input, .edit-post-sidebar
   .wp-block-audio .components-placeholder__fieldset .components-placeholder__input {
-    margin-top: 0.5em; }
-    .edit-post-sidebar .wp-block-image .components-placeholder__fieldset .components-placeholder__input, .edit-post-sidebar
-    .wp-block-video .components-placeholder__fieldset .components-placeholder__input, .edit-post-sidebar
-    .wp-block-audio .components-placeholder__fieldset .components-placeholder__input {
-      width: 60%; }
+    width: 60%; }
 .middleware-block .block-rich-text__inline-toolbar {
   height: 0; }
   .middleware-block .block-rich-text__inline-toolbar .blocks-format-toolbar {

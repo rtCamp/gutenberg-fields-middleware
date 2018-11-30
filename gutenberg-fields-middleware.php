@@ -30,8 +30,8 @@
  * @package GutenbergFieldsMiddleware
  */
 
-if ( ! defined( 'IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV' ) ) {
-	define( 'IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV', false );
+if ( ! defined( 'GUTENBERG_FIELDS_MIDDLEWARE_IS_DEV' ) ) {
+	define( 'GUTENBERG_FIELDS_MIDDLEWARE_IS_DEV', false );
 }
 
 if ( ! defined( 'GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR' ) ) {
@@ -45,7 +45,7 @@ function gutenberg_fields_middleware_register_scripts() {
 	wp_register_script(
 		'gutenberg-fields-middleware',
 		plugins_url( 'dist/middleware.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date' ),
+		array( 'wp-editor', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-date', 'underscore' ),
 		filemtime( GUTENBERG_FIELDS_MIDDLEWARE_PLUGIN_DIR. '/dist/middleware.js' )
 	);
 
@@ -56,7 +56,7 @@ function gutenberg_fields_middleware_register_scripts() {
 
 add_action( 'enqueue_block_editor_assets', 'gutenberg_fields_middleware_register_scripts' );
 
-if ( IS_GUTENBERG_FIELDS_MIDDLEWARE_DEV ) {
+if ( GUTENBERG_FIELDS_MIDDLEWARE_IS_DEV ) {
 	include 'examples/all-fields-block/examples.php';
 	include 'examples/fields-using-php/example.php';
 	include 'examples/single-fields/example.php';

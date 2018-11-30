@@ -265,7 +265,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'color',
-				label: __( 'Button Background Color' ),
+				title: __( 'Button Background Color' ),
 				placement: 'inspector',
 				initialOpen: true,
 			},
@@ -274,7 +274,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 			type: 'string',
 			field: {
 				type: 'color',
-				label: __( 'Button Color' ),
+				title: __( 'Button Color' ),
 				placement: 'inspector',
 				initialOpen: false,
 			},
@@ -502,6 +502,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 	 * If not defined, save would be null.
 	 *
 	 * @param {Object} props Same properties we get in default edit method.
+	 *
 	 * @return {Object} React elements.
 	 */
 	save( props ) {

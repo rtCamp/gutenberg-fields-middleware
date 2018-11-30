@@ -1,0 +1,9 @@
+.middleware-color-field {
+	.is-opened {
+		&:after {
+			content: '';
+			clear: both;
+			display: table;
+		}
+	}
+}

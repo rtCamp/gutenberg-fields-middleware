@@ -21,6 +21,7 @@
 	  	"transform-object-rest-spread",
 		[ "transform-react-jsx", {
 			"pragma": "wp.element.createElement"
-		} ]
+		} ],
+	  	"transform-react-jsx-source"
 	]
 }

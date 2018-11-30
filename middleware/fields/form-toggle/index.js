@@ -9,7 +9,6 @@ export default function formToggle( props, config, defaultConfig, attributeKey )
 	const defaultAttributes = _.extend( defaultConfig, {
 		checked: 'on' === props.attributes[ attributeKey ],
 		value: props.attributes[ attributeKey ] || 'off',
-		baseControlClassName: 'components-toggle-control',
 		onChange( event ) {
 			const newAttributes = {};
 			newAttributes[ attributeKey ] = 'on' === event.target.value ? 'off' : 'on';
@@ -22,10 +21,8 @@ export default function formToggle( props, config, defaultConfig, attributeKey )
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ FormToggle }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<FormToggle { ...fieldAttributes } />
+		</Field>
 	);
 }

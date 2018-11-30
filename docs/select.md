@@ -30,7 +30,7 @@ An array of objects containing the following properties:
 * Type: `Array`
 * Required: No
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/select-control).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/components/src/select-control).
 
 **Example:**
 

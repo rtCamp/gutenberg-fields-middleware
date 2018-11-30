@@ -32,10 +32,8 @@ export default function iconsToolbar( props, config, defaultConfig, attributeKey
 	toolbarConfig.placement = 'block-controls' === config.placement ? '' : config.placement; // To avoid one more Toolbar wrapper.
 
 	return (
-		<Field
-			config={ toolbarConfig }
-			component={ Toolbar }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<Toolbar { ...fieldAttributes } />
+		</Field>
 	);
 }

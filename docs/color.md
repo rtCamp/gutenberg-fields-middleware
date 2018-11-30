@@ -6,7 +6,7 @@
 
 ## Properties
 
-#### label:
+#### title:
 
 The title of color control
 
@@ -19,7 +19,7 @@ The title of color control
 - Type: `bool`
 - Required: No
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/blocks/color-palette ).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components/color-palette).
 
 **Example:**
 

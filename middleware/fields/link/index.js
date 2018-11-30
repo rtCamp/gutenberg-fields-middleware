@@ -2,7 +2,7 @@
  * Url field.
  */
 
-const { UrlInput } = wp.blocks;
+const { URLInput } = wp.editor;
 
 import './editor.scss';
 import Field from './../../components/field';
@@ -13,10 +13,8 @@ export default function link( props, config, defaultConfig ) {
 	delete fieldAttributes.type;
 
 	return (
-		<Field
-			config={ config }
-			component={ UrlInput }
-			{ ...fieldAttributes }
-		/>
+		<Field { ...config } >
+			<URLInput { ...fieldAttributes } />
+		</Field>
 	);
 }

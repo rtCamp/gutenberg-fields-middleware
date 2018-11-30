@@ -145,9 +145,9 @@ wp.blocks.registerBlockType( 'gb-m-example/single-field-block-file-upload', {
 		},
 	},
 
-	edit: function( props ) {
+	edit: function( props, middleware ) {
 		return [
-			props.middleware.fields.fileUpload,
+			middleware.fields.fileUpload,
 		];
 	},
 
