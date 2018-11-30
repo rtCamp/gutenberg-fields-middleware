@@ -27,7 +27,7 @@ If checked is true the checkbox will be checked. If checked is false the checkbo
 * Type: `Boolean`
 * Required: No
 
-For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/components/checkbox-control).
+For more read gutenberg [readme](https://github.com/WordPress/gutenberg/tree/master/packages/components/src/checkbox-control).
 
 **Example:**
 
