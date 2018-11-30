@@ -87,7 +87,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 				type: 'text',
 				placeholder: __( 'Enter link text' ),
 			},
-			source: 'children', // Read about attributes here https://wordpress.org/gutenberg/handbook/block-api/attributes/
+			source: 'text', // Read about attributes here https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-attributes/
 			selector: '.text',
 		},
 		richText: {
@@ -212,7 +212,7 @@ registerBlockType( 'gb-m-example/simple-block', {
 					},
 				],
 			},
-			source: 'children', // Read about attributes here https://wordpress.org/gutenberg/handbook/block-api/attributes/
+			source: 'children', // Read about attributes here https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-attributes/
 			selector: '.option',
 		},
 		radio: {
@@ -522,7 +522,9 @@ registerBlockType( 'gb-m-example/simple-block', {
 		}
 
 		return (
+
 			el( 'div', { className: props.className },
+
 				// field: text
 				el( 'div', { className: 'text' }, attributes.text || '' ),
 
@@ -538,7 +540,6 @@ registerBlockType( 'gb-m-example/simple-block', {
 					width: attributes.image ? attributes.image.width : null,
 					height: attributes.image ? attributes.image.height : null,
 				}, null ),
-
 
 				// field: imageCaption
 				el( 'div', { className: 'image-caption' }, attributes.imageCaption || '' ),
