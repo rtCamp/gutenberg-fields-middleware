@@ -14,6 +14,13 @@ export default function color( props, config, defaultConfig, attributeKey ) {
 		title: __( 'Color' ),
 		initialOpen: false,
 		panel: 'inspector' === config.placement,
+		colorSettings: [
+			{
+				value: props.attributes[ attributeKey ] || '',
+				onChange: defaultConfig.onChange,
+				label: __( 'Color' ),
+			}
+		]
 	} );
 
 	const fieldAttributes = _.extend( defaultAttributes, config );
