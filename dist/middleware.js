@@ -1529,6 +1529,9 @@ var GutenbergFieldsMiddleWare = function () {
 			var config = _.extend(this.getFieldConfig(attributeKey), fieldConfig);
 
 			switch (config.type) {
+				case 'autocomplete':
+					field = fields.autocomplete(props, config, defaultConfig, attributeKey, this);
+					break;
 				case 'text':
 					field = fields.text(props, config, defaultConfig, attributeKey, this);
 					break;
@@ -1658,7 +1661,7 @@ var GutenbergFieldsMiddleWare = function () {
 				BlockControls,
 				{ key: 'block-controls', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 254
+						lineNumber: 257
 					}
 				},
 				_.isEmpty(fields) && __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
@@ -1688,7 +1691,7 @@ var GutenbergFieldsMiddleWare = function () {
 				InspectorControls,
 				{ key: 'inspector-control', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 275
+						lineNumber: 278
 					}
 				},
 				_.isEmpty(fields) && __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
@@ -1846,7 +1849,7 @@ var GutenbergFieldsMiddleWare = function () {
 				'div',
 				{ key: props.className, __source: {
 						fileName: _jsxFileName,
-						lineNumber: 427
+						lineNumber: 430
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
@@ -2094,52 +2097,55 @@ $export($export.S + $export.F * !__webpack_require__(9), 'Object', { definePrope
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__alignment_toolbar__ = __webpack_require__(73);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "alignmentToolbar", function() { return __WEBPACK_IMPORTED_MODULE_0__alignment_toolbar__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_icon__ = __webpack_require__(102);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mediaIcon", function() { return __WEBPACK_IMPORTED_MODULE_1__media_icon__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__block_alignment_toolbar__ = __webpack_require__(103);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "blockAlignmentToolbar", function() { return __WEBPACK_IMPORTED_MODULE_2__block_alignment_toolbar__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button_editable__ = __webpack_require__(104);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "buttonEditable", function() { return __WEBPACK_IMPORTED_MODULE_3__button_editable__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__checkbox__ = __webpack_require__(107);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "checkbox", function() { return __WEBPACK_IMPORTED_MODULE_4__checkbox__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__code_editor__ = __webpack_require__(108);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "codeEditor", function() { return __WEBPACK_IMPORTED_MODULE_5__code_editor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__color__ = __webpack_require__(109);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "color", function() { return __WEBPACK_IMPORTED_MODULE_6__color__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__date_time__ = __webpack_require__(111);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "dateTime", function() { return __WEBPACK_IMPORTED_MODULE_7__date_time__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dropdown_menu__ = __webpack_require__(113);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "dropDownMenu", function() { return __WEBPACK_IMPORTED_MODULE_8__dropdown_menu__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__file_upload__ = __webpack_require__(114);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "fileUpload", function() { return __WEBPACK_IMPORTED_MODULE_9__file_upload__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__form_toggle__ = __webpack_require__(126);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "formToggle", function() { return __WEBPACK_IMPORTED_MODULE_10__form_toggle__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__icons_toolbar__ = __webpack_require__(127);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "iconsToolbar", function() { return __WEBPACK_IMPORTED_MODULE_11__icons_toolbar__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__input_field__ = __webpack_require__(56);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "inputField", function() { return __WEBPACK_IMPORTED_MODULE_12__input_field__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__link__ = __webpack_require__(128);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "link", function() { return __WEBPACK_IMPORTED_MODULE_13__link__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__media_upload__ = __webpack_require__(130);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mediaUpload", function() { return __WEBPACK_IMPORTED_MODULE_14__media_upload__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__radio__ = __webpack_require__(140);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "radio", function() { return __WEBPACK_IMPORTED_MODULE_15__radio__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__range__ = __webpack_require__(141);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "range", function() { return __WEBPACK_IMPORTED_MODULE_16__range__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__rich_text__ = __webpack_require__(142);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "richText", function() { return __WEBPACK_IMPORTED_MODULE_17__rich_text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__select__ = __webpack_require__(144);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "select", function() { return __WEBPACK_IMPORTED_MODULE_18__select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__text__ = __webpack_require__(145);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "text", function() { return __WEBPACK_IMPORTED_MODULE_19__text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__textarea__ = __webpack_require__(146);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "textarea", function() { return __WEBPACK_IMPORTED_MODULE_20__textarea__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__tree_select__ = __webpack_require__(148);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "treeSelect", function() { return __WEBPACK_IMPORTED_MODULE_21__tree_select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__url_input_button__ = __webpack_require__(149);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "urlInputButton", function() { return __WEBPACK_IMPORTED_MODULE_22__url_input_button__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__autocomplete__ = __webpack_require__(151);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "autocomplete", function() { return __WEBPACK_IMPORTED_MODULE_0__autocomplete__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alignment_toolbar__ = __webpack_require__(73);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "alignmentToolbar", function() { return __WEBPACK_IMPORTED_MODULE_1__alignment_toolbar__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_icon__ = __webpack_require__(102);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mediaIcon", function() { return __WEBPACK_IMPORTED_MODULE_2__media_icon__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__block_alignment_toolbar__ = __webpack_require__(103);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "blockAlignmentToolbar", function() { return __WEBPACK_IMPORTED_MODULE_3__block_alignment_toolbar__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_editable__ = __webpack_require__(104);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "buttonEditable", function() { return __WEBPACK_IMPORTED_MODULE_4__button_editable__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkbox__ = __webpack_require__(107);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "checkbox", function() { return __WEBPACK_IMPORTED_MODULE_5__checkbox__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__code_editor__ = __webpack_require__(108);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "codeEditor", function() { return __WEBPACK_IMPORTED_MODULE_6__code_editor__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__color__ = __webpack_require__(109);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "color", function() { return __WEBPACK_IMPORTED_MODULE_7__color__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__date_time__ = __webpack_require__(111);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "dateTime", function() { return __WEBPACK_IMPORTED_MODULE_8__date_time__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropdown_menu__ = __webpack_require__(113);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "dropDownMenu", function() { return __WEBPACK_IMPORTED_MODULE_9__dropdown_menu__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__file_upload__ = __webpack_require__(114);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "fileUpload", function() { return __WEBPACK_IMPORTED_MODULE_10__file_upload__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__form_toggle__ = __webpack_require__(126);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "formToggle", function() { return __WEBPACK_IMPORTED_MODULE_11__form_toggle__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__icons_toolbar__ = __webpack_require__(127);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "iconsToolbar", function() { return __WEBPACK_IMPORTED_MODULE_12__icons_toolbar__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__input_field__ = __webpack_require__(56);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "inputField", function() { return __WEBPACK_IMPORTED_MODULE_13__input_field__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__link__ = __webpack_require__(128);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "link", function() { return __WEBPACK_IMPORTED_MODULE_14__link__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__media_upload__ = __webpack_require__(130);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mediaUpload", function() { return __WEBPACK_IMPORTED_MODULE_15__media_upload__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__radio__ = __webpack_require__(140);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "radio", function() { return __WEBPACK_IMPORTED_MODULE_16__radio__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__range__ = __webpack_require__(141);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "range", function() { return __WEBPACK_IMPORTED_MODULE_17__range__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__rich_text__ = __webpack_require__(142);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "richText", function() { return __WEBPACK_IMPORTED_MODULE_18__rich_text__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__select__ = __webpack_require__(144);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "select", function() { return __WEBPACK_IMPORTED_MODULE_19__select__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__text__ = __webpack_require__(145);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "text", function() { return __WEBPACK_IMPORTED_MODULE_20__text__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__textarea__ = __webpack_require__(146);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "textarea", function() { return __WEBPACK_IMPORTED_MODULE_21__textarea__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__tree_select__ = __webpack_require__(148);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "treeSelect", function() { return __WEBPACK_IMPORTED_MODULE_22__tree_select__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__url_input_button__ = __webpack_require__(149);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "urlInputButton", function() { return __WEBPACK_IMPORTED_MODULE_23__url_input_button__["a"]; });
+
 
 
 
@@ -4993,6 +4999,127 @@ function urlInputButton(props, config, defaultConfig, attributeKey) {
 				lineNumber: 17
 			}
 		}))
+	);
+}
+
+/***/ }),
+/* 150 */,
+/* 151 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = autocomplete;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
+
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/autocomplete/index.js';
+/**
+ * autocomplete field.
+ */
+
+var Autocomplete = wp.components.Autocomplete;
+
+
+
+function autocomplete(props, config, defaultConfig) {
+	var fieldAttributes = _.extend(defaultConfig, config);
+
+	delete fieldAttributes.type;
+
+	var autocompleters = [{
+		name: 'fruit',
+		// The prefix that triggers this completer
+		triggerPrefix: '~',
+		// The option data
+		options: [{ visual: '🍎', name: 'Apple', id: 1 }, { visual: '🍊', name: 'Orange', id: 2 }, { visual: '🍇', name: 'Grapes', id: 3 }],
+		// Returns a label for an option like "🍊 Orange"
+		getOptionLabel: function getOptionLabel(option) {
+			return wp.element.createElement(
+				'span',
+				{
+					__source: {
+						fileName: _jsxFileName,
+						lineNumber: 26
+					}
+				},
+				wp.element.createElement(
+					'span',
+					{ className: 'icon', __source: {
+							fileName: _jsxFileName,
+							lineNumber: 27
+						}
+					},
+					option.visual
+				),
+				option.name
+			);
+		},
+		// Declares that options should be matched by their name
+		getOptionKeywords: function getOptionKeywords(option) {
+			return [option.name];
+		},
+		// Declares that the Grapes option is disabled
+		isOptionDisabled: function isOptionDisabled(option) {
+			return option.name === 'Grapes';
+		},
+		// Declares completions should be inserted as abbreviations
+		getOptionCompletion: function getOptionCompletion(option) {
+			return wp.element.createElement(
+				'abbr',
+				{ title: option.name, __source: {
+						fileName: _jsxFileName,
+						lineNumber: 36
+					}
+				},
+				option.visual
+			);
+		}
+	}];
+
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 42
+			}
+		}),
+		wp.element.createElement(
+			Autocomplete,
+			{ completers: autocompleters, record: { start: true }, __source: {
+					fileName: _jsxFileName,
+					lineNumber: 43
+				}
+			},
+			function (_ref) {
+				var isExpanded = _ref.isExpanded,
+				    listBoxId = _ref.listBoxId,
+				    activeId = _ref.activeId;
+				return wp.element.createElement('div', {
+					contentEditable: true,
+					suppressContentEditableWarning: true,
+					'aria-autocomplete': 'list',
+					'aria-expanded': isExpanded,
+					'aria-owns': listBoxId,
+					'aria-activedescendant': activeId,
+					__source: {
+						fileName: _jsxFileName,
+						lineNumber: 45
+					}
+				});
+			}
+		),
+		wp.element.createElement(
+			'p',
+			{
+				__source: {
+					fileName: _jsxFileName,
+					lineNumber: 56
+				}
+			},
+			'Type ~ for triggering the autocomplete.'
+		)
 	);
 }
 
