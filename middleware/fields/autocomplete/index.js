@@ -2,6 +2,10 @@
  * autocomplete field.
  */
 
+ // On Hold:
+ // @TODO: There is on issue in Gutenberg autocomplete component
+ // Ref: https://github.com/WordPress/gutenberg/issues/10542
+
 const { Autocomplete } = wp.components;
 import Field from './../../components/field';
 
@@ -39,11 +43,11 @@ export default function autocomplete( props, config, defaultConfig ) {
 	];
 
 	return (
-        <Field { ...config } >
-			<Autocomplete completers={ autocompleters } record={{start: true}}>
+		<Field { ...config } >
+			<Autocomplete completers={ autocompleters }>
 				{ ( { isExpanded, listBoxId, activeId } ) => (
 					<div
-                    contentEditable
+						contentEditable
 						suppressContentEditableWarning
 						aria-autocomplete="list"
 						aria-expanded={ isExpanded }
