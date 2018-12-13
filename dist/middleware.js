@@ -1623,7 +1623,8 @@ var GutenbergFieldsMiddleWare = function () {
 			_.each(this.blockConfigs.attributes, function (attribute) {
 				if (attribute.field && attribute.field.helperFields) {
 					_.each(attribute.field.helperFields, function (helperFieldAttributeKey) {
-						_.extend(_this2.helperFields, _this2.setupField(props, helperFieldAttributeKey, false));
+						// _.extend( this.helperFields, this.setupField( props, helperFieldAttributeKey, false ) )
+						_this2.helperFields[helperFieldAttributeKey] = _this2.setupField(props, helperFieldAttributeKey, false);
 					});
 				}
 			});
@@ -1658,7 +1659,7 @@ var GutenbergFieldsMiddleWare = function () {
 				BlockControls,
 				{ key: 'block-controls', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 254
+						lineNumber: 255
 					}
 				},
 				_.isEmpty(fields) && __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
@@ -1688,7 +1689,7 @@ var GutenbergFieldsMiddleWare = function () {
 				InspectorControls,
 				{ key: 'inspector-control', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 275
+						lineNumber: 276
 					}
 				},
 				_.isEmpty(fields) && __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
@@ -1846,7 +1847,7 @@ var GutenbergFieldsMiddleWare = function () {
 				'div',
 				{ key: props.className, __source: {
 						fileName: _jsxFileName,
-						lineNumber: 427
+						lineNumber: 428
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {

@@ -226,7 +226,7 @@ class GutenbergFieldsMiddleWare {
 		_.each( this.blockConfigs.attributes, ( attribute ) => {
 			if ( attribute.field && attribute.field.helperFields ) {
 				_.each( attribute.field.helperFields, ( helperFieldAttributeKey ) => {
-					_.extend( this.helperFields, this.setupField( props, helperFieldAttributeKey, false ) );
+					this.helperFields[ helperFieldAttributeKey ] = this.setupField( props, helperFieldAttributeKey, false );
 				} );
 			}
 		} );
