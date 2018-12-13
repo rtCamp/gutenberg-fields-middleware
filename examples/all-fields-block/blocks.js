@@ -28,6 +28,11 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'block-controls',
 			},
 		},
+		alignment: {
+			field: {
+				type: 'notice',
+			},
+		},
 		view: {
 			type: 'string',
 			field: {

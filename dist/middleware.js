@@ -255,7 +255,7 @@ var Field = function (_Component) {
 /* 2 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.7' };
+var core = module.exports = { version: '2.6.0' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -1591,6 +1591,9 @@ var GutenbergFieldsMiddleWare = function () {
 				case 'media-icon':
 					field = fields.mediaIcon(props, config, defaultConfig, attributeKey, this);
 					break;
+				case 'notice':
+					field = fields.notice(props, config, defaultConfig, attributeKey, this);
+					break;
 				case 'dropdown-menu':
 					field = fields.dropDownMenu(props, config, defaultConfig, attributeKey, this);
 					break;
@@ -1658,7 +1661,7 @@ var GutenbergFieldsMiddleWare = function () {
 				BlockControls,
 				{ key: 'block-controls', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 254
+						lineNumber: 257
 					}
 				},
 				_.isEmpty(fields) && __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.blockControlFields).map(function (key) {
@@ -1688,7 +1691,7 @@ var GutenbergFieldsMiddleWare = function () {
 				InspectorControls,
 				{ key: 'inspector-control', __source: {
 						fileName: _jsxFileName,
-						lineNumber: 275
+						lineNumber: 278
 					}
 				},
 				_.isEmpty(fields) && __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.inspectorControlFields).map(function (key) {
@@ -1846,7 +1849,7 @@ var GutenbergFieldsMiddleWare = function () {
 				'div',
 				{ key: props.className, __source: {
 						fileName: _jsxFileName,
-						lineNumber: 427
+						lineNumber: 430
 					}
 				},
 				__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(this.fields).map(function (key) {
@@ -2124,22 +2127,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "link", function() { return __WEBPACK_IMPORTED_MODULE_13__link__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__media_upload__ = __webpack_require__(130);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mediaUpload", function() { return __WEBPACK_IMPORTED_MODULE_14__media_upload__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__radio__ = __webpack_require__(140);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "radio", function() { return __WEBPACK_IMPORTED_MODULE_15__radio__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__range__ = __webpack_require__(141);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "range", function() { return __WEBPACK_IMPORTED_MODULE_16__range__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__rich_text__ = __webpack_require__(142);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "richText", function() { return __WEBPACK_IMPORTED_MODULE_17__rich_text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__select__ = __webpack_require__(144);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "select", function() { return __WEBPACK_IMPORTED_MODULE_18__select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__text__ = __webpack_require__(145);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "text", function() { return __WEBPACK_IMPORTED_MODULE_19__text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__textarea__ = __webpack_require__(146);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "textarea", function() { return __WEBPACK_IMPORTED_MODULE_20__textarea__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__tree_select__ = __webpack_require__(148);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "treeSelect", function() { return __WEBPACK_IMPORTED_MODULE_21__tree_select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__url_input_button__ = __webpack_require__(149);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "urlInputButton", function() { return __WEBPACK_IMPORTED_MODULE_22__url_input_button__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__notice__ = __webpack_require__(151);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "notice", function() { return __WEBPACK_IMPORTED_MODULE_15__notice__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__radio__ = __webpack_require__(140);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "radio", function() { return __WEBPACK_IMPORTED_MODULE_16__radio__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__range__ = __webpack_require__(141);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "range", function() { return __WEBPACK_IMPORTED_MODULE_17__range__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__rich_text__ = __webpack_require__(142);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "richText", function() { return __WEBPACK_IMPORTED_MODULE_18__rich_text__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__select__ = __webpack_require__(144);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "select", function() { return __WEBPACK_IMPORTED_MODULE_19__select__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__text__ = __webpack_require__(145);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "text", function() { return __WEBPACK_IMPORTED_MODULE_20__text__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__textarea__ = __webpack_require__(146);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "textarea", function() { return __WEBPACK_IMPORTED_MODULE_21__textarea__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__tree_select__ = __webpack_require__(148);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "treeSelect", function() { return __WEBPACK_IMPORTED_MODULE_22__tree_select__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__url_input_button__ = __webpack_require__(149);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "urlInputButton", function() { return __WEBPACK_IMPORTED_MODULE_23__url_input_button__["a"]; });
+
 
 
 
@@ -4993,6 +4999,61 @@ function urlInputButton(props, config, defaultConfig, attributeKey) {
 				lineNumber: 17
 			}
 		}))
+	);
+}
+
+/***/ }),
+/* 150 */,
+/* 151 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = notice;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
+
+var _jsxFileName = "/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/notice/index.js";
+/**
+ * Notice field.
+ */
+
+var Notice = wp.components.Notice;
+
+
+
+function notice(props, config, defaultConfig, attributeKey, middleware) {
+
+	var fieldAttributes = _.extend(defaultConfig, config);
+
+	delete fieldAttributes.type;
+
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 15
+			}
+		}),
+		wp.element.createElement(
+			Notice,
+			{ status: "error", isDismissible: false, __source: {
+					fileName: _jsxFileName,
+					lineNumber: 16
+				}
+			},
+			wp.element.createElement(
+				"p",
+				{
+					__source: {
+						fileName: _jsxFileName,
+						lineNumber: 17
+					}
+				},
+				"An error occurred: "
+			)
+		)
 	);
 }
 
