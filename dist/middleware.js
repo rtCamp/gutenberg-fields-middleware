@@ -1623,7 +1623,7 @@ var GutenbergFieldsMiddleWare = function () {
 			_.each(this.blockConfigs.attributes, function (attribute) {
 				if (attribute.field && attribute.field.helperFields) {
 					_.each(attribute.field.helperFields, function (helperFieldAttributeKey) {
-						_.extend(_this2.helperFields, _this2.setupField(props, helperFieldAttributeKey, false));
+						_this2.helperFields[helperFieldAttributeKey] = _this2.setupField(props, helperFieldAttributeKey, false);
 					});
 				}
 			});
