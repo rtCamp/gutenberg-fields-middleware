@@ -29,8 +29,11 @@ registerBlockType( 'gb-m-example/simple-block', {
 			},
 		},
 		alignment: {
+			type: 'boolean',
 			field: {
 				type: 'notice',
+				status: 'error',
+				message: 'An error occurred',
 			},
 		},
 		view: {

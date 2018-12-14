@@ -2127,23 +2127,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "link", function() { return __WEBPACK_IMPORTED_MODULE_13__link__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__media_upload__ = __webpack_require__(130);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mediaUpload", function() { return __WEBPACK_IMPORTED_MODULE_14__media_upload__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__notice__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__notice__ = __webpack_require__(140);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "notice", function() { return __WEBPACK_IMPORTED_MODULE_15__notice__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__radio__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__radio__ = __webpack_require__(141);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "radio", function() { return __WEBPACK_IMPORTED_MODULE_16__radio__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__range__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__range__ = __webpack_require__(142);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "range", function() { return __WEBPACK_IMPORTED_MODULE_17__range__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__rich_text__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__rich_text__ = __webpack_require__(143);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "richText", function() { return __WEBPACK_IMPORTED_MODULE_18__rich_text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__select__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__select__ = __webpack_require__(145);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "select", function() { return __WEBPACK_IMPORTED_MODULE_19__select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__text__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__text__ = __webpack_require__(146);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "text", function() { return __WEBPACK_IMPORTED_MODULE_20__text__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__textarea__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__textarea__ = __webpack_require__(147);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "textarea", function() { return __WEBPACK_IMPORTED_MODULE_21__textarea__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__tree_select__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__tree_select__ = __webpack_require__(149);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "treeSelect", function() { return __WEBPACK_IMPORTED_MODULE_22__tree_select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__url_input_button__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__url_input_button__ = __webpack_require__(150);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "urlInputButton", function() { return __WEBPACK_IMPORTED_MODULE_23__url_input_button__["a"]; });
 
 
@@ -4697,6 +4697,63 @@ module.exports = __webpack_require__(2).getIterator = function (it) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = notice;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
+
+var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/notice/index.js';
+/**
+ * Notice field.
+ */
+
+
+
+var Notice = wp.components.Notice;
+
+
+function notice(props, config, defaultConfig, attributeKey, middleware) {
+
+	var fieldAttributes = _.extend(defaultConfig, config);
+
+	delete fieldAttributes.type;
+	delete fieldAttributes.message;
+
+	return wp.element.createElement(
+		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
+		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
+			__source: {
+				fileName: _jsxFileName,
+				lineNumber: 17
+			}
+		}),
+		wp.element.createElement(
+			Notice,
+			__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, fieldAttributes, {
+				__source: {
+					fileName: _jsxFileName,
+					lineNumber: 18
+				}
+			}),
+			wp.element.createElement(
+				'p',
+				{
+					__source: {
+						fileName: _jsxFileName,
+						lineNumber: 19
+					}
+				},
+				config.message
+			)
+		)
+	);
+}
+
+/***/ }),
+/* 141 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = radio;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
@@ -4728,7 +4785,7 @@ function radio(props, config, defaultConfig, attributeKey) {
 }
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4754,14 +4811,14 @@ function range(props, config, defaultConfig) {
 }
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = richText;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field__ = __webpack_require__(1);
 
@@ -4803,13 +4860,13 @@ function richText(props, config, defaultConfig, attributeKey) {
 }
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4839,7 +4896,7 @@ function select(props, config, defaultConfig) {
 }
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4886,14 +4943,14 @@ function text(props, config, defaultConfig, attributeKey, middleware) {
 }
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = textarea;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editor_scss__);
 
 var _jsxFileName = '/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/textarea/index.js';
@@ -4924,13 +4981,13 @@ function textarea(props, config, defaultConfig) {
 }
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4960,7 +5017,7 @@ function treeSelect(props, config, defaultConfig) {
 }
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4999,61 +5056,6 @@ function urlInputButton(props, config, defaultConfig, attributeKey) {
 				lineNumber: 17
 			}
 		}))
-	);
-}
-
-/***/ }),
-/* 150 */,
-/* 151 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = notice;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field__ = __webpack_require__(1);
-
-var _jsxFileName = "/Users/yahilmadakiya/Local Sites/wp50/app/public/wp-content/plugins/gutenberg-fields-middleware/middleware/fields/notice/index.js";
-/**
- * Notice field.
- */
-
-var Notice = wp.components.Notice;
-
-
-
-function notice(props, config, defaultConfig, attributeKey, middleware) {
-
-	var fieldAttributes = _.extend(defaultConfig, config);
-
-	delete fieldAttributes.type;
-
-	return wp.element.createElement(
-		__WEBPACK_IMPORTED_MODULE_1__components_field__["a" /* default */],
-		__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, config, {
-			__source: {
-				fileName: _jsxFileName,
-				lineNumber: 15
-			}
-		}),
-		wp.element.createElement(
-			Notice,
-			{ status: "error", isDismissible: false, __source: {
-					fileName: _jsxFileName,
-					lineNumber: 16
-				}
-			},
-			wp.element.createElement(
-				"p",
-				{
-					__source: {
-						fileName: _jsxFileName,
-						lineNumber: 17
-					}
-				},
-				"An error occurred: "
-			)
-		)
 	);
 }
 
