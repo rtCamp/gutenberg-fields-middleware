@@ -199,6 +199,9 @@ class GutenbergFieldsMiddleWare {
 			case 'media-icon':
 				field = fields.mediaIcon( props, config, defaultConfig, attributeKey, this );
 				break;
+			case 'notice':
+				field = fields.notice( props, config, defaultConfig, attributeKey, this );
+				break;
 			case 'dropdown-menu':
 				field = fields.dropDownMenu( props, config, defaultConfig, attributeKey, this );
 				break;

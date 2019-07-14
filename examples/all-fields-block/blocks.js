@@ -28,6 +28,14 @@ registerBlockType( 'gb-m-example/simple-block', {
 				placement: 'block-controls',
 			},
 		},
+		alignment: {
+			type: 'boolean',
+			field: {
+				type: 'notice',
+				status: 'error',
+				message: 'An error occurred',
+			},
+		},
 		view: {
 			type: 'string',
 			field: {

@@ -13,6 +13,7 @@ export { default as iconsToolbar } from './icons-toolbar';
 export { default as inputField } from './input-field';
 export { default as link } from './link';
 export { default as mediaUpload } from './media-upload';
+export { default as notice } from './notice';
 export { default as radio } from './radio';
 export { default as range } from './range';
 export { default as richText } from './rich-text';

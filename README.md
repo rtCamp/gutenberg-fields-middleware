@@ -8,9 +8,9 @@ This project is in its early stages. Please [open an issue](https://github.com/r
 
 
 
-## Using 
+## Using
 
-Gutenberg fields middleware requires only two files `dist/middleware.min.js` and `dist/middleware.min.css` as dependency. 
+Gutenberg fields middleware requires only two files `dist/middleware.min.js` and `dist/middleware.min.css` as dependency.
 
 There are two ways of using fields middleware.
 
@@ -127,6 +127,7 @@ Gutenberg Fields Middleware supports the following field types and type configur
 - [input types: email / number/ hidden / search / tel etc.](docs/input.md)
 - [link](docs/link.md)
 - [media-icon](docs/media-icon.md)
+- [notice](docs/notice.md)
 - [radio](docs/radio.md)
 - [range](docs/range.md)
 - [rich-text](docs/rich-text.md)
@@ -144,7 +145,7 @@ Gutenberg Fields Middleware supports the following field types and type configur
 #### Returning field in `edit` method:
 
 - `middleware.fields.arrtibuteKeyName` for a **single** field when `placement` property is not defined.
-- `middleware.blockControls` for **all** block-control fields. ( where `placement` is `block-control` ) 
+- `middleware.blockControls` for **all** block-control fields. ( where `placement` is `block-control` )
 - `middleware.inspectorControls` for **all** inspector fields. ( where `placement` is `inspector` )
 
 
@@ -162,6 +163,5 @@ See [example usage](docs/alignment-toolbar.md#example-usage--es5-) of alignment-
 #### Example Usage:
 
 - See [examples](examples/)
-	* You can set GUTENBERG_FIELDS_MIDDLEWARE_IS_DEV to true during development in wp-config.php which will also enable example blocks. 
+	* You can set GUTENBERG_FIELDS_MIDDLEWARE_IS_DEV to true during development in wp-config.php which will also enable example blocks.
 - Check [gutenberg-supplements](https://github.com/rtCamp/gutenberg-supplements) plugin where we have created some actual blocks using middleware.
-
