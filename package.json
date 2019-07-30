@@ -25,7 +25,7 @@
 		"extract-text-webpack-plugin": "^3.0.2",
 		"glob": "^7.1.2",
 		"jest": "^24.8.0",
-		"lodash": "^4.17.10",
+		"lodash": "^4.17.13",
 		"node-sass": "^4.9.3",
 		"postcss-loader": "^2.1.4",
 		"react": "16.3.0",
