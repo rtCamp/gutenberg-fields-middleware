@@ -1,6 +1,18 @@
 # Gutenberg Fields Middleware
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
+
+
+
+---
+
+### IMPORTANT
+
+The work on Gutenberg Fields Middleware had started during the initial development phase of Gutenberg before it was merged into core. Gutenberg has evolved a lot since then and with the introduction of InnerBlocks and block templates, Gutenberg Fields Middleware has become less useful because the core blocks can be used as fields for creating blocks using block templates. Therefore we have stopped the development of this project and would archive this repo.
+
+---
+
+
 
 Register fields for Gutenberg blocks with a simple, declarative API.
 
